@@ -1,11 +1,24 @@
 {
-	"Index": {
-		"title": "DeltraTransit | Welcome",
-		"description": "Best 3PL, 4PL - carrier. We offer international companies, large networks and production outsourcing of logistics services. All types of logistics services. DeltaUnion is a single coherent mechanism of delivery and clearance of cargo around the world"
-	},
-	"Navbar": {
-		"menu": "Menu",
-		"consultation": "Consultation",
-		"login": "Login"
-	}
+    "MainSection": {
+        "title": "Electrohub | Welcome to the future",
+        "description": "",
+        "heading_description": "Electric cars from official dealers",
+        "text_description": "Buy Electric Cars from China on order and in stock",
+        "btn_catalog": "Catalog",
+        "btn_consultation": "Consultation",
+        "scroll_down": "scroll to explore"
+    },
+    "Navbar": {
+        "main": "Main",
+        "catalog": "Catalog",
+        "car_available": "Available cars",
+        "car_order": "Order a car"
+    },
+    "Brands": {
+        "choose_brand": "Choose a brand"
+    },
+    "Footer": {
+        "callback": "Callback",
+        "rights": "All rights reserved"
+    }
 }

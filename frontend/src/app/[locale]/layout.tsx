@@ -10,6 +10,7 @@ import {
 import { cn } from '@/lib/utils';
 import Navbar from '@/components/navbar/Navbar';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Footer } from '@/components/footer/Footer';
 
 const unbounded = Unbounded({ subsets: ['latin', 'cyrillic-ext'] });
 
@@ -21,7 +22,7 @@ type Props = {
 export async function generateMetadata({
     params: { locale },
 }: Omit<Props, 'children'>): Promise<Metadata> {
-    const t = await getTranslations({ locale, namespace: 'Index' });
+    const t = await getTranslations({ locale, namespace: 'MainSection' });
     const formatter = await getFormatter({ locale });
     const now = await getNow({ locale });
     const timeZone = await getTimeZone({ locale });
@@ -45,7 +46,7 @@ export default function LocaleLayout({
     params: { locale: string };
 }) {
     return (
-        <html lang={locale} suppressHydrationWarning>
+        <html lang={'ru'} suppressHydrationWarning>
             <body
                 className={cn(
                     'flex w-full flex-col bg-black',
@@ -60,6 +61,7 @@ export default function LocaleLayout({
                 >
                     <Navbar />
                     {children}
+                    <Footer locale={locale} />
                 </ThemeProvider>
             </body>
         </html>

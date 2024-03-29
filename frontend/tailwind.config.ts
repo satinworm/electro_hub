@@ -12,7 +12,7 @@ const config = {
     theme: {
         container: {
             center: true,
-            padding: '2rem',
+            padding: '1rem',
             screens: {
                 '2xl': '1400px',
                 '3xl': '1600px',
@@ -20,9 +20,20 @@ const config = {
             },
         },
         extend: {
+            backgroundImage: {
+                main: "url('/main_bg.png')",
+                main_mobile: "url('/main_bg_mobile.png')",
+                rectangle_main: "url('/rectangle.svg')",
+                main_stage_bg: "url('/main_stage_bg.jpg')",
+                rectangle_main_mobile: "url('/rectangle_mobile.svg')",
+                rectangle_main_stage: "url('/rectangle_stage.svg')",
+                rectangle_main_stage_mobile:
+                    "url('/rectangle_stage_mobile.svg')",
+                bg_new_card: "url('/bg_new.png')",
+            },
             fontFamily: {
                 electrohub: ['Electrohub', 'sans-serif'],
-                terminatorgenisys: ['Terminatorgen', 'sans-serif'],
+                terminatorgen: ['TerminatorGen', 'sans-serif'],
             },
             colors: {
                 border: 'hsl(var(--border))',
@@ -31,7 +42,7 @@ const config = {
                 background: 'hsl(var(--background))',
                 foreground: 'hsl(var(--foreground))',
                 primary: {
-                    DEFAULT: '#2D2E81',
+                    DEFAULT: 'hsl(var(--primary))',
                     foreground: 'hsl(var(--primary-foreground))',
                 },
                 secondary: {
@@ -58,6 +69,11 @@ const config = {
                     DEFAULT: 'hsl(var(--card))',
                     foreground: 'hsl(var(--card-foreground))',
                 },
+            },
+            boxShadow: {
+                brandCard: '5px 5px 10px 0 rgba(0, 0, 0, 0.15)',
+                brandCardHover:
+                    '10px 10px 10px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25)',
             },
             borderRadius: {
                 lg: 'var(--radius)',

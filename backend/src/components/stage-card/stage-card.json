@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_stage_card_stage_cards",
+  "info": {
+    "displayName": "stage_card",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

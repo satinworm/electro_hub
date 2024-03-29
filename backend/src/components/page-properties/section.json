@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_page_properties_sections",
+  "info": {
+    "displayName": "section",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "component",
+      "repeatable": true,
+      "component": "heading-for-section.heading"
+    },
+    "section_name": {
+      "type": "string"
+    },
+    "stage_card": {
+      "displayName": "stage_card",
+      "type": "component",
+      "repeatable": true,
+      "component": "stage-card.stage-card"
+    }
+  }
+}

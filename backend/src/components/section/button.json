@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_section_buttons",
+  "info": {
+    "displayName": "button",
+    "icon": "connector"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    }
+  }
+}

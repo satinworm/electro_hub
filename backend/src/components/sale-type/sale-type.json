@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_sale_type_sale_types",
+  "info": {
+    "displayName": "sale_type",
+    "icon": "crown",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    }
+  }
+}

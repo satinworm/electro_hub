@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_heading_for_section_headings",
+  "info": {
+    "displayName": "heading",
+    "icon": "bold",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "h1": {
+      "type": "string"
+    },
+    "h2": {
+      "type": "string"
+    },
+    "h3": {
+      "type": "string"
+    },
+    "btn": {
+      "type": "string"
+    }
+  }
+}

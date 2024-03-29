@@ -18,7 +18,7 @@ const buttonVariants = cva(
                 secondary:
                     'bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80',
                 ghost: 'hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50',
-                link: 'text-[#040404] dark:border-slate-800 rounded-full px-3.5 border-[2px] border-[#040404] dark:text-white dark:border-white',
+                link: 'lg:px-12 lg:py-4 px-3.5 border-[2px]',
             },
             size: {
                 default: 'h-10 px-4 py-2',

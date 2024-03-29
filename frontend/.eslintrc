@@ -3,6 +3,7 @@
     "next",
     "next/core-web-vitals",
     "plugin:prettier/recommended",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+
   ]
 }
