@@ -11,18 +11,7 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
     images: {
-        remotePatterns: [
-            {
-                protocol: 'http',
-                hostname: 'localhost',
-                port: '1338',
-                pathname: '/uploads/**',
-            },
-            {
-                protocol: 'https',
-                hostname: 'images.pexels.com',
-            },
-        ],
+        domains: ['localhost', 'electrohub.by', "strapi.electrohub.by"],
     },
 };
 

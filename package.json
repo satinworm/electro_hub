@@ -13,7 +13,6 @@
     "dev": "yarn clear && concurrently \"cd frontend && yarn dev\" \"cd backend && yarn develop\"",
     "repo:upstream": "git fetch upstream && git merge upstream/main"
   },
-
   "devDependencies": {
     "concurrently": "^7.6.0"
   }
