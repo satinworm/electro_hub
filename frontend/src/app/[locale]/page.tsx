@@ -63,15 +63,15 @@ export default async function RootRoute({
         },
         locale
     );
-    const brandsSection = pageProperties?.data[0]?.attributes?.sections?.find(
+    const brandsSection = pageProperties?.data?.[0]?.attributes?.sections?.find(
         (section: any) => section.section_name === 'brands'
     );
     const newArrivalsSection =
-        pageProperties?.data[0]?.attributes?.sections?.find(
+        pageProperties?.data?.[0]?.attributes?.sections?.find(
             (section: any) => section.section_name === 'newArrivals'
         );
     const stagePurchaseSection =
-        pageProperties?.data[0]?.attributes?.sections?.find(
+        pageProperties?.data?.[0]?.attributes?.sections?.find(
             (section: any) => section.section_name === 'stagespurchase'
         );
     // console.dir(pageProperties, { depth: null });

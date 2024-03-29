@@ -11,7 +11,8 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
     images: {
-        domains: ['localhost', 'electrohub.by', "strapi.electrohub.by"],
+
+        domains: ['localhost', 'localhost:1349', 'electrohub.by', "strapi.electrohub.by"]
     },
 };
 

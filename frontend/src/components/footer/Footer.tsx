@@ -9,6 +9,7 @@ import Image from 'next/image';
 export async function Footer({ locale }: { locale: string }) {
     const t = await getTranslations({ locale, namespace: 'Footer' });
     const pageProperties = await getDataFromAPI('footers', null, locale);
+
     if (
         !pageProperties ||
         !pageProperties.data ||
@@ -17,10 +18,10 @@ export async function Footer({ locale }: { locale: string }) {
         // Обработка случая, когда данные отсутствуют или невалидны
         return;
     }
-    const title = pageProperties?.data[0]?.attributes?.title;
-    const footer_Links = pageProperties?.data[0]?.attributes?.footer_links;
-    const brands_links = pageProperties?.data[0]?.attributes?.brands_links;
-    const social_links = pageProperties?.data[0]?.attributes?.social_links;
+    const title = pageProperties?.data?.[0]?.attributes?.title;
+    const footer_Links = pageProperties?.data?.[0]?.attributes?.footer_links;
+    const brands_links = pageProperties?.data?.[0]?.attributes?.brands_links;
+    const social_links = pageProperties?.data?.[0]?.attributes?.social_links;
     const mergedLinks = [...footer_Links, ...brands_links];
 
     console.log('footer_Links', mergedLinks);
