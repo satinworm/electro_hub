@@ -23,9 +23,9 @@ const options = {};
 export default function DeliveryStageSection(props: Props) {
     const [windowWidth, setWindowWidth] = useState(0);
     const { data } = props;
-    const h1 = data?.heading[0]?.h1;
-    const h2 = data?.heading[0]?.h2;
-    const h3 = data?.heading[0]?.h3;
+    const h1 = data?.heading?.[0]?.h1;
+    const h2 = data?.heading?.[0]?.h2;
+    const h3 = data?.heading?.[0]?.h3;
     const stagesCardsData = data?.stage_card;
 
     const [emblaRef, emblaApi] = useEmblaCarousel(options);
@@ -51,7 +51,7 @@ export default function DeliveryStageSection(props: Props) {
     return (
         <>
             <section className='-mt-5 flex min-h-[680px] w-full flex-col bg-white bg-main_stage_bg bg-cover bg-no-repeat font-electrohub text-white md:-mt-16 xl:py-10'>
-                <div className='bg-rectangle_main_stage_mobile z-[1] h-[38px] w-full bg-cover bg-no-repeat md:mt-[-40px] md:h-[52px] md:bg-rectangle_main_stage' />
+                <div className='z-[1] h-[38px] w-full bg-rectangle_main_stage_mobile bg-cover bg-no-repeat md:mt-[-40px] md:h-[52px] md:bg-rectangle_main_stage' />
                 <div className='container mt-12 sm:mt-16 md:mt-24'>
                     {h3 && <h3 className='font-black'>{h2}</h3>}
                     {h1 && h2 && (

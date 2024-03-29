@@ -11,10 +11,10 @@ type Props = {
 export default function BrandSection(props: Props) {
     const { brands, data } = props;
     // const { h1, h2, h3, btn } = data?.heading[0];
-    const h1 = data?.heading[0]?.h1;
-    const h2 = data?.heading[0]?.h2;
-    const h3 = data?.heading[0]?.h3;
-    const btn = data?.heading[0]?.btn;
+    const h1 = data?.heading?.[0]?.h1;
+    const h2 = data?.heading?.[0]?.h2;
+    const h3 = data?.heading?.[0]?.h3;
+    const btn = data?.heading?.[0]?.btn;
     return (
         <section className='mt-[-1px] flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'>
             <div className='container text-black'>
@@ -37,7 +37,7 @@ export default function BrandSection(props: Props) {
                 </div>
             </div>
             <div className='container mt-20 grid grid-cols-2 gap-5 md:gap-5 lg:grid-cols-3 lg:gap-6 xl:grid-cols-4 xl:gap-10'>
-                {brands.data.map((brand: any) => {
+                {brands?.data?.map((brand: any) => {
                     const { logo, name, slug, image } = brand.attributes;
                     const {
                         url: logoUrl,

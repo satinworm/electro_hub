@@ -3,10 +3,10 @@ import { getStrapiMedia } from '@/utils/api-helpers';
 import { Car, NewArrivalResponse } from '@/types/NewArrivals-types';
 
 export default function NewArrivals({ newArrivalsModels, data }: any) {
-    const h1 = data?.heading[0]?.h1;
-    const h2 = data?.heading[0]?.h2;
-    const h3 = data?.heading[0]?.h3;
-    const btn = data?.heading[0]?.btn;
+    const h1 = data?.heading?.[0]?.h1;
+    const h2 = data?.heading?.[0]?.h2;
+    const h3 = data?.heading?.[0]?.h3;
+    const btn = data?.heading?.[0]?.btn;
     return (
         <section className='-mt-1 flex w-full flex-col bg-white pt-3 font-electrohub text-black md:px-8 md:pt-12 xl:py-10'>
             <div className='container text-black'>
@@ -21,7 +21,7 @@ export default function NewArrivals({ newArrivalsModels, data }: any) {
                     </div>
                 </div>
                 <div className='mb-12 mt-6 grid grid-cols-1 gap-7 md:mt-12 lg:mb-24 lg:grid-cols-2 xl:mt-20'>
-                    {newArrivalsModels.data.map((item: Car) => (
+                    {newArrivalsModels?.data?.map((item: Car) => (
                         <div
                             key={item.attributes.slug}
                             className='flex flex-col rounded-[10px] px-3 py-5 lg:py-12 lg:pl-5 lg:pr-12 2xl:flex-row'

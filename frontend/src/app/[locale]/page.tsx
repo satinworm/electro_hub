@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: any) {
         },
         locale
     );
-    const { SEO } = pageProperties.data[0].attributes;
+    const { SEO } = pageProperties?.data?.[0]?.attributes;
     return {
         title: SEO.MetaTitle,
         description: SEO.MetaDescription,
