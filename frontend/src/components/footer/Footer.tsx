@@ -24,7 +24,6 @@ export async function Footer({ locale }: { locale: string }) {
     const social_links = pageProperties?.data?.[0]?.attributes?.social_links;
     const mergedLinks = [...footer_Links, ...brands_links];
 
-    console.log('footer_Links', mergedLinks);
     return (
         <footer className='flex w-full flex-col bg-[#F0F0F0] py-12 font-electrohub text-white md:px-3 md:py-12 lg:py-16 xl:py-24'>
             <div className={'container'}>

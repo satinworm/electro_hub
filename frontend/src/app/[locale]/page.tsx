@@ -4,6 +4,7 @@ import { fetchAPI, getDataFromAPI } from '@/utils/fetch-api';
 import NewArrivals from '@/components/NewArrivals';
 import DeliveryStageSection from '@/components/DeliveryStageSection';
 import NewsSection from '@/components/NewsSection';
+import { Loader } from '@/components/Loader';
 
 export async function generateMetadata({ params }: any) {
     const { locale } = params;
@@ -34,8 +35,8 @@ export async function generateMetadata({ params }: any) {
     );
     const SEO = pageProperties?.data?.[0]?.attributes?.SEO;
     return {
-        title: SEO.MetaTitle,
-        description: SEO.MetaDescription,
+        title: SEO?.MetaTitle,
+        description: SEO?.MetaDescription,
     };
 }
 
@@ -129,18 +130,29 @@ export default async function RootRoute({
         locale
     );
 
-    console.dir(newsData, { depth: null });
+    // console.dir(newsData, { depth: null });
+    console.log('brandsSection ', brands?.data?.[0]);
 
     return (
         <main className='flex flex-col items-center justify-between'>
-            <MainSection />
-            <BrandSection brands={brands} data={brandsSection} />
-            <NewArrivals
-                newArrivalsModels={newArrivalsModels}
-                data={newArrivalsSection}
-            />
-            <DeliveryStageSection data={stagePurchaseSection} />
-            <NewsSection data={newsData} />
+            {brandsSection &&
+            pageProperties?.data?.[0] &&
+            brands?.data?.[0] &&
+            newArrivalsModels?.data?.[0] &&
+            newsData?.data?.[0] ? (
+                <>
+                    <MainSection />
+                    <BrandSection brands={brands} data={brandsSection} />
+                    <NewArrivals
+                        newArrivalsModels={newArrivalsModels}
+                        data={newArrivalsSection}
+                    />
+                    <DeliveryStageSection data={stagePurchaseSection} />
+                    <NewsSection data={newsData} />
+                </>
+            ) : (
+                <Loader styles={'h-[100vh]'} />
+            )}
         </main>
     );
 }

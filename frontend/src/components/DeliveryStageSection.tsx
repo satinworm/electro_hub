@@ -46,7 +46,6 @@ export default function DeliveryStageSection(props: Props) {
             });
         };
     }, []);
-    console.log('windowWidth', windowWidth);
 
     return (
         <>

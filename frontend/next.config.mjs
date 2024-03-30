@@ -4,16 +4,18 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: false,
+    reactStrictMode: true,
     eslint: {
-        // Warning: This allows production builds to successfully complete even if
-        // your project has ESLint errors.
         ignoreDuringBuilds: true,
     },
     images: {
 
         domains: ['localhost', 'localhost:1349', 'electrohub.by', "strapi.electrohub.by"]
     },
+    generateBuildId: async () => {
+        return process.env.GIT_HASH
+    }
+
 };
 
 export default withNextIntl(nextConfig);
