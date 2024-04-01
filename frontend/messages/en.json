@@ -12,7 +12,11 @@
         "main": "Main",
         "catalog": "Catalog",
         "car_available": "Available cars",
-        "car_order": "Order a car"
+        "car_order": "Order a car",
+        "menu": "Menu",
+        "news": "News",
+        "sales": "Sales",
+        "test_drive": "Test drive"
     },
     "Brands": {
         "choose_brand": "Choose a brand"

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "footers",
+  "collectionName": "navbars",
   "info": {
-    "singularName": "footer",
-    "pluralName": "footers",
-    "displayName": "Footer",
+    "singularName": "navbar",
+    "pluralName": "navbars",
+    "displayName": "Navbar",
     "description": ""
   },
   "options": {
@@ -16,36 +16,50 @@
     }
   },
   "attributes": {
-    "title": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ],
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      }
+    },
+    "main_links": {
+      "type": "component",
+      "repeatable": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
+        }
+      },
+      "component": "links.link"
+    },
+    "sub_links": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "links.link"
+    },
+    "contact_number": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
         }
       },
       "type": "string",
       "required": true
     },
-    "footer_links": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "links.link"
-    },
-    "brands_links": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "component": "links.link"
-    },
     "social_links": {
+      "displayName": "social",
       "type": "component",
       "repeatable": true,
       "pluginOptions": {
@@ -53,17 +67,8 @@
           "localized": false
         }
       },
-      "component": "links.link"
-    },
-    "extra_links": {
-      "type": "component",
-      "repeatable": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "links.link"
+      "component": "links.social",
+      "required": true
     }
   }
 }

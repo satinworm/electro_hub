@@ -9,7 +9,7 @@ export default function MainSection() {
             <div className='item-center container relative flex h-full min-h-[98vh] w-full flex-col justify-end'>
                 <SocialLinks />
                 <div className='mb-[25%] flex flex-col items-center justify-center space-y-3 md:mb-[15%] md:space-y-5'>
-                    <div className='px-4 text-center font-terminatorgen text-[58px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:text-[128px]'>
+                    <div className='px-4 text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:text-[128px]'>
                         electro hub
                     </div>
                     <div className='text-center font-electrohub text-[15px] font-bold text-white md:text-[20px]'>

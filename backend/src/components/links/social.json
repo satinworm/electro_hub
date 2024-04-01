@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_links_socials",
+  "info": {
+    "displayName": "social",
+    "icon": "cast"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "href": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

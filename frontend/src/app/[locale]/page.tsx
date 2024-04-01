@@ -131,7 +131,7 @@ export default async function RootRoute({
     );
 
     // console.dir(newsData, { depth: null });
-    console.log('brandsSection ', brands?.data?.[0]);
+    // console.log('brandsSection ', brands?.data?.[0]);
 
     return (
         <main className='flex flex-col items-center justify-between'>

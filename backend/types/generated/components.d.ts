@@ -36,6 +36,19 @@ export interface LinksLink extends Schema.Component {
   };
 }
 
+export interface LinksSocial extends Schema.Component {
+  collectionName: 'components_links_socials';
+  info: {
+    displayName: 'social';
+    icon: 'cast';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    href: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+  };
+}
+
 export interface PagePropertiesMetaTag extends Schema.Component {
   collectionName: 'components_page_properties_meta_tags';
   info: {
@@ -129,6 +142,7 @@ declare module '@strapi/types' {
       'bradn-section.sect': BradnSectionSect;
       'heading-for-section.heading': HeadingForSectionHeading;
       'links.link': LinksLink;
+      'links.social': LinksSocial;
       'page-properties.meta-tag': PagePropertiesMetaTag;
       'page-properties.section': PagePropertiesSection;
       'page-properties.seo': PagePropertiesSeo;

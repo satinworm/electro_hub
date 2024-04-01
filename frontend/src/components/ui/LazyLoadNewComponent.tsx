@@ -38,10 +38,10 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
     }, [inView, setHasLoaded]);
 
     return (
-        <div className='embla__slide flex w-full flex-col gap-8 lg:flex-row'>
+        <div className='embla__slide flex w-full flex-col gap-2 sm:gap-8 lg:flex-row'>
             <div
                 className={
-                    'flex flex-col gap-4 font-electrohub lg:w-1/2 lg:gap-8 xl:w-[40%]'
+                    'flex flex-col gap-2 font-electrohub sm:gap-4 lg:w-1/2 lg:gap-8 xl:w-[40%]'
                 }
             >
                 <div className={'flex gap-5'}>
@@ -50,7 +50,7 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
                 </div>
                 <div
                     className={
-                        'text-[24px] font-bold leading-tight text-black lg:text-[32px]'
+                        'text-lg font-bold leading-tight text-black sm:text-xl md:text-[24px] lg:text-[32px]'
                     }
                 >
                     {title}
@@ -73,7 +73,7 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
                 </button>
             </div>
             <div
-                className={'embla__lazy-load bg-bg_new_card flex w-full items-center justify-center bg-cover bg-no-repeat lg:w-[55%]'.concat(
+                className={'embla__lazy-load flex w-full items-center justify-center bg-bg_new_card bg-cover bg-no-repeat lg:w-[55%]'.concat(
                     hasLoaded ? ' embla__lazy-load--has-loaded' : ''
                 )}
             >
@@ -88,7 +88,11 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
                     data-src={imgSrc}
                 />
             </div>
-            <div className={'text-lg leading-tight text-[#1E1E1E] lg:hidden'}>
+            <div
+                className={
+                    'text-sm leading-tight text-[#1E1E1E] sm:text-base md:text-lg lg:hidden'
+                }
+            >
                 {description}
             </div>
             <button

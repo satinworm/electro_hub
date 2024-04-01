@@ -936,6 +936,12 @@ export interface ApiFooterFooter extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    extra_links: Attribute.Component<'links.link', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1083,6 +1089,79 @@ export interface ApiModelModel extends Schema.CollectionType {
       'api::model.model',
       'oneToMany',
       'api::model.model'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiNavbarNavbar extends Schema.CollectionType {
+  collectionName: 'navbars';
+  info: {
+    singularName: 'navbar';
+    pluralName: 'navbars';
+    displayName: 'Navbar';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    logo: Attribute.Media &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    main_links: Attribute.Component<'links.link', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    sub_links: Attribute.Component<'links.link', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    contact_number: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    social_links: Attribute.Component<'links.social', true> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::navbar.navbar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::navbar.navbar',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::navbar.navbar',
+      'oneToMany',
+      'api::navbar.navbar'
     >;
     locale: Attribute.String;
   };
@@ -1348,6 +1427,7 @@ declare module '@strapi/types' {
       'api::brands-section.brands-section': ApiBrandsSectionBrandsSection;
       'api::footer.footer': ApiFooterFooter;
       'api::model.model': ApiModelModel;
+      'api::navbar.navbar': ApiNavbarNavbar;
       'api::new.new': ApiNewNew;
       'api::new-arrival.new-arrival': ApiNewArrivalNewArrival;
       'api::page.page': ApiPagePage;

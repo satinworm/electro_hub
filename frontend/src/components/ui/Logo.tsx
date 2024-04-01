@@ -1,14 +1,30 @@
-'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getStrapiMedia } from '@/utils/api-helpers';
 
-export default function Logo() {
+type Props = {
+    data: {
+        height: number;
+        width: number;
+        url: string;
+    };
+};
+export default function Logo({ data }: Props) {
     return (
-        <Link
-            href={'/'}
-            className='relative h-[24px] w-[110px] md:h-[30px] md:w-[160px]'
-        >
-            <Image src='/navbar/logo.svg' priority={true} alt='Logo' fill />
-        </Link>
+        <>
+            {data?.height && data?.width && data?.url ? (
+                <Link
+                    href={'/'}
+                    className={`relative h-[24px] w-[110px] md:h-[${data?.height}px] md:w-[${data?.width}px]`}
+                >
+                    <Image
+                        src={getStrapiMedia(data?.url)!}
+                        priority={true}
+                        alt='Logo'
+                        fill
+                    />
+                </Link>
+            ) : null}
+        </>
     );
 }

@@ -1,0 +1,110 @@
+import Image from 'next/image';
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from '@/components/ui/sheet';
+import { useLocale, useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
+import { getDataFromAPI } from '@/utils/fetch-api';
+import { Link as LinkType } from '@/types/navbar.types';
+import { BrandsResponse } from '@/types/brands.types';
+
+type Props = {
+    main_links: LinkType[];
+    social_links: LinkType[];
+    sub_links: LinkType[];
+    brands: BrandsResponse;
+};
+export default async function Burger(props: Props) {
+    const { social_links, sub_links, brands, main_links } = props;
+    const locale = useLocale();
+    const t = useTranslations('Navbar');
+    const links = [
+        { label: t('main'), href: '/' },
+        { label: t('catalog'), href: '/about' },
+        { label: t('car_available'), href: '/services' },
+        { label: t('car_order'), href: '/contact' },
+    ];
+    const links2 = [
+        { label: t('news'), href: '/news' },
+        { label: t('sales'), href: '/sales' },
+        { label: t('test_drive'), href: '/test_drive' },
+    ];
+    // const t = await getTranslations({ locale, namespace: 'Footer' });
+
+    // console.log('brands links', social_links);
+
+    return (
+        <Sheet>
+            <SheetTrigger>
+                <Image
+                    src={'/navbar/burger_icon.svg'}
+                    alt={'burger menu'}
+                    width={50}
+                    height={14}
+                />
+            </SheetTrigger>
+            <SheetContent
+                className={
+                    'min-w-[50vw] px-8 py-6 font-electrohub sm:px-10 md:min-w-[35vw] md:px-20 md:py-10'
+                }
+            >
+                <SheetHeader>
+                    <SheetTitle className={'text-left text-[#808080]'}>
+                        {t('menu')}
+                    </SheetTitle>
+                </SheetHeader>
+                <div className={'flex h-full flex-col justify-evenly'}>
+                    <div className={'flex flex-col gap-y-3 sm:gap-y-5'}>
+                        {main_links &&
+                            main_links?.map((link) => (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={
+                                        'block text-[22px] font-bold text-[#A4AABD] sm:text-[28px]'
+                                    }
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                    </div>
+
+                    <div className={'flex flex-col gap-y-3 sm:gap-y-4'}>
+                        {sub_links &&
+                            sub_links?.map((link) => (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className={
+                                        'block text-[18px] font-bold text-[#A4AABD] sm:text-[22px]'
+                                    }
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                    </div>
+                    <div className={''}>
+                        {social_links &&
+                            social_links?.map((link: any, index: number) => (
+                                <Link
+                                    href={link.href}
+                                    key={index}
+                                    className={
+                                        'block text-base font-bold capitalize text-[#A4AABD] sm:text-lg'
+                                    }
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                    </div>
+                </div>
+            </SheetContent>
+        </Sheet>
+    );
+}

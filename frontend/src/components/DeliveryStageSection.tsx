@@ -113,46 +113,48 @@ export default function DeliveryStageSection(props: Props) {
                 ) : (
                     <Carousel className='mt-3 w-full max-w-full px-3'>
                         <CarouselContent>
-                            {stagesCardsData?.map((stageCard: StageCard) => (
-                                <CarouselItem
-                                    key={stageCard.id}
-                                    className={'h-full'}
-                                >
-                                    <div
-                                        className={
-                                            'rounded-[10px] px-4 py-3 pb-8 text-white md:px-4 md:py-4 md:pb-12 lg:px-6 lg:py-5 lg:pb-20 xl:px-7'
-                                        }
-                                        style={{
-                                            backdropFilter: 'blur(10px)',
-                                            background:
-                                                'linear-gradient(135deg, rgba(128, 128, 128, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%)',
-                                        }}
+                            {stagesCardsData?.map(
+                                (stageCard: StageCard, index: number) => (
+                                    <CarouselItem
                                         key={stageCard.id}
+                                        className={'h-full'}
                                     >
-                                        <p
+                                        <div
                                             className={
-                                                'text-right font-terminatorgen text-[54px] leading-[0.8] text-[#808080] md:text-[80px]'
+                                                'rounded-[10px] px-4 py-3 pb-8 text-white md:px-4 md:py-4 md:pb-12 lg:px-6 lg:py-5 lg:pb-20 xl:px-7'
                                             }
+                                            style={{
+                                                backdropFilter: 'blur(10px)',
+                                                background:
+                                                    'linear-gradient(135deg, rgba(128, 128, 128, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%)',
+                                            }}
+                                            key={stageCard.id}
                                         >
-                                            0{stageCard.id}
-                                        </p>
-                                        <p
-                                            className={
-                                                'font-electrohub text-[20px] font-bold leading-tight tracking-tight md:text-[22px]'
-                                            }
-                                        >
-                                            {stageCard.title}
-                                        </p>
-                                        <p
-                                            className={
-                                                'mt-5 font-electrohub text-[15px] leading-tight md:text-[18px]'
-                                            }
-                                        >
-                                            {stageCard.description}
-                                        </p>
-                                    </div>
-                                </CarouselItem>
-                            ))}
+                                            <p
+                                                className={
+                                                    'text-right font-terminatorgen text-[54px] leading-[0.8] text-[#808080] md:text-[80px]'
+                                                }
+                                            >
+                                                0{index + 1}
+                                            </p>
+                                            <p
+                                                className={
+                                                    'font-electrohub text-[20px] font-bold leading-tight tracking-tight md:text-[22px]'
+                                                }
+                                            >
+                                                {stageCard.title}
+                                            </p>
+                                            <p
+                                                className={
+                                                    'mt-5 font-electrohub text-[15px] leading-tight md:text-[18px]'
+                                                }
+                                            >
+                                                {stageCard.description}
+                                            </p>
+                                        </div>
+                                    </CarouselItem>
+                                )
+                            )}
                         </CarouselContent>
                         <div
                             className={'mt-2 flex w-full justify-center gap-5'}
