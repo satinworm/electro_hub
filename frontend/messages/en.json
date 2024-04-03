@@ -1,21 +1,12 @@
 {
-    "MainSection": {
-        "title": "Electrohub | Welcome to the future",
-        "description": "",
-        "heading_description": "Electric cars from official dealers",
-        "text_description": "Buy Electric Cars from China on order and in stock",
-        "btn_catalog": "Catalog",
-        "btn_consultation": "Consultation",
-        "scroll_down": "scroll to explore"
-    },
     "Navbar": {
         "main": "Main",
         "catalog": "Catalog",
-        "car_available": "Available cars",
-        "car_order": "Order a car",
+        "car_available": "Car in stock",
+        "car_order": "Custom car",
         "menu": "Menu",
         "news": "News",
-        "sales": "Sales",
+        "sales": "Stocks",
         "test_drive": "Test drive"
     },
     "Brands": {
@@ -24,5 +15,26 @@
     "Footer": {
         "callback": "Callback",
         "rights": "All rights reserved"
+    },
+    "NotFound": {
+        "heading": "All of life is an eternal quest",
+        "description": "And when something goes wrong, you just have to go back to the beginning, in our case, the home page :)",
+        "btn": "Back to the main page"
+    },
+    "MainSection": {
+        "title": "Electrohub | Welcome",
+        "heading_description": "Electric cars from authorized dealers",
+        "text_description": "Buy Electric Cars from China on order and in stock",
+        "description": "Electric cars from China on order and in stock",
+        "btn_catalog": "Go to catalogue",
+        "btn_consultation": "Counseling",
+        "scroll_down": "scroll to explore"
+    },
+    "Zeekr": {
+        "title": "Zeekr",
+        "heading_description": "Combining elegance and practicality",
+        "text_description": "from $28,000",
+        "btn_constructor": "Designer",
+        "btn_consultation": "Counseling"
     }
 }
