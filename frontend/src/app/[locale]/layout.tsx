@@ -30,9 +30,10 @@ export async function generateMetadata({
     const timeZone = await getTimeZone({ locale });
 
     return {
-        metadataBase: new URL('http://localhost:3000'),
+        metadataBase: new URL('https://electrohub.com'),
         title: t('title'),
         description: t('description'),
+
         other: {
             currentYear: formatter.dateTime(now, { year: 'numeric' }),
             timeZone: timeZone || 'N/A',

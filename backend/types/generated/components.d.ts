@@ -80,13 +80,15 @@ export interface PagePropertiesSeo extends Schema.Component {
   info: {
     displayName: 'SEO';
     icon: 'filter';
+    description: '';
   };
   attributes: {
     MetaTitle: Attribute.String &
       Attribute.Required &
-      Attribute.DefaultTo<'MetaDescription'>;
+      Attribute.DefaultTo<'Electrohub | '>;
     MetaDescription: Attribute.String & Attribute.Required;
     MetaTag: Attribute.Component<'page-properties.meta-tag', true>;
+    ogImage: Attribute.Media;
   };
 }
 

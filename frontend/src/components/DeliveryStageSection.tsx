@@ -49,15 +49,15 @@ export default function DeliveryStageSection(props: Props) {
 
     return (
         <>
-            <section className='-mt-5 flex min-h-[680px] w-full flex-col bg-white bg-main_stage_bg bg-cover bg-no-repeat font-electrohub text-white md:-mt-16 xl:py-10'>
-                <div className='z-[1] h-[38px] w-full bg-rectangle_main_stage_mobile bg-cover bg-no-repeat md:mt-[-40px] md:h-[52px] md:bg-rectangle_main_stage' />
+            <section className='-mt-5 mb-12 flex min-h-[680px] w-full flex-col bg-white bg-main_stage_bg bg-cover bg-no-repeat pb-16 font-electrohub text-white md:-mt-16 lg:mb-16'>
+                <div className='z-[1] h-[38px] w-full bg-rectangle_main_stage_mobile bg-cover bg-no-repeat md:mt-[0px] md:h-[52px] md:bg-rectangle_main_stage' />
                 <div className='container mt-12 sm:mt-16 md:mt-24'>
                     {h3 && <h3 className='font-black'>{h2}</h3>}
                     {h1 && h2 && (
                         <div className='mt-3 flex flex-col gap-3 md:mt-5 lg:gap-5'>
                             <span
                                 className={
-                                    'text-base font-bold leading-tight sm:text-lg md:text-xl lg:max-w-[720px] lg:text-2xl lg:text-[32px]'
+                                    'text-base font-bold leading-tight sm:text-lg md:text-2xl lg:max-w-[720px] lg:text-2xl lg:text-[32px]'
                                 }
                             >
                                 {h1}
@@ -73,42 +73,44 @@ export default function DeliveryStageSection(props: Props) {
                     )}
                 </div>
                 {windowWidth > 768 ? (
-                    <div className='container mb-16 mt-12 grid grid-cols-1 gap-3 md:mt-20 md:gap-5 lg:grid-cols-3 lg:gap-6 xl:gap-10'>
-                        {stagesCardsData?.map((stageCard: StageCard) => (
-                            <div
-                                className={
-                                    'rounded-[10px] px-4 py-3 pb-8 text-white md:px-4 md:py-4 md:pb-12 lg:px-6 lg:py-5 lg:pb-20 xl:px-7'
-                                }
-                                style={{
-                                    backdropFilter: 'blur(10px)',
-                                    background:
-                                        'linear-gradient(135deg, rgba(128, 128, 128, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%)',
-                                }}
-                                key={stageCard.id}
-                            >
-                                <p
+                    <div className='container mb-3 mt-12 grid grid-cols-1 gap-3 md:mb-8 md:mt-20 md:gap-5 lg:mb-16 lg:grid-cols-3 lg:gap-6 xl:gap-10'>
+                        {stagesCardsData?.map(
+                            (stageCard: StageCard, index: number) => (
+                                <div
                                     className={
-                                        'text-right font-terminatorgen text-[80px] leading-[0.8] text-[#808080]'
+                                        'rounded-[10px] px-4 py-3 pb-8 text-white md:px-4 md:py-4 md:pb-12 lg:px-6 lg:py-5 lg:pb-20 xl:px-7'
                                     }
+                                    style={{
+                                        backdropFilter: 'blur(10px)',
+                                        background:
+                                            'linear-gradient(135deg, rgba(128, 128, 128, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%)',
+                                    }}
+                                    key={stageCard.id}
                                 >
-                                    0{stageCard.id}
-                                </p>
-                                <p
-                                    className={
-                                        'font-electrohub text-[20px] font-bold leading-tight tracking-tight md:text-[22px]'
-                                    }
-                                >
-                                    {stageCard.title}
-                                </p>
-                                <p
-                                    className={
-                                        'mt-5 font-electrohub text-[16px] leading-tight md:text-[18px]'
-                                    }
-                                >
-                                    {stageCard.description}
-                                </p>
-                            </div>
-                        ))}
+                                    <p
+                                        className={
+                                            'text-right font-terminatorgen text-[80px] leading-[0.8] text-[#808080]'
+                                        }
+                                    >
+                                        0{index + 1}
+                                    </p>
+                                    <p
+                                        className={
+                                            'font-electrohub text-[20px] font-bold leading-tight tracking-tight md:text-[22px]'
+                                        }
+                                    >
+                                        {stageCard.title}
+                                    </p>
+                                    <p
+                                        className={
+                                            'mt-5 font-electrohub text-[16px] leading-tight md:text-[18px]'
+                                        }
+                                    >
+                                        {stageCard.description}
+                                    </p>
+                                </div>
+                            )
+                        )}
                     </div>
                 ) : (
                     <Carousel className='mt-3 w-full max-w-full px-3'>
@@ -165,7 +167,6 @@ export default function DeliveryStageSection(props: Props) {
                     </Carousel>
                 )}
             </section>
-            <div className='z-[1] h-[38px] w-full rotate-180 bg-rectangle_main_mobile bg-cover bg-no-repeat md:mt-[-38px] md:h-[52px] md:bg-rectangle_main_stage' />
         </>
     );
 }

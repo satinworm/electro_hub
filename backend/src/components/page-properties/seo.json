@@ -2,14 +2,15 @@
   "collectionName": "components_page_properties_seos",
   "info": {
     "displayName": "SEO",
-    "icon": "filter"
+    "icon": "filter",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "MetaTitle": {
       "type": "string",
       "required": true,
-      "default": "MetaDescription"
+      "default": "Electrohub | "
     },
     "MetaDescription": {
       "type": "string",
@@ -20,6 +21,14 @@
       "type": "component",
       "repeatable": true,
       "component": "page-properties.meta-tag"
+    },
+    "ogImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

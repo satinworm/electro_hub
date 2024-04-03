@@ -23,6 +23,8 @@ const config = {
             backgroundImage: {
                 main: "url('/main_bg.png')",
                 main_mobile: "url('/main_bg_mobile.png')",
+                zeekr: "url('/zeekr_bg.jpg')",
+                zeekr_mobile: "url('/zeekr_bg_mobile.jpg')",
                 rectangle_main: "url('/rectangle.svg')",
                 main_stage_bg: "url('/main_stage_bg.jpg')",
                 rectangle_main_mobile: "url('/rectangle_mobile.svg')",

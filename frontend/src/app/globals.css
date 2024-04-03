@@ -34,6 +34,7 @@ html {
 section {
     @apply bg-white
 }
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -130,4 +131,11 @@ section {
   --admonition-note-rgb-value: 46, 109, 188;
   --admonition-warning-rgb-value: 255, 196, 9;
   --admonition-danger-rgb-value: 220, 38, 38;
+}
+
+.main-bg {
+  @apply md:bg-main bg-main_mobile
+}
+.zeekr-bg {
+  @apply bg-zeekr_mobile md:bg-zeekr
 }

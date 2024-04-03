@@ -32,7 +32,7 @@ export default function Navbar(props: Props) {
                 <div className='flex gap-20'>
                     <Logo data={logo} />
 
-                    <div className='hidden gap-x-12 md:flex'>
+                    <div className='hidden gap-x-12 lg:flex'>
                         {main_links?.map((link) => (
                             <NavLink
                                 key={link.name}
@@ -54,7 +54,7 @@ export default function Navbar(props: Props) {
                             width={17}
                             height={24}
                         />
-                        <span className='hidden font-electrohub font-bold md:block'>
+                        <span className='hidden font-electrohub font-bold xl:block'>
                             {contact_number}
                         </span>
                     </Link>
