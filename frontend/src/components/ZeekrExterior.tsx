@@ -10,6 +10,7 @@ type Props = {
     data: {
         title: string;
         subtitle: string;
+        description: string;
         color: ColorOption[];
     };
 };
