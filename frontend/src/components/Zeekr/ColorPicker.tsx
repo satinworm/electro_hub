@@ -13,7 +13,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({ options }) => {
     );
     return (
         <div>
-            <div className='relative mt-4 min-h-[420px]'>
+            <div className='relative mt-4 min-h-[200px] sm:min-h-[300px] md:min-h-[350px] lg:min-h-[420px]'>
                 {options?.map((option) => (
                     <motion.img
                         key={option.id}
@@ -28,13 +28,13 @@ export const ColorPicker: FC<ColorPickerProps> = ({ options }) => {
                     />
                 ))}
             </div>
-            <div className='flex w-full justify-center space-x-4'>
+            <div className='flex w-full justify-center space-x-2 md:space-x-4'>
                 {options?.map((option) => {
                     const isSelected = option == selectedColor;
                     return (
                         <motion.div
                             key={option.id}
-                            className={`h-24 w-24 rounded-[4px] border-[2px] p-2`}
+                            className={`h-14 w-14 rounded-[4px] border-[2px] p-1 md:h-16 md:w-16 md:p-2 lg:h-24 lg:w-24`}
                             onClick={() => setSelectedColor(option)}
                             style={{
                                 borderColor: isSelected

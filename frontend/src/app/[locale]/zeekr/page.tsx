@@ -168,7 +168,7 @@ export default async function ZeekrPage({
                                 name: t('btn_constructor'),
                                 style: 'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-3 font-electrohub text-lg font-bold text-black md:max-w-[370px]',
                                 image: {
-                                    url: '/constructor.png',
+                                    url: '/constructor.svg',
                                     width: 20,
                                     height: 20,
                                 },

@@ -1,10 +1,7 @@
 import { getStrapiMedia } from '@/utils/api-helpers';
-import { fetchAPI } from '@/utils/fetch-api';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
+
 type Props = {
     brands: any;
     data: any;

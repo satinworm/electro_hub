@@ -88,7 +88,7 @@ export default async function LocaleLayout({
                     disableTransitionOnChange
                 >
                     <Navbar data={getNavbarData} brands={brands} />
-                    {children}
+                    <div id='mainLayout'>{children}</div>
                     <Footer locale={locale} />
                 </ThemeProvider>
             </body>

@@ -29,7 +29,7 @@ export async function Footer({ locale }: { locale: string }) {
             <div className={'container'}>
                 <div
                     className={
-                        'w-full grid-cols-6 justify-items-stretch sm:grid md:gap-5'
+                        'w-full grid-cols-4 justify-items-stretch sm:grid md:gap-5 lg:grid-cols-6'
                     }
                 >
                     <div
