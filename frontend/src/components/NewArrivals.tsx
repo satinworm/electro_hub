@@ -9,7 +9,7 @@ export default function NewArrivals({ newArrivalsModels, data }: any) {
     const btn = data?.heading?.[0]?.btn;
     return (
         <section className='-mt-1 flex w-full flex-col bg-white pt-3 font-electrohub text-black md:px-8 md:pt-12 xl:py-10'>
-            <div className='container text-black'>
+            <div className='container mt-10 text-black'>
                 <h3 className='font-black text-[#1e1e1e]'>{h2}</h3>
                 <div className='mt-5 flex items-center justify-between'>
                     <div

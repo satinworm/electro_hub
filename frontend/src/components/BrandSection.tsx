@@ -1,6 +1,7 @@
 import { getStrapiMedia } from '@/utils/api-helpers';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useLocale } from 'next-intl';
 
 type Props = {
     brands: any;
@@ -8,6 +9,7 @@ type Props = {
 };
 export default function BrandSection(props: Props) {
     const { brands, data } = props;
+    const locale = useLocale();
     // const { h1, h2, h3, btn } = data?.heading[0];
     const h1 = data?.heading?.[0]?.h1;
     const h2 = data?.heading?.[0]?.h2;
@@ -15,26 +17,28 @@ export default function BrandSection(props: Props) {
     const btn = data?.heading?.[0]?.btn;
     return (
         <section className='mt-[-1px] flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'>
-            <div className='container text-black'>
-                {h3 && <h3 className='font-black text-[#1e1e1e]'>{h3}</h3>}
-                <div className='mt-5 flex items-center justify-between'>
+            <div className='container mt-10 text-black'>
+                <h3 className='text-sm font-black text-[#1e1e1e] md:text-base'>
+                    {h3}
+                </h3>
+                <div className='mt-2 flex items-center justify-between md:mt-5'>
                     <span
                         className={
-                            'text-2xl font-bold leading-tight text-[#1e1e1e] lg:max-w-[720px] lg:text-[32px]'
+                            'text-xl font-bold leading-tight text-[#1e1e1e] sm:text-2xl lg:max-w-[720px] lg:text-[32px]'
                         }
                     >
                         {h1}
                     </span>
                     <span
                         className={
-                            'hidden text-center leading-tight text-[#1e1e1e] lg:block lg:max-w-[720px] lg:text-[16px]'
+                            'hidden text-center leading-tight text-[#1e1e1e] md:text-right lg:block lg:max-w-[720px] lg:text-[16px]'
                         }
                     >
                         {h2}
                     </span>
                 </div>
             </div>
-            <div className='container mt-20 grid grid-cols-2 gap-5 md:gap-5 lg:grid-cols-3 lg:gap-6 xl:gap-10 2xl:grid-cols-4'>
+            <div className='container mt-6 grid grid-cols-2 gap-5 md:mt-12 md:gap-5 lg:mt-20 lg:grid-cols-3 lg:gap-6 xl:gap-10 2xl:grid-cols-4'>
                 {brands?.data?.map((brand: any) => {
                     const {
                         logo,
