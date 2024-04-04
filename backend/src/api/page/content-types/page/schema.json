@@ -51,7 +51,8 @@
       "type": "dynamiczone",
       "components": [
         "page-properties.section",
-        "section.button"
+        "section.button",
+        "section.zeekr-exterior"
       ]
     }
   }

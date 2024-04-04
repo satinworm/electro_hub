@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useDotButton } from '@/components/ui/EmblaCarouselDotButton';
 import {
     Carousel,
     CarouselContent,
@@ -8,7 +8,7 @@ import {
     CarouselPrevious,
 } from '@/components/ui/carousel';
 import useEmblaCarousel from 'embla-carousel-react';
-import { useDotButton } from '@/components/ui/EmblaCarouselDotButton';
+import { useEffect, useState } from 'react';
 
 type Props = {
     data: any;

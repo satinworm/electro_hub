@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_section_car_colors",
+  "info": {
+    "displayName": "car-color",
+    "icon": "crown"
+  },
+  "options": {},
+  "attributes": {
+    "color": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

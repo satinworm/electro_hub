@@ -21,7 +21,7 @@ const config = {
         },
         extend: {
             backgroundImage: {
-                main: "url('/main_bg.png')",
+                main: "url('/main_bg.avif')",
                 main_mobile: "url('/main_bg_mobile.png')",
                 zeekr: "url('/zeekr_bg.jpg')",
                 zeekr_mobile: "url('/zeekr_bg_mobile.jpg')",

@@ -1,11 +1,14 @@
-import { getDataFromAPI } from '@/utils/fetch-api';
-import { getStrapiMedia } from '@/utils/api-helpers';
-import { getTranslations } from 'next-intl/server';
-import MainSection from '@/components/MainSection';
 import { Loader } from '@/components/Loader';
+import MainSection from '@/components/MainSection';
+import NewArrivals from '@/components/NewArrivals';
+import ZeekrExterior from '@/components/ZeekrExterior';
+import { getStrapiMedia } from '@/utils/api-helpers';
+import { getDataFromAPI } from '@/utils/fetch-api';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: any) {
     const { locale } = params;
+
     const pageProperties = await getDataFromAPI(
         'pages',
         {
@@ -16,8 +19,26 @@ export async function generateMetadata({ params }: any) {
             },
             populate: {
                 sections: {
-                    fields: ['*'],
-                    populate: '*',
+                    fields: '*',
+                    populate: {
+                        logo: {
+                            fields: ['url', 'width', 'height'],
+                            populate: '*',
+                        },
+                        heading: {
+                            fields: '*',
+                            populate: '*',
+                        },
+                        color: {
+                            fields: '*',
+                            populate: {
+                                image: {
+                                    fields: ['url', 'width', 'height'],
+                                    populate: '*',
+                                },
+                            },
+                        },
+                    },
                 },
                 SEO: {
                     fields: '*',
@@ -66,16 +87,43 @@ export default async function ZeekrPage({
         {
             filters: {
                 shortName: {
-                    $eq: 'main',
+                    $eq: 'Zeekr',
                 },
             },
             populate: {
                 sections: {
-                    fields: ['*'],
-                    populate: '*',
+                    fields: '*',
+                    populate: {
+                        fields: ['*'],
+                        heading: {
+                            fields: '*',
+                            populate: '*',
+                        },
+                        advantage: {
+                            fields: '*',
+                        },
+                        btn: {
+                            fields: '*',
+                            populate: {
+                                icon: {
+                                    fields: ['url', 'width', 'height'],
+                                    populate: '*',
+                                },
+                            },
+                        },
+                        color: {
+                            fields: '*',
+                            populate: {
+                                image: {
+                                    fields: ['url', 'width', 'height'],
+                                    populate: '*',
+                                },
+                            },
+                        },
+                    },
                 },
                 SEO: {
-                    fields: ['*'],
+                    fields: '*',
                     populate: '*',
                 },
             },
@@ -83,9 +131,32 @@ export default async function ZeekrPage({
         },
         locale
     );
+    const Zeekrexterior = pageProperties?.data?.[0]?.attributes?.sections?.find(
+        (section: any) => section.section_name === 'zeekr_advantages'
+    );
+    const modelsSection = pageProperties?.data?.[0]?.attributes?.sections?.find(
+        (section: any) => section.section_name === 'models'
+    );
+    const models = await getDataFromAPI(
+        'models',
+        {
+            filters: {
+                brand: {
+                    name: {
+                        $eq: 'Zeekr',
+                    },
+                },
+            },
+            locale: locale,
+            populate: '*',
+        },
+        locale
+    );
+
+    console.log('suka ', pageProperties?.[0]?.attributes);
     return (
         <>
-            {pageProperties && pageProperties?.data?.[0] ? (
+            {pageProperties && pageProperties?.data?.[0] && models ? (
                 <>
                     <MainSection
                         title={'zeekr'}
@@ -115,6 +186,11 @@ export default async function ZeekrPage({
                             },
                         ]}
                     />
+                    <NewArrivals
+                        newArrivalsModels={models}
+                        data={modelsSection}
+                    />
+                    <ZeekrExterior data={Zeekrexterior} />
                 </>
             ) : (
                 <Loader styles={'h-[100vh]'} />

@@ -104,14 +104,61 @@ export interface SaleTypeSaleType extends Schema.Component {
   };
 }
 
+export interface SectionAdvantage extends Schema.Component {
+  collectionName: 'components_section_advantages';
+  info: {
+    displayName: 'advantage';
+    icon: 'emotionHappy';
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.String;
+  };
+}
+
 export interface SectionButton extends Schema.Component {
   collectionName: 'components_section_buttons';
   info: {
     displayName: 'button';
     icon: 'connector';
+    description: '';
   };
   attributes: {
     text: Attribute.String;
+    icon: Attribute.Media;
+  };
+}
+
+export interface SectionCarColor extends Schema.Component {
+  collectionName: 'components_section_car_colors';
+  info: {
+    displayName: 'car-color';
+    icon: 'crown';
+  };
+  attributes: {
+    color: Attribute.String & Attribute.Required;
+    image: Attribute.Media & Attribute.Required;
+  };
+}
+
+export interface SectionZeekrExterior extends Schema.Component {
+  collectionName: 'components_section_zeekr_exteriors';
+  info: {
+    displayName: 'zeekr_exterior';
+    icon: 'cog';
+  };
+  attributes: {
+    section_name: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'zeekr'>;
+    logo: Attribute.Media & Attribute.Required;
+    subtitle: Attribute.String &
+      Attribute.DefaultTo<'\u044D\u043A\u0441\u0442\u0435\u0440\u044C\u0435\u0440'>;
+    title: Attribute.String;
+    description: Attribute.String;
+    advantage: Attribute.Component<'section.advantage', true>;
+    color: Attribute.Component<'section.car-color', true>;
+    btn: Attribute.Component<'section.button', true>;
   };
 }
 
@@ -149,7 +196,10 @@ declare module '@strapi/types' {
       'page-properties.section': PagePropertiesSection;
       'page-properties.seo': PagePropertiesSeo;
       'sale-type.sale-type': SaleTypeSaleType;
+      'section.advantage': SectionAdvantage;
       'section.button': SectionButton;
+      'section.car-color': SectionCarColor;
+      'section.zeekr-exterior': SectionZeekrExterior;
       'stage-card.card': StageCardCard;
       'stage-card.stage-card': StageCardStageCard;
     }

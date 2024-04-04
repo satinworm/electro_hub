@@ -2,12 +2,20 @@
   "collectionName": "components_section_buttons",
   "info": {
     "displayName": "button",
-    "icon": "connector"
+    "icon": "connector",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "text": {
       "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

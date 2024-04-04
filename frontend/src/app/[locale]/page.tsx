@@ -1,13 +1,13 @@
-import MainSection from '@/components/MainSection';
 import BrandSection from '@/components/BrandSection';
-import { fetchAPI, getDataFromAPI } from '@/utils/fetch-api';
-import NewArrivals from '@/components/NewArrivals';
 import DeliveryStageSection from '@/components/DeliveryStageSection';
-import NewsSection from '@/components/NewsSection';
 import { Loader } from '@/components/Loader';
+import MainSection from '@/components/MainSection';
+import NewArrivals from '@/components/NewArrivals';
+import NewsSection from '@/components/NewsSection';
+import { getStrapiMedia } from '@/utils/api-helpers';
+import { fetchAPI, getDataFromAPI } from '@/utils/fetch-api';
 import { useTranslations } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-import { getStrapiMedia } from '@/utils/api-helpers';
 
 export async function generateMetadata({ params }: any) {
     const { locale } = params;
@@ -64,7 +64,6 @@ export default async function RootRoute({
     params: { locale: string };
 }) {
     const t = await getTranslations('MainSection');
-    // const locale = useLocale();
     const pageProperties = await getDataFromAPI(
         'pages',
         {
@@ -89,7 +88,7 @@ export default async function RootRoute({
     );
     // console.dir(pageProperties, { depth: null });
     const brandsSection = pageProperties?.data?.[0]?.attributes?.sections?.find(
-        (section: any) => section.section_name === 'brands'
+        (section: any) => section?.section_name === 'brands'
     );
     const newArrivalsSection =
         pageProperties?.data?.[0]?.attributes?.sections?.find(

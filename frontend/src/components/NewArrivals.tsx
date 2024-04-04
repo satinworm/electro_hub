@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import { getStrapiMedia } from '@/utils/api-helpers';
 import { Car, NewArrivalResponse } from '@/types/NewArrivals-types';
+import { getStrapiMedia } from '@/utils/api-helpers';
+import Image from 'next/image';
 
 export default function NewArrivals({ newArrivalsModels, data }: any) {
     const h1 = data?.heading?.[0]?.h1;
@@ -24,7 +24,7 @@ export default function NewArrivals({ newArrivalsModels, data }: any) {
                     {newArrivalsModels?.data?.map((item: Car) => (
                         <div
                             key={item.attributes.slug}
-                            className='flex flex-col rounded-[10px] px-3 py-5 lg:py-12 lg:pl-5 lg:pr-12 2xl:flex-row'
+                            className='flex flex-col rounded-[10px] px-3 py-5 shadow-[5px_5px_10px_0_rgba(0,0,0,0.15)] lg:py-12 lg:pl-5 lg:pr-12 2xl:flex-row'
                             style={{ background: item.attributes.bg_gradient }}
                         >
                             <div

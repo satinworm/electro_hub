@@ -1,10 +1,10 @@
+import { cn } from '@/lib/utils';
 import { getDataFromAPI } from '@/utils/fetch-api';
 import { ChevronRight } from 'lucide-react';
-import React from 'react';
 import { getTranslations } from 'next-intl/server';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 export async function Footer({ locale }: { locale: string }) {
     const t = await getTranslations({ locale, namespace: 'Footer' });
@@ -47,7 +47,7 @@ export async function Footer({ locale }: { locale: string }) {
                         <button
                             type={'button'}
                             className={
-                                'flex w-full items-center justify-center gap-2 border border-black bg-white px-12 py-2 text-lg text-sm font-bold text-black md:w-fit md:py-3.5 md:text-base lg:mt-10'
+                                'flex w-full items-center justify-center gap-2 border border-black bg-white px-12 py-2 text-sm font-bold text-black md:w-fit md:py-3.5 md:text-base lg:mt-10'
                             }
                         >
                             <div>{t('callback')}</div>

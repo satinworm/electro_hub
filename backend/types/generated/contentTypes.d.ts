@@ -1330,7 +1330,7 @@ export interface ApiPagePage extends Schema.CollectionType {
         };
       }>;
     sections: Attribute.DynamicZone<
-      ['page-properties.section', 'section.button']
+      ['page-properties.section', 'section.button', 'section.zeekr-exterior']
     > &
       Attribute.SetPluginOptions<{
         i18n: {

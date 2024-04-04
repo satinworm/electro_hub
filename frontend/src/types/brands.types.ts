@@ -4,7 +4,7 @@ export interface ImageAttributes {
     caption: string | null;
     width: number;
     height: number;
-    formats: any | null; // Укажите более конкретный тип, если известен формат
+    formats: any | null;
     hash: string;
     ext: string;
     mime: string;
@@ -12,7 +12,7 @@ export interface ImageAttributes {
     url: string;
     previewUrl: string | null;
     provider: string;
-    provider_metadata: any | null; // Укажите более конкретный тип, если известна метадата
+    provider_metadata: any | null;
     createdAt: string;
     updatedAt: string;
 }

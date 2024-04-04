@@ -1,10 +1,10 @@
+import { getStrapiMedia } from '@/utils/api-helpers';
 import { fetchAPI } from '@/utils/fetch-api';
-import { useCallback, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { getStrapiMedia } from '@/utils/api-helpers';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
 type Props = {
     brands: any;
     data: any;
@@ -65,7 +65,7 @@ export default function BrandSection(props: Props) {
                                 background:
                                     'linear-gradient(135deg, #e4e4e4 0%, #c2cae1 100%)',
                             }}
-                            className='group flex cursor-pointer flex-col items-center p-2 px-3 shadow-[5px_5px_10px_0_rgba("0.15")] shadow-brandCard transition hover:scale-95 hover:shadow-brandCardHover md:px-3 md:py-2 lg:px-5 lg:pb-5 lg:pt-12'
+                            className='group flex cursor-pointer flex-col items-center p-2 px-3 shadow-brandCard transition hover:scale-95 hover:shadow-brandCardHover md:px-3 md:py-2 lg:px-5 lg:pb-5 lg:pt-12'
                         >
                             <div className='flex h-full w-full flex-col items-center justify-evenly md:flex-row'>
                                 <div className='flex items-center gap-2'>

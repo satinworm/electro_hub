@@ -1,0 +1,51 @@
+{
+  "collectionName": "components_section_zeekr_exteriors",
+  "info": {
+    "displayName": "zeekr_exterior",
+    "icon": "cog"
+  },
+  "options": {},
+  "attributes": {
+    "section_name": {
+      "type": "string",
+      "required": true,
+      "default": "zeekr"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "экстерьер",
+      "required": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "advantage": {
+      "displayName": "advantage",
+      "type": "component",
+      "repeatable": true,
+      "component": "section.advantage"
+    },
+    "color": {
+      "displayName": "car-color",
+      "type": "component",
+      "repeatable": true,
+      "component": "section.car-color"
+    },
+    "btn": {
+      "type": "component",
+      "repeatable": true,
+      "component": "section.button"
+    }
+  }
+}

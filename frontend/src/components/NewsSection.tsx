@@ -1,10 +1,4 @@
 'use client';
-import '../app/embla.css';
-import { LazyLoadImage } from '@/components/ui/LazyLoadNewComponent';
-import { useCallback, useEffect, useState } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-import { EmblaCarouselType } from 'embla-carousel';
-import { getStrapiMedia } from '@/utils/api-helpers';
 import {
     NextButton,
     PrevButton,
@@ -14,6 +8,12 @@ import {
     DotButton,
     useDotButton,
 } from '@/components/ui/EmblaCarouselDotButton';
+import { LazyLoadImage } from '@/components/ui/LazyLoadNewComponent';
+import { getStrapiMedia } from '@/utils/api-helpers';
+import { EmblaCarouselType } from 'embla-carousel';
+import useEmblaCarousel from 'embla-carousel-react';
+import { useCallback, useEffect, useState } from 'react';
+import '../app/embla.css';
 
 type Item = {
     id: number;
@@ -73,7 +73,7 @@ export default function NewsSection({ data }: Data) {
         emblaApi.on('reInit', updateSlidesInView);
     }, [emblaApi, updateSlidesInView]);
     return (
-        <section className='mt-[-39px] flex w-full flex-col bg-white bg-cover bg-no-repeat py-2 font-electrohub text-white md:-mt-16'>
+        <section className='mt-[-39px] flex w-full flex-col bg-white bg-cover bg-no-repeat py-2 font-electrohub text-white md:-mt-16 '>
             <div className='z-[1] h-[38px] w-full rotate-180 bg-rectangle_main_mobile bg-cover bg-no-repeat md:mt-[-38px] md:h-[52px] md:bg-rectangle_main_stage' />
             <div className={'container'}>
                 {/*<h2 className='mb-10 text-center text-4xl font-bold'>*/}

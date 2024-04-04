@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_section_advantages",
+  "info": {
+    "displayName": "advantage",
+    "icon": "emotionHappy"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+}
