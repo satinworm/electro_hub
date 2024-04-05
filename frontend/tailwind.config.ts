@@ -32,6 +32,7 @@ const config = {
                 rectangle_main_stage_mobile:
                     "url('/rectangle_stage_mobile.svg')",
                 bg_new_card: "url('/bg_new.png')",
+                zeekr_constructor: "url('/zeekr/constructor/bg.png')",
             },
             fontFamily: {
                 electrohub: ['Electrohub', 'sans-serif'],

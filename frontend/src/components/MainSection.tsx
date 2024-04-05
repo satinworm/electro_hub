@@ -2,6 +2,8 @@ import SocialLinks from '@/components/SocialLinks';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { headers } from 'next/headers';
+import Link from 'next/link';
 
 type ButtonFromProps = {
     name: string;
@@ -11,7 +13,11 @@ type ButtonFromProps = {
         width: number;
         height: number;
     };
-    action: string;
+    action: {
+        actionType: 'link' | 'button';
+        actionUrl?: string;
+        actionOnClick?: () => void;
+    };
 };
 type Link = {
     id: number;
@@ -30,6 +36,10 @@ type Props = {
 
 export default function MainSection(props: Props) {
     const { title, description, subTitle, bg, buttons } = props;
+    const heads = headers();
+
+    const pathname = heads.get('next-url');
+    console.log('pathnameKURWA ', pathname);
     const t = useTranslations('MainSection');
     return (
         <div
@@ -53,12 +63,31 @@ export default function MainSection(props: Props) {
                     </div>
                     <div className='mt-7 flex w-full justify-between'>
                         <div className='flex w-full flex-col gap-5 md:w-auto md:flex-row'>
-                            {buttons?.map((button, index) => (
-                                <>
+                            {buttons?.map((button, index) =>
+                                button.action.actionType === 'link' ? (
+                                    <Link
+                                        className={button.style}
+                                        key={button.name}
+                                        href={button?.action?.actionUrl || '/'}
+                                    >
+                                        <span className={'whitespace-nowrap'}>
+                                            {button.name}
+                                        </span>
+                                        <Image
+                                            src={button.image.url}
+                                            alt={button.name}
+                                            width={button.image.width}
+                                            height={button.image.height}
+                                        />
+                                    </Link>
+                                ) : (
                                     <button
                                         key={index}
                                         type={'button'}
                                         className={button.style}
+                                        // onClick={() =>
+                                        //     button.action.actionOnClick
+                                        // }
                                     >
                                         <span className={'whitespace-nowrap'}>
                                             {button.name}
@@ -70,8 +99,8 @@ export default function MainSection(props: Props) {
                                             height={button.image.height}
                                         />
                                     </button>
-                                </>
-                            ))}
+                                )
+                            )}
                         </div>
                         <div className='hidden gap-5 font-electrohub font-bold text-white lg:flex'>
                             <span className='pt-8'>{t('scroll_down')}</span>

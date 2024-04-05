@@ -162,4 +162,6 @@ section {
     border-radius: 10px;
     background: #6d6d6d;
 }
-
+.container {
+    @apply px-[1rem] md:px-[1.5rem] lg:px-[2rem] xl:px-[3rem] 2xl:px-[4rem];
+}

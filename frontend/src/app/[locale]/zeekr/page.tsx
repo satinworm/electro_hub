@@ -172,7 +172,10 @@ export default async function ZeekrPage({
                                     width: 20,
                                     height: 20,
                                 },
-                                action: '',
+                                action: {
+                                    actionType: 'link',
+                                    actionUrl: '/zeekr/constructor',
+                                },
                             },
                             {
                                 name: t('btn_consultation'),
@@ -182,7 +185,11 @@ export default async function ZeekrPage({
                                     width: 20,
                                     height: 17,
                                 },
-                                action: '',
+                                action: {
+                                    actionType: 'button',
+                                    actionOnClick: () =>
+                                        console.log('consultation'),
+                                },
                             },
                         ]}
                     />

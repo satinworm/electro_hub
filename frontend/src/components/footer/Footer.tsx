@@ -94,11 +94,16 @@ export async function Footer({ locale }: { locale: string }) {
                 </div>
                 <div
                     className={
-                        'mt-6 flex w-full items-center justify-between border-t-[3px] border-white pt-6'
+                        'mt-6 flex w-full flex-col items-center justify-between border-t-[3px] border-white pt-6 sm:flex-row'
                     }
                 >
-                    <div className={'text-[#808080]'}>
-                        Electrohub © 2024 {t('rights')}
+                    <div
+                        className={
+                            'flex flex-col flex-wrap gap-1 leading-tight text-[#808080] sm:flex-row'
+                        }
+                    >
+                        <span>Electrohub © 2024</span>
+                        <span>{t('rights')}</span>
                     </div>
                     <div className={'flex gap-2'}>
                         <Image
@@ -106,8 +111,9 @@ export async function Footer({ locale }: { locale: string }) {
                             width={20}
                             height={20}
                             alt={'globus'}
+                            className={'hidden sm:block'}
                         />
-                        <span className={'font-bold text-[#808080]'}>
+                        <span className={'flex-wrap font-bold text-[#808080]'}>
                             Belarus, Grodno
                         </span>
                     </div>

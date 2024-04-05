@@ -15,13 +15,14 @@ export default function Logo({ data }: Props) {
             {data?.height && data?.width && data?.url ? (
                 <Link
                     href={'/'}
-                    className={`relative h-[24px] w-[110px] md:h-[${data?.height}px] md:w-[${data?.width}px]`}
+                    className={`relative flex min-h-[24px] items-center md:min-h-[${data?.height}px] min-w-[${data?.width}px]`}
                 >
                     <Image
                         src={getStrapiMedia(data?.url)!}
                         priority={true}
                         alt='Logo'
-                        fill
+                        width={160}
+                        height={30}
                     />
                 </Link>
             ) : null}

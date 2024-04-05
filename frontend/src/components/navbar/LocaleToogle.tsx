@@ -33,7 +33,7 @@ export function LocaleToogle() {
                     variant='outline'
                     size={'sm'}
                 >
-                    <span className='select-none text-sm uppercase'>
+                    <span className='select-none text-sm uppercase text-black'>
                         {locale}
                     </span>
                 </Button>
@@ -52,7 +52,9 @@ export function LocaleToogle() {
                         onClick={() => changeLang('en')}
                         className='flex w-full cursor-pointer justify-center'
                     >
-                        <DropdownMenuItem className={'cursor-pointer'}>
+                        <DropdownMenuItem
+                            className={'cursor-pointer text-black'}
+                        >
                             EN
                         </DropdownMenuItem>
                     </div>

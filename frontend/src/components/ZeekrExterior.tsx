@@ -49,7 +49,6 @@ export default function ZeekrExterior(props: Props) {
     const locale = useLocale;
     const { data } = props;
 
-    console.log('opa', data);
     return (
         <div className='bg-white font-electrohub'>
             <div className='container py-12 md:py-20'>
