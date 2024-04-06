@@ -9,6 +9,87 @@ export interface BradnSectionSect extends Schema.Component {
   attributes: {};
 }
 
+export interface ConfiguratorAdditionalOptions extends Schema.Component {
+  collectionName: 'components_configurator_additional_options';
+  info: {
+    displayName: 'Additional Options';
+    icon: 'attachment';
+  };
+  attributes: {
+    name: Attribute.String;
+    incremental_price: Attribute.Float;
+  };
+}
+
+export interface ConfiguratorBodyColor extends Schema.Component {
+  collectionName: 'components_configurator_body_colors';
+  info: {
+    displayName: 'Body_color';
+    icon: 'car';
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required;
+    btn_bg: Attribute.String;
+    render_url: Attribute.String;
+    incremental_price: Attribute.Float;
+    additional_description: Attribute.String;
+  };
+}
+
+export interface ConfiguratorContructorItem extends Schema.Component {
+  collectionName: 'components_configurator_contructor_items';
+  info: {
+    displayName: 'contructor_item';
+    icon: 'command';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'Zeekr 001 YOU '>;
+    render_images: Attribute.Media & Attribute.Required;
+    default_image: Attribute.Media & Attribute.Required;
+    default_price: Attribute.Float;
+    body_colors: Attribute.Component<'configurator.body-color', true>;
+    wheels: Attribute.Component<'configurator.wheels', true>;
+    tyres: Attribute.Component<'configurator.tyres', true>;
+    additional_options: Attribute.Component<
+      'configurator.additional-options',
+      true
+    >;
+  };
+}
+
+export interface ConfiguratorTyres extends Schema.Component {
+  collectionName: 'components_configurator_tyres';
+  info: {
+    displayName: 'Tyres';
+    icon: 'store';
+  };
+  attributes: {
+    name: Attribute.String;
+    render_url: Attribute.String;
+    icon: Attribute.Media;
+    incremental_price: Attribute.Float;
+    additional_description: Attribute.String;
+  };
+}
+
+export interface ConfiguratorWheels extends Schema.Component {
+  collectionName: 'components_configurator_wheels';
+  info: {
+    displayName: 'Wheels';
+    icon: 'typhoon';
+  };
+  attributes: {
+    name: Attribute.String;
+    icon: Attribute.Media;
+    incremental_price: Attribute.Float;
+    additional_description: Attribute.String;
+    render_url: Attribute.String;
+  };
+}
+
 export interface HeadingForSectionHeading extends Schema.Component {
   collectionName: 'components_heading_for_section_headings';
   info: {
@@ -189,6 +270,11 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'bradn-section.sect': BradnSectionSect;
+      'configurator.additional-options': ConfiguratorAdditionalOptions;
+      'configurator.body-color': ConfiguratorBodyColor;
+      'configurator.contructor-item': ConfiguratorContructorItem;
+      'configurator.tyres': ConfiguratorTyres;
+      'configurator.wheels': ConfiguratorWheels;
       'heading-for-section.heading': HeadingForSectionHeading;
       'links.link': LinksLink;
       'links.social': LinksSocial;

@@ -1,11 +1,9 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { useLocale, useTranslations } from 'next-intl';
-import Image from 'next/image';
 
 export default function NotFound() {
     const locale = useLocale();
-    console.log('O KURWA LOCALE ', locale);
     const t = useTranslations('NotFound');
     return (
         <div

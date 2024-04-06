@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_constructor_contructor_items",
+  "info": {
+    "displayName": "contructor_item",
+    "icon": "command"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "default": "Zeekr 001 YOU "
+    }
+  }
+}

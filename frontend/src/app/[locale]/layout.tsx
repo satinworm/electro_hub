@@ -74,7 +74,7 @@ export default async function LocaleLayout({
         locale
     );
     return (
-        <html lang={'ru'} suppressHydrationWarning>
+        <html lang={locale} suppressHydrationWarning>
             <body
                 className={cn(
                     'flex w-full flex-col bg-black',

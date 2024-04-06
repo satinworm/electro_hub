@@ -16,7 +16,6 @@ type Props = {
 };
 export default function Navbar(props: Props) {
     const path = headers().get('referer');
-    console.log('ioa', path);
     const { data, brands } = props;
     const t = useTranslations('Navbar');
     const links = [

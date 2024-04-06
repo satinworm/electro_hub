@@ -1,7 +1,8 @@
 'use client';
 import ZeekrConstructor from '@/components/Zeekr/Constructor';
 
-export default function ZeekrConstructorPage() {
+export default function ZeekrConstructorPage({ params }) {
+    console.log('PARAMS ZeekrConstructorPage', params);
     return (
         <>
             <div

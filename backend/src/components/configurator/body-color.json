@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_configurator_body_colors",
+  "info": {
+    "displayName": "Body_color",
+    "icon": "car"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "btn_bg": {
+      "type": "string",
+      "required": false
+    },
+    "render_url": {
+      "type": "string"
+    },
+    "incremental_price": {
+      "type": "float"
+    },
+    "additional_description": {
+      "type": "string"
+    }
+  }
+}

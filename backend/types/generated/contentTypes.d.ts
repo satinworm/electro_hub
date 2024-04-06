@@ -894,6 +894,58 @@ export interface ApiBrandsSectionBrandsSection extends Schema.SingleType {
   };
 }
 
+export interface ApiCarConstructorCarConstructor extends Schema.CollectionType {
+  collectionName: 'car_constructors';
+  info: {
+    singularName: 'car-constructor';
+    pluralName: 'car-constructors';
+    displayName: 'Car constructor';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    brand: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    models: Attribute.Component<'configurator.contructor-item', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::car-constructor.car-constructor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::car-constructor.car-constructor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::car-constructor.car-constructor',
+      'oneToMany',
+      'api::car-constructor.car-constructor'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiFooterFooter extends Schema.CollectionType {
   collectionName: 'footers';
   info: {
@@ -1425,6 +1477,7 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::brand.brand': ApiBrandBrand;
       'api::brands-section.brands-section': ApiBrandsSectionBrandsSection;
+      'api::car-constructor.car-constructor': ApiCarConstructorCarConstructor;
       'api::footer.footer': ApiFooterFooter;
       'api::model.model': ApiModelModel;
       'api::navbar.navbar': ApiNavbarNavbar;

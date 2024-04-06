@@ -1,0 +1,55 @@
+{
+  "collectionName": "components_configurator_contructor_items",
+  "info": {
+    "displayName": "contructor_item",
+    "icon": "command",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "default": "Zeekr 001 YOU "
+    },
+    "render_images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "default_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "default_price": {
+      "type": "float"
+    },
+    "body_colors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "configurator.body-color"
+    },
+    "wheels": {
+      "type": "component",
+      "repeatable": true,
+      "component": "configurator.wheels"
+    },
+    "tyres": {
+      "type": "component",
+      "repeatable": true,
+      "component": "configurator.tyres"
+    },
+    "additional_options": {
+      "type": "component",
+      "repeatable": true,
+      "component": "configurator.additional-options"
+    }
+  }
+}

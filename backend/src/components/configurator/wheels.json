@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_configurator_wheels",
+  "info": {
+    "displayName": "Wheels",
+    "icon": "typhoon"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "incremental_price": {
+      "type": "float"
+    },
+    "additional_description": {
+      "type": "string"
+    },
+    "render_url": {
+      "type": "string"
+    }
+  }
+}

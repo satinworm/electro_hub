@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_configurator_additional_options",
+  "info": {
+    "displayName": "Additional Options",
+    "icon": "attachment"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "incremental_price": {
+      "type": "float"
+    }
+  }
+}
