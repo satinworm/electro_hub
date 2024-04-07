@@ -6,8 +6,8 @@ type Props = {
     defaultData: CarConstructorResponse;
     params: { locale: string };
 };
-export default function ZeekrConstructorPage(props: Props) {
-    const { params, defaultData } = props;
+export default function ZeekrConstructorPage(props: any) {
+    const { defaultData } = props;
     console.log('default data for constructors ', defaultData);
 
     return (

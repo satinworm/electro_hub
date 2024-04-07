@@ -5,8 +5,7 @@ import MainSection from '@/components/MainSection';
 import NewArrivals from '@/components/NewArrivals';
 import NewsSection from '@/components/NewsSection';
 import { getStrapiMedia } from '@/utils/api-helpers';
-import { fetchAPI, getDataFromAPI } from '@/utils/fetch-api';
-import { useTranslations } from 'next-intl';
+import { getDataFromAPI } from '@/utils/fetch-api';
 import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: any) {
@@ -190,7 +189,10 @@ export default async function RootRoute({
                                     width: 20,
                                     height: 17,
                                 },
-                                action: '',
+                                action: {
+                                    actionType: 'link',
+                                    actionUrl: '/zeekr/constructor',
+                                },
                             },
                             {
                                 name: t('btn_consultation'),
@@ -200,7 +202,10 @@ export default async function RootRoute({
                                     width: 20,
                                     height: 17,
                                 },
-                                action: '',
+                                action: {
+                                    actionType: 'link',
+                                    actionUrl: '/zeekr/constructor',
+                                },
                             },
                         ]}
                     />

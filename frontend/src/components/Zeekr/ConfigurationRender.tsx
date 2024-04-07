@@ -63,11 +63,11 @@ export default function ZeekrConstructorPage(props: Props) {
                         }
                         width={
                             store.defaultRenderImage?.width ||
-                            selectedModel?.default_image?.width
+                            selectedModel?.default_image?.data.attributes.width
                         }
                         height={
                             store.defaultRenderImage?.height ||
-                            selectedModel?.default_image?.height
+                            selectedModel?.default_image?.data.attributes.height
                         }
                         alt={'car'}
                     />
