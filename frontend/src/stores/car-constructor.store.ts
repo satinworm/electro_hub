@@ -1,9 +1,21 @@
 import { create } from 'zustand';
 
-export const ConstructoreStore = create((set) => ({
-    constructor: {},
-    setConstructor: (constructor) => set({ constructor }),
-    // increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-    // removeAllBears: () => set({ bears: 0 }),
-    // updateBears: (newBears) => set({ bears: newBears }),
+export const ConstructorStore = create((set) => ({
+    constructor: {
+        configuration: '',
+        body: 'black',
+        wheels: 'default',
+        defaultRenderImage: '',
+        renderImage: '',
+        defaultPrice: 0,
+        price: 0,
+    },
+    setConstructor: (data: any) =>
+        set((state: any) => ({
+            constructor: { ...state.constructor, ...data },
+        })),
+    resetConstructor: () =>
+        set((state: any) => ({
+            constructor: { defaultRenderImage: '', renderImage: '' },
+        })),
 }));

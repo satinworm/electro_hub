@@ -13,7 +13,7 @@ export const Loader = ({ styles }: { styles: string }) => {
             <Bars
                 height='300'
                 width='300'
-                color='#283593ff'
+                color='#1e1e1e'
                 ariaLabel='bars-loading'
                 wrapperStyle={{}}
                 wrapperClass=''

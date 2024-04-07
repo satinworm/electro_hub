@@ -65,12 +65,14 @@ interface ImageDetails {
     url: string;
 }
 
-interface Model {
+export interface Model {
     id: number;
     name: string;
     default_price: number;
     render_images: RenderImages;
-    default_image: ImageData;
+    default_image: {
+        data: ImageData;
+    };
     body_colors: BodyColor[];
     wheels: Wheel[];
     tyres: Tyre[];
