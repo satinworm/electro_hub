@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import ZeekrConstructorPage from '@/app/[locale]/zeekr/constructor/page';
+import { getDataFromAPI } from '@/utils/fetch-api';
 
 export default async function ZeekrConstructorLayout({
     children,
@@ -8,16 +9,60 @@ export default async function ZeekrConstructorLayout({
     children: ReactNode;
     params: { locale: string };
 }) {
-    console.log('ZeekrConstructorLayout ', arr == arr2);
     const propsForPage = { asd: 'asd' };
-
+    console.log('LOCALE ', locale);
     // return <>{children}</>;
+    const ConstructorData = await getDataFromAPI(
+        'car-constructors',
+        {
+            filters: {
+                brand: {
+                    $eq: 'zeekr',
+                },
+            },
+            populate: {
+                logo: {
+                    populate: true,
+                    fields: ['url', 'width', 'height'],
+                },
+                models: {
+                    fields: '*',
+                    populate: {
+                        populate: true,
+                        render_images: {
+                            fields: ['url', 'width', 'height', 'name'],
+                        },
+                        default_image: {
+                            fields: ['url', 'width', 'height', 'name'],
+                        },
+                        body_colors: {
+                            fields: ['*'],
+                        },
+                        wheels: {
+                            populate: {
+                                icon: {
+                                    populate: true,
+                                    fields: ['url', 'width', 'height', 'name'],
+                                },
+                            },
+                            fields: ['*'],
+                        },
+                        additional_options: {
+                            fields: ['*'],
+                        },
+                    },
+                },
+            },
+        },
+        locale
+    );
     return (
         <ZeekrConstructorPage
             params={{
                 locale: locale,
-                ...propsForPage,
             }}
+            defaultData={ConstructorData}
+            {...propsForPage}
         />
     );
 }

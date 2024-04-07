@@ -1,8 +1,15 @@
-'use client';
+// 'use client';
 import ZeekrConstructor from '@/components/Zeekr/Constructor';
+import { CarConstructorResponse } from '@/types/zeekr-constructor';
 
-export default function ZeekrConstructorPage({ params }) {
-    console.log('PARAMS ZeekrConstructorPage', params);
+type Props = {
+    defaultData: CarConstructorResponse;
+    params: { locale: string };
+};
+export default function ZeekrConstructorPage(props: Props) {
+    const { params, defaultData } = props;
+    console.log('default data for constructors ', defaultData);
+
     return (
         <>
             <div
@@ -11,7 +18,10 @@ export default function ZeekrConstructorPage({ params }) {
                 }
             >
                 <div className={'h-[100px] bg-[#1e1e1e]/20'} />
-                <ZeekrConstructor />
+                {defaultData?.meta?.pagination?.total &&
+                    defaultData?.meta?.pagination?.total > 0 && (
+                        <ZeekrConstructor defaultData={defaultData} />
+                    )}
             </div>
         </>
     );
