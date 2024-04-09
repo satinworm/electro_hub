@@ -44,7 +44,12 @@ export type ConstructorObjectState = {
     configuration: string;
     body: string;
     wheels: string;
-    defaultRenderImage: ImageData | '';
+    defaultRenderImage: {
+        url: string;
+        width: number;
+        height: number;
+    };
+    interior_colors: string;
     renderImage: string;
     defaultPrice: number;
     price: any;
@@ -65,7 +70,12 @@ export const ConstructorStore = create<ConstructorStoreState>((set) => ({
         configuration: '',
         body: 'black',
         wheels: 'default',
-        defaultRenderImage: '',
+        interior_colors: 'black',
+        defaultRenderImage: {
+            url: '',
+            width: 0,
+            height: 0,
+        },
         renderImage: '',
         defaultPrice: 0,
         price: {
@@ -83,8 +93,13 @@ export const ConstructorStore = create<ConstructorStoreState>((set) => ({
                 configuration: '',
                 body: 'black',
                 wheels: 'default',
+                interior_colors: 'black',
                 defaultPrice: 0,
-                defaultRenderImage: '',
+                defaultRenderImage: {
+                    url: '',
+                    width: 0,
+                    height: 0,
+                },
                 renderImage: '',
                 price: {},
             },
@@ -97,7 +112,6 @@ export const ConstructorStore = create<ConstructorStoreState>((set) => ({
             },
         })),
     calculateTotalPrice: (state: ConstructorObjectState) => {
-        // const currentState
         const priceSum = (Object.values(state.price) as number[]).reduce(
             (a: number, b: number) => a + b,
             0

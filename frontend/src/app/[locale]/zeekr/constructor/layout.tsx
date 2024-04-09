@@ -47,6 +47,18 @@ export default async function ZeekrConstructorLayout({
                             },
                             fields: ['*'],
                         },
+                        interior_colors: {
+                            populate: {
+                                icon: {
+                                    populate: true,
+                                    fields: ['url', 'width', 'height', 'name'],
+                                },
+                                render_image: {
+                                    populate: true,
+                                    fields: ['url', 'width', 'height', 'name'],
+                                },
+                            },
+                        },
                         additional_options: {
                             fields: ['*'],
                         },

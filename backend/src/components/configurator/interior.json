@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_configurator_interiors",
+  "info": {
+    "displayName": "Interior",
+    "icon": "brush",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "render_url": {
+      "type": "string"
+    },
+    "btn_bg": {
+      "type": "string"
+    },
+    "additional_description": {
+      "type": "string"
+    },
+    "incremental_price": {
+      "type": "float",
+      "default": 0
+    },
+    "render_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

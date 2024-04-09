@@ -19,6 +19,7 @@ const ZeekrConstructor = (props: Props) => {
     const constructorStore = ConstructorStore(
         (state: any) => state.constructor
     );
+    console.log('INCOMING data ', defaultData);
     const FormSchema = z.object({
         configuration: z.string(),
     });
@@ -28,6 +29,7 @@ const ZeekrConstructor = (props: Props) => {
             defaultData?.data?.[0]?.attributes?.models?.[0].name,
         color: constructorStore.color || 'black',
         wheels: constructorStore.wheels || 'default',
+        interior_colors: constructorStore.interior_colors || 'black',
     };
     const form = useForm<z.infer<typeof FormSchema>>({
         mode: 'onChange',
@@ -59,7 +61,7 @@ const ZeekrConstructor = (props: Props) => {
                         form={form}
                     />
                 </StickyBox>
-                <div className={'h-[3000px] w-1/4 bg-white'}>
+                <div className={'w-1/4 bg-white'}>
                     <ConfigurationForm defaultData={defaultData} form={form} />
                 </div>
             </form>

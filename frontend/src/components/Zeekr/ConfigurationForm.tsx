@@ -44,9 +44,7 @@ export default function ConfigurationForm({
         (model: Model) => model.name === form.watch('configuration')
     );
     const [modelsListOpen, setModelsListOpen] = useState(false);
-    // const [selectedModel, setSelectedModel] = useState<Model | string | null>(
-    //     models ? models?.[0]?.name : null
-    // );
+
     const store = ConstructorStore((state: any) => state.constructor);
     const setConstructor = ConstructorStore(
         (state: any) => state.setConstructor
@@ -55,18 +53,7 @@ export default function ConfigurationForm({
         (state: ConstructorStoreState) => state.updatePrice
     );
     const { watch } = form;
-    // useEffect(() => {
-    //     if (models?.[0]?.name) {
-    //         form.setValue(
-    //             'configuration',
-    //             store.configuration || models?.[0]?.name
-    //         );
-    //         setConstructor({
-    //             defaultRenderImage: models?.[0]?.default_image,
-    //             configuration: store.configuration || models?.[0]?.name,
-    //         });
-    //     }
-    // }, []);
+
     return (
         <div className={'p-10'}>
             {logo && (
@@ -203,7 +190,7 @@ export default function ConfigurationForm({
                                     <FormItem>
                                         <div className='mb-4'>
                                             <FormLabel className='text-sm font-bold'>
-                                                Выберать цвет кузова:
+                                                Выбрать цвет кузова:
                                             </FormLabel>
                                         </div>
                                         <div
@@ -307,14 +294,197 @@ export default function ConfigurationForm({
                                                         );
 
                                                     return (
+                                                        <>
+                                                            <div
+                                                                className={cn(
+                                                                    'font-electrohub text-sm transition-all',
+                                                                    'mt-8 space-y-4 opacity-100'
+                                                                )}
+                                                            >
+                                                                <div
+                                                                    className={cn(
+                                                                        'gap-1.5 text-lg',
+                                                                        selectedColor?.incremental_price ===
+                                                                            0
+                                                                            ? 'hidden'
+                                                                            : 'flex'
+                                                                    )}
+                                                                >
+                                                                    <span>
+                                                                        {selectedColor?.incremental_price ||
+                                                                            0}
+                                                                    </span>
+                                                                    <span
+                                                                        className={
+                                                                            'font-bold'
+                                                                        }
+                                                                    >
+                                                                        $
+                                                                    </span>
+                                                                </div>
+                                                                <div
+                                                                    className={cn(
+                                                                        'leading-tight transition-all',
+
+                                                                        selectedColor?.additional_description ===
+                                                                            null
+                                                                            ? 'min-h-o h-0'
+                                                                            : 'min-h-14'
+                                                                    )}
+                                                                >
+                                                                    {
+                                                                        selectedColor?.additional_description
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    );
+                                                })()}
+                                        </div>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        )}
+                    {selectedModelObject?.interior_colors &&
+                        selectedModelObject?.interior_colors?.length > 0 && (
+                            <FormField
+                                control={form.control}
+                                name='interior_colors'
+                                render={() => (
+                                    <FormItem>
+                                        <div className='mb-4'>
+                                            <FormLabel className='text-sm font-bold'>
+                                                Выбрать салон:
+                                            </FormLabel>
+                                        </div>
+                                        <div
+                                            className={
+                                                'grid grid-cols-4 gap-x-5 gap-y-3'
+                                            }
+                                        >
+                                            {selectedModelObject?.interior_colors?.map(
+                                                (item) => {
+                                                    return (
+                                                        <FormField
+                                                            key={
+                                                                item.render_url
+                                                            }
+                                                            control={
+                                                                form.control
+                                                            }
+                                                            name='interior_colors'
+                                                            render={({
+                                                                field,
+                                                            }) => {
+                                                                return (
+                                                                    <FormItem
+                                                                        key={
+                                                                            item.id
+                                                                        }
+                                                                        className='flex'
+                                                                    >
+                                                                        <FormControl>
+                                                                            <FormLabel
+                                                                                className={cn(
+                                                                                    'relative h-[70px] w-[70px] rounded-sm bg-white transition-all duration-200',
+                                                                                    watch(
+                                                                                        'interior_colors'
+                                                                                    ) ===
+                                                                                        item.render_url
+                                                                                        ? 'border-[1px] border-black p-0'
+                                                                                        : 'border-[1px] border-[#808080] p-1'
+                                                                                )}
+                                                                            >
+                                                                                <Image
+                                                                                    src={
+                                                                                        getStrapiMedia(
+                                                                                            item
+                                                                                                .icon
+                                                                                                .data
+                                                                                                .attributes
+                                                                                                .url
+                                                                                        )!
+                                                                                    }
+                                                                                    fill
+                                                                                    className={cn(
+                                                                                        'h-full w-full transition-all duration-200',
+                                                                                        item.render_url ===
+                                                                                            watch(
+                                                                                                'interior_colors'
+                                                                                            )
+                                                                                            ? 'scale-100'
+                                                                                            : 'scale-75'
+                                                                                    )}
+                                                                                    alt={
+                                                                                        'asd'
+                                                                                    }
+                                                                                />
+                                                                                <Checkbox
+                                                                                    checked={field.value?.includes(
+                                                                                        item.render_url
+                                                                                    )}
+                                                                                    className={
+                                                                                        'h-full w-full opacity-0'
+                                                                                    }
+                                                                                    onCheckedChange={(
+                                                                                        checked
+                                                                                    ) => {
+                                                                                        setConstructor(
+                                                                                            {
+                                                                                                ...store.constructor,
+                                                                                                interior_colors:
+                                                                                                    item.render_url,
+                                                                                            }
+                                                                                        );
+                                                                                        updatePrice(
+                                                                                            {
+                                                                                                interior_colors:
+                                                                                                    item.incremental_price,
+                                                                                            }
+                                                                                        );
+                                                                                        return (
+                                                                                            checked &&
+                                                                                            field.onChange(
+                                                                                                item.render_url
+                                                                                            )
+                                                                                        );
+                                                                                    }}
+                                                                                />
+                                                                            </FormLabel>
+                                                                        </FormControl>
+                                                                    </FormItem>
+                                                                );
+                                                            }}
+                                                        />
+                                                    );
+                                                }
+                                            )}
+                                        </div>
+
+                                        <div className={''}>
+                                            {selectedModelObject?.interior_colors &&
+                                                (() => {
+                                                    const selectedWheels =
+                                                        selectedModelObject.interior_colors.find(
+                                                            (item) =>
+                                                                form.watch(
+                                                                    'interior_colors'
+                                                                ) ===
+                                                                item.render_url
+                                                        );
+                                                    if (
+                                                        selectedWheels?.incremental_price ===
+                                                        0
+                                                    )
+                                                        return null;
+
+                                                    return (
                                                         <div
-                                                            className={cn(
-                                                                'font-electrohub text-sm transition-all',
-                                                                selectedColor?.incremental_price ===
-                                                                    0
-                                                                    ? 'mt-0 space-y-0 opacity-0'
-                                                                    : 'mt-8 space-y-4 opacity-100'
-                                                            )}
+                                                            className={
+                                                                'mt-8 space-y-4 font-electrohub text-sm'
+                                                            }
                                                         >
                                                             <div
                                                                 className={
@@ -322,7 +492,7 @@ export default function ConfigurationForm({
                                                                 }
                                                             >
                                                                 <span>
-                                                                    {selectedColor?.incremental_price ||
+                                                                    {selectedWheels?.incremental_price ||
                                                                         0}
                                                                 </span>
                                                                 <span
@@ -334,15 +504,11 @@ export default function ConfigurationForm({
                                                                 </span>
                                                             </div>
                                                             <div
-                                                                className={cn(
-                                                                    ' leading-tight',
-
-                                                                    selectedColor?.additional_description
-                                                                        ? 'min-h-0'
-                                                                        : 'min-h-14'
-                                                                )}
+                                                                className={
+                                                                    'leading-tight'
+                                                                }
                                                             >
-                                                                {selectedColor?.additional_description ||
+                                                                {selectedWheels?.additional_description ||
                                                                     ' '}
                                                             </div>
                                                         </div>
@@ -364,7 +530,7 @@ export default function ConfigurationForm({
                                     <FormItem>
                                         <div className='mb-4'>
                                             <FormLabel className='text-sm font-bold'>
-                                                Выберите диски:
+                                                Выбрать диски:
                                             </FormLabel>
                                         </div>
                                         <div
@@ -521,6 +687,71 @@ export default function ConfigurationForm({
                                 )}
                             />
                         )}
+                    <div className={'flex flex-col gap-x-5 gap-y-3'}>
+                        <div className={'text-lg font-bold'}>
+                            Дополнительные опции:
+                        </div>
+                        {selectedModelObject?.additional_options?.map(
+                            (item) => {
+                                return (
+                                    <FormField
+                                        control={form.control}
+                                        name={item.name}
+                                        render={({ field }) => (
+                                            <FormItem
+                                                className={cn(
+                                                    'flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow',
+                                                    field.value
+                                                        ? 'border-black bg-white'
+                                                        : ' bg-white/20'
+                                                )}
+                                            >
+                                                <FormControl>
+                                                    <Checkbox
+                                                        checked={field.value}
+                                                        onCheckedChange={(
+                                                            checked
+                                                        ) => {
+                                                            updatePrice({
+                                                                [item.name]:
+                                                                    checked
+                                                                        ? item.incremental_price
+                                                                        : 0,
+                                                            });
+                                                            field.onChange(
+                                                                checked
+                                                                    ? item.name
+                                                                    : false
+                                                            );
+                                                        }}
+                                                    />
+                                                </FormControl>
+                                                <div className='space-y-1'>
+                                                    <FormLabel
+                                                        className={
+                                                            'flex flex-col gap-2'
+                                                        }
+                                                    >
+                                                        <div>{item.title}</div>
+                                                        <div
+                                                            className={
+                                                                'font-bold'
+                                                            }
+                                                        >
+                                                            {
+                                                                item.incremental_price
+                                                            }{' '}
+                                                            $
+                                                        </div>
+                                                    </FormLabel>
+                                                </div>
+                                            </FormItem>
+                                        )}
+                                    />
+                                );
+                            }
+                        )}
+                    </div>
                 </div>
             )}
         </div>

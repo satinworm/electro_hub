@@ -14,10 +14,12 @@ export interface ConfiguratorAdditionalOptions extends Schema.Component {
   info: {
     displayName: 'Additional Options';
     icon: 'attachment';
+    description: '';
   };
   attributes: {
-    name: Attribute.String;
+    title: Attribute.String;
     incremental_price: Attribute.Float;
+    name: Attribute.String & Attribute.Required;
   };
 }
 
@@ -57,6 +59,26 @@ export interface ConfiguratorContructorItem extends Schema.Component {
       'configurator.additional-options',
       true
     >;
+    render_interior_image: Attribute.Media;
+    interior_colors: Attribute.Component<'configurator.interior', true>;
+  };
+}
+
+export interface ConfiguratorInterior extends Schema.Component {
+  collectionName: 'components_configurator_interiors';
+  info: {
+    displayName: 'Interior';
+    icon: 'brush';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    render_url: Attribute.String;
+    btn_bg: Attribute.String;
+    additional_description: Attribute.String;
+    incremental_price: Attribute.Float & Attribute.DefaultTo<0>;
+    render_image: Attribute.Media;
+    icon: Attribute.Media;
   };
 }
 
@@ -273,6 +295,7 @@ declare module '@strapi/types' {
       'configurator.additional-options': ConfiguratorAdditionalOptions;
       'configurator.body-color': ConfiguratorBodyColor;
       'configurator.contructor-item': ConfiguratorContructorItem;
+      'configurator.interior': ConfiguratorInterior;
       'configurator.tyres': ConfiguratorTyres;
       'configurator.wheels': ConfiguratorWheels;
       'heading-for-section.heading': HeadingForSectionHeading;

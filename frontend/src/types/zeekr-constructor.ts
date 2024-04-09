@@ -76,6 +76,7 @@ export interface Model {
     body_colors: BodyColor[];
     wheels: Wheel[];
     tyres: Tyre[];
+    interior_colors: InteriorColor[];
     additional_options: AdditionalOption[];
 }
 
@@ -91,6 +92,17 @@ interface BodyColor {
     incremental_price: number;
     additional_description: string;
 }
+interface InteriorColor {
+    render_image: any;
+    id: number;
+    name: string;
+    icon: {
+        data: ImageData;
+    };
+    render_url: string;
+    incremental_price: number;
+    additional_description: string;
+}
 
 interface Wheel {
     id: number;
@@ -98,7 +110,9 @@ interface Wheel {
     incremental_price: number;
     additional_description: string;
     render_url: string;
-    icon: ImageData;
+    icon: {
+        data: ImageData;
+    };
 }
 
 interface Tyre {
@@ -106,6 +120,7 @@ interface Tyre {
 }
 
 interface AdditionalOption {
+    title: ReactNode;
     id: number;
     name: string;
     incremental_price: number;

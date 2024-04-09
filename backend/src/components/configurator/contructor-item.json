@@ -50,6 +50,19 @@
       "type": "component",
       "repeatable": true,
       "component": "configurator.additional-options"
+    },
+    "render_interior_image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "interior_colors": {
+      "type": "component",
+      "repeatable": true,
+      "component": "configurator.interior"
     }
   }
 }
