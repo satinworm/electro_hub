@@ -120,7 +120,7 @@ interface Tyre {
 }
 
 interface AdditionalOption {
-    title: ReactNode;
+    title: 'string';
     id: number;
     name: string;
     incremental_price: number;
