@@ -30,7 +30,7 @@
 /*}*/
 
 html {
-    @apply bg-white;
+    @apply bg-white font-electrohub;
 }
 section {
     @apply bg-white;

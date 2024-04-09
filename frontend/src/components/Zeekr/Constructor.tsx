@@ -27,6 +27,7 @@ const ZeekrConstructor = (props: Props) => {
             constructorStore.configuration ||
             defaultData?.data?.[0]?.attributes?.models?.[0].name,
         color: constructorStore.color || 'black',
+        wheels: constructorStore.wheels || 'default',
     };
     const form = useForm<z.infer<typeof FormSchema>>({
         mode: 'onChange',

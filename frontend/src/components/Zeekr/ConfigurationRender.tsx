@@ -1,8 +1,11 @@
 import { CarConstructorResponse } from '@/types/zeekr-constructor';
-import { ConstructorStore } from '@/stores/car-constructor.store';
+import {
+    ConstructorStore,
+    ConstructorStoreState,
+} from '@/stores/car-constructor.store';
 import Image from 'next/image';
 import { getStrapiMedia } from '@/utils/api-helpers';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from '@/components/Loader';
 
 type Props = {
@@ -11,15 +14,23 @@ type Props = {
 };
 export default function ZeekrConstructorPage(props: Props) {
     const { defaultData, form } = props;
+    const [tab, setActiveTab] = useState('stake');
     const { watch } = form;
     const selectedModel = defaultData?.data?.[0]?.attributes?.models?.find(
         (model) => model.name === watch('configuration')
     );
     const defaultRenderImage =
-        defaultData?.data?.[0]?.attributes?.models?.[0]?.default_image;
+        defaultData?.data?.[0]?.attributes?.models?.[0]?.default_image?.data
+            ?.attributes;
 
     // const
-    const store = ConstructorStore((state: any) => state.constructor);
+    const store = ConstructorStore(
+        (state: ConstructorStoreState) => state.constructor
+    );
+    const totalPrice = ConstructorStore(
+        (state: ConstructorStoreState) => state.calculateTotalPrice
+    );
+
     console.log('store ', store);
     const setConstructor = ConstructorStore(
         (state: any) => state.setConstructor
@@ -27,9 +38,10 @@ export default function ZeekrConstructorPage(props: Props) {
     useEffect(() => {
         setConstructor({
             defaultRenderImage: defaultRenderImage,
+            defaultPrice: selectedModel?.default_price,
         });
     }, []);
-    console.log('selectedModel ', selectedModel);
+    // console.log('selectedModel ', selectedModel);
 
     const parseUrl = (body: string, wheels: string) => {
         const imageName = `${body}_${wheels}.png`;
@@ -48,12 +60,17 @@ export default function ZeekrConstructorPage(props: Props) {
             });
         }
     }, [store.body, store.wheels]);
+
     return (
         <div className={'h-[calc(100vh-100px)]'}>
-            <div className={'flex h-full w-full items-center justify-center'}>
-                {store.defaultRenderImage?.url &&
-                store.defaultRenderImage?.width &&
-                store.defaultRenderImage?.height ? (
+            <div
+                className={
+                    'flex h-full w-full flex-col items-center justify-center'
+                }
+            >
+                {store.defaultRenderImage?.url !== 'undefined' &&
+                store.defaultRenderImage?.width !== 'undefined' &&
+                store.defaultRenderImage?.height !== 'undefined' ? (
                     <Image
                         src={
                             parseUrl(
@@ -73,10 +90,22 @@ export default function ZeekrConstructorPage(props: Props) {
                     />
                 ) : (
                     <Loader styles={''} />
-                    // <video autoPlay loop muted>
-                    //     <source src='/Zeekr.mp4' type='video/mp4' />
-                    // </video>
                 )}
+                <div className={'absolute bottom-8 left-6'}>
+                    <h1
+                        className={'text-4xl font-bold uppercase text-black/60'}
+                    >
+                        {selectedModel?.name}
+                    </h1>
+                    <div className={'flex items-baseline gap-3'}>
+                        <div className={'text-2xl font-bold text-black/80'}>
+                            Итоговая цена:
+                        </div>
+                        <div className={'text-3xl font-bold'}>
+                            {totalPrice(store) ? totalPrice(store) : 0}$
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

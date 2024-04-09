@@ -98,6 +98,7 @@ interface Wheel {
     incremental_price: number;
     additional_description: string;
     render_url: string;
+    icon: ImageData;
 }
 
 interface Tyre {
