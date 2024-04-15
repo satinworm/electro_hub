@@ -21,18 +21,18 @@ const config = {
         },
         extend: {
             backgroundImage: {
-                main: "url('/main_bg.jpg')",
-                main_mobile: "url('/main_bg_mobile.jpg')",
-                zeekr: "url('/zeekr_bg.jpg')",
-                zeekr_mobile: "url('/zeekr_bg_mobile.jpg')",
+                main: "url('/main_bg.avif')",
+                main_mobile: "url('/main_bg_mobile.avif')",
+                zeekr: "url('/zeekr_bg.avif')",
+                zeekr_mobile: "url('/zeekr_bg_mobile.avif')",
                 rectangle_main: "url('/rectangle.svg')",
-                main_stage_bg: "url('/main_stage_bg.jpg')",
+                main_stage_bg: "url('/main_stage_bg.avif')",
                 rectangle_main_mobile: "url('/rectangle_mobile.svg')",
                 rectangle_main_stage: "url('/rectangle_stage.svg')",
                 rectangle_main_stage_mobile:
                     "url('/rectangle_stage_mobile.svg')",
                 bg_new_card: "url('/bg_new.png')",
-                zeekr_constructor: "url('/zeekr/constructor/bg.png')",
+                zeekr_constructor: "url('/zeekr/constructor/bg.avif')",
             },
             fontFamily: {
                 electrohub: ['Electrohub', 'sans-serif'],

@@ -12,7 +12,6 @@ type Props = {
 };
 
 export default function NextIntlProvider({
-    messages,
     locale,
     children,
     now,
@@ -21,7 +20,6 @@ export default function NextIntlProvider({
     return (
         <NextIntlClientProvider
             locale={locale}
-            messages={messages}
             defaultTranslationValues={{
                 i: (text) => <i>{text}</i>,
             }}

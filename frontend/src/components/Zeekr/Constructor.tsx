@@ -52,7 +52,7 @@ const ZeekrConstructor = (props: Props) => {
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className={'hideScrollbar'}
+                className={'hideScrollbar flex-col md:flex-row'}
                 style={{ display: 'flex', alignItems: 'flex-start' }}
             >
                 <StickyBox className={'w-3/4'}>

@@ -89,11 +89,11 @@ export default function ZeekrConstructorPage(props: Props) {
                                             initial={{ opacity: 0 }}
                                             animate={{
                                                 opacity: isSelected ? 1 : 0,
-                                            }} // Анимация прозрачности для выбранного элемента
+                                            }}
                                             transition={{
                                                 duration: 0.6,
                                                 ease: 'easeInOut',
-                                            }} // Продолжительность анимации
+                                            }}
                                         >
                                             <Image
                                                 src={currentItemUrl!}

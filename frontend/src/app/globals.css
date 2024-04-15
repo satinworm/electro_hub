@@ -138,7 +138,7 @@ section {
     @apply bg-main_mobile md:bg-main;
 }
 .zeekr-bg {
-    @apply bg-zeekr_mobile md:bg-zeekr;
+    @apply bg-zeekr;
 }
 .hideScrollbar {
     -ms-overflow-style: none; /* IE and Edge */

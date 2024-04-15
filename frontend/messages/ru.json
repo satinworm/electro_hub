@@ -37,5 +37,9 @@
         "text_description": "от $28,000",
         "btn_constructor": "Конструктор",
         "btn_consultation": "Консультация"
+    },
+    "ContactModal": {
+        "header": "Связь с нами",
+        "description": "Наш специалист свяжется с Вами и ответит на все интересующие Вас вопросы."
     }
 }

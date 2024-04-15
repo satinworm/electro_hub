@@ -2,15 +2,12 @@ import Image from 'next/image';
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { getTranslations } from 'next-intl/server';
-import { getDataFromAPI } from '@/utils/fetch-api';
 import { Link as LinkType } from '@/types/navbar.types';
 import { BrandsResponse } from '@/types/brands.types';
 
@@ -41,7 +38,7 @@ export default async function Burger(props: Props) {
 
     return (
         <Sheet>
-            <SheetTrigger>
+            <SheetTrigger className={'cursor-pointerß'}>
                 <Image
                     src={'/navbar/burger_icon.svg'}
                     alt={'burger menu'}

@@ -5,6 +5,7 @@ import ZeekrExterior from '@/components/ZeekrExterior';
 import { getStrapiMedia } from '@/utils/api-helpers';
 import { getDataFromAPI } from '@/utils/fetch-api';
 import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
 
 export async function generateMetadata({ params }: any) {
     const { locale } = params;
@@ -82,6 +83,7 @@ export default async function ZeekrPage({
     params: { locale: string };
 }) {
     const t = await getTranslations('Zeekr');
+    const modal = await getTranslations('ContactModal');
     const pageProperties = await getDataFromAPI(
         'pages',
         {
@@ -166,30 +168,37 @@ export default async function ZeekrPage({
                         buttons={[
                             {
                                 name: t('btn_constructor'),
-                                style: 'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-3 font-electrohub text-lg font-bold text-black md:max-w-[370px]',
-                                image: {
-                                    url: '/constructor.svg',
-                                    width: 20,
-                                    height: 20,
-                                },
+
                                 action: {
                                     actionType: 'link',
                                     actionUrl: '/zeekr/constructor',
+                                    styles: 'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-3 font-electrohub text-lg font-bold text-black md:max-w-[370px]',
                                 },
+                                children: (
+                                    <Image
+                                        src={'/constructor.svg'}
+                                        width={20}
+                                        height={20}
+                                        alt={'Constructor link'}
+                                    />
+                                ),
                             },
                             {
                                 name: t('btn_consultation'),
-                                style: 'flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white',
-                                image: {
-                                    url: '/consultation.svg',
-                                    width: 20,
-                                    height: 17,
-                                },
                                 action: {
-                                    actionType: 'button',
-                                    actionOnClick: () =>
-                                        console.log('consultation'),
+                                    actionType: 'modal',
+                                    styles: 'flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white',
+                                    modal_header: modal('header'),
+                                    modal_description: modal('description'),
                                 },
+                                children: (
+                                    <Image
+                                        src={'/consultation.svg'}
+                                        width={20}
+                                        height={17}
+                                        alt={'Constructor link'}
+                                    />
+                                ),
                             },
                         ]}
                     />
