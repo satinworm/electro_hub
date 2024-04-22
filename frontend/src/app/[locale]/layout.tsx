@@ -13,6 +13,8 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Footer } from '@/components/footer/Footer';
 import { getDataFromAPI } from '@/utils/fetch-api';
 import { ReactNode } from 'react';
+import { Toaster } from '@/components/ui/sonner';
+import '@splidejs/react-splide/css';
 
 const unbounded = Unbounded({ subsets: ['latin', 'cyrillic-ext'] });
 
@@ -91,6 +93,7 @@ export default async function LocaleLayout({
                     <div id='mainLayout'>{children}</div>
                     <Footer locale={locale} />
                 </ThemeProvider>
+                <Toaster />
             </body>
         </html>
     );

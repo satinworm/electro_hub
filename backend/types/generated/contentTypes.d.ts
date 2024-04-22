@@ -958,6 +958,40 @@ export interface ApiCarConstructorCarConstructor extends Schema.CollectionType {
   };
 }
 
+export interface ApiFeedbackFeedback extends Schema.CollectionType {
+  collectionName: 'feedbacks';
+  info: {
+    singularName: 'feedback';
+    pluralName: 'feedbacks';
+    displayName: 'Feedback';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String;
+    phone: Attribute.String;
+    date: Attribute.String;
+    processed: Attribute.Boolean & Attribute.DefaultTo<false>;
+    dateUTC: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::feedback.feedback',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::feedback.feedback',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFooterFooter extends Schema.CollectionType {
   collectionName: 'footers';
   info: {
@@ -1394,7 +1428,13 @@ export interface ApiPagePage extends Schema.CollectionType {
         };
       }>;
     sections: Attribute.DynamicZone<
-      ['page-properties.section', 'section.button', 'section.zeekr-exterior']
+      [
+        'page-properties.section',
+        'section.button',
+        'section.zeekr-exterior',
+        'page-properties.car-preview-slider',
+        'page-properties.main-page-slider'
+      ]
     > &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1490,6 +1530,7 @@ declare module '@strapi/types' {
       'api::brand.brand': ApiBrandBrand;
       'api::brands-section.brands-section': ApiBrandsSectionBrandsSection;
       'api::car-constructor.car-constructor': ApiCarConstructorCarConstructor;
+      'api::feedback.feedback': ApiFeedbackFeedback;
       'api::footer.footer': ApiFooterFooter;
       'api::model.model': ApiModelModel;
       'api::navbar.navbar': ApiNavbarNavbar;

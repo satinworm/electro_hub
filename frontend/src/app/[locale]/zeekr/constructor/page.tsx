@@ -8,7 +8,7 @@ type Props = {
 };
 export default function ZeekrConstructorPage(props: any) {
     const { defaultData } = props;
-    console.log('default data for constructors ', defaultData);
+    // console.log('default data for constructors ', defaultData);
 
     return (
         <>

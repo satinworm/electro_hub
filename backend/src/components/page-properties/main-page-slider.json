@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_page_properties_main_page_sliders",
+  "info": {
+    "displayName": "Main Page Slider",
+    "icon": "bell"
+  },
+  "options": {},
+  "attributes": {
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "page-properties.car-preview-slider"
+    }
+  }
+}

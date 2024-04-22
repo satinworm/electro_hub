@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
 import {
     Form,
     FormControl,
@@ -13,8 +12,12 @@ import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { isValidPhoneNumber } from 'libphonenumber-js';
 import { PhoneInput } from '@/components/ui/phone-input';
+import { format } from 'date-fns';
+import { api } from '@/utils/api';
+import { toast } from 'sonner';
+import { AxiosResponse } from 'axios';
 
-export default function ContactForm() {
+export default function ContactForm({ close }: { close: () => void }) {
     const FormSchema = z.object({
         name: z.string().min(1, 'Обязательное поле'),
         phone: z
@@ -31,16 +34,34 @@ export default function ContactForm() {
         resolver: zodResolver(FormSchema),
         defaultValues,
     });
-    const { watch } = form;
-    useEffect(() => {
-        const subscription = form.watch((value) => {
-            console.log('watch ', value);
-        });
-        return () => subscription.unsubscribe();
-    }, [watch]);
+    // const { watch } = form;
+
+    function formatDate(date: Date) {
+        return format(date, 'dd.MM.yyyy в HH:mm');
+    }
 
     async function onSubmit(data: any) {
-        console.log('SUBMITED DATA', data);
+        const dateNow = new Date();
+        console.log('SUBMITTED DATA', data);
+        try {
+            const response = await api.post<AxiosResponse>('/api/feedbacks', {
+                data: {
+                    ...data,
+                    processed: false,
+                    date: formatDate(dateNow),
+                    dateUTC: dateNow.toISOString(),
+                },
+            });
+            if (response.status === 200) {
+                toast.success('Данные отправлены', {
+                    duration: 6000,
+                });
+                close();
+                form.reset();
+            }
+        } catch (e: any) {
+            throw new Error(e);
+        }
     }
     return (
         <Form {...form}>

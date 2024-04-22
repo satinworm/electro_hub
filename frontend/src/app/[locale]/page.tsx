@@ -76,7 +76,21 @@ export default async function RootRoute({
             populate: {
                 sections: {
                     fields: ['*'],
-                    populate: '*',
+                    populate: {
+                        populate: true,
+                        items: {
+                            fields: '*',
+                            populate: '*',
+                        },
+                        heading: {
+                            fields: '*',
+                            populate: '*',
+                        },
+                        stage_card: {
+                            fields: '*',
+                            populate: '*',
+                        },
+                    },
                 },
                 SEO: {
                     fields: ['*'],
@@ -99,8 +113,12 @@ export default async function RootRoute({
         pageProperties?.data?.[0]?.attributes?.sections?.find(
             (section: any) => section.section_name === 'stagespurchase'
         );
+    const mainSectionSlider =
+        pageProperties?.data?.[0]?.attributes?.sections?.find(
+            (section: any) =>
+                section.__component === 'page-properties.main-page-slider'
+        );
 
-    // console.log('brandsSection', brandsSection);
     const brands = await getDataFromAPI(
         'brands',
         {
@@ -182,6 +200,7 @@ export default async function RootRoute({
                         subTitle={t('heading_description')}
                         description={t('text_description')}
                         bg={'bg-main'}
+                        data={mainSectionSlider}
                         buttons={[
                             {
                                 name: t('btn_catalog'),

@@ -155,7 +155,7 @@ export default async function ZeekrPage({
         locale
     );
 
-    console.log('suka ', pageProperties?.[0]?.attributes);
+    // console.log('suka ', pageProperties?.[0]?.attributes);
     return (
         <>
             {pageProperties && pageProperties?.data?.[0] && models ? (

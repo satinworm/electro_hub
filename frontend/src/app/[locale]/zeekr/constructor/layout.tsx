@@ -10,7 +10,7 @@ export default async function ZeekrConstructorLayout({
     params: { locale: string };
 }) {
     const propsForPage = { asd: 'asd' };
-    console.log('LOCALE ', locale);
+    // console.log('LOCALE ', locale);
     // return <>{children}</>;
     const ConstructorData = await getDataFromAPI(
         'car-constructors',

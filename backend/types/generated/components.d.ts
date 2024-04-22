@@ -152,6 +152,36 @@ export interface LinksSocial extends Schema.Component {
   };
 }
 
+export interface PagePropertiesCarPreviewSlider extends Schema.Component {
+  collectionName: 'components_page_properties_car_preview_sliders';
+  info: {
+    displayName: 'Car Preview Slider';
+    icon: 'alien';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    logo: Attribute.Media;
+    main_image: Attribute.Media;
+    engine: Attribute.String;
+    driving_range: Attribute.String;
+    acceleration: Attribute.String;
+    weight: Attribute.String;
+    starting_price: Attribute.String;
+  };
+}
+
+export interface PagePropertiesMainPageSlider extends Schema.Component {
+  collectionName: 'components_page_properties_main_page_sliders';
+  info: {
+    displayName: 'Main Page Slider';
+    icon: 'bell';
+  };
+  attributes: {
+    items: Attribute.Component<'page-properties.car-preview-slider', true>;
+  };
+}
+
 export interface PagePropertiesMetaTag extends Schema.Component {
   collectionName: 'components_page_properties_meta_tags';
   info: {
@@ -301,6 +331,8 @@ declare module '@strapi/types' {
       'heading-for-section.heading': HeadingForSectionHeading;
       'links.link': LinksLink;
       'links.social': LinksSocial;
+      'page-properties.car-preview-slider': PagePropertiesCarPreviewSlider;
+      'page-properties.main-page-slider': PagePropertiesMainPageSlider;
       'page-properties.meta-tag': PagePropertiesMetaTag;
       'page-properties.section': PagePropertiesSection;
       'page-properties.seo': PagePropertiesSeo;

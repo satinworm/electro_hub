@@ -34,7 +34,11 @@
         "title": "Zeekr",
         "heading_description": "Combining elegance and practicality",
         "text_description": "from $28,000",
-        "btn_constructor": "Constructor",
+        "btn_constructor": "Designer",
         "btn_consultation": "Counseling"
+    },
+    "ContactModal": {
+        "header": "Contact us",
+        "description": "Our specialist will contact you and answer all your questions."
     }
 }

@@ -15,6 +15,7 @@ export default function ModalComponent(props: any) {
     const { header, description } = props;
 
     const { open, setOpen } = DialogStore();
+    const closeDialog = () => setOpen(false);
     return (
         <Dialog onOpenChange={setOpen} open={open}>
             <DialogTrigger asChild></DialogTrigger>
@@ -57,7 +58,7 @@ export default function ModalComponent(props: any) {
                 />
                 <div className={'mt-20 w-2/3 text-black'}>{description}</div>
                 <div className='mt-20 max-w-md'>
-                    <ContactForm />
+                    <ContactForm close={closeDialog} />
                 </div>
             </DialogContent>
         </Dialog>

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
 
@@ -64,6 +64,7 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
                 </div>
                 <button
                     type={'button'}
+                    name={'prev'}
                     className={
                         'hidden w-fit items-center justify-center gap-2 bg-black px-12 py-5 text-lg font-bold text-white lg:flex'
                     }
@@ -97,6 +98,7 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
             </div>
             <button
                 type={'button'}
+                name={'next'}
                 className={
                     'mx-auto flex w-full items-center justify-center gap-2 bg-black px-10 py-2.5 text-sm font-bold text-white md:w-fit md:px-12 md:py-5 md:text-lg lg:hidden'
                 }

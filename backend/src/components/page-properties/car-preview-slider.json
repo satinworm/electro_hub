@@ -1,0 +1,49 @@
+{
+  "collectionName": "components_page_properties_car_preview_sliders",
+  "info": {
+    "displayName": "Car Preview Slider",
+    "icon": "alien",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "main_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "engine": {
+      "type": "string"
+    },
+    "driving_range": {
+      "type": "string"
+    },
+    "acceleration": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "string"
+    },
+    "starting_price": {
+      "type": "string"
+    }
+  }
+}

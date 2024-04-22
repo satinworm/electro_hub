@@ -52,7 +52,9 @@
       "components": [
         "page-properties.section",
         "section.button",
-        "section.zeekr-exterior"
+        "section.zeekr-exterior",
+        "page-properties.car-preview-slider",
+        "page-properties.main-page-slider"
       ]
     }
   }
