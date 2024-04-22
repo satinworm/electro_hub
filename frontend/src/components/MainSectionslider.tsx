@@ -3,7 +3,7 @@
 // @ts-ignore
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
 import { cn } from '@/lib/utils';
-import { ButtonFromProps } from '@/components/ActionButtons';
+import ActionButtons, { ButtonFromProps } from '@/components/ActionButtons';
 import React from 'react';
 import { MainSectionSliderTypes } from '@/types/mainsection.types';
 import { getStrapiMedia } from '@/utils/api-helpers';
@@ -63,38 +63,6 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                 }}
             >
                 <SplideTrack>
-                    {/*<SplideSlide>*/}
-                    {/*    <div*/}
-                    {/*        className={cn(*/}
-                    {/*            `${bg} w-full bg-center bg-no-repeat md:bg-cover`*/}
-                    {/*        )}*/}
-                    {/*    >*/}
-                    {/*        <div className='item-center relative flex h-full min-h-[98vh] w-full flex-col justify-end px-[1rem] md:px-[1.5rem] lg:px-[2rem]'>*/}
-                    {/*            /!*<SocialLinks />*!/*/}
-                    {/*            <div className='absolute left-1/2 top-1/2 mb-[25%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center space-y-3 md:mb-[15%] md:space-y-5'>*/}
-                    {/*                <div className='px-4 text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>*/}
-                    {/*                    {title}*/}
-                    {/*                </div>*/}
-                    {/*                <div className='text-center font-electrohub text-[15px] font-bold text-white md:text-[20px]'>*/}
-                    {/*                    {subTitle}*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*            <div className='mb-[140px] text-white'>*/}
-                    {/*                <div className='hidden max-w-2xl text-center font-electrohub text-[16px] font-bold text-white md:block md:text-left md:text-2xl'>*/}
-                    {/*                    {description}*/}
-                    {/*                </div>*/}
-                    {/*                <div className='mt-7 flex w-full justify-between'>*/}
-                    {/*                    <ActionButtons*/}
-                    {/*                        buttons={buttons}*/}
-                    {/*                        containerStyles={*/}
-                    {/*                            'flex w-full flex-col gap-5 md:w-auto md:flex-row'*/}
-                    {/*                        }*/}
-                    {/*                    />*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</SplideSlide>*/}
                     {data?.items?.map((item, index) => {
                         const bgUrl = getStrapiMedia(
                             item.main_image.data.attributes.url
@@ -120,10 +88,10 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             {item?.name}
                                         </div>
                                     </div>
-                                    <div className='relative mb-[140px] text-white'>
+                                    <div className='relative mb-[80px] text-white'>
                                         <div
                                             className={
-                                                'grid grid-cols-9 gap-x-1.5'
+                                                'flex justify-between gap-7'
                                             }
                                         >
                                             <div
@@ -159,40 +127,43 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             </div>
                                             <div
                                                 className={
-                                                    'ml-7 flex flex-col items-center justify-center gap-2 rounded-[10px] bg-white/30 px-5 py-7 backdrop-blur-[10px]'
+                                                    'grid grid-cols-7 gap-[2px]'
                                                 }
                                             >
-                                                <Image
-                                                    src={
-                                                        getStrapiMedia(
-                                                            item?.logo?.data
-                                                                ?.attributes
-                                                                ?.url
-                                                        )!
-                                                    }
-                                                    alt={item?.name}
-                                                    width={
-                                                        item?.logo?.data
-                                                            ?.attributes?.width
-                                                    }
-                                                    height={
-                                                        item?.logo?.data
-                                                            ?.attributes?.height
-                                                    }
-                                                />
                                                 <div
                                                     className={
-                                                        'text-center font-electrohub font-bold capitalize text-[#1E1E1E]'
+                                                        'mr-2 flex flex-col items-center justify-center gap-2 rounded-[10px] bg-white/30 px-5 py-7 backdrop-blur-[10px]'
                                                     }
                                                 >
-                                                    {item?.name}
+                                                    <Image
+                                                        src={
+                                                            getStrapiMedia(
+                                                                item?.logo?.data
+                                                                    ?.attributes
+                                                                    ?.url
+                                                            )!
+                                                        }
+                                                        alt={item?.name}
+                                                        width={
+                                                            item?.logo?.data
+                                                                ?.attributes
+                                                                ?.width
+                                                        }
+                                                        height={
+                                                            item?.logo?.data
+                                                                ?.attributes
+                                                                ?.height
+                                                        }
+                                                    />
+                                                    <div
+                                                        className={
+                                                            'text-center font-electrohub font-bold capitalize text-[#1E1E1E]'
+                                                        }
+                                                    >
+                                                        {item?.name}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div
-                                                className={
-                                                    'col-span-4 grid grid-cols-4 gap-x-[2px]'
-                                                }
-                                            >
+
                                                 <div
                                                     className={
                                                         'flex flex-col items-center justify-center  gap-4 rounded-l-[10px] bg-white/30 px-5 py-7 backdrop-blur-[10px]'
@@ -285,7 +256,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                 </div>
                                                 <div
                                                     className={
-                                                        'flex flex-col items-center justify-center gap-4 rounded-r-[10px] bg-white/30 px-5 py-7 backdrop-blur-[10px]'
+                                                        'mr-2 flex flex-col items-center justify-center gap-4 rounded-r-[10px] bg-white/30 px-5 py-7 backdrop-blur-[10px]'
                                                     }
                                                 >
                                                     <Image
@@ -311,29 +282,31 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                         </span>
                                                     </div>
                                                 </div>
+                                                <button
+                                                    className={
+                                                        'relative col-span-2 w-full rounded-[10px] bg-white/60 p-5 backdrop-blur-[10px]'
+                                                    }
+                                                    key={item.name}
+                                                    onClick={() =>
+                                                        setOpen(true)
+                                                    }
+                                                >
+                                                    <span
+                                                        className={
+                                                            'absolute left-5 top-5 text-sm font-black text-[#1e1e1e]'
+                                                        }
+                                                    >
+                                                        {item.starting_price}
+                                                    </span>
+                                                    <span
+                                                        className={
+                                                            'whitespace-nowrap font-black text-[#1e1e1e]'
+                                                        }
+                                                    >
+                                                        {'Консультация'}
+                                                    </span>
+                                                </button>
                                             </div>
-                                            <button
-                                                className={
-                                                    'relative col-span-2 w-full rounded-[10px] bg-white/30 p-5 backdrop-blur-[10px]'
-                                                }
-                                                key={item.name}
-                                                onClick={() => setOpen(true)}
-                                            >
-                                                <span
-                                                    className={
-                                                        'absolute left-5 top-5 text-sm font-black text-[#1e1e1e]'
-                                                    }
-                                                >
-                                                    {item.starting_price}
-                                                </span>
-                                                <span
-                                                    className={
-                                                        'whitespace-nowrap font-black text-[#1e1e1e]'
-                                                    }
-                                                >
-                                                    {'Консультация'}
-                                                </span>
-                                            </button>
                                             <div
                                                 className={
                                                     'ml-14 flex max-w-[170px] flex-col items-center justify-center rounded-[10px] bg-white/30 p-7 backdrop-blur-[10px]'
@@ -371,6 +344,38 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                             </SplideSlide>
                         );
                     })}
+                    <SplideSlide>
+                        <div
+                            className={cn(
+                                `${bg} w-full bg-center bg-no-repeat md:bg-cover`
+                            )}
+                        >
+                            <div className='item-center relative flex h-full min-h-[98vh] w-full flex-col justify-end px-[1rem] md:px-[1.5rem] lg:px-[2rem]'>
+                                {/*<SocialLinks />*/}
+                                <div className='absolute left-1/2 top-1/2 mb-[25%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center space-y-3 md:mb-[15%] md:space-y-5'>
+                                    <div className='px-4 text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>
+                                        {title}
+                                    </div>
+                                    <div className='text-center font-electrohub text-[15px] font-bold text-white md:text-[20px]'>
+                                        {subTitle}
+                                    </div>
+                                </div>
+                                <div className='mb-[140px] text-white'>
+                                    <div className='hidden max-w-2xl text-center font-electrohub text-[16px] font-bold text-white md:block md:text-left md:text-2xl'>
+                                        {description}
+                                    </div>
+                                    <div className='mt-7 flex w-full justify-between'>
+                                        <ActionButtons
+                                            buttons={buttons}
+                                            containerStyles={
+                                                'flex w-full flex-col gap-5 md:w-auto md:flex-row'
+                                            }
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </SplideSlide>
                 </SplideTrack>
                 <div className='splide__arrows'>
                     <button className='splide__arrow splide__arrow--prev bottom-0'>
@@ -381,7 +386,10 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                             height={14}
                         />
                     </button>
-                    <button className='splide__arrow splide__arrow--next'>
+                    <button
+                        style={{ bottom: 0 }}
+                        className='splide__arrow splide__arrow--next'
+                    >
                         <Image
                             src={'/right-arrow-slider.svg'}
                             alt={'prev slide'}
