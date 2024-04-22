@@ -24,7 +24,7 @@ type Props = {
 
 export default function MainSection(props: Props) {
     const { title, description, subTitle, bg, buttons, data } = props;
-    const exist = data?.items?.length > 0;
+    const exist = data?.items && data?.items?.length > 0;
     console.log('data', data);
     const t = useTranslations('MainSection');
     return (
