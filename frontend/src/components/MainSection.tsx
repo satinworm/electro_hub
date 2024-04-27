@@ -25,7 +25,6 @@ type Props = {
 export default function MainSection(props: Props) {
     const { title, description, subTitle, bg, buttons, data } = props;
     const exist = data?.items && data?.items?.length > 0;
-    console.log('data', data);
     const t = useTranslations('MainSection');
     return (
         <>
@@ -36,7 +35,7 @@ export default function MainSection(props: Props) {
                             `${bg} mx-auto w-full bg-center bg-no-repeat md:bg-cover`
                         )}
                     >
-                        <div className='item-center container relative flex h-full min-h-[98vh] w-full flex-col justify-end'>
+                        <div className='item-center container relative flex h-full min-h-[90vh] w-full flex-col justify-end'>
                             <SocialLinks />
                             <div className='absolute left-1/2 top-1/2 mb-[25%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center space-y-3 md:mb-[15%] md:space-y-5'>
                                 <div className='px-4 text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>
@@ -77,7 +76,7 @@ export default function MainSection(props: Props) {
                 </>
             ) : (
                 //
-                <div className={'h-[98vh] w-full'}>
+                <div className={'w-full md:h-[85vh]'}>
                     <Suspense
                         fallback={
                             <div
@@ -88,7 +87,7 @@ export default function MainSection(props: Props) {
                                 <div className='item-center container relative flex h-full min-h-[98vh] w-full flex-col justify-end'>
                                     <SocialLinks />
                                     <div className='absolute left-1/2 top-1/2 mb-[25%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center space-y-3 md:mb-[15%] md:space-y-5'>
-                                        <div className='px-4 text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>
+                                        <div className='text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:px-4 md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>
                                             {title}
                                         </div>
                                         <div className='text-center font-electrohub text-[15px] font-bold text-white md:text-[20px]'>

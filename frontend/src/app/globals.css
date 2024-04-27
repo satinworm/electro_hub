@@ -25,143 +25,171 @@
     src: url('../assets/fonts/terminatorgen.otf') format('truetype');
 }
 
-/** {*/
-/*  border: 1px solid red;*/
-/*}*/
-
-html {
-    @apply bg-white font-electrohub;
+@font-face {
+    font-family: 'ElectrohubHeading';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../assets/fonts/electrohubHeading.ttf') format('truetype');
 }
-section {
-    @apply bg-white;
+/* Zeekr */
+
+
+
+.brandHeading {
+    -webkit-text-stroke: 1px #808080;
+    line-height: normal;
+    text-shadow: -1px -1px 2px #00000040;
 }
+@media (max-width: 768px) {
 
-@layer base {
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 222.2 84% 4.9%;
-
-        --card: 0 0% 100%;
-        --card-foreground: 222.2 84% 4.9%;
-
-        --popover: 0 0% 100%;
-        --popover-foreground: 222.2 84% 4.9%;
-
-        --primary: 222.2 47.4% 11.2%;
-        --primary-foreground: 210 40% 98%;
-
-        --secondary: 210 40% 96.1%;
-        --secondary-foreground: 222.2 47.4% 11.2%;
-
-        --muted: 210 40% 96.1%;
-        --muted-foreground: 215.4 16.3% 46.9%;
-
-        --accent: 210 40% 96.1%;
-        --accent-foreground: 222.2 47.4% 11.2%;
-
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 210 40% 98%;
-
-        --border: 214.3 31.8% 91.4%;
-        --input: 214.3 31.8% 91.4%;
-        --ring: 222.2 84% 4.9%;
-
-        --radius: 0.5rem;
-    }
-
-    .dark {
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
-
-        --card: 222.2 84% 4.9%;
-        --card-foreground: 210 40% 98%;
-
-        --popover: 222.2 84% 4.9%;
-        --popover-foreground: 210 40% 98%;
-
-        --primary: 210 40% 98%;
-        --primary-foreground: 222.2 47.4% 11.2%;
-
-        --secondary: 217.2 32.6% 17.5%;
-        --secondary-foreground: 210 40% 98%;
-
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
-
-        --accent: 217.2 32.6% 17.5%;
-        --accent-foreground: 210 40% 98%;
-
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 210 40% 98%;
-
-        --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
-        --ring: 212.7 26.8% 83.9%;
+    .brandHeading {
+        font-size: 16px;
+        color: black;
+        text-align: center;
     }
 }
-.theme-light {
-    --brand-primary: rgb(47, 112, 193);
-    --brand-secondary: rgb(116, 97, 195);
-    --brand-alternative: rgb(19, 120, 134);
-    --background-site: rgb(249, 249, 249);
-    --background-code: rgb(244, 244, 244);
-    --text-body: rgb(54, 49, 61);
-    --text-comment: rgb(99, 94, 105);
-    --text-high-contrast: rgb(49, 49, 49);
-    --text-medium-contrast: rgb(99, 94, 105);
-    --text-low-contrast: rgb(116, 109, 118);
-    --detail-high-contrast: rgb(192, 192, 192);
-    --detail-medium-contrast: rgb(234, 234, 234);
-    --detail-low-contrast: rgb(240, 240, 242);
-    --admonition-note: rgb(46, 109, 188);
-    --admonition-warning: rgb(255, 196, 9);
-    --admonition-danger: rgb(220, 38, 38);
-    --brand-primary-rgb-value: 47, 112, 193;
-    --brand-secondary-rgb-value: 116, 97, 195;
-    --brand-alternative-rgb-value: 19, 120, 134;
-    --background-site-rgb-value: 249, 249, 249;
-    --background-code-rgb-value: 244, 244, 244;
-    --text-body-rgb-value: 54, 49, 61;
-    --text-comment-rgb-value: 99, 94, 105;
-    --text-high-contrast-rgb-value: 49, 49, 49;
-    --text-medium-contrast-rgb-value: 99, 94, 105;
-    --text-low-contrast-rgb-value: 116, 109, 118;
-    --detail-high-contrast-rgb-value: 192, 192, 192;
-    --detail-medium-contrast-rgb-value: 234, 234, 234;
-    --detail-low-contrast-rgb-value: 240, 240, 242;
-    --admonition-note-rgb-value: 46, 109, 188;
-    --admonition-warning-rgb-value: 255, 196, 9;
-    --admonition-danger-rgb-value: 220, 38, 38;
-}
 
-.main-bg {
-    @apply bg-main_mobile md:bg-main;
-}
-.zeekr-bg {
-    @apply bg-zeekr;
-}
-.hideScrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-}
-.hideScrollbar::-webkit-scrollbar {
-    display: none;
-}
-::-webkit-scrollbar {
-    width: 3px;
-}
 
-::-webkit-scrollbar-track {
-    background-color: #ebebeb;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-}
 
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    background: #6d6d6d;
-}
-.container {
-    @apply px-[1rem] md:px-[1.5rem] lg:px-[2rem] xl:px-[3rem] 2xl:px-[4rem];
-}
+    /** {*/
+    /*  border: 1px solid red;*/
+    /*}*/
+
+    html {
+        @apply bg-white font-electrohub;
+    }
+    section {
+        @apply bg-white;
+    }
+
+    @layer base {
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+
+            --accent: 210 40% 96.1%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --ring: 222.2 84% 4.9%;
+
+            --radius: 0.5rem;
+        }
+
+        .dark {
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+
+            --popover: 222.2 84% 4.9%;
+            --popover-foreground: 210 40% 98%;
+
+            --primary: 210 40% 98%;
+            --primary-foreground: 222.2 47.4% 11.2%;
+
+            --secondary: 217.2 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 210 40% 98%;
+
+            --border: 217.2 32.6% 17.5%;
+            --input: 217.2 32.6% 17.5%;
+            --ring: 212.7 26.8% 83.9%;
+        }
+    }
+    .theme-light {
+        --brand-primary: rgb(47, 112, 193);
+        --brand-secondary: rgb(116, 97, 195);
+        --brand-alternative: rgb(19, 120, 134);
+        --background-site: rgb(249, 249, 249);
+        --background-code: rgb(244, 244, 244);
+        --text-body: rgb(54, 49, 61);
+        --text-comment: rgb(99, 94, 105);
+        --text-high-contrast: rgb(49, 49, 49);
+        --text-medium-contrast: rgb(99, 94, 105);
+        --text-low-contrast: rgb(116, 109, 118);
+        --detail-high-contrast: rgb(192, 192, 192);
+        --detail-medium-contrast: rgb(234, 234, 234);
+        --detail-low-contrast: rgb(240, 240, 242);
+        --admonition-note: rgb(46, 109, 188);
+        --admonition-warning: rgb(255, 196, 9);
+        --admonition-danger: rgb(220, 38, 38);
+        --brand-primary-rgb-value: 47, 112, 193;
+        --brand-secondary-rgb-value: 116, 97, 195;
+        --brand-alternative-rgb-value: 19, 120, 134;
+        --background-site-rgb-value: 249, 249, 249;
+        --background-code-rgb-value: 244, 244, 244;
+        --text-body-rgb-value: 54, 49, 61;
+        --text-comment-rgb-value: 99, 94, 105;
+        --text-high-contrast-rgb-value: 49, 49, 49;
+        --text-medium-contrast-rgb-value: 99, 94, 105;
+        --text-low-contrast-rgb-value: 116, 109, 118;
+        --detail-high-contrast-rgb-value: 192, 192, 192;
+        --detail-medium-contrast-rgb-value: 234, 234, 234;
+        --detail-low-contrast-rgb-value: 240, 240, 242;
+        --admonition-note-rgb-value: 46, 109, 188;
+        --admonition-warning-rgb-value: 255, 196, 9;
+        --admonition-danger-rgb-value: 220, 38, 38;
+    }
+
+    .main-bg {
+        @apply bg-main_mobile md:bg-main;
+    }
+    .zeekr-bg {
+        @apply bg-zeekr;
+    }
+    .hideScrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+    .hideScrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    ::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #ebebeb;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: #6d6d6d;
+    }
+    .container {
+        @apply px-[1rem] md:px-[1.5rem] lg:px-[2rem] xl:px-[3rem] 2xl:px-[4rem];
+    }
+

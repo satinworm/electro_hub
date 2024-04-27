@@ -16,7 +16,8 @@ export default function BrandSection(props: Props) {
     const h3 = data?.heading?.[0]?.h3;
     const btn = data?.heading?.[0]?.btn;
     return (
-        <section className='mt-[-1px] flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'>
+        <section className='mt-6 flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'>
+            <div className='z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:mt-[-48px] md:h-[48px] md:bg-rectangle_main' />
             <div className='container mt-10 text-black'>
                 <h3 className='text-sm font-black text-[#1e1e1e] md:text-base'>
                     {h3}
@@ -38,7 +39,7 @@ export default function BrandSection(props: Props) {
                     </span>
                 </div>
             </div>
-            <div className='container mt-6 grid grid-cols-2 gap-5 md:mt-12 md:gap-5 lg:mt-20 lg:grid-cols-3 lg:gap-6 xl:gap-10 2xl:grid-cols-4'>
+            <div className='container mt-6  grid grid-cols-2 gap-5 md:mt-12 md:gap-5 lg:mt-20 lg:grid-cols-3 lg:gap-6 xl:gap-10 2xl:grid-cols-4'>
                 {brands?.data?.map((brand: any) => {
                     const {
                         logo,
@@ -61,15 +62,10 @@ export default function BrandSection(props: Props) {
                         <Link
                             key={brand.id}
                             href={`/${brandSlug}`}
-                            style={{
-                                borderRadius: '10px',
-                                background:
-                                    'linear-gradient(135deg, #e4e4e4 0%, #c2cae1 100%)',
-                            }}
-                            className='group flex cursor-pointer flex-col items-center p-2 px-3 shadow-brandCard transition hover:scale-95 hover:shadow-brandCardHover md:px-3 md:py-2 lg:px-5 lg:pb-5 lg:pt-12'
+                            className='group relative flex cursor-pointer flex-col rounded-xl bg-white p-2 py-6 shadow-[0_4px_15px_2px_rgba(0,0,0,0.1)] transition hover:scale-95 hover:shadow-brandCardHover md:py-2'
                         >
-                            <div className='flex h-full w-full flex-col items-center justify-evenly md:flex-row'>
-                                <div className='flex items-center gap-2'>
+                            <div className=' flex h-full w-full flex-col items-start '>
+                                <div className='flex h-full w-full flex-col items-center justify-center gap-2 py-3 md:flex-row md:justify-start '>
                                     <Image
                                         src={getStrapiMedia(logoUrl)!}
                                         alt={name}
@@ -79,7 +75,14 @@ export default function BrandSection(props: Props) {
                                     />
                                     <span
                                         className={
-                                            'text-[16px] font-bold text-[#1e1e1e]'
+                                            'brandHeading font-electrohubHeading mt-4 hidden font-semibold text-black sm:text-[24px] md:mt-0 md:block md:text-[28px] xl:text-[32px]'
+                                        }
+                                    >
+                                        {name}
+                                    </span>
+                                    <span
+                                        className={
+                                            'font-electrohubHeading mt-4 font-semibold text-black sm:text-[24px] md:mt-0 md:hidden md:text-[28px] xl:text-[32px]'
                                         }
                                     >
                                         {name}
@@ -90,11 +93,41 @@ export default function BrandSection(props: Props) {
                                     alt={name}
                                     width={imageWidth}
                                     height={imageHeight}
-                                    className={'scale-75 md:scale-100'}
+                                    className={
+                                        '-mt-10 ml-auto hidden scale-75 md:block md:scale-100'
+                                    }
                                 />
                             </div>
-                            <div className='mt-2 w-full border-t-[2px] border-[#1e1e1e] py-2 text-center text-xs text-[#1e1e1e] sm:pt-4 md:mt-6 md:pt-4 md:text-base'>
-                                {btn}
+                            <div className='group relative ml-5 hidden min-h-[41px] w-full max-w-[205px] items-center rounded-[10px] border border-[#1e1e1e] pl-5 pr-10 text-[#1e1e1e] transition-all duration-300 group-hover:bg-black md:flex  md:text-base'>
+                                <div
+                                    className={
+                                        'text-[12px] text-[#1e1e1e] transition group-hover:text-white'
+                                    }
+                                >
+                                    {btn}
+                                </div>
+                                <div
+                                    className={
+                                        'absolute -right-[1px] top-0 flex h-[40px] w-[40px] items-center justify-center rounded-[10px] border border-[#1e1e1e] bg-black'
+                                    }
+                                >
+                                    <svg
+                                        width='10'
+                                        height='14'
+                                        viewBox='0 0 10 14'
+                                        fill='none'
+                                        className={'flex'}
+                                        xmlns='http://www.w3.org/2000/svg'
+                                    >
+                                        <path
+                                            d='M1 13L9 7L1 1'
+                                            stroke='white'
+                                            strokeWidth='2'
+                                            strokeLinecap='round'
+                                            strokeLinejoin='round'
+                                        />
+                                    </svg>
+                                </div>
                             </div>
                         </Link>
                     );

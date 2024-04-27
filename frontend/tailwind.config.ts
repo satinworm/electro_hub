@@ -37,6 +37,7 @@ const config = {
             fontFamily: {
                 electrohub: ['Electrohub', 'sans-serif'],
                 terminatorgen: ['TerminatorGen', 'sans-serif'],
+                electrohubHeading: ['ElectrohubHeading', 'sans-serif'],
             },
             colors: {
                 border: 'hsl(var(--border))',
@@ -75,8 +76,8 @@ const config = {
             },
             boxShadow: {
                 brandCard: '5px 5px 10px 0 rgba(0, 0, 0, 0.15)',
-                brandCardHover:
-                    '10px 10px 10px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25)',
+                brandCardHover: '0 0 20px 2px rgba(0, 0, 0, 0.1)',
+                mobileBrandCard: '0 4px 20px 2px rgba(0, 0, 0, 0.06)',
             },
             borderRadius: {
                 lg: 'var(--radius)',
