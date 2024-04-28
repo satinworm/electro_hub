@@ -47,7 +47,7 @@ export default function CarsToOrder({ data }: Props) {
                         }
                     >
                         {locale === 'ru'
-                            ? 'Выбирите свой автомобиль'
+                            ? 'Выбeрите свой автомобиль'
                             : 'Choose your car'}
                     </span>
                 </div>
