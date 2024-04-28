@@ -48,7 +48,7 @@ export default async function Burger(props: Props) {
             </SheetTrigger>
             <SheetContent
                 className={
-                    'min-w-[50vw] px-8 py-6 font-electrohub sm:px-10 md:min-w-[35vw] md:px-20 md:py-10'
+                    'min-w-[50vw] px-8 py-6 font-electrohub sm:px-10 sm:px-8 md:min-w-[35vw] md:px-12 md:py-10 lg:px-14 xl:px-16 2xl:px-20'
                 }
             >
                 <SheetHeader>
@@ -64,7 +64,7 @@ export default async function Burger(props: Props) {
                                     key={link.name}
                                     href={link.href}
                                     className={
-                                        'block text-[22px] font-bold text-[#A4AABD] sm:text-[28px]'
+                                        'block text-[18px] font-bold text-[#A4AABD] sm:text-[20px] md:text-[20px] lg:text-[22px] xl:text-[28px]'
                                     }
                                 >
                                     {link.name}
@@ -79,7 +79,7 @@ export default async function Burger(props: Props) {
                                     key={link.name}
                                     href={link.href}
                                     className={
-                                        'block text-[18px] font-bold text-[#A4AABD] sm:text-[22px]'
+                                        'block font-bold text-[#A4AABD] sm:text-[22px] md:text-base xl:text-[18px]'
                                     }
                                 >
                                     {link.name}

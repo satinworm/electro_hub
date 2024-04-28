@@ -69,7 +69,7 @@ export default function ZeekrConstructorPage(props: Props) {
     return (
         <div
             className={
-                ' h-[45vh] rounded-b-2xl shadow-2xl md:h-[calc(100vh-100px)] md:rounded-none md:shadow-none'
+                ' h-[45vh] rounded-b-2xl shadow-2xl sm:h-[50vh] md:h-[60vh] md:rounded-none md:shadow-none xl:h-[calc(100vh-92px)]'
             }
         >
             <div className={'relative h-full w-full'}>
@@ -191,7 +191,7 @@ export default function ZeekrConstructorPage(props: Props) {
                     <button
                         onClick={() => setSelectedView('body')}
                         className={cn(
-                            'flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub text-base text-xs font-bold font-semibold text-black transition-all ease-in-out sm:text-sm md:py-2 md:text-lg lg:min-w-52 lg:px-8',
+                            'flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub  text-xs font-semibold text-black transition-all ease-in-out sm:text-sm md:py-2 md:text-lg lg:min-w-52 lg:px-8',
                             selectedView === 'body'
                                 ? 'rounded-md bg-white md:bg-white'
                                 : 'border-black bg-white/20 backdrop-blur-md'

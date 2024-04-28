@@ -11,20 +11,22 @@ export default function NotFound() {
                 `mx-auto w-full bg-[url("/not_found_bg.avif")] bg-center bg-no-repeat md:bg-cover`
             )}
         >
-            <div className='item-center relative flex min-h-[98vh] w-full overflow-hidden'>
+            <div className='item-center relative flex min-h-[70vh] w-full overflow-hidden md:min-h-[98vh]'>
                 <div
                     className={
-                        'absolute left-1/3 top-1/2 flex -translate-x-full -translate-y-1/2 flex-col justify-center'
+                        'mx-auto flex flex-col justify-center p-4 md:absolute md:left-1/3 md:top-1/2 md:mx-0 md:-translate-y-1/2 md:p-0 xl:-translate-x-full'
                     }
                 >
                     <div
-                        className={'font-terminatorgen text-[160px] text-white'}
+                        className={
+                            'font-terminatorgen text-[120px] text-white md:text-[160px]'
+                        }
                     >
                         404
                     </div>
                     <div
                         className={
-                            'mt-10 font-electrohub text-[20px] font-bold text-[#7E7F7F]'
+                            'mt-10 font-electrohub text-xl font-bold text-[#7E7F7F] md:text-[20px]'
                         }
                     >
                         {t('heading')}

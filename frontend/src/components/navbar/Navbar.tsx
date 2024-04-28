@@ -39,7 +39,7 @@ export default function Navbar(props: Props) {
                 <div className='flex gap-20'>
                     <Logo data={logo} />
 
-                    <div className='hidden items-center gap-x-12 lg:flex'>
+                    <div className='hidden items-center gap-x-12 xl:flex'>
                         {main_links?.map((link) => (
                             <NavLink
                                 key={link.name}

@@ -61,14 +61,14 @@ export default function MainSectionSlider({ props }: { props: Props }) {
     return (
         <>
             <Splide
-                className={'w-full font-electrohub md:max-h-[85vh]'}
+                className={'mb-8 w-full font-electrohub md:max-h-[85vh]'}
                 hasTrack={false}
                 options={{
                     type: 'fade',
                     // heightRatio: 0.98,
                     pagination: true,
                     arrows: windowWidth >= 768,
-                    autoplay: true,
+                    // autoplay: true,
                     interval: 4000,
                     rewind: true,
                     pauseOnHover: true,
@@ -80,38 +80,38 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                 }}
             >
                 <SplideTrack>
-                    <SplideSlide>
-                        <div
-                            className={cn(
-                                `${bg} w-full bg-center bg-no-repeat md:bg-cover`
-                            )}
-                        >
-                            <div className='item-center relative flex h-full min-h-[85vh] w-full flex-col justify-end px-[0.4rem] sm:px-[1rem] md:px-[1.5rem] lg:px-[2rem]'>
-                                {/*<SocialLinks />*/}
-                                <div className='absolute left-1/2 top-1/2 mb-[25%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center space-y-3 md:mb-[15%] md:space-y-5'>
-                                    <div className='px-4 text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>
-                                        {title}
-                                    </div>
-                                    <div className='text-center font-electrohub text-[15px] font-bold text-white md:text-[20px]'>
-                                        {subTitle}
-                                    </div>
-                                </div>
-                                <div className='mb-[140px] text-white'>
-                                    <div className='hidden max-w-2xl text-center font-electrohub text-[16px] font-bold text-white md:block md:text-left md:text-2xl'>
-                                        {description}
-                                    </div>
-                                    <div className='mt-7 flex w-full justify-between'>
-                                        <ActionButtons
-                                            buttons={buttons}
-                                            containerStyles={
-                                                'flex w-full flex-col gap-5 md:w-auto md:flex-row'
-                                            }
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </SplideSlide>
+                    {/*<SplideSlide>*/}
+                    {/*    <div*/}
+                    {/*        className={cn(*/}
+                    {/*            `${bg} w-full bg-center bg-no-repeat md:bg-cover`*/}
+                    {/*        )}*/}
+                    {/*    >*/}
+                    {/*        <div className='item-center relative flex h-full min-h-[85vh] w-full flex-col justify-end px-[0.4rem] sm:px-[1rem] md:px-[1.5rem] lg:px-[2rem]'>*/}
+                    {/*            /!*<SocialLinks />*!/*/}
+                    {/*            <div className='absolute left-1/2 top-1/2 mb-[25%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center space-y-3 md:mb-[15%] md:space-y-5'>*/}
+                    {/*                <div className='px-4 text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>*/}
+                    {/*                    {title}*/}
+                    {/*                </div>*/}
+                    {/*                <div className='text-center font-electrohub text-[15px] font-bold text-white md:text-[20px]'>*/}
+                    {/*                    {subTitle}*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*            <div className='mb-[140px] text-white'>*/}
+                    {/*                <div className='hidden max-w-2xl text-center font-electrohub text-[16px] font-bold text-white md:block md:text-left md:text-2xl'>*/}
+                    {/*                    {description}*/}
+                    {/*                </div>*/}
+                    {/*                <div className='mt-7 flex w-full justify-between'>*/}
+                    {/*                    <ActionButtons*/}
+                    {/*                        buttons={buttons}*/}
+                    {/*                        containerStyles={*/}
+                    {/*                            'flex w-full flex-col gap-5 md:w-auto md:flex-row'*/}
+                    {/*                        }*/}
+                    {/*                    />*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</SplideSlide>*/}
                     {data?.items?.map((item, index) => {
                         const bgUrl = getStrapiMedia(
                             item.main_image.data.attributes.url

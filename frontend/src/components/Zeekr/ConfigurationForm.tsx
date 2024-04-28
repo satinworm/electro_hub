@@ -55,7 +55,7 @@ export default function ConfigurationForm({
     const { watch } = form;
 
     return (
-        <div className={'mt-6 px-3 md:mt-0 md:px-6 lg:p-10'}>
+        <div className={'mt-6 px-3 py-5 md:mt-0 md:px-6 lg:p-10'}>
             {logo && (
                 <Image
                     src={getStrapiMedia(logo?.data.attributes?.url)!}
@@ -195,7 +195,7 @@ export default function ConfigurationForm({
                                         </div>
                                         <div
                                             className={
-                                                'grid grid-cols-4 gap-x-5 gap-y-3'
+                                                'grid grid-cols-4 gap-x-5 gap-y-3 sm:grid-cols-6 xl:grid-cols-4'
                                             }
                                         >
                                             {selectedModelObject?.body_colors.map(

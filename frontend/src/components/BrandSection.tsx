@@ -2,6 +2,7 @@ import { getStrapiMedia } from '@/utils/api-helpers';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
+import React from 'react';
 
 type Props = {
     brands: any;
@@ -17,6 +18,7 @@ export default function BrandSection(props: Props) {
     const btn = data?.heading?.[0]?.btn;
     return (
         <section className='flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'>
+            <div className='z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:-mt-[48px] md:h-[48px] md:bg-rectangle_main' />
             <div className='container mt-10 text-black'>
                 <h3 className='text-sm font-black text-[#1e1e1e] md:text-base'>
                     {h3}
@@ -74,14 +76,14 @@ export default function BrandSection(props: Props) {
                                     />
                                     <span
                                         className={
-                                            'brandHeading font-electrohubHeading mt-4 hidden font-semibold text-black sm:text-[24px] md:mt-0 md:block md:text-[28px] xl:text-[32px]'
+                                            'brandHeading mt-4 hidden font-electrohubHeading font-semibold text-black sm:text-[24px] md:mt-0 md:block md:text-[28px] xl:text-[32px]'
                                         }
                                     >
                                         {name}
                                     </span>
                                     <span
                                         className={
-                                            'font-electrohubHeading mt-4 font-semibold text-black sm:text-[24px] md:mt-0 md:hidden md:text-[28px] xl:text-[32px]'
+                                            'mt-4 font-electrohubHeading font-semibold text-black sm:text-[24px] md:mt-0 md:hidden md:text-[28px] xl:text-[32px]'
                                         }
                                     >
                                         {name}

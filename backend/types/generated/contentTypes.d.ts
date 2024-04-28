@@ -958,6 +958,93 @@ export interface ApiCarConstructorCarConstructor extends Schema.CollectionType {
   };
 }
 
+export interface ApiCarsToOrderCarsToOrder extends Schema.CollectionType {
+  collectionName: 'cars_to_orders';
+  info: {
+    singularName: 'cars-to-order';
+    pluralName: 'cars-to-orders';
+    displayName: 'Cars to order';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    battery: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    acceleration: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    driving_range: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    privod: Attribute.Enumeration<
+      [
+        '\u043F\u043E\u043B\u043D\u044B\u0439',
+        '\u043F\u0435\u0440\u0435\u0434\u043D\u0438\u0439',
+        '\u0437\u0430\u0434\u043D\u0438\u0439'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    starting_price: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::cars-to-order.cars-to-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::cars-to-order.cars-to-order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::cars-to-order.cars-to-order',
+      'oneToMany',
+      'api::cars-to-order.cars-to-order'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiFeedbackFeedback extends Schema.CollectionType {
   collectionName: 'feedbacks';
   info: {
@@ -1530,6 +1617,7 @@ declare module '@strapi/types' {
       'api::brand.brand': ApiBrandBrand;
       'api::brands-section.brands-section': ApiBrandsSectionBrandsSection;
       'api::car-constructor.car-constructor': ApiCarConstructorCarConstructor;
+      'api::cars-to-order.cars-to-order': ApiCarsToOrderCarsToOrder;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::footer.footer': ApiFooterFooter;
       'api::model.model': ApiModelModel;
