@@ -55,7 +55,7 @@ export default function ConfigurationForm({
     const { watch } = form;
 
     return (
-        <div className={'p-10'}>
+        <div className={'mt-6 px-3 md:mt-0 md:px-6 lg:p-10'}>
             {logo && (
                 <Image
                     src={getStrapiMedia(logo?.data.attributes?.url)!}

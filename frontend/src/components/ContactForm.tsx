@@ -107,7 +107,7 @@ export default function ContactForm({ close }: { close: () => void }) {
 
                 <button
                     className={
-                        'mt-8 w-full border border-black py-2.5 text-center font-electrohub font-semibold capitalize'
+                        'mt-6 w-full border border-black py-1.5 text-center font-electrohub text-sm font-semibold capitalize sm:text-sm md:mt-8 md:py-2.5 md:text-base'
                     }
                 >
                     отправить

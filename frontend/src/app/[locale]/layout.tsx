@@ -93,7 +93,7 @@ export default async function LocaleLayout({
                     <div id='mainLayout'>{children}</div>
                     <Footer locale={locale} />
                 </ThemeProvider>
-                <Toaster />
+                <Toaster position={'top-right'} />
             </body>
         </html>
     );

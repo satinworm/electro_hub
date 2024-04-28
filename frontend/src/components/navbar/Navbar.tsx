@@ -30,7 +30,11 @@ export default function Navbar(props: Props) {
     const social_links = data?.data?.[0]?.attributes?.social_links;
 
     return (
-        <nav className={cn('absolute inset-0 z-10 h-fit w-full text-white')}>
+        <nav
+            className={cn(
+                'absolute inset-0 z-10 h-fit w-full bg-white/[0.01] text-white backdrop-blur-[20px]'
+            )}
+        >
             <div className='4xl:max-w-[1840px] container flex w-full justify-between gap-2 px-10 py-7'>
                 <div className='flex gap-20'>
                     <Logo data={logo} />

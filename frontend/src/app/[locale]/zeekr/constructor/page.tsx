@@ -17,7 +17,7 @@ export default function ZeekrConstructorPage(props: any) {
                     'hideScrollbar min-h-[100vh] w-full bg-zeekr_constructor bg-cover bg-fixed bg-no-repeat'
                 }
             >
-                <div className={'h-[100px] bg-[#1e1e1e]/20'} />
+                <div className={'h-[92px] bg-[#1e1e1e]/20'} />
                 {defaultData?.meta?.pagination?.total &&
                     defaultData?.meta?.pagination?.total > 0 && (
                         <ZeekrConstructor defaultData={defaultData} />

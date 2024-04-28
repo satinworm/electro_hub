@@ -64,7 +64,7 @@ const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className, ...props }, ref) => (
         <Input
             className={cn(
-                'border-0 font-electrohub ring-0 placeholder:text-[16px] placeholder:text-[#898989]',
+                'text-XS border-0 font-electrohub ring-0 placeholder:text-sm placeholder:text-[#898989] md:text-base md:placeholder:text-[16px]',
                 className
             )}
             {...props}
@@ -105,7 +105,7 @@ const CountrySelect = ({
                 <Button
                     type='button'
                     variant={'outline'}
-                    className={cn('border-0')}
+                    className={cn('border-0 text-xs')}
                     disabled={disabled}
                 >
                     <FlagComponent country={value} countryName={value} />
@@ -120,7 +120,7 @@ const CountrySelect = ({
             <PopoverContent className='w-[300px] p-0'>
                 <Command>
                     <CommandList>
-                        <CommandInput />
+                        <CommandInput className={''} />
                         <CommandEmpty>No country found.</CommandEmpty>
                         <CommandGroup>
                             {filteredOptions

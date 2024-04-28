@@ -5,7 +5,7 @@ export const NavLink = ({ label, href }: { label: string; href: string }) => {
         <Link
             href={href}
             className={
-                'border-b border-transparent font-electrohub text-lg transition hover:border-white'
+                'border-b border-transparent font-electrohub text-sm transition  hover:border-white sm:text-base md:text-lg'
             }
         >
             <span>{label}</span>

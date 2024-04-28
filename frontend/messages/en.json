@@ -27,15 +27,15 @@
         "text_description": "Buy Electric Cars from China on order and in stock",
         "description": "Electric cars from China on order and in stock",
         "btn_catalog": "Go to catalogue",
-        "btn_consultation": "Counseling",
+        "btn_consultation": "Consultation",
         "scroll_down": "scroll to explore"
     },
     "Zeekr": {
         "title": "Zeekr",
         "heading_description": "Combining elegance and practicality",
         "text_description": "from $28,000",
-        "btn_constructor": "Designer",
-        "btn_consultation": "Counseling"
+        "btn_constructor": "Constructor",
+        "btn_consultation": "Consultation"
     },
     "ContactModal": {
         "header": "Contact us",

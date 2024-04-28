@@ -16,8 +16,7 @@ export default function BrandSection(props: Props) {
     const h3 = data?.heading?.[0]?.h3;
     const btn = data?.heading?.[0]?.btn;
     return (
-        <section className='mt-6 flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'>
-            <div className='z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:mt-[-48px] md:h-[48px] md:bg-rectangle_main' />
+        <section className='flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'>
             <div className='container mt-10 text-black'>
                 <h3 className='text-sm font-black text-[#1e1e1e] md:text-base'>
                     {h3}

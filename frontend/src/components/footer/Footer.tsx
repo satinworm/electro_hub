@@ -99,7 +99,7 @@ export async function Footer({ locale }: { locale: string }) {
                 >
                     <div
                         className={
-                            'flex flex-col flex-wrap gap-1 leading-tight text-[#808080] sm:flex-row'
+                            'flex flex-col flex-wrap gap-1 text-center leading-tight text-[#808080] sm:flex-row'
                         }
                     >
                         <span>Electrohub © 2024</span>

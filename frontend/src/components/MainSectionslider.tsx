@@ -68,11 +68,11 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                     // heightRatio: 0.98,
                     pagination: true,
                     arrows: windowWidth >= 768,
-                    // autoplay: true,
-                    interval: 5000,
+                    autoplay: true,
+                    interval: 4000,
                     rewind: true,
                     pauseOnHover: true,
-                    // pauseOnFocus: true,
+                    pauseOnFocus: true,
                     resetProgress: false,
                     lazyLoad: 'nearby',
                     speed: 1000,
@@ -80,6 +80,38 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                 }}
             >
                 <SplideTrack>
+                    <SplideSlide>
+                        <div
+                            className={cn(
+                                `${bg} w-full bg-center bg-no-repeat md:bg-cover`
+                            )}
+                        >
+                            <div className='item-center relative flex h-full min-h-[85vh] w-full flex-col justify-end px-[0.4rem] sm:px-[1rem] md:px-[1.5rem] lg:px-[2rem]'>
+                                {/*<SocialLinks />*/}
+                                <div className='absolute left-1/2 top-1/2 mb-[25%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center space-y-3 md:mb-[15%] md:space-y-5'>
+                                    <div className='px-4 text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>
+                                        {title}
+                                    </div>
+                                    <div className='text-center font-electrohub text-[15px] font-bold text-white md:text-[20px]'>
+                                        {subTitle}
+                                    </div>
+                                </div>
+                                <div className='mb-[140px] text-white'>
+                                    <div className='hidden max-w-2xl text-center font-electrohub text-[16px] font-bold text-white md:block md:text-left md:text-2xl'>
+                                        {description}
+                                    </div>
+                                    <div className='mt-7 flex w-full justify-between'>
+                                        <ActionButtons
+                                            buttons={buttons}
+                                            containerStyles={
+                                                'flex w-full flex-col gap-5 md:w-auto md:flex-row'
+                                            }
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </SplideSlide>
                     {data?.items?.map((item, index) => {
                         const bgUrl = getStrapiMedia(
                             item.main_image.data.attributes.url
@@ -102,7 +134,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                             >
                                 <div className='item-center relative mb-6 mt-24 flex min-h-[75vh] w-full flex-col md:mt-0 md:min-h-[85vh] md:justify-end '>
                                     <div className='left-1/2 flex w-full flex-col items-center justify-center space-y-3 md:absolute md:top-1/4 md:mb-[15%] md:-translate-x-1/2 md:-translate-y-2/3 md:space-y-5'>
-                                        <div className='text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:px-4 md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>
+                                        <div className='text-center font-terminatorgen text-[52px] leading-[1] text-white md:px-4 md:text-[80px] md:tracking-[0.2em] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>
                                             {item?.name}
                                         </div>
                                     </div>
@@ -151,7 +183,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                         >
                                             <div
                                                 className={
-                                                    'hidden max-w-[170px] flex-col items-center justify-center rounded-[10px] bg-white/30 p-7 backdrop-blur-[10px] md:flex'
+                                                    'hidden max-w-[170px] flex-col items-center justify-center rounded-[10px] bg-white/30 p-7 backdrop-blur-[10px] xl:flex'
                                                 }
                                             >
                                                 <Image
@@ -182,7 +214,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             </div>
                                             <div
                                                 className={
-                                                    'grid w-full grid-cols-4 gap-[2px] md:w-auto md:grid-cols-7'
+                                                    'grid w-full grid-cols-4 gap-[2px] md:w-auto md:grid-cols-5 xl:grid-cols-7'
                                                 }
                                             >
                                                 <div
@@ -339,7 +371,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                 </div>
                                                 <button
                                                     className={
-                                                        'relative col-span-2 hidden w-full p-5 text-xs md:block md:rounded-[10px] md:bg-white/60 md:text-base md:backdrop-blur-[10px]'
+                                                        'relative col-span-2 hidden w-full p-5 text-xs md:rounded-[10px] md:bg-white/60 md:text-base md:backdrop-blur-[10px] xl:block'
                                                     }
                                                     key={item.name}
                                                     onClick={() =>
@@ -364,7 +396,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             </div>
                                             <div
                                                 className={
-                                                    'ml-14 hidden max-w-[170px] flex-col items-center justify-center rounded-[10px] bg-white/30 p-7 text-xs backdrop-blur-[10px] md:flex md:text-base'
+                                                    'ml-14 hidden max-w-[170px] flex-col items-center justify-center rounded-[10px] bg-white/30 p-7 text-xs backdrop-blur-[10px] md:text-base xl:flex'
                                                 }
                                             >
                                                 <Image
@@ -394,43 +426,35 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                 </div>
                                             </div>
                                         </div>
+                                        <div>
+                                            <button
+                                                className={
+                                                    'relative mt-3 hidden flex-col p-5 text-xs md:flex md:rounded-[10px] md:bg-white/60 md:text-base md:backdrop-blur-[10px] xl:hidden'
+                                                }
+                                                key={item.name}
+                                                onClick={() => setOpen(true)}
+                                            >
+                                                <span
+                                                    className={
+                                                        'text-sm font-black text-[#1e1e1e]'
+                                                    }
+                                                >
+                                                    {item.starting_price}
+                                                </span>
+                                                <span
+                                                    className={
+                                                        'whitespace-nowrap font-black text-[#1e1e1e]'
+                                                    }
+                                                >
+                                                    {'Консультация'}
+                                                </span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </SplideSlide>
                         );
                     })}
-                    {/*<SplideSlide>*/}
-                    {/*    <div*/}
-                    {/*        className={cn(*/}
-                    {/*            `${bg} w-full bg-center bg-no-repeat md:bg-cover`*/}
-                    {/*        )}*/}
-                    {/*    >*/}
-                    {/*        <div className='item-center relative flex h-full min-h-[85vh] w-full flex-col justify-end px-[0.4rem] sm:px-[1rem] md:px-[1.5rem] lg:px-[2rem]'>*/}
-                    {/*            /!*<SocialLinks />*!/*/}
-                    {/*            <div className='absolute left-1/2 top-1/2 mb-[25%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center space-y-3 md:mb-[15%] md:space-y-5'>*/}
-                    {/*                <div className='px-4 text-center font-terminatorgen text-[52px] leading-[1] tracking-[0.2em] text-white md:text-[80px] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>*/}
-                    {/*                    {title}*/}
-                    {/*                </div>*/}
-                    {/*                <div className='text-center font-electrohub text-[15px] font-bold text-white md:text-[20px]'>*/}
-                    {/*                    {subTitle}*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*            <div className='mb-[140px] text-white'>*/}
-                    {/*                <div className='hidden max-w-2xl text-center font-electrohub text-[16px] font-bold text-white md:block md:text-left md:text-2xl'>*/}
-                    {/*                    {description}*/}
-                    {/*                </div>*/}
-                    {/*                <div className='mt-7 flex w-full justify-between'>*/}
-                    {/*                    <ActionButtons*/}
-                    {/*                        buttons={buttons}*/}
-                    {/*                        containerStyles={*/}
-                    {/*                            'flex w-full flex-col gap-5 md:w-auto md:flex-row'*/}
-                    {/*                        }*/}
-                    {/*                    />*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*</SplideSlide>*/}
                 </SplideTrack>
                 <div className='splide__arrows'>
                     <button className='splide__arrow splide__arrow--prev bottom-0'>

@@ -126,6 +126,7 @@ export default function MainSection(props: Props) {
                     >
                         <MainSectionSlider props={props} />
                     </Suspense>
+                    <div className='z-[1] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:mt-[-48px] md:h-[48px] md:bg-rectangle_main' />
                 </div>
             )}
         </>

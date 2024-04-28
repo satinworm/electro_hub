@@ -52,16 +52,20 @@ const ZeekrConstructor = (props: Props) => {
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className={'hideScrollbar flex-col md:flex-row'}
-                style={{ display: 'flex', alignItems: 'flex-start' }}
+                className={'hideScrollbar flex flex-col md:flex-row'}
+                style={{ alignItems: 'flex-start' }}
             >
-                <StickyBox className={'w-3/4'}>
+                <StickyBox
+                    className={
+                        'z-[2] w-full bg-zeekr_constructor md:w-3/4 md:bg-transparent'
+                    }
+                >
                     <ConfigurationRender
                         defaultData={defaultData}
                         form={form}
                     />
                 </StickyBox>
-                <div className={'w-1/4 bg-white'}>
+                <div className={'z-[1] w-full bg-white md:w-1/4'}>
                     <ConfigurationForm defaultData={defaultData} form={form} />
                 </div>
             </form>

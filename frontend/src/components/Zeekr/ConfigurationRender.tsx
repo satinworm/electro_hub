@@ -67,7 +67,11 @@ export default function ZeekrConstructorPage(props: Props) {
 
     // @ts-ignore
     return (
-        <div className={'h-[calc(100vh-100px)]'}>
+        <div
+            className={
+                ' h-[45vh] rounded-b-2xl shadow-2xl md:h-[calc(100vh-100px)] md:rounded-none md:shadow-none'
+            }
+        >
             <div className={'relative h-full w-full'}>
                 {store.defaultRenderImage?.url !== undefined &&
                 store.defaultRenderImage?.width !== undefined &&
@@ -160,31 +164,36 @@ export default function ZeekrConstructorPage(props: Props) {
                 )}
                 <div className={'absolute bottom-8 left-6'}>
                     <h1
-                        className={'text-4xl font-bold uppercase text-black/60'}
+                        className={
+                            'text-lg font-bold uppercase text-black/60 md:text-4xl'
+                        }
                     >
                         {selectedModel?.name}
                     </h1>
                     <div className={'flex items-baseline gap-3'}>
-                        <div className={'text-2xl font-bold text-black/80'}>
+                        <div
+                            className={
+                                'text-lg font-bold text-black/80 md:text-2xl'
+                            }
+                        >
                             Итоговая цена:
                         </div>
-                        <div className={'text-3xl font-bold'}>
+                        <div className={'text-lg font-bold md:text-3xl'}>
                             {totalPrice(store) ? totalPrice(store) : 0}$
                         </div>
                     </div>
                 </div>
                 <div
                     className={
-                        'absolute left-1/2 top-8 flex -translate-x-1/2 gap-5'
+                        'absolute left-1/2 top-8 flex -translate-x-1/2 gap-2 md:gap-5'
                     }
                 >
                     <button
                         onClick={() => setSelectedView('body')}
                         className={cn(
-                            'flex w-full items-center justify-center gap-5 whitespace-nowrap rounded-none border border-white py-2 font-electrohub text-lg font-bold text-black transition-all lg:min-w-52 lg:px-8',
-                            'flex w-full items-center justify-center gap-5 whitespace-nowrap rounded-none border py-2 font-electrohub text-lg font-bold text-black transition-all lg:min-w-52 lg:px-8',
+                            'flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub text-base text-xs font-bold font-semibold text-black transition-all ease-in-out sm:text-sm md:py-2 md:text-lg lg:min-w-52 lg:px-8',
                             selectedView === 'body'
-                                ? 'bg-white'
+                                ? 'rounded-md bg-white md:bg-white'
                                 : 'border-black bg-white/20 backdrop-blur-md'
                         )}
                     >
@@ -193,9 +202,9 @@ export default function ZeekrConstructorPage(props: Props) {
                     <button
                         onClick={() => setSelectedView('interior')}
                         className={cn(
-                            'flex w-full items-center justify-center gap-5 whitespace-nowrap rounded-none border py-2 font-electrohub text-lg font-bold text-black transition-all lg:min-w-52 lg:px-8',
+                            'flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub text-base text-xs font-bold text-black transition-all sm:text-sm md:py-2 md:text-lg lg:min-w-52 lg:px-8',
                             selectedView === 'interior'
-                                ? 'bg-white'
+                                ? 'rounded-md bg-white md:bg-white'
                                 : 'border-black bg-white/20 backdrop-blur-md'
                         )}
                     >
