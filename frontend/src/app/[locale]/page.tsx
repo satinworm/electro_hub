@@ -313,8 +313,8 @@ export default async function RootRoute({
                             },
                         ]}
                     />
-                    <CarsInStock data={carsInStockData} />
-                    <CarsToOrder data={carsToOrderData} />
+                    {/*<CarsInStock data={carsInStockData} />*/}
+                    {/*<CarsToOrder data={carsToOrderData} />*/}
                     <BrandSection brands={brands} data={brandsSection} />
                     <NewArrivals
                         newArrivalsModels={newArrivalsModels}
