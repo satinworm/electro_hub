@@ -5,9 +5,9 @@ import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import ScrollLink from '@/components/ScrollLink';
 import TechnicalSpecifications from '@/components/TechnicalSpecifications';
 import React from 'react';
-import { log } from 'node:util';
 
-export default async function StockCarFullPage({ params: { slug, locale } }) {
+export default async function StockCarFullPage({ params }: any) {
+    const { slug, locale } = params;
     const carsInStockData = await getDataFromAPI(
         'cars-in-stocks',
         {
@@ -62,7 +62,9 @@ export default async function StockCarFullPage({ params: { slug, locale } }) {
                     <p className={'mb-10 mt-6 text-[#2E71EF]'}>{item.lising}</p>
 
                     <div className={'text-xl'}>
-                        <BlocksRenderer content={item.short_specification} />
+                        <BlocksRenderer
+                            content={item.short_specification as any}
+                        />
                     </div>
                     <p className={'mt-5 text-lg'}>{item.engine}</p>
                     <ScrollLink
