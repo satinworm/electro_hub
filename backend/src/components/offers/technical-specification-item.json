@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_offers_technical_specification_items",
+  "info": {
+    "displayName": "technical_specification_item",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "string"
+    }
+  }
+}

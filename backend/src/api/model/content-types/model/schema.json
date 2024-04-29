@@ -136,6 +136,11 @@
       },
       "type": "string",
       "default": "Пробег"
+    },
+    "cars_in_stock": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cars-in-stock.cars-in-stock"
     }
   }
 }

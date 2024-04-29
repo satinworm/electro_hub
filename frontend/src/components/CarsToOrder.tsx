@@ -31,10 +31,12 @@ function getPrivod(locale: string, privod: string) {
 }
 export default function CarsToOrder({ data }: Props) {
     const { setOpen } = DialogStore();
-    console.log('CarsToOrder', data);
     const locale = useLocale();
     return (
-        <section className='flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'>
+        <section
+            id={'cars-to-order'}
+            className='flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'
+        >
             <div className='z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:-mt-[48px] md:h-[48px] md:bg-rectangle_main' />
             <div className='container mt-10 text-black'>
                 <h3 className='text-sm font-black text-[#1e1e1e] md:text-base'>

@@ -42,6 +42,7 @@ export default function Navbar(props: Props) {
                     <div className='hidden items-center gap-x-12 xl:flex'>
                         {main_links?.map((link) => (
                             <NavLink
+                                scrollable={link.scrollable}
                                 key={link.name}
                                 label={link.name}
                                 href={link.href}

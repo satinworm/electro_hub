@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_offers_car_offer_cards",
+  "info": {
+    "displayName": "Car offer card",
+    "icon": "briefcase",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "publish_date": {
+      "type": "string"
+    },
+    "leasing": {
+      "type": "string",
+      "default": "В лизинг ≈ 813 USD в месяц"
+    },
+    "engine": {
+      "type": "string",
+      "default": "500 л.с"
+    },
+    "short_description": {
+      "type": "blocks"
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "videos"
+      ]
+    },
+    "specification": {
+      "displayName": "specifications",
+      "type": "component",
+      "repeatable": false,
+      "component": "offers.specifications"
+    }
+  }
+}

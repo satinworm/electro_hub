@@ -2,6 +2,7 @@ export interface Link {
     id: number;
     name: string;
     href: string;
+    scrollable: boolean;
 }
 
 export interface ImageAttributes {

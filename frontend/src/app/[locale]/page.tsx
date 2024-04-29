@@ -9,6 +9,7 @@ import { getDataFromAPI } from '@/utils/fetch-api';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import CarsToOrder from '@/components/CarsToOrder';
+import CarsInStock from '@/components/CarsInStock';
 
 export async function generateMetadata({ params }: any) {
     const { locale } = params;
@@ -106,6 +107,47 @@ export default async function RootRoute({
         'cars-to-orders',
         {
             populate: '*',
+            // populate: {
+            //     sections: {
+            //         fields: ['*'],
+            //         populate: {
+            //             populate: true,
+            //             items: {
+            //                 fields: '*',
+            //                 populate: '*',
+            //             },
+            //             heading: {
+            //                 fields: '*',
+            //                 populate: '*',
+            //             },
+            //             stage_card: {
+            //                 fields: '*',
+            //                 populate: '*',
+            //             },
+            //         },
+            //     },
+            //     SEO: {
+            //         fields: ['*'],
+            //         populate: '*',
+            //     },
+            // },
+            locale: locale,
+        },
+        locale
+    );
+    const carsInStockData = await getDataFromAPI(
+        'cars-in-stocks',
+        {
+            populate: {
+                preview_image: {
+                    populate: '*',
+                    fields: ['url', 'width', 'height'],
+                },
+                specification: {
+                    fields: ['*'],
+                    populate: '*',
+                },
+            },
             // populate: {
             //     sections: {
             //         fields: ['*'],
@@ -271,6 +313,7 @@ export default async function RootRoute({
                             },
                         ]}
                     />
+                    <CarsInStock data={carsInStockData} />
                     <CarsToOrder data={carsToOrderData} />
                     <BrandSection brands={brands} data={brandsSection} />
                     <NewArrivals

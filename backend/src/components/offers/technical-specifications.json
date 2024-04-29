@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_offers_technical_specifications",
+  "info": {
+    "displayName": "technical_specifications",
+    "icon": "expand",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "items": {
+      "displayName": "item",
+      "type": "component",
+      "repeatable": true,
+      "component": "offers.item"
+    }
+  }
+}

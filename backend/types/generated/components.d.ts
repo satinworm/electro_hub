@@ -132,10 +132,12 @@ export interface LinksLink extends Schema.Component {
   info: {
     displayName: 'Link';
     icon: 'attachment';
+    description: '';
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
     href: Attribute.String & Attribute.Required;
+    scrollable: Attribute.Boolean & Attribute.DefaultTo<false>;
   };
 }
 
@@ -149,6 +151,69 @@ export interface LinksSocial extends Schema.Component {
     name: Attribute.String & Attribute.Required;
     href: Attribute.String & Attribute.Required;
     image: Attribute.Media & Attribute.Required;
+  };
+}
+
+export interface OffersCarOfferCard extends Schema.Component {
+  collectionName: 'components_offers_car_offer_cards';
+  info: {
+    displayName: 'Car offer card';
+    icon: 'briefcase';
+    description: '';
+  };
+  attributes: {
+    publish_date: Attribute.String;
+    leasing: Attribute.String &
+      Attribute.DefaultTo<'\u0412 \u043B\u0438\u0437\u0438\u043D\u0433 \u2248\u00A0813 USD \u0432 \u043C\u0435\u0441\u044F\u0446'>;
+    engine: Attribute.String & Attribute.DefaultTo<'500 \u043B.\u0441'>;
+    short_description: Attribute.Blocks;
+    gallery: Attribute.Media;
+    specification: Attribute.Component<'offers.specifications'>;
+  };
+}
+
+export interface OffersItem extends Schema.Component {
+  collectionName: 'components_offers_items';
+  info: {
+    displayName: 'item';
+    icon: 'cube';
+  };
+  attributes: {
+    name: Attribute.String;
+  };
+}
+
+export interface OffersSpecifications extends Schema.Component {
+  collectionName: 'components_offers_specifications';
+  info: {
+    displayName: 'specifications';
+  };
+  attributes: {
+    items: Attribute.Component<'offers.technical-specification-item', true>;
+  };
+}
+
+export interface OffersTechnicalSpecificationItem extends Schema.Component {
+  collectionName: 'components_offers_technical_specification_items';
+  info: {
+    displayName: 'technical_specification_item';
+    icon: 'code';
+  };
+  attributes: {
+    description: Attribute.String;
+  };
+}
+
+export interface OffersTechnicalSpecifications extends Schema.Component {
+  collectionName: 'components_offers_technical_specifications';
+  info: {
+    displayName: 'technical_specifications';
+    icon: 'expand';
+    description: '';
+  };
+  attributes: {
+    name: Attribute.String;
+    items: Attribute.Component<'offers.item', true>;
   };
 }
 
@@ -331,6 +396,11 @@ declare module '@strapi/types' {
       'heading-for-section.heading': HeadingForSectionHeading;
       'links.link': LinksLink;
       'links.social': LinksSocial;
+      'offers.car-offer-card': OffersCarOfferCard;
+      'offers.item': OffersItem;
+      'offers.specifications': OffersSpecifications;
+      'offers.technical-specification-item': OffersTechnicalSpecificationItem;
+      'offers.technical-specifications': OffersTechnicalSpecifications;
       'page-properties.car-preview-slider': PagePropertiesCarPreviewSlider;
       'page-properties.main-page-slider': PagePropertiesMainPageSlider;
       'page-properties.meta-tag': PagePropertiesMetaTag;

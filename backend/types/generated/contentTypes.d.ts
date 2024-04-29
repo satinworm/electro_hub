@@ -958,6 +958,162 @@ export interface ApiCarConstructorCarConstructor extends Schema.CollectionType {
   };
 }
 
+export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
+  collectionName: 'cars_in_stocks';
+  info: {
+    singularName: 'cars-in-stock';
+    pluralName: 'cars-in-stocks';
+    displayName: 'Cars in stock';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    price_byn: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    price_usd: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    lising: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'\u0412 \u043B\u0438\u0437\u0438\u043D\u0433 \u2248\u00A0813 USD \u0432 \u043C\u0435\u0441\u044F\u0446'>;
+    short_specification: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    engine: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'544 \u043B.\u0441.'>;
+    gallery: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    specification: Attribute.Component<
+      'offers.technical-specifications',
+      true
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    full_description: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publish_date: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Attribute.UID<'api::cars-in-stock.cars-in-stock', 'name'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    privod: Attribute.Enumeration<
+      [
+        '\u043F\u043E\u043B\u043D\u044B\u0439',
+        '\u043F\u0435\u0440\u0435\u0434\u043D\u0438\u0439 ',
+        '\u0437\u0430\u0434\u043D\u0438\u0439'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    body: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<'\u043B\u0438\u0444\u0442\u0431\u0435\u043A'>;
+    preview_image: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    engine_type: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<'\u044D\u043B\u0435\u043A\u0442\u0440\u043E'>;
+    gearbox: Attribute.Enumeration<
+      [
+        '\u0430\u0432\u0442\u043E\u043C\u0430\u0442',
+        '\u043C\u0435\u0445\u0430\u043D\u0438\u043A\u0430'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<'\u0430\u0432\u0442\u043E\u043C\u0430\u0442'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::cars-in-stock.cars-in-stock',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::cars-in-stock.cars-in-stock',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::cars-in-stock.cars-in-stock',
+      'oneToMany',
+      'api::cars-in-stock.cars-in-stock'
+    >;
+    locale: Attribute.String;
+  };
+}
+
 export interface ApiCarsToOrderCarsToOrder extends Schema.CollectionType {
   collectionName: 'cars_to_orders';
   info: {
@@ -1256,6 +1412,11 @@ export interface ApiModelModel extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<'\u041F\u0440\u043E\u0431\u0435\u0433'>;
+    cars_in_stock: Attribute.Relation<
+      'api::model.model',
+      'oneToOne',
+      'api::cars-in-stock.cars-in-stock'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1617,6 +1778,7 @@ declare module '@strapi/types' {
       'api::brand.brand': ApiBrandBrand;
       'api::brands-section.brands-section': ApiBrandsSectionBrandsSection;
       'api::car-constructor.car-constructor': ApiCarConstructorCarConstructor;
+      'api::cars-in-stock.cars-in-stock': ApiCarsInStockCarsInStock;
       'api::cars-to-order.cars-to-order': ApiCarsToOrderCarsToOrder;
       'api::feedback.feedback': ApiFeedbackFeedback;
       'api::footer.footer': ApiFooterFooter;
