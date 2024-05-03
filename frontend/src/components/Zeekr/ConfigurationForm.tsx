@@ -14,7 +14,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import {
@@ -54,6 +54,18 @@ export default function ConfigurationForm({
     );
     const { watch } = form;
 
+    useEffect(() => {
+        if (selectedModelObject) {
+            setConstructor({
+                ...store.constructor,
+                body: selectedModelObject.body_colors[0].render_url,
+            });
+            // updatePrice({
+            //     body: selectedModelObject.incremental_price,
+            // });
+        }
+    }, [selectedModelObject]);
+
     return (
         <div className={'mt-6 px-3 py-5 md:mt-0 md:px-6 lg:p-10'}>
             {logo && (
@@ -76,7 +88,7 @@ export default function ConfigurationForm({
                         render={({ field }) => (
                             <FormItem className='relative w-full'>
                                 <FormLabel className='whitespace-nowrap font-electrohub text-sm font-bold'>
-                                    Комплектация
+                                    Модель
                                 </FormLabel>
                                 <Popover
                                     open={modelsListOpen}
@@ -126,6 +138,10 @@ export default function ConfigurationForm({
                                                                             'configuration',
                                                                             model.name
                                                                         );
+                                                                        console.log(
+                                                                            'first ',
+                                                                            model
+                                                                        );
                                                                         setConstructor(
                                                                             {
                                                                                 defaultRenderImage:
@@ -135,6 +151,17 @@ export default function ConfigurationForm({
                                                                                         .attributes,
                                                                                 configuration:
                                                                                     model.name,
+                                                                                defaultPrice:
+                                                                                    model.default_price,
+                                                                                renderImage:
+                                                                                    model
+                                                                                        .default_image
+                                                                                        .data
+                                                                                        .attributes
+                                                                                        .url,
+                                                                                body: model
+                                                                                    .body_colors[0]
+                                                                                    .name,
                                                                             }
                                                                         );
                                                                         setModelsListOpen(
@@ -260,6 +287,10 @@ export default function ConfigurationForm({
                                                                                                 {
                                                                                                     body: item.incremental_price,
                                                                                                 }
+                                                                                            );
+                                                                                            form.setValue(
+                                                                                                'color',
+                                                                                                item.render_url
                                                                                             );
                                                                                             return (
                                                                                                 checked &&
@@ -687,71 +718,81 @@ export default function ConfigurationForm({
                                 )}
                             />
                         )}
-                    <div className={'flex flex-col gap-x-5 gap-y-3'}>
-                        <div className={'text-lg font-bold'}>
-                            Дополнительные опции:
-                        </div>
-                        {selectedModelObject?.additional_options?.map(
-                            (item) => {
-                                return (
-                                    <FormField
-                                        control={form.control}
-                                        name={item.name}
-                                        render={({ field }) => (
-                                            <FormItem
-                                                className={cn(
-                                                    'flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow',
-                                                    field.value
-                                                        ? 'border-black bg-white'
-                                                        : ' bg-white/20'
-                                                )}
-                                            >
-                                                <FormControl>
-                                                    <Checkbox
-                                                        checked={field.value}
-                                                        onCheckedChange={(
-                                                            checked
-                                                        ) => {
-                                                            updatePrice({
-                                                                [item.name]:
-                                                                    checked
-                                                                        ? item.incremental_price
-                                                                        : 0,
-                                                            });
-                                                            field.onChange(
-                                                                checked
-                                                                    ? item.name
-                                                                    : false
-                                                            );
-                                                        }}
-                                                    />
-                                                </FormControl>
-                                                <div className='space-y-1'>
-                                                    <FormLabel
-                                                        className={
-                                                            'flex flex-col gap-2'
-                                                        }
+                    {selectedModelObject?.additional_options &&
+                        selectedModelObject?.additional_options.length > 0 && (
+                            <div className={'flex flex-col gap-x-5 gap-y-3'}>
+                                <div className={'text-lg font-bold'}>
+                                    Дополнительные опции:
+                                </div>
+                                {selectedModelObject?.additional_options?.map(
+                                    (item) => {
+                                        return (
+                                            <FormField
+                                                control={form.control}
+                                                key={item.name}
+                                                name={item.name}
+                                                render={({ field }) => (
+                                                    <FormItem
+                                                        className={cn(
+                                                            'flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow',
+                                                            field.value
+                                                                ? 'border-black bg-white'
+                                                                : ' bg-white/20'
+                                                        )}
                                                     >
-                                                        <div>{item.title}</div>
-                                                        <div
-                                                            className={
-                                                                'font-bold'
-                                                            }
-                                                        >
-                                                            {
-                                                                item.incremental_price
-                                                            }{' '}
-                                                            $
+                                                        <FormControl>
+                                                            <Checkbox
+                                                                checked={
+                                                                    field.value
+                                                                }
+                                                                onCheckedChange={(
+                                                                    checked
+                                                                ) => {
+                                                                    updatePrice(
+                                                                        {
+                                                                            [item.name]:
+                                                                                checked
+                                                                                    ? item.incremental_price
+                                                                                    : 0,
+                                                                        }
+                                                                    );
+                                                                    field.onChange(
+                                                                        checked
+                                                                            ? item.name
+                                                                            : false
+                                                                    );
+                                                                }}
+                                                            />
+                                                        </FormControl>
+                                                        <div className='space-y-1'>
+                                                            <FormLabel
+                                                                className={
+                                                                    'flex flex-col gap-2'
+                                                                }
+                                                            >
+                                                                <div>
+                                                                    {item.title}
+                                                                </div>
+                                                                <div
+                                                                    className={
+                                                                        'font-bold'
+                                                                    }
+                                                                >
+                                                                    {
+                                                                        item.incremental_price
+                                                                    }{' '}
+                                                                    $
+                                                                </div>
+                                                            </FormLabel>
                                                         </div>
-                                                    </FormLabel>
-                                                </div>
-                                            </FormItem>
-                                        )}
-                                    />
-                                );
-                            }
+                                                    </FormItem>
+                                                )}
+                                            />
+                                        );
+                                    }
+                                )}
+                            </div>
                         )}
-                    </div>
                 </div>
             )}
         </div>

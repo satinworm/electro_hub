@@ -53,10 +53,12 @@ export default function ZeekrConstructorPage(props: Props) {
             (item) => item.attributes.name === imageName
         );
 
-        return renderImage ? getStrapiMedia(renderImage.attributes.url) : null;
+        return renderImage
+            ? getStrapiMedia(renderImage.attributes.url)
+            : getStrapiMedia(defaultRenderImage?.url);
     };
     useEffect(() => {
-        const url = parseUrl(store.body || 'black', store.wheels || 'default');
+        const url = parseUrl(store.body || 'white', store.wheels || 'default');
         if (url) {
             setConstructor({
                 ...store.constructor,
@@ -199,17 +201,20 @@ export default function ZeekrConstructorPage(props: Props) {
                     >
                         внешний вид
                     </button>
-                    <button
-                        onClick={() => setSelectedView('interior')}
-                        className={cn(
-                            'flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub text-base text-xs font-bold text-black transition-all sm:text-sm md:py-2 md:text-lg lg:min-w-52 lg:px-8',
-                            selectedView === 'interior'
-                                ? 'rounded-md bg-white md:bg-white'
-                                : 'border-black bg-white/20 backdrop-blur-md'
+                    {selectedModel?.interior_colors &&
+                        selectedModel?.interior_colors?.length > 0 && (
+                            <button
+                                onClick={() => setSelectedView('interior')}
+                                className={cn(
+                                    'flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub text-base text-xs font-bold text-black transition-all sm:text-sm md:py-2 md:text-lg lg:min-w-52 lg:px-8',
+                                    selectedView === 'interior'
+                                        ? 'rounded-md bg-white md:bg-white'
+                                        : 'border-black bg-white/20 backdrop-blur-md'
+                                )}
+                            >
+                                внутренний вид
+                            </button>
                         )}
-                    >
-                        внутренний вид
-                    </button>
                 </div>
             </div>
         </div>
