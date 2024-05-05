@@ -2,6 +2,7 @@ import { CarConstructorResponse } from '@/types/zeekr-constructor';
 import {
     ConstructorStore,
     ConstructorStoreState,
+    SelectedViewConstructoreStore,
 } from '@/stores/car-constructor.store';
 import Image from 'next/image';
 import { getStrapiMedia } from '@/utils/api-helpers';
@@ -17,8 +18,14 @@ type Props = {
 export default function ZeekrConstructorPage(props: Props) {
     const { defaultData, form } = props;
     const { watch } = form;
-    const [selectedView, setSelectedView] = useState<'body' | 'interior'>(
-        'body'
+   //  const [selectedView, setSelectedView] = useState<'body' | 'interior'>(
+   //      'body'
+   //  );
+    const { selectedView, setSelectedView } = SelectedViewConstructoreStore(
+        (state) => ({
+            selectedView: state.selectedView,
+            setSelectedView: state.setSelectedView,
+        })
     );
     const selectedModel = defaultData?.data?.[0]?.attributes?.models?.find(
         (model) => model.name === watch('configuration')

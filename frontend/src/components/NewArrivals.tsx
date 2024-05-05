@@ -1,12 +1,108 @@
+'use client';
+import { ConstructorStore } from '@/stores/car-constructor.store';
 import { Car, NewArrivalResponse } from '@/types/NewArrivals-types';
 import { getStrapiMedia } from '@/utils/api-helpers';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function NewArrivals({ newArrivalsModels, data }: any) {
     const h1 = data?.heading?.[0]?.h1;
     const h2 = data?.heading?.[0]?.h2;
-    const h3 = data?.heading?.[0]?.h3;
-    const btn = data?.heading?.[0]?.btn;
+    const store = ConstructorStore((state: any) => state.constructor);
+    const setConstructor = ConstructorStore(
+        (state: any) => state.setConstructor
+    );
+    const linksToConstructor = [
+        {
+            id: 'X',
+            store: {
+                configuration: 'Zeekr X',
+                body: 'white',
+                wheels: 'default',
+                interior_colors: 'black',
+                defaultRenderImage: {
+                    url: '/uploads/white_default_bd44812b2f.png',
+                    width: 800,
+                    height: 310,
+                    name: 'white_default.png',
+                },
+                renderImage:
+                    'http://localhost:1349/uploads/white_default_bd44812b2f.png',
+                defaultPrice: 26000,
+                price: {
+                    body: 200,
+                    wheels: 0,
+                },
+            },
+        },
+        {
+            id: '001',
+            store: {
+                configuration: 'Zeekr 001',
+                body: 'черный',
+                wheels: 'default',
+                interior_colors: 'black',
+                defaultRenderImage: {
+                    url: '/uploads/black_default_5d8970bbc6.png',
+                    width: 1200,
+                    height: 440,
+                    name: 'black_default.png',
+                },
+                renderImage:
+                    'http://localhost:1349/uploads/black_default_5d8970bbc6.png',
+                defaultPrice: 40000,
+                price: {
+                    body: 0,
+                    wheels: 0,
+                },
+            },
+        },
+        {
+            id: '009',
+            store: {
+                configuration: 'Zeekr 009',
+                body: 'white',
+                wheels: 'default',
+                interior_colors: 'black',
+                defaultRenderImage: {
+                    url: '/uploads/white_default_21a847a9cb.png',
+                    width: 1000,
+                    height: 360,
+                    name: 'white_default.png',
+                },
+                renderImage:
+                    'http://localhost:1349/uploads/white_default_21a847a9cb.png',
+                defaultPrice: 80000,
+                price: {
+                    body: 2000,
+                    wheels: 0,
+                },
+            },
+        },
+        {
+            id: '001 FR',
+            store: {
+                configuration: 'Zeekr 001 FR',
+                body: 'white',
+                wheels: 'default',
+                interior_colors: 'black',
+                defaultRenderImage: {
+                    url: '/uploads/gray_default_858c8d828a.png',
+                    width: 1000,
+                    height: 360,
+                    name: 'white_default.png',
+                },
+                renderImage:
+                    'http://localhost:1349/uploads/gray_default_858c8d828a.png',
+                defaultPrice: 62000,
+                price: {
+                    body: 100,
+                    wheels: 0,
+                },
+            },
+        },
+    ];
     return (
         <section className='-mt-1 flex w-full flex-col bg-white pt-3 font-electrohub text-black md:px-8 md:pt-12 xl:py-10'>
             <div className='container mt-10 text-black'>
@@ -20,97 +116,88 @@ export default function NewArrivals({ newArrivalsModels, data }: any) {
                         {h1}
                     </div>
                 </div>
-                <div className='mb-12 mt-6 grid grid-cols-1 gap-7 md:mt-12 lg:mb-24 lg:grid-cols-2 xl:mt-20'>
+                <div className='mb-12 mt-6 grid grid-cols-1 gap-7 md:mt-12 md:grid-cols-3 lg:mb-24 lg:grid-cols-4 xl:mt-20'>
                     {newArrivalsModels?.data?.map((item: Car) => (
-                        <div
+                        <Link
+                            onClick={async () => {
+                                console.log('item', item);
+                                const id = item?.attributes?.name;
+                                const model = linksToConstructor.find(
+                                    (el) => el.id === id
+                                );
+                                if (model) {
+                                    setConstructor({
+                                        ...store,
+                                        ...model.store,
+                                    });
+                                }
+                                //   setConstructor({
+                                //       ...store,
+                                //       ...linksToConstructor[item.attributes?.name]
+                                //           .store,
+                                //   });
+                            }}
+                            href={`/zeekr/constructor`}
                             key={item.attributes.slug}
-                            className='flex flex-col rounded-[10px] px-3 py-5 shadow-[5px_5px_10px_0_rgba(0,0,0,0.15)] lg:py-12 lg:pl-5 lg:pr-12 2xl:flex-row'
-                            style={{ background: item.attributes.bg_gradient }}
+                            className='flex cursor-pointer flex-col items-center justify-center rounded-[10px] px-3 py-5 transition-all duration-200 ease-in-out hover:shadow-[5px_5px_10px_0_rgba(0,0,0,0.15)] lg:py-12'
+                            //  style={{ background: item.attributes.bg_gradient }}
                         >
-                            <div
-                                className={
-                                    'relative z-[1] flex justify-center 2xl:w-1/2 2xl:justify-start'
-                                }
-                            >
-                                <div
-                                    className={
-                                        'absolute z-[1] translate-y-[-20%] pl-6 font-terminatorgen text-[32px] tracking-wider text-white/20 sm:text-[52px] md:translate-y-[-40%] md:text-[64px] xl:text-[80px]'
+                            <div className={'z-10 '}>
+                                <Image
+                                    className={'z-100 inline-block'}
+                                    src={
+                                        getStrapiMedia(
+                                            item.attributes.image.data
+                                                .attributes.url
+                                        )!
                                     }
-                                >
-                                    {item.attributes.brand.data.attributes.name}
-                                </div>
-                                <div className={'z-10 '}>
-                                    <Image
-                                        className={'z-100 inline-block'}
-                                        src={
-                                            getStrapiMedia(
-                                                item.attributes.image.data
-                                                    .attributes.url
-                                            )!
-                                        }
-                                        alt={''}
-                                        width={
-                                            item.attributes.image.data
-                                                .attributes.width
-                                        }
-                                        height={
-                                            item.attributes.image.data
-                                                .attributes.height
-                                        }
-                                    />
-                                </div>
+                                    alt={''}
+                                    width={
+                                        item.attributes.image.data.attributes
+                                            .width
+                                    }
+                                    height={
+                                        item.attributes.image.data.attributes
+                                            .height
+                                    }
+                                />
                             </div>
-                            <div
-                                className={
-                                    'z-10 font-electrohub text-white 2xl:w-1/2'
-                                }
-                            >
+
+                            <div className={'z-10 font-electrohub text-black'}>
                                 <div
                                     className={
-                                        'flex w-full justify-between font-electrohub text-[16px] font-black text-white sm:text-[18px] md:text-[20px]'
+                                        'flex w-full gap-1.5 font-electrohub text-[16px] font-black text-black sm:text-[18px] md:text-[20px]'
                                     }
                                 >
-                                    <div className={'space-x-2'}>
-                                        <span>
-                                            {
-                                                item.attributes.brand.data
-                                                    .attributes.name
-                                            }
-                                        </span>
-                                        <span>{item.attributes.name}</span>
-                                    </div>
-                                    <div>{item.attributes.year}</div>
+                                    <span>
+                                        {
+                                            item.attributes.brand.data
+                                                .attributes.name
+                                        }
+                                    </span>
+                                    <span>{item.attributes.name}</span>
+                                    {/* <div>{item.attributes.year}</div> */}
                                 </div>
                                 <p
                                     className={
-                                        'mt-3 flex flex-wrap text-sm leading-tight text-white sm:text-base md:mt-5 md:text-lg'
+                                        'mt-2 flex flex-wrap text-xs leading-tight text-black md:text-xs'
                                     }
                                 >
                                     {item.attributes.description}
                                 </p>
-                                <div
-                                    className={
-                                        'mt-3 text-sm leading-tight sm:text-base md:mt-5 md:text-lg'
-                                    }
-                                >
+                                {/* <div className={'text-xs leading-tight'}>
                                     {item.attributes.mileage} км
-                                </div>
+                                </div> */}
+
                                 <div
                                     className={
-                                        'mt-3 text-right text-base font-bold md:mt-5 md:text-lg'
+                                        'mt-2 text-base font-bold text-[#808080] md:text-lg'
                                     }
                                 >
-                                    {item.attributes.price_byn} BYN
-                                </div>
-                                <div
-                                    className={
-                                        'text-right font-bold md:text-lg'
-                                    }
-                                >
-                                    {item.attributes.price_usd} $
+                                    от {item.attributes.price_usd} $
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>

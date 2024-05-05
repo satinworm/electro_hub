@@ -65,6 +65,11 @@ export type ConstructorStoreState = {
     updatePrice: (price: ConstructorStoreState['constructor']['price']) => void;
     calculateTotalPrice: (state: ConstructorObjectState) => number;
 };
+export type SelectedViewConstructoreStoreTypes = {
+    selectedView: 'body' | 'interior';
+    setSelectedView: (selectedView: 'body' | 'interior') => void;
+};
+
 export const ConstructorStore = create<ConstructorStoreState>((set) => ({
     constructor: {
         configuration: '',
@@ -119,3 +124,8 @@ export const ConstructorStore = create<ConstructorStoreState>((set) => ({
         return state.defaultPrice + priceSum;
     },
 }));
+export const SelectedViewConstructoreStore =
+    create<SelectedViewConstructoreStoreTypes>((set) => ({
+        selectedView: 'body',
+        setSelectedView: (selectedView) => set({ selectedView }),
+    }));

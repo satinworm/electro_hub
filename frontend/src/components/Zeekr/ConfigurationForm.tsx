@@ -28,6 +28,7 @@ import { cn } from '@/lib/utils';
 import {
     ConstructorStore,
     ConstructorStoreState,
+    SelectedViewConstructoreStore,
 } from '@/stores/car-constructor.store';
 import { Checkbox } from '@/components/ui/checkbox';
 
@@ -51,6 +52,12 @@ export default function ConfigurationForm({
     );
     const updatePrice = ConstructorStore(
         (state: ConstructorStoreState) => state.updatePrice
+    );
+    const { selectedView, setSelectedView } = SelectedViewConstructoreStore(
+        (state) => ({
+            selectedView: state.selectedView,
+            setSelectedView: state.setSelectedView,
+        })
     );
     const { watch } = form;
 
@@ -141,6 +148,9 @@ export default function ConfigurationForm({
                                                                         console.log(
                                                                             'first ',
                                                                             model
+                                                                        );
+                                                                        setSelectedView(
+                                                                            'body'
                                                                         );
                                                                         setConstructor(
                                                                             {
@@ -277,6 +287,9 @@ export default function ConfigurationForm({
                                                                                         onCheckedChange={(
                                                                                             checked
                                                                                         ) => {
+                                                                                            setSelectedView(
+                                                                                                'body'
+                                                                                            );
                                                                                             setConstructor(
                                                                                                 {
                                                                                                     ...store.constructor,
@@ -462,6 +475,9 @@ export default function ConfigurationForm({
                                                                                     onCheckedChange={(
                                                                                         checked
                                                                                     ) => {
+                                                                                        setSelectedView(
+                                                                                            'interior'
+                                                                                        );
                                                                                         setConstructor(
                                                                                             {
                                                                                                 ...store.constructor,
@@ -630,6 +646,9 @@ export default function ConfigurationForm({
                                                                                     onCheckedChange={(
                                                                                         checked
                                                                                     ) => {
+                                                                                        setSelectedView(
+                                                                                            'body'
+                                                                                        );
                                                                                         setConstructor(
                                                                                             {
                                                                                                 ...store.constructor,
@@ -748,6 +767,9 @@ export default function ConfigurationForm({
                                                                 onCheckedChange={(
                                                                     checked
                                                                 ) => {
+                                                                    setSelectedView(
+                                                                        'body'
+                                                                    );
                                                                     updatePrice(
                                                                         {
                                                                             [item.name]:

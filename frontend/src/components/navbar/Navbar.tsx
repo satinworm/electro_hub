@@ -51,7 +51,7 @@ export default function Navbar(props: Props) {
                     </div>
                 </div>
                 <div className='flex h-fit gap-4 md:gap-8'>
-                    <LocaleToogle />
+                    {/* <LocaleToogle /> */}
                     <Link
                         href={`tel:${contact_number?.replace(/[\)\(]/g, '')}`}
                         className='flex items-center gap-5'
