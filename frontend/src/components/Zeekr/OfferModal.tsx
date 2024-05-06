@@ -114,7 +114,7 @@ export default function OfferModal(props: any) {
                     )}
                     <div className=''>
                         {offer?.additional_options && (
-                            <div className='mb-1.5 mt-3 md:mb-3 text-center'>
+                            <div className='mb-1.5 mt-3 text-center md:mb-3'>
                                 Дополнительные опции:
                             </div>
                         )}
@@ -133,12 +133,13 @@ export default function OfferModal(props: any) {
                                                 key={key}
                                             >
                                                 <div className='flex flex-col'>
-                                                    <div className='text-sm md:text-base font-bold text-[#000000]'>
-                                                        {value.name}
+                                                    <div className='text-sm font-bold text-[#000000] md:text-base'>
+                                                        {value.name as any}
                                                     </div>
                                                 </div>
                                                 <div className='text-sm text-[#1e1e1e] sm:text-base md:text-lg'>
-                                                    {value.price || 0} $
+                                                    {(value.price as any) || 0}{' '}
+                                                    $
                                                 </div>
                                             </div>
                                         );

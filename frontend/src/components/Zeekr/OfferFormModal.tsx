@@ -25,10 +25,12 @@ export default function OfferFormModal({ close }: { close: () => void }) {
         phone: z
             .string()
             .refine(isValidPhoneNumber, { message: 'Неправильный номер' }),
+        comment: z.string().optional(),
     });
     const defaultValues = {
         name: '',
         phone: '',
+        comment: '',
     };
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -68,7 +70,7 @@ export default function OfferFormModal({ close }: { close: () => void }) {
     return (
         <Form {...form}>
             <form className='' onSubmit={form.handleSubmit(onSubmit)}>
-                <div className='flex md:flex-row flex-col gap-3 items-center md:gap-10'>
+                <div className='flex flex-col items-center gap-3 md:flex-row md:gap-10'>
                     <div className='flex w-full basis-1 flex-col pt-4 md:basis-1/3'>
                         <FormField
                             control={form.control}
