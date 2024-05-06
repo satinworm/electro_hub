@@ -54,7 +54,14 @@ export type ConstructorObjectState = {
     defaultPrice: number;
     price: any;
 };
-
+type OfferItem = { name: string; price: number };
+export type OfferType = {
+    model: OfferItem;
+    body: OfferItem;
+    wheels: OfferItem;
+    interior_colors: OfferItem;
+    additional_otions: any;
+};
 // В файле `frontend/src/stores/car-constructor.store.ts`
 export type ConstructorStoreState = {
     constructor: ConstructorObjectState;
@@ -64,6 +71,8 @@ export type ConstructorStoreState = {
     resetConstructor: () => void;
     updatePrice: (price: ConstructorStoreState['constructor']['price']) => void;
     calculateTotalPrice: (state: ConstructorObjectState) => number;
+    offer: OfferType;
+    updateOffer: (offer: OfferType) => void;
 };
 export type SelectedViewConstructoreStoreTypes = {
     selectedView: 'body' | 'interior';
@@ -71,6 +80,14 @@ export type SelectedViewConstructoreStoreTypes = {
 };
 
 export const ConstructorStore = create<ConstructorStoreState>((set) => ({
+    offer: {
+        model: { name: '', price: 0 },
+        body: { name: '', price: 0 },
+        wheels: { name: '', price: 0 },
+        interior_colors: { name: '', price: 0 },
+        additional_otions: {},
+    },
+    updateOffer: (offer: any) => set({ offer }),
     constructor: {
         configuration: '',
         body: 'black',

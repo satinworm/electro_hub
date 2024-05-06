@@ -31,6 +31,7 @@ import {
     SelectedViewConstructoreStore,
 } from '@/stores/car-constructor.store';
 import { Checkbox } from '@/components/ui/checkbox';
+import { ZeekrModalStore } from '@/stores/dialog.store';
 
 export default function ConfigurationForm({
     defaultData,
@@ -39,6 +40,7 @@ export default function ConfigurationForm({
     defaultData: CarConstructorResponse;
     form: any;
 }) {
+    const { open, setOpen } = ZeekrModalStore();
     const logo = defaultData?.data?.[0]?.attributes?.logo;
     const models = defaultData?.data?.[0]?.attributes?.models;
     const selectedModelObject = models?.find(
@@ -60,12 +62,22 @@ export default function ConfigurationForm({
         })
     );
     const { watch } = form;
-
+    const { offer, updateOffer } = ConstructorStore((state: any) => ({
+        offer: state.offer,
+        updateOffer: state.updateOffer,
+    }));
+    console.log('OFFER ', offer);
     useEffect(() => {
         if (selectedModelObject) {
             setConstructor({
                 ...store.constructor,
                 body: selectedModelObject.body_colors[0].render_url,
+            });
+            updateOffer({
+                model: {
+                    name: selectedModelObject.name,
+                    price: selectedModelObject.default_price,
+                },
             });
             // updatePrice({
             //     body: selectedModelObject.incremental_price,
@@ -141,6 +153,15 @@ export default function ConfigurationForm({
                                                                         model.name
                                                                     }
                                                                     onSelect={() => {
+                                                                        updateOffer(
+                                                                            {
+                                                                                ...offer,
+                                                                                model: {
+                                                                                    name: model.name,
+                                                                                    price: model.default_price,
+                                                                                },
+                                                                            }
+                                                                        );
                                                                         form.setValue(
                                                                             'configuration',
                                                                             model.name
@@ -287,6 +308,17 @@ export default function ConfigurationForm({
                                                                                         onCheckedChange={(
                                                                                             checked
                                                                                         ) => {
+                                                                                            updateOffer(
+                                                                                                {
+                                                                                                    ...offer,
+                                                                                                    body: {
+                                                                                                        name: item.name,
+                                                                                                        price:
+                                                                                                            item.incremental_price ||
+                                                                                                            0,
+                                                                                                    },
+                                                                                                }
+                                                                                            );
                                                                                             setSelectedView(
                                                                                                 'body'
                                                                                             );
@@ -475,6 +507,19 @@ export default function ConfigurationForm({
                                                                                     onCheckedChange={(
                                                                                         checked
                                                                                     ) => {
+                                                                                        updateOffer(
+                                                                                            {
+                                                                                                ...offer,
+                                                                                                interior_color:
+                                                                                                    {
+                                                                                                        name: item.name,
+                                                                                                        price:
+                                                                                                            item.incremental_price ||
+                                                                                                            0,
+                                                                                                    },
+                                                                                            }
+                                                                                        );
+
                                                                                         setSelectedView(
                                                                                             'interior'
                                                                                         );
@@ -633,7 +678,7 @@ export default function ConfigurationForm({
                                                                                         'h-full w-full'
                                                                                     }
                                                                                     alt={
-                                                                                        'asd'
+                                                                                        item.name
                                                                                     }
                                                                                 />
                                                                                 <Checkbox
@@ -646,6 +691,15 @@ export default function ConfigurationForm({
                                                                                     onCheckedChange={(
                                                                                         checked
                                                                                     ) => {
+                                                                                        updateOffer(
+                                                                                            {
+                                                                                                ...offer,
+                                                                                                wheels: {
+                                                                                                    name: item.name,
+                                                                                                    price: item.incremental_price,
+                                                                                                },
+                                                                                            }
+                                                                                        );
                                                                                         setSelectedView(
                                                                                             'body'
                                                                                         );
@@ -770,6 +824,20 @@ export default function ConfigurationForm({
                                                                     setSelectedView(
                                                                         'body'
                                                                     );
+                                                                    updateOffer(
+                                                                        {
+                                                                            ...offer,
+                                                                            additional_options:
+                                                                                {
+                                                                                    ...offer.additional_options,
+                                                                                    [item.name]:
+                                                                                        {
+                                                                                            name: item.title,
+                                                                                            price: item.incremental_price,
+                                                                                        },
+                                                                                },
+                                                                        }
+                                                                    );
                                                                     updatePrice(
                                                                         {
                                                                             [item.name]:
@@ -817,6 +885,21 @@ export default function ConfigurationForm({
                         )}
                 </div>
             )}
+            <div className='mt-7 flex w-full flex-col gap-2'>
+                <button
+                    type='button'
+                    onClick={() => setOpen(true)}
+                    className='w-full cursor-pointer rounded-md bg-[#1E1E1E] py-3 text-sm text-white'
+                >
+                    Оставить заявку
+                </button>
+                <button
+                    type='button'
+                    className='w-full cursor-pointer rounded-md border border-[#1e1e1e] bg-white py-3 text-sm text-black'
+                >
+                    Консультация
+                </button>
+            </div>
         </div>
     );
 }
