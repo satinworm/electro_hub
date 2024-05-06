@@ -71,8 +71,8 @@ export type ConstructorStoreState = {
     resetConstructor: () => void;
     updatePrice: (price: ConstructorStoreState['constructor']['price']) => void;
     calculateTotalPrice: (state: ConstructorObjectState) => number;
-    offer: OfferType;
-    updateOffer: (offer: OfferType) => void;
+    offer: any;
+    updateOffer: any;
 };
 export type SelectedViewConstructoreStoreTypes = {
     selectedView: 'body' | 'interior';
@@ -87,6 +87,7 @@ export const ConstructorStore = create<ConstructorStoreState>((set) => ({
         interior_colors: { name: '', price: 0 },
         additional_otions: {},
     },
+    //@ts-ignore
     updateOffer: (offer: any) => set({ offer }),
     constructor: {
         configuration: '',
