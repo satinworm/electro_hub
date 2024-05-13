@@ -395,7 +395,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                 </button> */}
                                                 <div className='relative col-span-2 h-full'>
                                                     <ModalTrigger
-                                                        header={'Свящь с нами'}
+                                                        header={'Связь с нами'}
                                                         description={
                                                             'Наш специалист свяжется с Вами и ответит на все интересующие Вас вопросы.'
                                                         }
