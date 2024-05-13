@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import ModalTrigger from '../ModalTrigger';
 
 export async function Footer({ locale }: { locale: string }) {
     const t = await getTranslations({ locale, namespace: 'Footer' });
@@ -44,15 +45,17 @@ export async function Footer({ locale }: { locale: string }) {
                         >
                             {title}
                         </div>
-                        <button
-                            type={'button'}
-                            className={
-                                'flex w-full items-center justify-center gap-2 border border-black bg-white px-12 py-2 text-sm font-bold text-black md:w-fit md:py-3.5 md:text-base lg:mt-10'
+                        <ModalTrigger
+                            header={'Свяpь с нами'}
+                            description={
+                                'Наш специалист свяжется с Вами и ответит на все интересующие Вас вопросы.'
                             }
-                        >
-                            <div>{t('callback')}</div>
-                            <ChevronRight color={'black'} />
-                        </button>
+                            label={t('callback')}
+                            data={{
+                                type: 'feedback',
+                            }}
+                            styles='flex w-full items-center justify-center gap-2 border border-black bg-white px-12 py-2 text-sm font-bold text-black md:w-fit md:py-3.5 md:text-base lg:mt-10'
+                        />
                     </div>
                     <div
                         className={

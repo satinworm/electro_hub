@@ -13,11 +13,17 @@ import { Input } from '@/components/ui/input';
 import { isValidPhoneNumber } from 'libphonenumber-js';
 import { PhoneInput } from '@/components/ui/phone-input';
 import { format } from 'date-fns';
-import { api } from '@/utils/api';
+import { api, bot } from '@/utils/api';
 import { toast } from 'sonner';
 import { AxiosResponse } from 'axios';
 
-export default function ContactForm({ close }: { close: () => void }) {
+export default function ContactForm({
+    close,
+    botData,
+}: {
+    close: () => void;
+    botData: any;
+}) {
     const FormSchema = z.object({
         name: z.string().min(1, 'Обязательное поле'),
         phone: z
@@ -42,22 +48,33 @@ export default function ContactForm({ close }: { close: () => void }) {
 
     async function onSubmit(data: any) {
         const dateNow = new Date();
-        console.log('SUBMITTED DATA', data);
+        console.log('SUBMITTED DATA', botData);
         try {
-            const response = await api.post<AxiosResponse>('/api/feedbacks', {
+            // const response = await api.post<AxiosResponse>('/api/feedbacks', {
+            //     data: {
+            //         ...data,
+            //         processed: false,
+            //         date: formatDate(dateNow),
+            //         dateUTC: dateNow.toISOString(),
+            //     },
+            // });
+
+            const botResponse = await bot.post<AxiosResponse>('/applications', {
                 data: {
-                    ...data,
-                    processed: false,
-                    date: formatDate(dateNow),
-                    dateUTC: dateNow.toISOString(),
+                    ...botData,
+                    name: data.name,
+                    number: data.phone,
                 },
             });
-            if (response.status === 200) {
-                toast.success('Данные отправлены', {
+            console.log('botResponse', botResponse.status);
+            if (botResponse.status === 201) {
+                toast.success('Данные отправлены ✅', {
                     duration: 6000,
                 });
                 close();
                 form.reset();
+            } else {
+                toast.error('Ошибка отправки данных ❌');
             }
         } catch (e: any) {
             throw new Error(e);

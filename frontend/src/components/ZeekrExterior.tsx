@@ -7,6 +7,8 @@ import { useRouter } from 'next/navigation';
 import { DialogStore } from '@/stores/dialog.store';
 import ModalComponent from '@/components/ModalComponent';
 import React from 'react';
+import ModalTrigger from './ModalTrigger';
+import Link from 'next/link';
 
 type Props = {
     data: {
@@ -78,7 +80,38 @@ export default function ZeekrExterior(props: Props) {
                                 {data?.description}
                             </div>
                             <div className='mt-6 flex w-full flex-col gap-5 md:mt-10 md:flex-row lg:mt-16'>
-                                {data?.btn?.map((btn) => (
+                                <Link
+                                    href={'/zeekr/constructor'}
+                                    className='flex w-full items-center justify-center space-x-2 rounded-sm border-[2px] border-[#1e1e1e] py-3 text-lg text-black md:w-1/2 md:py-4'
+                                >
+                                    <span>
+                                        {locale === 'ru'
+                                            ? 'Собрать авто'
+                                            : 'Assemble the car'}
+                                    </span>
+                                </Link>
+                                <ModalTrigger
+                                    header={
+                                        locale === 'ru'
+                                            ? 'Связь с нами'
+                                            : 'Contact us'
+                                    }
+                                    description={
+                                        locale === 'ru'
+                                            ? 'Оставьте свои контактные данные и мы свяжемся с вами в ближайшее время'
+                                            : 'Leave your contact details and we will contact you shortly'
+                                    }
+                                    label={
+                                        locale === 'ru'
+                                            ? 'Консультация'
+                                            : 'Consultation'
+                                    }
+                                    data={{
+                                        type: 'feedback',
+                                    }}
+                                    styles='flex w-full items-center justify-center space-x-2 text-black rounded-sm border-[2px] border-[#1e1e1e] py-3 text-lg md:w-1/2 md:py-4'
+                                />
+                                {/* {data?.btn?.map((btn) => (
                                     <button
                                         key={btn.text}
                                         onClick={() => {
@@ -119,7 +152,7 @@ export default function ZeekrExterior(props: Props) {
                                             }
                                         />
                                     </button>
-                                ))}
+                                ))} */}
                             </div>
                         </div>
                     </div>
@@ -143,14 +176,6 @@ export default function ZeekrExterior(props: Props) {
                         ))}
                     </div>
                 </div>
-                <ModalComponent
-                    header={locale === 'ru' ? 'Связь с нами' : 'Contact us'}
-                    description={
-                        locale === 'ru'
-                            ? 'Наш специалист свяжется с Вами и ответит на все интересующие Вас вопросы.'
-                            : 'Our specialist will contact you and answer all your questions.'
-                    }
-                />
             </div>
         </>
     );

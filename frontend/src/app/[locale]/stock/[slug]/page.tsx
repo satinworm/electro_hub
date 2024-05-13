@@ -5,9 +5,13 @@ import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import ScrollLink from '@/components/ScrollLink';
 import TechnicalSpecifications from '@/components/TechnicalSpecifications';
 import React from 'react';
+import ModalTrigger from '@/components/ModalTrigger';
+import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 export default async function StockCarFullPage({ params }: any) {
     const { slug, locale } = params;
+    const modal = await getTranslations('ContactModal');
     const carsInStockData = await getDataFromAPI(
         'cars-in-stocks',
         {
@@ -34,6 +38,7 @@ export default async function StockCarFullPage({ params }: any) {
         },
         locale
     );
+    console.log('slug kurwa ', slug);
     const item = carsInStockData?.data?.[0]?.attributes as CarAttributes;
     return (
         <section className={'bg-[#1e1e1e]/30 font-electrohub'}>
@@ -61,21 +66,40 @@ export default async function StockCarFullPage({ params }: any) {
                     </p>
                     <p className={'mb-10 mt-6 text-[#2E71EF]'}>{item.lising}</p>
 
-                    <div className={'text-xl'}>
-                        <BlocksRenderer
-                            content={item.short_specification as any}
-                        />
-                    </div>
+                    {item?.short_specification && (
+                        <div className={'text-xl'}>
+                            <BlocksRenderer
+                                content={item.short_specification as any}
+                            />
+                        </div>
+                    )}
                     <p className={'mt-5 text-lg'}>{item.engine}</p>
                     <ScrollLink
                         styles={
                             'font-bold text-[#2E71EF] border-b-transparent hover:border-[#2E71EF] text-sm mt-5'
                         }
                         label={'Все параметры'}
-                        href={'specification'}
+                        id={'specification'}
                     />
                     <div>
-                        <button
+                        <ModalTrigger
+                            header={modal('header')}
+                            description={modal('description')}
+                            label={
+                                locale === 'ru'
+                                    ? 'Написать продавцу'
+                                    : 'Write to seller'
+                            }
+                            styles='mt-10 rounded-[8px] bg-[#1e1e1e] px-10 py-4 text-center text-base font-bold text-white'
+                            data={{
+                                type: 'stock',
+                                text:
+                                    process.env.NEXT_PUBLIC_SERVER_URL +
+                                    '/ru/stock/' +
+                                    slug,
+                            }}
+                        />
+                        {/* <button
                             type={'button'}
                             // onClick={() => console.log('')}
                             className={
@@ -85,11 +109,25 @@ export default async function StockCarFullPage({ params }: any) {
                             {locale === 'ru'
                                 ? 'Написать продавцу'
                                 : 'Write to seller'}
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             </div>
-            <TechnicalSpecifications data={item?.specification} />
+            {item?.specification?.length > 0 && (
+                <TechnicalSpecifications data={item?.specification} />
+            )}
+            {item?.full_description && (
+                <div
+                    className={
+                        ' w-full bg-white p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20'
+                    }
+                >
+                    <h1 className='mb-6 text-3xl font-semibold'>
+                        {locale ? 'Описание' : 'Description'}
+                    </h1>
+                    <BlocksRenderer content={item.full_description as any} />
+                </div>
+            )}
         </section>
     );
 }

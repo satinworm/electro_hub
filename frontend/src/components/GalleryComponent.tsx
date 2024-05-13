@@ -70,16 +70,16 @@ export default function GalleryComponent({ photos }: any) {
             );
         }
         return photos?.data?.map((slide: any) => {
-            console.log('slide ', slide);
+
 
             return (
-                <SplideSlide className={'w-full'} key={slide.id}>
+                <SplideSlide className={'w-full flex items-center justify-center'} key={slide.id}>
                     <Image
                         src={getStrapiMedia(slide.attributes.url)!}
                         alt={slide.attributes.src}
                         width={slide.attributes.width}
                         height={slide.attributes.height}
-                        className={'mx-auto'}
+                        className={'mx-auto my-auto'}
                     />
                 </SplideSlide>
             );
@@ -87,7 +87,7 @@ export default function GalleryComponent({ photos }: any) {
     }
 
     return (
-        <>
+        <div>
             {photos?.data && photos.data.length > 0 ? (
                 <>
                     <Splide
@@ -109,8 +109,16 @@ export default function GalleryComponent({ photos }: any) {
                     </Splide>
                 </>
             ) : (
-                <Loader styles={'h-96'} />
+                <div className='flex h-full w-full items-center justify-center'>
+                    <Image
+                        src={'/image_not_found.jpeg'}
+                        alt='image not found'
+                        width={400}
+                        height={400}
+                        className='mx-auto my-auto rounded-xl'
+                    />
+                </div>
             )}
-        </>
+        </div>
     );
 }

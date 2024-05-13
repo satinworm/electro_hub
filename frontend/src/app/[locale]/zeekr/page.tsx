@@ -1,11 +1,13 @@
 import { Loader } from '@/components/Loader';
 import MainSection from '@/components/MainSection';
+import ModalTrigger from '@/components/ModalTrigger';
 import NewArrivals from '@/components/NewArrivals';
 import ZeekrExterior from '@/components/ZeekrExterior';
 import { getStrapiMedia } from '@/utils/api-helpers';
 import { getDataFromAPI } from '@/utils/fetch-api';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export async function generateMetadata({ params }: any) {
     const { locale } = params;
@@ -157,7 +159,7 @@ export default async function ZeekrPage({
 
     // console.log('suka ', pageProperties?.[0]?.attributes);
     return (
-        <>
+        <div>
             {pageProperties && pageProperties?.data?.[0] && models ? (
                 <>
                     <MainSection
@@ -165,43 +167,30 @@ export default async function ZeekrPage({
                         subTitle={t('heading_description')}
                         description={t('text_description')}
                         bg={'zeekr-bg'}
-                        buttons={[
-                            {
-                                name: t('btn_constructor'),
-
-                                action: {
-                                    actionType: 'link',
-                                    actionUrl: '/zeekr/constructor',
-                                    styles: 'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-3 font-electrohub text-lg font-bold text-black md:max-w-[370px]',
-                                },
-                                children: (
-                                    <Image
-                                        src={'/constructor.svg'}
-                                        width={20}
-                                        height={20}
-                                        alt={'Constructor link'}
-                                    />
-                                ),
-                            },
-                            {
-                                name: t('btn_consultation'),
-                                action: {
-                                    actionType: 'modal',
-                                    styles: 'flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white',
-                                    modal_header: modal('header'),
-                                    modal_description: modal('description'),
-                                },
-                                children: (
-                                    <Image
-                                        src={'/consultation.svg'}
-                                        width={20}
-                                        height={17}
-                                        alt={'Constructor link'}
-                                    />
-                                ),
-                            },
-                        ]}
-                    />
+                    >
+                        <div className='flex w-full flex-col gap-5 md:w-auto md:flex-row'>
+                            <Link
+                                className={
+                                    'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-3 font-electrohub text-lg font-bold text-black md:max-w-[370px]'
+                                }
+                                key={t('btn_constructor')}
+                                href={'/zeekr/constructor'}
+                            >
+                                <span className={'whitespace-nowrap'}>
+                                    {t('btn_constructor')}
+                                </span>
+                            </Link>
+                            <ModalTrigger
+                                header={modal('header')}
+                                description={modal('description')}
+                                label={t('btn_consultation')}
+                                data={{
+                                    type: 'feedback',
+                                }}
+                                styles='flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white'
+                            />
+                        </div>
+                    </MainSection>
                     <NewArrivals
                         newArrivalsModels={models}
                         data={modelsSection}
@@ -211,6 +200,6 @@ export default async function ZeekrPage({
             ) : (
                 <Loader styles={'h-[100vh]'} />
             )}
-        </>
+        </div>
     );
 }

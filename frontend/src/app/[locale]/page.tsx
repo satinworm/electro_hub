@@ -276,45 +276,9 @@ export default async function RootRoute({
                         description={t('text_description')}
                         bg={'bg-main'}
                         data={mainSectionSlider}
-                        buttons={[
-                            {
-                                name: t('btn_catalog'),
-                                action: {
-                                    actionType: 'link',
-                                    actionUrl: '/zeekr/constructor',
-                                    styles: 'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-3 font-electrohub text-lg font-bold text-black md:max-w-[370px]',
-                                },
-                                children: (
-                                    <Image
-                                        src={'/catalog.svg'}
-                                        width={20}
-                                        height={17}
-                                        alt={'Constructor link'}
-                                    />
-                                ),
-                            },
-                            {
-                                name: t('btn_consultation'),
-                                // style: 'flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white',
-                                action: {
-                                    actionType: 'modal',
-                                    styles: 'flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white',
-                                    modal_header: modal('header'),
-                                    modal_description: modal('description'),
-                                },
-                                children: (
-                                    <Image
-                                        src={'/consultation.svg'}
-                                        width={20}
-                                        height={17}
-                                        alt={'Constructor link'}
-                                    />
-                                ),
-                            },
-                        ]}
                     />
-                    {/*<CarsInStock data={carsInStockData} />*/}
-                    {/*<CarsToOrder data={carsToOrderData} />*/}
+                    <CarsInStock data={carsInStockData} />
+                    <CarsToOrder data={carsToOrderData} />
                     <BrandSection brands={brands} data={brandsSection} />
                     <NewArrivals
                         newArrivalsModels={newArrivalsModels}

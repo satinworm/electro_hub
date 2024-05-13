@@ -75,7 +75,7 @@ export type ConstructorStoreState = {
     updateOffer: any;
 };
 export type SelectedViewConstructoreStoreTypes = {
-    selectedView: 'body' | 'interior';
+    selectedView: 'body' | 'interior' | 'virtual_view';
     setSelectedView: (selectedView: 'body' | 'interior') => void;
 };
 

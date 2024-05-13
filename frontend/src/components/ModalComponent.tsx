@@ -11,15 +11,21 @@ import { DialogStore } from '@/stores/dialog.store';
 import ContactForm from '@/components/ContactForm';
 import Image from 'next/image';
 
+type Props = {
+    header: string;
+    description: string;
+    open: boolean;
+    setOpen: any;
+    data: any;
+};
 export default function ModalComponent(props: any) {
-    const { header, description } = props;
+    const { header, description, open, setOpen, data } = props;
 
-    const { open, setOpen } = DialogStore();
     const closeDialog = () => setOpen(false);
     return (
         <Dialog onOpenChange={setOpen} open={open}>
             <DialogTrigger asChild></DialogTrigger>
-            <DialogContent className='max-w-[90%] overflow-hidden rounded-[10px] border-r-0 px-0 py-2 pl-7 pt-8 font-electrohub sm:max-w-3xl sm:pl-12 md:pl-16 md:pt-10 lg:max-w-5xl lg:pb-16 lg:pl-24 lg:pt-12'>
+            <DialogContent className='max-w-[90%] overflow-hidden rounded-[10px] border-0 px-0 py-2 pl-7 pt-8 font-electrohub sm:max-w-3xl sm:pl-12 md:pl-16 md:pt-10 lg:max-w-5xl lg:pb-16 lg:pl-24 lg:pt-12'>
                 <DialogHeader>
                     <DialogDescription className={'text-black'}>
                         <div className={'relative'}>
@@ -67,7 +73,7 @@ export default function ModalComponent(props: any) {
                 </div>
 
                 <div className='mt-12 max-w-md pb-6 pr-7 font-electrohub sm:pr-12 md:mt-20 md:pr-0'>
-                    <ContactForm close={closeDialog} />
+                    <ContactForm botData={data} close={closeDialog} />
                 </div>
             </DialogContent>
         </Dialog>

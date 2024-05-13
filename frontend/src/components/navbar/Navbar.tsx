@@ -53,7 +53,19 @@ export default function Navbar(props: Props) {
                 <div className='flex h-fit gap-4 md:gap-8'>
                     {/* <LocaleToogle /> */}
                     <Link
-                        href={`tel:${contact_number?.replace(/[\)\(]/g, '')}`}
+                        href={
+                            'https://www.instagram.com/electrohub.by?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=='
+                        }
+                    >
+                        <Image
+                            src={'/social_links/instagram.png'}
+                            alt={'instagram'}
+                            width={24}
+                            height={24}
+                        />
+                    </Link>
+                    <Link
+                        href={`tel:${contact_number?.replace(/[)(]/g, '')}`}
                         className='flex items-center gap-5'
                     >
                         <Image

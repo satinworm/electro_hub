@@ -32,6 +32,7 @@ import {
 } from '@/stores/car-constructor.store';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ZeekrModalStore } from '@/stores/dialog.store';
+import ModalTrigger from '../ModalTrigger';
 
 export default function ConfigurationForm({
     defaultData,
@@ -893,12 +894,20 @@ export default function ConfigurationForm({
                 >
                     Оставить заявку
                 </button>
-                <button
+                <ModalTrigger
+                    header={'Связь с нами'}
+                    description={
+                        'Оставьте свои контактные данные и мы свяжемся с вами в ближайшее время'
+                    }
+                    label={'Консультация'}
+                    styles='w-full cursor-pointer rounded-md border border-[#1e1e1e] bg-white py-3 text-sm text-black'
+                />
+                {/* <button
                     type='button'
                     className='w-full cursor-pointer rounded-md border border-[#1e1e1e] bg-white py-3 text-sm text-black'
                 >
                     Консультация
-                </button>
+                </button> */}
             </div>
         </div>
     );

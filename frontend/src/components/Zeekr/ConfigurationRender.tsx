@@ -34,7 +34,7 @@ export default function ZeekrConstructorPage(props: Props) {
     const defaultRenderImage =
         defaultData?.data?.[0]?.attributes?.models?.[0]?.default_image?.data
             ?.attributes;
-
+    console.log('first', selectedModel);
     // const
     const store = ConstructorStore(
         (state: ConstructorStoreState) => state.constructor
@@ -80,7 +80,7 @@ export default function ZeekrConstructorPage(props: Props) {
         <>
             <div
                 className={
-                    ' h-[45vh] rounded-b-2xl shadow-2xl sm:h-[50vh] md:h-[60vh] md:rounded-none md:shadow-none xl:h-[calc(100vh-92px)]'
+                    ' h-[50vh] rounded-b-2xl shadow-2xl sm:h-[50vh] md:min-h-[60vh] md:rounded-none md:shadow-none xl:h-[calc(100vh-92px)]'
                 }
             >
                 <div className={'relative h-full w-full'}>
@@ -175,6 +175,36 @@ export default function ZeekrConstructorPage(props: Props) {
                                         }
                                     )}
                             </div>
+                            <div
+                                className={
+                                    'absolute left-0 top-0 h-full w-full'
+                                }
+                            >
+                                <div className='absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 lg:max-w-[800px] xl:max-w-[800px] 2xl:max-w-[1000px]'>
+                                    {selectedView === 'virtual_view' && (
+                                        <motion.div
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ duration: 1 }}
+                                            className='px-3'
+                                        >
+                                            <iframe
+                                                id='advanced_iframe'
+                                                name='advanced_iframe'
+                                                src={
+                                                    selectedModel?.virtual_view
+                                                }
+                                                width='100%'
+                                                height='600'
+                                                frameborder='0'
+                                                allowtransparency='true'
+                                                loading='lazy'
+                                                className='mt-8 h-[280px] w-full rounded-xl sm:h-[400px] md:h-[420px] md:w-full xl:h-[600px] 2xl:h-[650px]'
+                                            ></iframe>
+                                        </motion.div>
+                                    )}
+                                </div>
+                            </div>
                         </>
                     ) : (
                         <Loader
@@ -206,13 +236,13 @@ export default function ZeekrConstructorPage(props: Props) {
                     </div>
                     <div
                         className={
-                            'absolute left-1/2 top-8 flex -translate-x-1/2 gap-2 md:gap-5'
+                            'absolute left-1/2 top-2 grid w-full -translate-x-1/2 grid-cols-2 gap-2 px-4 md:top-8 md:w-auto md:gap-3'
                         }
                     >
                         <button
                             onClick={() => setSelectedView('body')}
                             className={cn(
-                                'flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub  text-xs font-semibold text-black transition-all ease-in-out sm:text-sm md:py-2 md:text-lg lg:min-w-52 lg:px-8',
+                                'flex w-full min-w-fit items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub  text-xs font-semibold text-black transition-all ease-in-out sm:text-sm md:py-1.5 md:text-base lg:min-w-52 lg:px-8',
                                 selectedView === 'body'
                                     ? 'rounded-md bg-white md:bg-white'
                                     : 'border-black bg-white/20 backdrop-blur-md'
@@ -225,7 +255,7 @@ export default function ZeekrConstructorPage(props: Props) {
                                 <button
                                     onClick={() => setSelectedView('interior')}
                                     className={cn(
-                                        'flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub text-base text-xs font-bold text-black transition-all sm:text-sm md:py-2 md:text-lg lg:min-w-52 lg:px-8',
+                                        'flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub text-base text-xs font-bold text-black transition-all sm:text-sm md:py-1.5 md:text-base lg:min-w-52 lg:px-8',
                                         selectedView === 'interior'
                                             ? 'rounded-md bg-white md:bg-white'
                                             : 'border-black bg-white/20 backdrop-blur-md'
@@ -234,6 +264,19 @@ export default function ZeekrConstructorPage(props: Props) {
                                     внутренний вид
                                 </button>
                             )}
+                        {selectedModel?.virtual_view && (
+                            <button
+                                onClick={() => setSelectedView('virtual_view')}
+                                className={cn(
+                                    'col-span-2 flex w-full items-center justify-center gap-5 whitespace-nowrap  rounded-none border border-white px-3 py-1.5 font-electrohub  text-xs font-semibold text-black transition-all ease-in-out sm:text-sm md:py-1.5 md:text-base lg:min-w-52 lg:px-8',
+                                    selectedView === 'virtual_view'
+                                        ? 'rounded-md bg-white md:bg-white'
+                                        : 'border-black bg-white/20 backdrop-blur-md'
+                                )}
+                            >
+                                виртуальный вид
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

@@ -62,7 +62,7 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
                 >
                     {description}
                 </div>
-                <button
+                {/* <button
                     type={'button'}
                     name={'prev'}
                     className={
@@ -71,7 +71,7 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
                 >
                     <div>{btn}</div>
                     <ChevronRight color={'white'} />
-                </button>
+                </button> */}
             </div>
             <div
                 className={'embla__lazy-load flex w-full items-center justify-center bg-bg_new_card bg-cover bg-no-repeat lg:w-[55%]'.concat(

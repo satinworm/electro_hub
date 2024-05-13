@@ -3,11 +3,11 @@ import { cn } from '@/lib/utils';
 
 export default function ScrollLink({
     label,
-    href,
+    id,
     styles,
 }: {
     label: string;
-    href: string;
+    id: string;
     styles?: string;
 }) {
     return (
@@ -17,7 +17,7 @@ export default function ScrollLink({
                 styles
             )}
             onClick={() => {
-                const el = document.getElementById(href);
+                const el = document.getElementById(id);
                 if (el) {
                     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
