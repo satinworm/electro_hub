@@ -164,7 +164,7 @@ export default function OfferModal(props: any) {
                     <div className='mb-3 text-center text-base text-[#1E1E1E] md:text-[20px]'>
                         Ваши контактные данные:
                     </div>
-                    <OfferFormModal close={closeDialog} />
+                    <OfferFormModal close={closeDialog} botData={undefined} />
                 </div>
             </DialogContent>
         </Dialog>

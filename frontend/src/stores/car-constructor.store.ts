@@ -76,7 +76,9 @@ export type ConstructorStoreState = {
 };
 export type SelectedViewConstructoreStoreTypes = {
     selectedView: 'body' | 'interior' | 'virtual_view';
-    setSelectedView: (selectedView: 'body' | 'interior') => void;
+    setSelectedView: (
+        selectedView: 'body' | 'interior' | 'virtual_view'
+    ) => void;
 };
 
 export const ConstructorStore = create<ConstructorStoreState>((set) => ({

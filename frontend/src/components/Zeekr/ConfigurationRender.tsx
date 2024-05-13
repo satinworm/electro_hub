@@ -196,8 +196,6 @@ export default function ZeekrConstructorPage(props: Props) {
                                                 }
                                                 width='100%'
                                                 height='600'
-                                                frameborder='0'
-                                                allowtransparency='true'
                                                 loading='lazy'
                                                 className='mt-8 h-[280px] w-full rounded-xl sm:h-[400px] md:h-[420px] md:w-full xl:h-[600px] 2xl:h-[650px]'
                                             ></iframe>

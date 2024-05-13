@@ -22,7 +22,7 @@ export const NavLink = ({
                     <span>{label}</span>
                 </Link>
             ) : (
-                <ScrollLink href={href} label={label} />
+                <ScrollLink id={href} label={label} />
             )}
         </>
     );

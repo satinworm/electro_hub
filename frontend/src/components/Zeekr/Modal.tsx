@@ -67,7 +67,7 @@ export default function ZeekrModal(props: any) {
                 </div>
 
                 <div className='mt-12 max-w-md pb-6 pr-7 font-electrohub sm:pr-12 md:mt-20 md:pr-0'>
-                    <ContactForm close={closeDialog} />
+                    <ContactForm close={closeDialog} botData={undefined} />
                 </div>
             </DialogContent>
         </Dialog>
