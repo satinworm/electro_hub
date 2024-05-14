@@ -1,3 +1,4 @@
+import ZeekrMainSection from '@/components/ ZeekrMainSection';
 import { Loader } from '@/components/Loader';
 import MainSection from '@/components/MainSection';
 import ModalTrigger from '@/components/ModalTrigger';
@@ -162,7 +163,7 @@ export default async function ZeekrPage({
         <div>
             {pageProperties && pageProperties?.data?.[0] && models ? (
                 <>
-                    <MainSection
+                    <ZeekrMainSection
                         title={'zeekr'}
                         subTitle={t('heading_description')}
                         description={t('text_description')}
@@ -190,7 +191,7 @@ export default async function ZeekrPage({
                                 styles='flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white'
                             />
                         </div>
-                    </MainSection>
+                    </ZeekrMainSection>
                     <NewArrivals
                         newArrivalsModels={models}
                         data={modelsSection}
