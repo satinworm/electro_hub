@@ -52,6 +52,7 @@ let i = 1;
 // 	}
 // }
 async function sendCarConfiguration(data, idx) {
+	console.log("data", data);
 	const {
 		model,
 		additional_options,
@@ -62,14 +63,14 @@ async function sendCarConfiguration(data, idx) {
 		number,
 	} = data;
 
+	// Собираем основное описание модели
 	let messageText = `*Обратная связь №${idx}*\n\n*Имя*: ${escape(name)}\n${
 		number === "" ? "" : `*Телефон*: ${escape(number)}`
-	}\n`;
-	// Собираем основное описание модели
-	messageText = `*Конфигурация автомобиля №${idx}*\n\n`;
+	}\n\n*Конфигурация автомобиля №${idx}*\n\n`;
 	messageText += `*Модель*: ${escape(model.name)}\n*Базовая цена*: $${
 		model.price
 	}\n\n`;
+	console.log("messageText", messageText);
 
 	// Дополнительные опции
 	messageText += `*Дополнительные опции:*\n`;
