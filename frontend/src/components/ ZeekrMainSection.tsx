@@ -31,6 +31,8 @@ export default function ZeekrMainSection(props: Props) {
                 autoPlay
                 loop
                 muted
+                playsInline
+                disablePictureInPicture
                 className='absolute left-0 top-0 h-[90vh] w-full object-cover md:h-[90vh]'
             >
                 <source src={'/zeekr/zeekr_preview.mp4'} type='video/mp4' />
@@ -46,7 +48,7 @@ export default function ZeekrMainSection(props: Props) {
                         {subTitle}
                     </div>
                 </div>
-                <div className='mt-auto mb-10 md:mt-0 md:mb-[140px] text-white'>
+                <div className='mb-10 mt-auto text-white md:mb-[140px] md:mt-0'>
                     <div className='hidden max-w-2xl text-center font-electrohub text-[16px] font-bold text-white md:block md:text-left md:text-2xl'>
                         {description}
                     </div>
