@@ -169,10 +169,10 @@ export default async function ZeekrPage({
                         description={t('text_description')}
                         bg={'zeekr-bg'}
                     >
-                        <div className='flex w-full flex-col gap-5 md:w-auto md:flex-row'>
+                        <div className='flex w-full mt-auto flex-col gap-3 md:gap-5 md:w-auto md:flex-row'>
                             <Link
                                 className={
-                                    'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-3 font-electrohub text-lg font-bold text-black md:max-w-[370px]'
+                                    'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-2 md:py-3 font-electrohub text-base md:text-lg font-bold text-black md:max-w-[370px]'
                                 }
                                 key={t('btn_constructor')}
                                 href={'/zeekr/constructor'}
@@ -188,7 +188,7 @@ export default async function ZeekrPage({
                                 data={{
                                     type: 'feedback',
                                 }}
-                                styles='flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white'
+                                styles='flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-2 md:py-3 font-electrohub text-base md:text-lg font-bold text-white'
                             />
                         </div>
                     </ZeekrMainSection>

@@ -46,7 +46,7 @@ export default function ZeekrMainSection(props: Props) {
                         {subTitle}
                     </div>
                 </div>
-                <div className='mb-[140px] text-white'>
+                <div className='mt-auto mb-10 md:mt-0 md:mb-[140px] text-white'>
                     <div className='hidden max-w-2xl text-center font-electrohub text-[16px] font-bold text-white md:block md:text-left md:text-2xl'>
                         {description}
                     </div>
