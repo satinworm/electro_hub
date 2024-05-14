@@ -38,7 +38,7 @@ export default function ModalComponent(props: any) {
                             </div>
                             <div
                                 className={
-                                    'absolute left-0 z-[2] translate-y-[90%] text-[32px]  lg:text-[54px]'
+                                    'absolute left-0 z-[2] translate-y-[60%] text-[32px]  lg:text-[54px]'
                                 }
                             >
                                 {header}

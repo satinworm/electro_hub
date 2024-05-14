@@ -52,10 +52,21 @@ let i = 1;
 // 	}
 // }
 async function sendCarConfiguration(data, idx) {
-	const { model, additional_options, wheels, interior_color, body } = data;
+	const {
+		model,
+		additional_options,
+		wheels,
+		interior_color,
+		body,
+		name,
+		number,
+	} = data;
 
+	let messageText = `*Обратная связь №${idx}*\n\n*Имя*: ${escape(name)}\n${
+		number === "" ? "" : `*Телефон*: ${escape(number)}`
+	}\n`;
 	// Собираем основное описание модели
-	let messageText = `*Конфигурация автомобиля №${idx}*\n\n`;
+	messageText = `*Конфигурация автомобиля №${idx}*\n\n`;
 	messageText += `*Модель*: ${escape(model.name)}\n*Базовая цена*: $${
 		model.price
 	}\n\n`;
@@ -130,7 +141,7 @@ async function sendStockAlert(name, number, link, idx) {
 	}
 }
 app.post("/applications", async (req, res) => {
-	const { title, cart, data } = req.body;
+	const { data } = req.body;
 	console.log("req.body", req.body);
 
 	if (data?.type === "constructor") {

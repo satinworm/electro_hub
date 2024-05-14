@@ -13,6 +13,7 @@ import {
 import Image from 'next/image';
 import { getStrapiMedia } from '@/utils/api-helpers';
 import { DialogStore } from '@/stores/dialog.store';
+import ModalTrigger from './ModalTrigger';
 
 type Props = {
     data: {
@@ -196,17 +197,18 @@ export default function CarsToOrder({ data }: Props) {
                                     </div>
                                 </div>
                                 <div className={'mt-7 w-full'}>
-                                    <button
-                                        type={'button'}
-                                        onClick={() => setOpen(true)}
-                                        className={
-                                            'w-full rounded-[10px] bg-[#1e1e1e] py-3 text-center text-xs font-bold text-white'
+                                    <ModalTrigger
+                                        header={'Связь с нами'}
+                                        description={
+                                            'Наш специалист свяжется с Вами и ответит на все интересующие Вас вопросы.'
                                         }
-                                    >
-                                        {locale === 'ru'
-                                            ? 'Подробнее'
-                                            : 'More details'}
-                                    </button>
+                                        label={
+                                            locale === 'ru'
+                                                ? 'Подробнее'
+                                                : 'More details'
+                                        }
+                                        styles='w-full rounded-[10px] bg-[#1e1e1e] py-3 text-center text-xs font-bold text-white'
+                                    />
                                 </div>
                             </div>
                         </CarouselItem>

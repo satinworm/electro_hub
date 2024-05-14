@@ -44,30 +44,30 @@ export default async function StockCarFullPage({ params }: any) {
         <section className={'bg-[#1e1e1e]/30 font-electrohub'}>
             <div
                 className={
-                    'mt-24 flex w-full -space-x-2 bg-white py-4 text-white'
+                    'mt-24 flex w-full flex-col lg:flex-row md:-space-x-2 bg-white py-4 text-white'
                 }
             >
-                <div className='wrapper w-full md:w-[62%]'>
+                <div className='wrapper w-full p-3 md:w-[62%]'>
                     <GalleryComponent
                         photos={carsInStockData?.data?.[0]?.attributes?.gallery}
                     />
                 </div>
                 <div
                     className={
-                        'bg-white px-10 text-[#1e1e1e] md:w-[38%] md:py-12'
+                        'bg-white px-4 lg:px-10 text-[#1e1e1e] md:w-[38%] md:py-12'
                     }
                 >
-                    <h1 className={'text-[40px] font-bold'}>{item.name}</h1>
-                    <p className={'mt-6 text-[28px] font-bold'}>
+                    <h1 className={'md:text-[32px] text-[24px] lg:text-[40px] font-bold'}>{item.name}</h1>
+                    <p className={'mt-3 lg:mt-6 text-xl lg:text-[28px] font-bold'}>
                         {item.price_usd} $
                     </p>
-                    <p className={'text-[20px] font-bold text-[#3E4247]'}>
+                    <p className={' text-[20px] font-bold text-[#3E4247]'}>
                         {item.price_byn} BYN
                     </p>
                     <p className={'mb-10 mt-6 text-[#2E71EF]'}>{item.lising}</p>
 
                     {item?.short_specification && (
-                        <div className={'text-xl'}>
+                        <div className={'text-base lg:text-xl'}>
                             <BlocksRenderer
                                 content={item.short_specification as any}
                             />

@@ -80,7 +80,7 @@ export default function ZeekrConstructorPage(props: Props) {
         <>
             <div
                 className={
-                    ' h-[50vh] rounded-b-2xl shadow-2xl sm:h-[50vh] md:min-h-[60vh] md:rounded-none md:shadow-none xl:h-[calc(100vh-92px)]'
+                    ' h-[55vh] rounded-b-2xl shadow-2xl sm:h-[50vh] md:min-h-[60vh] md:rounded-none md:shadow-none xl:h-[calc(100vh-92px)]'
                 }
             >
                 <div className={'relative h-full w-full'}>
@@ -211,14 +211,14 @@ export default function ZeekrConstructorPage(props: Props) {
                             }
                         />
                     )}
-                    <div className={'absolute bottom-8 left-6'}>
-                        <h1
+                    <div className={'absolute bottom-2 left-3 md:bottom-8 md:left-6'}>
+                        <div
                             className={
                                 'text-lg font-bold uppercase text-black/60 md:text-4xl'
                             }
                         >
                             {selectedModel?.name}
-                        </h1>
+                        </div>
                         <div className={'flex items-baseline gap-3'}>
                             <div
                                 className={

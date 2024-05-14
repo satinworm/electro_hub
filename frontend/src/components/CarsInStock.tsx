@@ -42,7 +42,7 @@ export default function CarsInStock({ data }: Props) {
     console.log('opa data ', data?.data);
     return (
         <section
-            id={'cars-to-order'}
+            id={'cars-in-stock'}
             className='flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'
         >
             <div className='z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:-mt-[48px] md:h-[48px] md:bg-rectangle_main' />

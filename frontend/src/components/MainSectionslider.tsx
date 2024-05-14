@@ -152,9 +152,20 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                 'h-full w-full overflow-hidden rounded-2xl object-fill'
                                             }
                                         />
-                                        <button
+                                        <ModalTrigger
+                                            header={'Связь с нами'}
+                                            description={
+                                                'Наш специалист свяжется с Вами и ответит на все интересующие Вас вопросы.'
+                                            }
+                                            label={'Узнать подбробнее'}
+                                            data={{
+                                                type: 'feedback',
+                                            }}
+                                            styles='absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]'
+                                        />
+                                        {/* <button
                                             className={
-                                                'absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]'
+                                                'absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2  translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]'
                                             }
                                             key={item.name}
                                             onClick={() => setOpen(true)}
@@ -166,7 +177,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             >
                                                 {'Узнать подбробнее'}
                                             </span>
-                                        </button>
+                                        </button> */}
                                     </div>
                                     <div
                                         className={
@@ -407,7 +418,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                     />
                                                     <span
                                                         className={
-                                                            'absolute left-5 top-5 text-sm font-black text-[#1e1e1e]'
+                                                            'absolute hidden md:block left-5 top-5 text-sm font-black text-[#1e1e1e]'
                                                         }
                                                     >
                                                         {item.starting_price}

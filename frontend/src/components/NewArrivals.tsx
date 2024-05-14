@@ -102,6 +102,28 @@ export default function NewArrivals({ newArrivalsModels, data }: any) {
                 },
             },
         },
+        {
+            id: '007 RWD',
+            store: {
+                configuration: 'Zeekr 007 RWD',
+                body: 'white',
+                wheels: 'default',
+                interior_colors: 'black',
+                defaultRenderImage: {
+                    url: '/uploads/white_default_c3f04a6850.png',
+                    width: 1000,
+                    height: 360,
+                    name: 'white_default.png',
+                },
+                renderImage:
+                    'http://localhost:1349/uploads/white_default_c3f04a6850.png',
+                defaultPrice: 50000,
+                price: {
+                    body: 200,
+                    wheels: 0,
+                },
+            },
+        },
     ];
     return (
         <>
