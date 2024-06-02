@@ -1,7 +1,7 @@
 import GalleryComponent from "@/components/GalleryComponent";
 import ModalTrigger from "@/components/ModalTrigger";
 import ScrollLink from "@/components/ScrollLink";
-import Test from "@/components/Test";
+
 import { getDataFromAPI } from "@/utils/fetch-api";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { getTranslations } from "next-intl/server";
@@ -53,8 +53,6 @@ export default async function NewsFullPage({ params }: any) {
 					<h1 className={"md:text-[28px] my-auto text-[20px] lg:text-[32px] font-bold"}>
 						{item.title}
 					</h1>
-
-				
 				</div>
 			</div>
 			{/* {item?.specification?.length > 0 && (

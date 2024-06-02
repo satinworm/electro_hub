@@ -23,6 +23,7 @@ type Item = {
 		header: string;
 		date: string;
 		btn: string;
+		href: string;
 		image: {
 			data: {
 				attributes: {
@@ -85,6 +86,7 @@ export default function NewsSection({ data }: Data) {
 						<div className="embla__container">
 							{data?.data?.map((item: Item, index: number) => (
 								<LazyLoadImage
+									// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 									key={index}
 									index={index}
 									href={item?.attributes?.href}
@@ -92,9 +94,12 @@ export default function NewsSection({ data }: Data) {
 									title={item?.attributes?.title}
 									date={item?.attributes?.date}
 									description={item?.attributes?.description}
+									// biome-ignore lint/style/noNonNullAssertion: <explanation>
 									width={item?.attributes?.image?.data?.attributes?.width!}
+									// biome-ignore lint/style/noNonNullAssertion: <explanation>
 									height={item.attributes?.image?.data?.attributes?.height!}
 									imgSrc={
+										// biome-ignore lint/style/noNonNullAssertion: <explanation>
 										getStrapiMedia(
 											item?.attributes?.image?.data?.attributes?.url,
 										)!
