@@ -5,8 +5,8 @@ import { NavLink } from '@/components/navbar/NavLink';
 import Image from 'next/image';
 import Link from 'next/link';
 import Burger from '@/components/navbar/Burger';
-import { NavbarResponse } from '@/types/navbar.types';
-import { BrandsResponse } from '@/types/brands.types';
+import type { NavbarResponse } from '@/types/navbar.types';
+import type { BrandsResponse } from '@/types/brands.types';
 import { headers } from 'next/headers';
 import { cn } from '@/lib/utils';
 

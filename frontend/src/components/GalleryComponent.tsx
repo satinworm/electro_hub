@@ -1,5 +1,5 @@
 'use client';
-import { Options } from '@splidejs/splide';
+import type { Options } from '@splidejs/splide';
 // @ts-ignore
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import React, { useEffect, useRef } from 'react';

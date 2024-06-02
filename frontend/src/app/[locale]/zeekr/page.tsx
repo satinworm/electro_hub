@@ -1,9 +1,9 @@
-import ZeekrMainSection from '@/components/ ZeekrMainSection';
 import { Loader } from '@/components/Loader';
 import MainSection from '@/components/MainSection';
 import ModalTrigger from '@/components/ModalTrigger';
 import NewArrivals from '@/components/NewArrivals';
 import ZeekrExterior from '@/components/ZeekrExterior';
+import ZeekrMainSection from '@/components/ ZeekrMainSection';
 import { getStrapiMedia } from '@/utils/api-helpers';
 import { getDataFromAPI } from '@/utils/fetch-api';
 import { getTranslations } from 'next-intl/server';
@@ -104,6 +104,7 @@ export default async function ZeekrPage({
                             fields: '*',
                             populate: '*',
                         },
+
                         advantage: {
                             fields: '*',
                         },
@@ -169,10 +170,10 @@ export default async function ZeekrPage({
                         description={t('text_description')}
                         bg={'zeekr-bg'}
                     >
-                        <div className='flex w-full mt-auto flex-col gap-3 md:gap-5 md:w-auto md:flex-row'>
+                        <div className='mt-auto flex w-full flex-col gap-3 md:w-auto md:flex-row md:gap-5'>
                             <Link
                                 className={
-                                    'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-2 md:py-3 font-electrohub text-base md:text-lg font-bold text-black md:max-w-[370px]'
+                                    'flex w-full items-center justify-center gap-5 rounded-none border-white bg-white px-12 py-2 font-electrohub text-base font-bold text-black md:max-w-[370px] md:py-3 md:text-lg'
                                 }
                                 key={t('btn_constructor')}
                                 href={'/zeekr/constructor'}

@@ -1574,6 +1574,24 @@ export interface ApiNewNew extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<'\u041F\u043E\u0434\u0440\u043E\u0431\u043D\u0435\u0435'>;
+    href: Attribute.UID<'api::new.new', 'title'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    full_description: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    gallery: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::new.new', 'oneToOne', 'admin::user'> &
