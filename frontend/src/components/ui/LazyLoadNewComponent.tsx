@@ -96,16 +96,15 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
 			>
 				{description}
 			</div>
-			<button
-				type={"button"}
-				name={"next"}
+			<Link
+				href={`/news/${href}`}
 				className={
 					"mx-auto flex w-full items-center justify-center gap-2 bg-black px-10 py-2.5 text-sm font-bold text-white md:w-fit md:px-12 md:py-5 md:text-lg lg:hidden"
 				}
 			>
 				<div>{btn}</div>
 				<ChevronRight color={"white"} />
-			</button>
+			</Link>
 		</div>
 	);
 };
