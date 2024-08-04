@@ -85,7 +85,7 @@ export default function ContactForm({
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
                     control={form.control}
-                    name='name'
+                    name="name"
                     render={({ field }) => (
                         <FormItem className={cn('')}>
                             <FormControl>
@@ -103,17 +103,17 @@ export default function ContactForm({
                 />
                 <FormField
                     control={form.control}
-                    name='phone'
+                    name="phone"
                     render={({ field }) => (
-                        <FormItem className='mt-8 flex flex-col items-start'>
-                            <FormControl className='w-full'>
+                        <FormItem className="mt-8 flex flex-col items-start">
+                            <FormControl className="w-full">
                                 <PhoneInput
                                     international
                                     className={
                                         'rounded-0 rounded-none border-b-[2px] border-l-0 border-r-0 border-t-0 border-[#898989] font-electrohub placeholder:text-[16px] placeholder:text-[#898989]'
                                     }
                                     defaultCountry={'BY'}
-                                    placeholder='Введите номер телефона'
+                                    placeholder="Введите номер телефона"
                                     {...field}
                                 />
                             </FormControl>

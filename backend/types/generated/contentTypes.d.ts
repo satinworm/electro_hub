@@ -981,18 +981,6 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    price_byn: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    price_usd: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     lising: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1059,26 +1047,26 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    body: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Attribute.DefaultTo<'\u043B\u0438\u0444\u0442\u0431\u0435\u043A'>;
     preview_image: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
-    engine_type: Attribute.String &
+    engine_type: Attribute.Enumeration<
+      [
+        '\u042D\u043B\u0435\u043A\u0442\u0440\u043E',
+        '\u0413\u0438\u0431\u0440\u0438\u0434(\u043F\u043E\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0439)',
+        '\u0413\u0438\u0431\u0440\u0438\u0434(\u043F\u0430\u0440\u0430\u043B\u043B\u0435\u043B\u044C\u043D\u044B\u0439)',
+        '\u0411\u0435\u043D\u0437\u0438\u043D'
+      ]
+    > &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
-      }> &
-      Attribute.DefaultTo<'\u044D\u043B\u0435\u043A\u0442\u0440\u043E'>;
+      }>;
     gearbox: Attribute.Enumeration<
       [
         '\u0430\u0432\u0442\u043E\u043C\u0430\u0442',
@@ -1091,6 +1079,56 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<'\u0430\u0432\u0442\u043E\u043C\u0430\u0442'>;
+    brand: Attribute.Relation<
+      'api::cars-in-stock.cars-in-stock',
+      'oneToOne',
+      'api::brand.brand'
+    >;
+    generation: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    body: Attribute.Enumeration<
+      [
+        '\u043B\u0438\u0444\u0442\u0431\u0435\u043A',
+        '\u043A\u0440\u043E\u0441\u0441\u043E\u0432\u0435\u0440',
+        '\u043C\u0438\u043D\u0438\u0432\u044D\u043D',
+        '\u0441\u0435\u0434\u0430\u043D'
+      ]
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    battery_capacity: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    vehicle_range: Attribute.Float &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    price: Attribute.Float &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    hourse_power: Attribute.Float &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

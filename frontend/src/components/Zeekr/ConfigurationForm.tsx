@@ -1,7 +1,13 @@
 'use client';
-import { CarConstructorResponse, Model } from '@/types/zeekr-constructor';
-import Image from 'next/image';
-import { getStrapiMedia } from '@/utils/api-helpers';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+} from '@/components/ui/command';
 import {
     FormControl,
     FormField,
@@ -14,24 +20,18 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover';
-import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Check, ChevronsUpDown } from 'lucide-react';
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-} from '@/components/ui/command';
 import { cn } from '@/lib/utils';
 import {
     ConstructorStore,
-    ConstructorStoreState,
+    type ConstructorStoreState,
     SelectedViewConstructoreStore,
 } from '@/stores/car-constructor.store';
-import { Checkbox } from '@/components/ui/checkbox';
 import { ZeekrModalStore } from '@/stores/dialog.store';
+import type { CarConstructorResponse, Model } from '@/types/zeekr-constructor';
+import { getStrapiMedia } from '@/utils/api-helpers';
+import { Check, ChevronsUpDown } from 'lucide-react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import ModalTrigger from '../ModalTrigger';
 
 export default function ConfigurationForm({
@@ -99,15 +99,15 @@ export default function ConfigurationForm({
             {models && (
                 <div
                     className={
-                        'md:gap-y-15 mt-12 flex w-full flex-col gap-y-10 font-electrohub'
+                        'mt-12 flex w-full flex-col gap-y-10 font-electrohub md:gap-y-15'
                     }
                 >
                     <FormField
                         control={form.control}
-                        name='configuration'
+                        name="configuration"
                         render={({ field }) => (
-                            <FormItem className='relative w-full'>
-                                <FormLabel className='whitespace-nowrap font-electrohub text-sm font-bold'>
+                            <FormItem className="relative w-full">
+                                <FormLabel className="whitespace-nowrap font-bold font-electrohub text-sm">
                                     Модель
                                 </FormLabel>
                                 <Popover
@@ -118,8 +118,8 @@ export default function ConfigurationForm({
                                     <PopoverTrigger asChild>
                                         <Button
                                             variant={'constructor'}
-                                            role='combobox'
-                                            className='w-full justify-between rounded-none text-sm'
+                                            role="combobox"
+                                            className="w-full justify-between rounded-none text-sm"
                                         >
                                             {field.value
                                                 ? models?.find(
@@ -128,101 +128,88 @@ export default function ConfigurationForm({
                                                           field.value
                                                   )?.name
                                                 : 'Выберете модель'}
-                                            <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+                                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                                         </Button>
                                     </PopoverTrigger>
 
-                                    <PopoverContent className='max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0'>
+                                    <PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
                                         <Command>
                                             <CommandInput
                                                 className={'font-electrohub'}
-                                                placeholder='Поиск...'
+                                                placeholder="Поиск..."
                                             />
                                             <CommandEmpty>
                                                 не найдено
                                             </CommandEmpty>
-                                            <CommandGroup className='max-h-[200px] overflow-y-auto bg-white'>
-                                                {models &&
-                                                    models?.map(
-                                                        (model: Model) => {
-                                                            return (
-                                                                <CommandItem
-                                                                    key={
+                                            <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
+                                                {models?.map((model: Model) => {
+                                                    return (
+                                                        <CommandItem
+                                                            key={model.name}
+                                                            value={model.name}
+                                                            onSelect={() => {
+                                                                updateOffer({
+                                                                    ...offer,
+                                                                    model: {
+                                                                        name: model.name,
+                                                                        price: model.default_price,
+                                                                    },
+                                                                });
+                                                                form.setValue(
+                                                                    'configuration',
+                                                                    model.name
+                                                                );
+                                                                console.log(
+                                                                    'first ',
+                                                                    model
+                                                                );
+                                                                setSelectedView(
+                                                                    'body'
+                                                                );
+                                                                setConstructor({
+                                                                    defaultRenderImage:
+                                                                        model
+                                                                            .default_image
+                                                                            .data
+                                                                            .attributes,
+                                                                    configuration:
+                                                                        model.name,
+                                                                    defaultPrice:
+                                                                        model.default_price,
+                                                                    renderImage:
+                                                                        model
+                                                                            .default_image
+                                                                            .data
+                                                                            .attributes
+                                                                            .url,
+                                                                    body: model
+                                                                        .body_colors[0]
+                                                                        .name,
+                                                                });
+                                                                setModelsListOpen(
+                                                                    false
+                                                                );
+                                                            }}
+                                                        >
+                                                            <Check
+                                                                className={cn(
+                                                                    'mr-2 h-4 w-4',
+                                                                    field.value ===
                                                                         model.name
-                                                                    }
-                                                                    value={
-                                                                        model.name
-                                                                    }
-                                                                    onSelect={() => {
-                                                                        updateOffer(
-                                                                            {
-                                                                                ...offer,
-                                                                                model: {
-                                                                                    name: model.name,
-                                                                                    price: model.default_price,
-                                                                                },
-                                                                            }
-                                                                        );
-                                                                        form.setValue(
-                                                                            'configuration',
-                                                                            model.name
-                                                                        );
-                                                                        console.log(
-                                                                            'first ',
-                                                                            model
-                                                                        );
-                                                                        setSelectedView(
-                                                                            'body'
-                                                                        );
-                                                                        setConstructor(
-                                                                            {
-                                                                                defaultRenderImage:
-                                                                                    model
-                                                                                        .default_image
-                                                                                        .data
-                                                                                        .attributes,
-                                                                                configuration:
-                                                                                    model.name,
-                                                                                defaultPrice:
-                                                                                    model.default_price,
-                                                                                renderImage:
-                                                                                    model
-                                                                                        .default_image
-                                                                                        .data
-                                                                                        .attributes
-                                                                                        .url,
-                                                                                body: model
-                                                                                    .body_colors[0]
-                                                                                    .name,
-                                                                            }
-                                                                        );
-                                                                        setModelsListOpen(
-                                                                            false
-                                                                        );
-                                                                    }}
-                                                                >
-                                                                    <Check
-                                                                        className={cn(
-                                                                            'mr-2 h-4 w-4',
-                                                                            field.value ===
-                                                                                model.name
-                                                                                ? 'opacity-100'
-                                                                                : 'opacity-0'
-                                                                        )}
-                                                                    />
-                                                                    <span
-                                                                        className={
-                                                                            'test-sm font-electrohub font-normal'
-                                                                        }
-                                                                    >
-                                                                        {
-                                                                            model.name
-                                                                        }
-                                                                    </span>
-                                                                </CommandItem>
-                                                            );
-                                                        }
-                                                    )}
+                                                                        ? 'opacity-100'
+                                                                        : 'opacity-0'
+                                                                )}
+                                                            />
+                                                            <span
+                                                                className={
+                                                                    'test-sm font-electrohub font-normal'
+                                                                }
+                                                            >
+                                                                {model.name}
+                                                            </span>
+                                                        </CommandItem>
+                                                    );
+                                                })}
                                             </CommandGroup>
                                         </Command>
                                     </PopoverContent>
@@ -234,7 +221,7 @@ export default function ConfigurationForm({
                     {selectedModelObject?.default_price && (
                         <div className={'flex items-baseline gap-2'}>
                             <span>Стартовая цена:</span>
-                            <span className={'text-lg font-bold'}>
+                            <span className={'font-bold text-lg'}>
                                 {selectedModelObject?.default_price}$
                             </span>
                         </div>
@@ -244,11 +231,11 @@ export default function ConfigurationForm({
                         selectedModelObject?.body_colors?.length > 0 && (
                             <FormField
                                 control={form.control}
-                                name='color'
+                                name="color"
                                 render={() => (
                                     <FormItem>
-                                        <div className='mb-4'>
-                                            <FormLabel className='text-sm font-bold'>
+                                        <div className="mb-4">
+                                            <FormLabel className="font-bold text-sm">
                                                 Выбрать цвет кузова:
                                             </FormLabel>
                                         </div>
@@ -267,7 +254,7 @@ export default function ConfigurationForm({
                                                             control={
                                                                 form.control
                                                             }
-                                                            name='color'
+                                                            name="color"
                                                             render={({
                                                                 field,
                                                             }) => {
@@ -276,7 +263,7 @@ export default function ConfigurationForm({
                                                                         key={
                                                                             item.id
                                                                         }
-                                                                        className='flex'
+                                                                        className="flex"
                                                                     >
                                                                         <FormControl>
                                                                             <FormLabel
@@ -287,7 +274,7 @@ export default function ConfigurationForm({
                                                                                     ) ===
                                                                                         item.render_url
                                                                                         ? 'border-[2px] border-black p-1.5'
-                                                                                        : 'border-[1px] border-[#808080] p-1'
+                                                                                        : 'border-[#808080] border-[1px] p-1'
                                                                                 )}
                                                                             >
                                                                                 <div
@@ -405,7 +392,7 @@ export default function ConfigurationForm({
 
                                                                         selectedColor?.additional_description ===
                                                                             null
-                                                                            ? 'min-h-o h-0'
+                                                                            ? 'h-0 min-h-o'
                                                                             : 'min-h-14'
                                                                     )}
                                                                 >
@@ -428,11 +415,11 @@ export default function ConfigurationForm({
                         selectedModelObject?.interior_colors?.length > 0 && (
                             <FormField
                                 control={form.control}
-                                name='interior_colors'
+                                name="interior_colors"
                                 render={() => (
                                     <FormItem>
-                                        <div className='mb-4'>
-                                            <FormLabel className='text-sm font-bold'>
+                                        <div className="mb-4">
+                                            <FormLabel className="font-bold text-sm">
                                                 Выбрать салон:
                                             </FormLabel>
                                         </div>
@@ -451,7 +438,7 @@ export default function ConfigurationForm({
                                                             control={
                                                                 form.control
                                                             }
-                                                            name='interior_colors'
+                                                            name="interior_colors"
                                                             render={({
                                                                 field,
                                                             }) => {
@@ -460,7 +447,7 @@ export default function ConfigurationForm({
                                                                         key={
                                                                             item.id
                                                                         }
-                                                                        className='flex'
+                                                                        className="flex"
                                                                     >
                                                                         <FormControl>
                                                                             <FormLabel
@@ -471,7 +458,7 @@ export default function ConfigurationForm({
                                                                                     ) ===
                                                                                         item.render_url
                                                                                         ? 'border-[1px] border-black p-0'
-                                                                                        : 'border-[1px] border-[#808080] p-1'
+                                                                                        : 'border-[#808080] border-[1px] p-1'
                                                                                 )}
                                                                             >
                                                                                 <Image
@@ -618,11 +605,11 @@ export default function ConfigurationForm({
                         selectedModelObject?.wheels?.length > 0 && (
                             <FormField
                                 control={form.control}
-                                name='wheels'
+                                name="wheels"
                                 render={() => (
                                     <FormItem>
-                                        <div className='mb-4'>
-                                            <FormLabel className='text-sm font-bold'>
+                                        <div className="mb-4">
+                                            <FormLabel className="font-bold text-sm">
                                                 Выбрать диски:
                                             </FormLabel>
                                         </div>
@@ -641,7 +628,7 @@ export default function ConfigurationForm({
                                                             control={
                                                                 form.control
                                                             }
-                                                            name='wheels'
+                                                            name="wheels"
                                                             render={({
                                                                 field,
                                                             }) => {
@@ -650,7 +637,7 @@ export default function ConfigurationForm({
                                                                         key={
                                                                             item.id
                                                                         }
-                                                                        className='flex'
+                                                                        className="flex"
                                                                     >
                                                                         <FormControl>
                                                                             <FormLabel
@@ -661,7 +648,7 @@ export default function ConfigurationForm({
                                                                                     ) ===
                                                                                         item.render_url
                                                                                         ? 'border-[2px] border-black p-1.5'
-                                                                                        : 'border-[1px] border-[#808080] p-1'
+                                                                                        : 'border-[#808080] border-[1px] p-1'
                                                                                 )}
                                                                             >
                                                                                 <Image
@@ -795,7 +782,7 @@ export default function ConfigurationForm({
                     {selectedModelObject?.additional_options &&
                         selectedModelObject?.additional_options.length > 0 && (
                             <div className={'flex flex-col gap-x-5 gap-y-3'}>
-                                <div className={'text-lg font-bold'}>
+                                <div className={'font-bold text-lg'}>
                                     Дополнительные опции:
                                 </div>
                                 {selectedModelObject?.additional_options?.map(
@@ -855,7 +842,7 @@ export default function ConfigurationForm({
                                                                 }}
                                                             />
                                                         </FormControl>
-                                                        <div className='space-y-1'>
+                                                        <div className="space-y-1">
                                                             <FormLabel
                                                                 className={
                                                                     'flex flex-col gap-2'
@@ -886,11 +873,11 @@ export default function ConfigurationForm({
                         )}
                 </div>
             )}
-            <div className='mt-7 flex w-full flex-col gap-2'>
+            <div className="mt-7 flex w-full flex-col gap-2">
                 <button
-                    type='button'
+                    type="button"
                     onClick={() => setOpen(true)}
-                    className='w-full cursor-pointer rounded-md bg-[#1E1E1E] py-3 text-sm text-white'
+                    className="w-full cursor-pointer rounded-md bg-[#1E1E1E] py-3 text-sm text-white"
                 >
                     Оставить заявку
                 </button>
@@ -900,7 +887,7 @@ export default function ConfigurationForm({
                         'Оставьте свои контактные данные и мы свяжемся с вами в ближайшее время'
                     }
                     label={'Консультация'}
-                    styles='w-full cursor-pointer rounded-md border border-[#1e1e1e] bg-white py-3 text-sm text-black'
+                    styles="w-full cursor-pointer rounded-md border border-[#1e1e1e] bg-white py-3 text-sm text-black"
                 />
                 {/* <button
                     type='button'

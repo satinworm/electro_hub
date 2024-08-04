@@ -29,19 +29,19 @@ export function LocaleToogle() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button
-                    className='group gap-2 border-primary dark:border-white'
-                    variant='outline'
+                    className="group gap-2 border-primary dark:border-white"
+                    variant="outline"
                     size={'sm'}
                 >
-                    <span className='select-none text-sm uppercase text-black'>
+                    <span className="select-none text-sm uppercase text-black">
                         {locale}
                     </span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className='w-16'>
+            <DropdownMenuContent className="w-16">
                 <DropdownMenuGroup>
                     <div
-                        className='flex w-full cursor-pointer justify-center'
+                        className="flex w-full cursor-pointer justify-center"
                         onClick={() => changeLang('ru')}
                     >
                         <DropdownMenuItem className={'cursor-pointer'}>
@@ -50,7 +50,7 @@ export function LocaleToogle() {
                     </div>
                     <div
                         onClick={() => changeLang('en')}
-                        className='flex w-full cursor-pointer justify-center'
+                        className="flex w-full cursor-pointer justify-center"
                     >
                         <DropdownMenuItem
                             className={'cursor-pointer text-black'}

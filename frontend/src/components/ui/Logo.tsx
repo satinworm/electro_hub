@@ -20,7 +20,7 @@ export default function Logo({ data }: Props) {
                     <Image
                         src={getStrapiMedia(data?.url)!}
                         priority={true}
-                        alt='Logo'
+                        alt="Logo"
                         width={160}
                         height={30}
                     />

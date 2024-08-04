@@ -19,7 +19,7 @@ export default function ZeekrModal(props: any) {
     return (
         <Dialog onOpenChange={setOpen} open={open}>
             <DialogTrigger asChild></DialogTrigger>
-            <DialogContent className='max-w-[90%] overflow-hidden rounded-[10px] border-r-0 px-0 py-2 pl-7 pt-8 font-electrohub sm:max-w-3xl sm:pl-12 md:pl-16 md:pt-10 lg:max-w-5xl lg:pb-16 lg:pl-24 lg:pt-12'>
+            <DialogContent className="max-w-[90%] overflow-hidden rounded-[10px] border-r-0 px-0 py-2 pl-7 pt-8 font-electrohub sm:max-w-3xl sm:pl-12 md:pl-16 md:pt-10 lg:max-w-5xl lg:pb-16 lg:pl-24 lg:pt-12">
                 <DialogHeader>
                     <DialogDescription className={'text-black'}>
                         <div className={'relative'}>
@@ -41,12 +41,12 @@ export default function ZeekrModal(props: any) {
                     </DialogDescription>
                     <Button
                         variant={'ghost'}
-                        id='closeDialog'
+                        id="closeDialog"
                         onClick={() => setOpen(false)}
-                        className='absolute -right-1 -top-1 cursor-pointer rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-ring focus:ring-offset-2  disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground md:right-4 md:top-2'
+                        className="absolute -right-1 -top-1 cursor-pointer rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-ring focus:ring-offset-2  disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground md:right-4 md:top-2"
                     >
-                        <Cross2Icon className='h-5 w-5 md:h-6 md:w-6' />
-                        <span className='sr-only'>Close</span>
+                        <Cross2Icon className="h-5 w-5 md:h-6 md:w-6" />
+                        <span className="sr-only">Close</span>
                     </Button>
                 </DialogHeader>
                 <Image
@@ -66,7 +66,7 @@ export default function ZeekrModal(props: any) {
                     {description}
                 </div>
 
-                <div className='mt-12 max-w-md pb-6 pr-7 font-electrohub sm:pr-12 md:mt-20 md:pr-0'>
+                <div className="mt-12 max-w-md pb-6 pr-7 font-electrohub sm:pr-12 md:mt-20 md:pr-0">
                     <ContactForm close={closeDialog} botData={undefined} />
                 </div>
             </DialogContent>

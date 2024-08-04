@@ -103,7 +103,7 @@ const CountrySelect = ({
         <Popover>
             <PopoverTrigger asChild>
                 <Button
-                    type='button'
+                    type="button"
                     variant={'outline'}
                     className={cn('border-0 text-xs')}
                     disabled={disabled}
@@ -117,7 +117,7 @@ const CountrySelect = ({
                     />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className='w-[300px] p-0'>
+            <PopoverContent className="w-[300px] p-0">
                 <Command>
                     <CommandList>
                         <CommandInput className={''} />
@@ -127,7 +127,7 @@ const CountrySelect = ({
                                 .filter((x) => x.value)
                                 .map((option) => (
                                     <CommandItem
-                                        className='gap-2'
+                                        className="gap-2"
                                         key={option.value}
                                         onSelect={() =>
                                             handleSelect(option.value)
@@ -137,11 +137,11 @@ const CountrySelect = ({
                                             country={option.value}
                                             countryName={option.label}
                                         />
-                                        <span className='flex-1 text-sm'>
+                                        <span className="flex-1 text-sm">
                                             {option.label}
                                         </span>
                                         {option.value && (
-                                            <span className='text-sm text-foreground/50'>
+                                            <span className="text-sm text-foreground/50">
                                                 {`+${RPNInput.getCountryCallingCode(option.value)}`}
                                             </span>
                                         )}
@@ -167,7 +167,7 @@ const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
     const Flag = flags[country];
 
     return (
-        <span className='flex h-4 w-6 overflow-hidden'>
+        <span className="flex h-4 w-6 overflow-hidden">
             {Flag && <Flag title={countryName} />}
         </span>
     );

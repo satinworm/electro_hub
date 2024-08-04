@@ -113,7 +113,7 @@ export default function ZeekrConstructorPage(props: Props) {
                                             >
                                                 <Image
                                                     src={currentItemUrl!}
-                                                    className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
+                                                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                                                     width={
                                                         renderImageItem
                                                             .attributes.width
@@ -157,7 +157,7 @@ export default function ZeekrConstructorPage(props: Props) {
                                                                     .url
                                                             )!
                                                         }
-                                                        className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 xl:scale-125'
+                                                        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 xl:scale-125"
                                                         width={
                                                             item.render_image
                                                                 .data.attributes
@@ -180,24 +180,24 @@ export default function ZeekrConstructorPage(props: Props) {
                                     'absolute left-0 top-0 h-full w-full'
                                 }
                             >
-                                <div className='absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 lg:max-w-[800px] xl:max-w-[800px] 2xl:max-w-[1000px]'>
+                                <div className="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 lg:max-w-[800px] xl:max-w-[800px] 2xl:max-w-[1000px]">
                                     {selectedView === 'virtual_view' && (
                                         <motion.div
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 1 }}
                                             transition={{ duration: 1 }}
-                                            className='px-3'
+                                            className="px-3"
                                         >
                                             <iframe
-                                                id='advanced_iframe'
-                                                name='advanced_iframe'
+                                                id="advanced_iframe"
+                                                name="advanced_iframe"
                                                 src={
                                                     selectedModel?.virtual_view
                                                 }
-                                                width='100%'
-                                                height='600'
-                                                loading='lazy'
-                                                className='mt-8 h-[280px] w-full rounded-xl sm:h-[400px] md:h-[420px] md:w-full xl:h-[600px] 2xl:h-[650px]'
+                                                width="100%"
+                                                height="600"
+                                                loading="lazy"
+                                                className="mt-8 h-[280px] w-full rounded-xl sm:h-[400px] md:h-[420px] md:w-full xl:h-[600px] 2xl:h-[650px]"
                                             ></iframe>
                                         </motion.div>
                                     )}
@@ -211,7 +211,11 @@ export default function ZeekrConstructorPage(props: Props) {
                             }
                         />
                     )}
-                    <div className={'absolute bottom-2 left-3 md:bottom-8 md:left-6'}>
+                    <div
+                        className={
+                            'absolute bottom-2 left-3 md:bottom-8 md:left-6'
+                        }
+                    >
                         <div
                             className={
                                 'text-lg font-bold uppercase text-black/60 md:text-4xl'

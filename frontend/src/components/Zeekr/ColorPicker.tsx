@@ -13,7 +13,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({ options }) => {
     );
     return (
         <div>
-            <div className='relative mt-4 min-h-[200px] sm:min-h-[300px] md:min-h-[350px] lg:min-h-[420px]'>
+            <div className="relative mt-4 min-h-[200px] sm:min-h-[300px] md:min-h-[350px] lg:min-h-[420px]">
                 {options?.map((option) => (
                     <motion.img
                         key={option.id}
@@ -28,7 +28,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({ options }) => {
                     />
                 ))}
             </div>
-            <div className='flex w-full justify-center space-x-2 md:space-x-4'>
+            <div className="flex w-full justify-center space-x-2 md:space-x-4">
                 {options?.map((option) => {
                     const isSelected = option == selectedColor;
                     return (
@@ -43,7 +43,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({ options }) => {
                             }}
                         >
                             <motion.div
-                                className='h-full w-full cursor-pointer rounded-[4px]'
+                                className="h-full w-full cursor-pointer rounded-[4px]"
                                 style={{ background: option.color }}
                             />
                         </motion.div>

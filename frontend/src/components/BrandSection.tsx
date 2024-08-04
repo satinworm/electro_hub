@@ -17,13 +17,13 @@ export default function BrandSection(props: Props) {
     const h3 = data?.heading?.[0]?.h3;
     const btn = data?.heading?.[0]?.btn;
     return (
-        <section className='flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'>
-            <div className='z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:-mt-[48px] md:h-[48px] md:bg-rectangle_main' />
-            <div className='container mt-10 text-black'>
-                <h3 className='text-sm font-black text-[#1e1e1e] md:text-base'>
+        <section className="flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10">
+            <div className="z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:-mt-[48px] md:h-[48px] md:bg-rectangle_main" />
+            <div className="container mt-10 text-black">
+                <h3 className="text-sm font-black text-[#1e1e1e] md:text-base">
                     {h3}
                 </h3>
-                <div className='mt-2 flex items-center justify-between md:mt-5'>
+                <div className="mt-2 flex items-center justify-between md:mt-5">
                     <span
                         className={
                             'text-xl font-bold leading-tight text-[#1e1e1e] sm:text-2xl lg:max-w-[720px] lg:text-[32px]'
@@ -40,7 +40,7 @@ export default function BrandSection(props: Props) {
                     </span>
                 </div>
             </div>
-            <div className='container mt-6  grid grid-cols-2 gap-5 md:mt-12 md:gap-5 lg:mt-20 lg:grid-cols-3 lg:gap-6 xl:gap-10 2xl:grid-cols-4'>
+            <div className="container mt-6  grid grid-cols-2 gap-5 md:mt-12 md:gap-5 lg:mt-20 lg:grid-cols-3 lg:gap-6 xl:gap-10 2xl:grid-cols-4">
                 {brands?.data?.map((brand: any) => {
                     const {
                         logo,
@@ -63,10 +63,10 @@ export default function BrandSection(props: Props) {
                         <Link
                             key={brand.id}
                             href={`/${brandSlug}`}
-                            className='group relative flex cursor-pointer flex-col rounded-xl bg-white p-2 py-6 shadow-[0_4px_15px_2px_rgba(0,0,0,0.1)] transition hover:scale-95 hover:shadow-brandCardHover md:py-2'
+                            className="group relative flex cursor-pointer flex-col rounded-xl bg-white p-2 py-6 shadow-[0_4px_15px_2px_rgba(0,0,0,0.1)] transition hover:scale-95 hover:shadow-brandCardHover md:py-2"
                         >
-                            <div className=' flex h-full w-full flex-col items-start '>
-                                <div className='flex h-full w-full flex-col items-center justify-center gap-2 py-3 md:flex-row md:justify-start '>
+                            <div className=" flex h-full w-full flex-col items-start ">
+                                <div className="flex h-full w-full flex-col items-center justify-center gap-2 py-3 md:flex-row md:justify-start ">
                                     <Image
                                         src={getStrapiMedia(logoUrl)!}
                                         alt={name}
@@ -99,7 +99,7 @@ export default function BrandSection(props: Props) {
                                     }
                                 />
                             </div>
-                            <div className='group relative ml-5 hidden min-h-[41px] w-full max-w-[205px] items-center rounded-[10px] border border-[#1e1e1e] pl-5 pr-10 text-[#1e1e1e] transition-all duration-300 group-hover:bg-black md:flex  md:text-base'>
+                            <div className="group relative ml-5 hidden min-h-[41px] w-full max-w-[205px] items-center rounded-[10px] border border-[#1e1e1e] pl-5 pr-10 text-[#1e1e1e] transition-all duration-300 group-hover:bg-black md:flex  md:text-base">
                                 <div
                                     className={
                                         'text-[12px] text-[#1e1e1e] transition group-hover:text-white'
@@ -113,19 +113,19 @@ export default function BrandSection(props: Props) {
                                     }
                                 >
                                     <svg
-                                        width='10'
-                                        height='14'
-                                        viewBox='0 0 10 14'
-                                        fill='none'
+                                        width="10"
+                                        height="14"
+                                        viewBox="0 0 10 14"
+                                        fill="none"
                                         className={'flex'}
-                                        xmlns='http://www.w3.org/2000/svg'
+                                        xmlns="http://www.w3.org/2000/svg"
                                     >
                                         <path
-                                            d='M1 13L9 7L1 1'
-                                            stroke='white'
-                                            strokeWidth='2'
-                                            strokeLinecap='round'
-                                            strokeLinejoin='round'
+                                            d="M1 13L9 7L1 1"
+                                            stroke="white"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
                                         />
                                     </svg>
                                 </div>

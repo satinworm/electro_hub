@@ -92,12 +92,12 @@ export default function OfferFormModal({
     }
     return (
         <Form {...form}>
-            <form className='' onSubmit={form.handleSubmit(onSubmit)}>
-                <div className='flex flex-col items-center gap-3 md:flex-row md:gap-10'>
-                    <div className='flex w-full basis-1 flex-col pt-4 md:basis-1/3'>
+            <form className="" onSubmit={form.handleSubmit(onSubmit)}>
+                <div className="flex flex-col items-center gap-3 md:flex-row md:gap-10">
+                    <div className="flex w-full basis-1 flex-col pt-4 md:basis-1/3">
                         <FormField
                             control={form.control}
-                            name='name'
+                            name="name"
                             render={({ field }) => (
                                 <FormItem className={cn('')}>
                                     <FormControl>
@@ -115,17 +115,17 @@ export default function OfferFormModal({
                         />
                         <FormField
                             control={form.control}
-                            name='phone'
+                            name="phone"
                             render={({ field }) => (
-                                <FormItem className='mt-8 flex flex-col items-start'>
-                                    <FormControl className='w-full'>
+                                <FormItem className="mt-8 flex flex-col items-start">
+                                    <FormControl className="w-full">
                                         <PhoneInput
                                             international
                                             className={
                                                 'rounded-0 rounded-none border-b-[2px] border-l-0 border-r-0 border-t-0 border-[#898989] font-electrohub placeholder:text-[16px] placeholder:text-[#898989]'
                                             }
                                             defaultCountry={'BY'}
-                                            placeholder='Введите номер телефона'
+                                            placeholder="Введите номер телефона"
                                             {...field}
                                         />
                                     </FormControl>
@@ -134,17 +134,17 @@ export default function OfferFormModal({
                             )}
                         />
                     </div>
-                    <div className='flex w-full basis-1 md:basis-2/3'>
+                    <div className="flex w-full basis-1 md:basis-2/3">
                         <FormField
                             control={form.control}
-                            name='comment'
+                            name="comment"
                             render={({ field }) => (
-                                <FormItem className='mt-6 flex w-full flex-col items-start gap-4'>
+                                <FormItem className="mt-6 flex w-full flex-col items-start gap-4">
                                     <FormLabel>Комментарий</FormLabel>
                                     <FormControl>
                                         <Textarea
-                                            placeholder=''
-                                            className='resize-none'
+                                            placeholder=""
+                                            className="resize-none"
                                             {...field}
                                         />
                                     </FormControl>

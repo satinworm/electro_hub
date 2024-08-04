@@ -36,14 +36,14 @@ export default function CarsToOrder({ data }: Props) {
     return (
         <section
             id={'cars-to-order'}
-            className='flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10'
+            className="flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10"
         >
-            <div className='z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:-mt-[48px] md:h-[48px] md:bg-rectangle_main' />
-            <div className='container mt-10 text-black'>
-                <h3 className='text-sm font-black text-[#1e1e1e] md:text-base'>
+            <div className="z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:-mt-[48px] md:h-[48px] md:bg-rectangle_main" />
+            <div className="container mt-10 text-black">
+                <h3 className="text-sm font-black text-[#1e1e1e] md:text-base">
                     {locale === 'ru' ? 'АВТОМОБИЛИ К ЗАКАЗУ' : 'CARS TO ORDER'}
                 </h3>
-                <div className='mt-2 flex items-center justify-between md:mt-5'>
+                <div className="mt-2 flex items-center justify-between md:mt-5">
                     <span
                         className={
                             'text-xl font-bold leading-tight text-[#1e1e1e] sm:text-2xl lg:max-w-[720px] lg:text-[32px]'
@@ -59,10 +59,10 @@ export default function CarsToOrder({ data }: Props) {
                 opts={{
                     align: 'start',
                 }}
-                className='container mt-6 w-full px-3 md:mt-10 lg:mt-12 xl:mt-16 '
+                className="container mt-6 w-full px-3 md:mt-10 lg:mt-12 xl:mt-16 "
             >
                 <div
-                    className='absolute right-0 top-1/2 h-full -translate-y-1/2 md:w-[120px] lg:w-[187px]'
+                    className="absolute right-0 top-1/2 h-full -translate-y-1/2 md:w-[120px] lg:w-[187px]"
                     style={{
                         zIndex: 10,
                         background:
@@ -76,7 +76,7 @@ export default function CarsToOrder({ data }: Props) {
                         <CarouselItem
                             key={index}
                             // shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]
-                            className='md:basis-1/2 lg:basis-1/4'
+                            className="md:basis-1/2 lg:basis-1/4"
                         >
                             <div
                                 className={
@@ -207,7 +207,7 @@ export default function CarsToOrder({ data }: Props) {
                                                 ? 'Подробнее'
                                                 : 'More details'
                                         }
-                                        styles='w-full rounded-[10px] bg-[#1e1e1e] py-3 text-center text-xs font-bold text-white'
+                                        styles="w-full rounded-[10px] bg-[#1e1e1e] py-3 text-center text-xs font-bold text-white"
                                     />
                                 </div>
                             </div>
@@ -216,7 +216,7 @@ export default function CarsToOrder({ data }: Props) {
                     <CarouselItem
                         key={Math.random()}
                         // shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]
-                        className='opacity-0 md:basis-1/2 lg:basis-1/4'
+                        className="opacity-0 md:basis-1/2 lg:basis-1/4"
                     >
                         <></>
                     </CarouselItem>

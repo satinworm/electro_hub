@@ -12,7 +12,7 @@ export default function ConsultationBtn({ label }: { label: string }) {
     return (
         <Button
             variant={'link'}
-            className='flex items-center gap-4 transition-all duration-200 ease-in-out hover:scale-95 active:translate-y-1'
+            className="flex items-center gap-4 transition-all duration-200 ease-in-out hover:scale-95 active:translate-y-1"
         >
             <span>{label}</span>
             {theme === 'dark' ? (

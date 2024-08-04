@@ -26,7 +26,7 @@ const links = [
 ];
 export default function SocialLinks() {
     return (
-        <div className='absolute right-8 top-24 flex flex-col gap-8 '>
+        <div className="absolute right-8 top-24 flex flex-col gap-8 ">
             {links.map((link) => (
                 <Link href={link.href} key={link.label} className={''}>
                     <Image

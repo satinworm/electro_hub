@@ -1,4 +1,4 @@
-import { ImageData } from '@/types/brands.types';
+import type { ImageData } from '@/types/brands.types';
 
 interface TextChild {
     type: string;
@@ -25,13 +25,11 @@ interface SpecificationCategory {
 // Main attributes structure for a car entity
 export type CarAttributes = {
     name: string;
-    engine_type: string;
-    price_byn: string;
-    price_usd: string;
-    gearbox: string;
+    price: string;
+    generation: string;
+    gearbox: 'автомат' | 'механика';
     lising: string;
     short_specification: Paragraph[];
-    engine: string;
     preview_image: {
         data: ImageData;
     };
@@ -41,9 +39,18 @@ export type CarAttributes = {
     updatedAt: string;
     locale: string;
     slug: string;
-    privod: string;
-    body: string;
     specification: SpecificationCategory[];
+    battery_capacity: number;
+    vehicle_range: number;
+    body: 'лифтбек' | 'кроссовер' | 'минивэн' | 'седан';
+    engine: number;
+    engine_type:
+        | 'Электро'
+        | 'Гибрид(последовательный)'
+        | 'Гибрид(параллельный)'
+        | 'Бензин';
+    privod: 'передний' | 'задний' | 'полный';
+    hourse_power: number;
 };
 
 // Root interface for a single car entity

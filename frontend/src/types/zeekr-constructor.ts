@@ -78,7 +78,7 @@ export interface Model {
     tyres: Tyre[];
     interior_colors: InteriorColor[];
     additional_options: AdditionalOption[];
-	 virtual_view?: string;
+    virtual_view?: string;
 }
 
 interface RenderImages {

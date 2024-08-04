@@ -84,13 +84,13 @@ export default async function LocaleLayout({
                 )}
             >
                 <ThemeProvider
-                    attribute='class'
-                    defaultTheme='light'
+                    attribute="class"
+                    defaultTheme="light"
                     enableSystem
                     disableTransitionOnChange
                 >
                     <Navbar data={getNavbarData} brands={brands} />
-                    <div id='mainLayout'>{children}</div>
+                    <div id="mainLayout">{children}</div>
                     <Footer locale={locale} />
                 </ThemeProvider>
                 <Toaster position={'top-right'} />

@@ -11,12 +11,12 @@ export const Loader = ({ styles }: { styles: string }) => {
             )}
         >
             <Bars
-                height='300'
-                width='300'
-                color='#1e1e1e'
-                ariaLabel='bars-loading'
+                height="300"
+                width="300"
+                color="#1e1e1e"
+                ariaLabel="bars-loading"
                 wrapperStyle={{}}
-                wrapperClass=''
+                wrapperClass=""
                 visible={true}
             />
         </div>

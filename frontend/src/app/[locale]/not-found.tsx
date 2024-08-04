@@ -11,7 +11,7 @@ export default function NotFound() {
                 `mx-auto w-full bg-[url("/not_found_bg.avif")] bg-center bg-no-repeat md:bg-cover`
             )}
         >
-            <div className='item-center relative flex min-h-[70vh] w-full overflow-hidden md:min-h-[98vh]'>
+            <div className="item-center relative flex min-h-[70vh] w-full overflow-hidden md:min-h-[98vh]">
                 <div
                     className={
                         'mx-auto flex flex-col justify-center p-4 md:absolute md:left-1/3 md:top-1/2 md:mx-0 md:-translate-y-1/2 md:p-0 xl:-translate-x-full'

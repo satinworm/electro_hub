@@ -53,27 +53,28 @@ export default function GalleryComponent({ photos }: any) {
             return (
                 <SplideSlide className={'w-full'} key={'no photos'}>
                     <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        className='mx-auto h-20 w-20'
-                        fill='none'
-                        viewBox='0 0 24 24'
-                        stroke='currentColor'
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="mx-auto h-20 w-20"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                     >
                         <path
-                            strokeLinecap='round'
-                            strokeLinejoin='round'
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             strokeWidth={2}
-                            d='M12 6v6m0 0v6m0-6h6m-6 0H6'
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                         />
                     </svg>
                 </SplideSlide>
             );
         }
         return photos?.data?.map((slide: any) => {
-
-
             return (
-                <SplideSlide className={'w-full flex items-center justify-center'} key={slide.id}>
+                <SplideSlide
+                    className={'w-full flex items-center justify-center'}
+                    key={slide.id}
+                >
                     <Image
                         src={getStrapiMedia(slide.attributes.url)!}
                         alt={slide.attributes.src}
@@ -94,7 +95,7 @@ export default function GalleryComponent({ photos }: any) {
                         options={mainOptions}
                         ref={mainRef}
                         className={'overflow-hidden'}
-                        aria-labelledby='thumbnail-slider-example'
+                        aria-labelledby="thumbnail-slider-example"
                     >
                         {renderSlides()}
                     </Splide>
@@ -103,19 +104,19 @@ export default function GalleryComponent({ photos }: any) {
                         options={thumbsOptions}
                         ref={thumbsRef}
                         className={'my-4 flex w-full overflow-hidden'}
-                        aria-label='The carousel with thumbnails. Selecting a thumbnail will change the main carousel'
+                        aria-label="The carousel with thumbnails. Selecting a thumbnail will change the main carousel"
                     >
                         {renderSlides()}
                     </Splide>
                 </>
             ) : (
-                <div className='flex h-full w-full items-center justify-center'>
+                <div className="flex h-full w-full items-center justify-center">
                     <Image
                         src={'/image_not_found.jpeg'}
-                        alt='image not found'
+                        alt="image not found"
                         width={400}
                         height={400}
-                        className='mx-auto my-auto rounded-xl'
+                        className="mx-auto my-auto rounded-xl"
                     />
                 </div>
             )}

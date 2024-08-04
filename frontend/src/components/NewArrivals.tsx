@@ -127,11 +127,11 @@ export default function NewArrivals({ newArrivalsModels, data }: any) {
     ];
     return (
         <>
-            <div className='z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:-mt-[48px] md:h-[48px] md:bg-rectangle_main' />
-            <section className='-mt-1 flex w-full flex-col bg-white pt-3 font-electrohub text-black md:px-8 md:pt-12 xl:py-10'>
-                <div className='container mt-10 text-black'>
-                    <h3 className='font-black text-[#1e1e1e]'>{h2}</h3>
-                    <div className='mt-5 flex items-center justify-between'>
+            <div className="z-[1] mt-[-38px] h-[38px] w-full bg-rectangle_main_mobile bg-cover bg-no-repeat md:-mt-[48px] md:h-[48px] md:bg-rectangle_main" />
+            <section className="-mt-1 flex w-full flex-col bg-white pt-3 font-electrohub text-black md:px-8 md:pt-12 xl:py-10">
+                <div className="container mt-10 text-black">
+                    <h3 className="font-black text-[#1e1e1e]">{h2}</h3>
+                    <div className="mt-5 flex items-center justify-between">
                         <div
                             className={
                                 'text-2xl font-bold leading-tight text-[#1e1e1e] lg:max-w-[720px] lg:text-[32px]'
@@ -140,7 +140,7 @@ export default function NewArrivals({ newArrivalsModels, data }: any) {
                             {h1}
                         </div>
                     </div>
-                    <div className='mb-12 mt-6 grid grid-cols-1 gap-7 md:mt-12 md:grid-cols-3 lg:mb-24 lg:grid-cols-4 xl:mt-20'>
+                    <div className="mb-12 mt-6 grid grid-cols-1 gap-7 md:mt-12 md:grid-cols-3 lg:mb-24 lg:grid-cols-4 xl:mt-20">
                         {newArrivalsModels?.data?.map((item: Car) => (
                             <Link
                                 onClick={async () => {
@@ -163,7 +163,7 @@ export default function NewArrivals({ newArrivalsModels, data }: any) {
                                 }}
                                 href={`/zeekr/constructor`}
                                 key={item.attributes.slug}
-                                className='flex cursor-pointer flex-col items-center justify-center rounded-[10px] px-3 py-5 transition-all duration-200 ease-in-out hover:shadow-[5px_5px_10px_0_rgba(0,0,0,0.15)] lg:py-12'
+                                className="flex cursor-pointer flex-col items-center justify-center rounded-[10px] px-3 py-5 transition-all duration-200 ease-in-out hover:shadow-[5px_5px_10px_0_rgba(0,0,0,0.15)] lg:py-12"
                                 //  style={{ background: item.attributes.bg_gradient }}
                             >
                                 <div className={'z-10 '}>

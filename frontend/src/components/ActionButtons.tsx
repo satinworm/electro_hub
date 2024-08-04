@@ -33,6 +33,7 @@ type Props = {
 export default function ActionButtons(props: Props) {
     const { buttons, containerStyles } = props;
     const { setOpen } = DialogStore();
+
     return (
         <>
             <div className={containerStyles}>
@@ -41,6 +42,7 @@ export default function ActionButtons(props: Props) {
                     } else if (item.action.actionType === 'modal') {
                         return (
                             <>
+                                {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
                                 <button
                                     className={item.action.styles}
                                     key={item.name}

@@ -49,12 +49,12 @@ export default function DeliveryStageSection(props: Props) {
 
     return (
         <>
-            <section className='-mt-5 mb-12 flex min-h-[680px] w-full flex-col bg-white bg-main_stage_bg bg-cover bg-no-repeat pb-16 font-electrohub text-white md:-mt-16 lg:mb-16'>
-                <div className='z-[1] h-[38px] w-full bg-rectangle_main_stage_mobile bg-cover bg-no-repeat md:mt-[0px] md:h-[52px] md:bg-rectangle_main_stage' />
-                <div className='container mt-12 sm:mt-16 md:mt-24'>
-                    {h3 && <h3 className='font-black'>{h2}</h3>}
+            <section className="-mt-5 mb-12 flex min-h-[680px] w-full flex-col bg-white bg-main_stage_bg bg-cover bg-no-repeat pb-16 font-electrohub text-white md:-mt-16 lg:mb-16">
+                <div className="z-[1] h-[38px] w-full bg-rectangle_main_stage_mobile bg-cover bg-no-repeat md:mt-[0px] md:h-[52px] md:bg-rectangle_main_stage" />
+                <div className="container mt-12 sm:mt-16 md:mt-24">
+                    {h3 && <h3 className="font-black">{h2}</h3>}
                     {h1 && h2 && (
-                        <div className='mt-3 flex flex-col gap-3 md:mt-5 lg:gap-5'>
+                        <div className="mt-3 flex flex-col gap-3 md:mt-5 lg:gap-5">
                             <span
                                 className={
                                     'text-base font-bold leading-tight sm:text-lg md:text-2xl lg:max-w-[720px] lg:text-2xl lg:text-[32px]'
@@ -73,7 +73,7 @@ export default function DeliveryStageSection(props: Props) {
                     )}
                 </div>
                 {windowWidth > 768 ? (
-                    <div className='container mb-3 mt-12 grid grid-cols-1 gap-3 md:mb-8 md:mt-20 md:gap-5 lg:mb-16 lg:grid-cols-3 lg:gap-6 xl:gap-10'>
+                    <div className="container mb-3 mt-12 grid grid-cols-1 gap-3 md:mb-8 md:mt-20 md:gap-5 lg:mb-16 lg:grid-cols-3 lg:gap-6 xl:gap-10">
                         {stagesCardsData?.map(
                             (stageCard: StageCard, index: number) => (
                                 <div
@@ -113,7 +113,7 @@ export default function DeliveryStageSection(props: Props) {
                         )}
                     </div>
                 ) : (
-                    <Carousel className='mt-3 w-full max-w-full px-3'>
+                    <Carousel className="mt-3 w-full max-w-full px-3">
                         <CarouselContent>
                             {stagesCardsData?.map(
                                 (stageCard: StageCard, index: number) => (

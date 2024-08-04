@@ -132,9 +132,9 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             : `url(${bgUrl})`,
                                 }}
                             >
-                                <div className='item-center relative mb-6 mt-24 flex min-h-[75vh] w-full flex-col md:mt-0 md:min-h-[85vh] md:justify-end '>
-                                    <div className='left-1/2 flex w-full flex-col items-center justify-center space-y-3 md:absolute md:top-1/4 md:mb-[15%] md:-translate-x-1/2 md:-translate-y-2/3 md:space-y-5'>
-                                        <div className='text-center font-terminatorgen text-[52px] leading-[1] text-white md:px-4 md:text-[80px] md:tracking-[0.2em] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]'>
+                                <div className="item-center relative mb-6 mt-24 flex min-h-[75vh] w-full flex-col md:mt-0 md:min-h-[85vh] md:justify-end ">
+                                    <div className="left-1/2 flex w-full flex-col items-center justify-center space-y-3 md:absolute md:top-1/4 md:mb-[15%] md:-translate-x-1/2 md:-translate-y-2/3 md:space-y-5">
+                                        <div className="text-center font-terminatorgen text-[52px] leading-[1] text-white md:px-4 md:text-[80px] md:tracking-[0.2em] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]">
                                             {item?.name}
                                         </div>
                                     </div>
@@ -161,7 +161,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             data={{
                                                 type: 'feedback',
                                             }}
-                                            styles='absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]'
+                                            styles="absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]"
                                         />
                                         {/* <button
                                             className={
@@ -186,7 +186,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                     >
                                         {item.starting_price}
                                     </div>
-                                    <div className='relative mt-4 text-white md:mb-[80px] md:mt-0'>
+                                    <div className="relative mt-4 text-white md:mb-[80px] md:mt-0">
                                         <div
                                             className={
                                                 'flex justify-between gap-7'
@@ -404,7 +404,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                         {'Консультация'}
                                                     </span>
                                                 </button> */}
-                                                <div className='relative col-span-2 h-full'>
+                                                <div className="relative col-span-2 h-full">
                                                     <ModalTrigger
                                                         header={'Связь с нами'}
                                                         description={
@@ -414,7 +414,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                         data={{
                                                             type: 'feedback',
                                                         }}
-                                                        styles='relative col-span-2 hidden w-full h-full border-0 p-5 text-xs md:rounded-[10px] md:bg-white/60 md:text-base md:backdrop-blur-[10px] xl:block'
+                                                        styles="relative col-span-2 hidden w-full h-full border-0 p-5 text-xs md:rounded-[10px] md:bg-white/60 md:text-base md:backdrop-blur-[10px] xl:block"
                                                     />
                                                     <span
                                                         className={
@@ -487,8 +487,8 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                         );
                     })}
                 </SplideTrack>
-                <div className='splide__arrows'>
-                    <button className='splide__arrow splide__arrow--prev bottom-0'>
+                <div className="splide__arrows">
+                    <button className="splide__arrow splide__arrow--prev bottom-0">
                         <Image
                             src={'/left-arrow-slider.svg'}
                             alt={'prev slide'}
@@ -498,7 +498,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                     </button>
                     <button
                         style={{ bottom: 0 }}
-                        className='splide__arrow splide__arrow--next'
+                        className="splide__arrow splide__arrow--next"
                     >
                         <Image
                             src={'/right-arrow-slider.svg'}

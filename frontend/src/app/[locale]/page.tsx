@@ -263,7 +263,7 @@ export default async function RootRoute({
     // console.log('brandsSection ', brands?.data?.[0]);
 
     return (
-        <main className='flex flex-col items-center justify-between'>
+        <main className="flex flex-col items-center justify-between">
             {brandsSection &&
             pageProperties?.data?.[0] &&
             brands?.data?.[0] &&

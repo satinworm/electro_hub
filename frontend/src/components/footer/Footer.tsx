@@ -26,7 +26,7 @@ export async function Footer({ locale }: { locale: string }) {
     const mergedLinks = [...footer_Links, ...brands_links];
 
     return (
-        <footer className='flex w-full flex-col bg-[#F0F0F0] py-12 font-electrohub text-white md:px-3 md:py-12 lg:py-16 xl:py-24'>
+        <footer className="flex w-full flex-col bg-[#F0F0F0] py-12 font-electrohub text-white md:px-3 md:py-12 lg:py-16 xl:py-24">
             <div className={'container'}>
                 <div
                     className={
@@ -54,7 +54,7 @@ export async function Footer({ locale }: { locale: string }) {
                             data={{
                                 type: 'feedback',
                             }}
-                            styles='flex w-full items-center justify-center gap-2 border border-black bg-white px-12 py-2 text-sm font-bold text-black md:w-fit md:py-3.5 md:text-base lg:mt-10'
+                            styles="flex w-full items-center justify-center gap-2 border border-black bg-white px-12 py-2 text-sm font-bold text-black md:w-fit md:py-3.5 md:text-base lg:mt-10"
                         />
                     </div>
                     <div

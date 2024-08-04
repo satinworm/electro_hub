@@ -24,22 +24,6 @@
       },
       "type": "string"
     },
-    "price_byn": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
-    "price_usd": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "lising": {
       "pluginOptions": {
         "i18n": {
@@ -129,15 +113,6 @@
         "задний"
       ]
     },
-    "body": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "string",
-      "default": "лифтбек"
-    },
     "preview_image": {
       "type": "media",
       "multiple": false,
@@ -157,8 +132,14 @@
           "localized": false
         }
       },
-      "type": "string",
-      "default": "электро"
+      "type": "enumeration",
+      "enum": [
+        "Электро",
+        "Гибрид(последовательный)",
+        "Гибрид(параллельный)",
+        "Бензин"
+      ],
+      "required": true
     },
     "gearbox": {
       "pluginOptions": {
@@ -172,6 +153,67 @@
         "механика"
       ],
       "default": "автомат"
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::brand.brand"
+    },
+    "generation": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true
+    },
+    "body": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "лифтбек",
+        "кроссовер",
+        "минивэн",
+        "седан"
+      ]
+    },
+    "battery_capacity": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "float",
+      "required": true
+    },
+    "vehicle_range": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "float"
+    },
+    "price": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "float"
+    },
+    "hourse_power": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "float"
     }
   }
 }
