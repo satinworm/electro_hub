@@ -24,6 +24,8 @@ interface SpecificationCategory {
 
 // Main attributes structure for a car entity
 export type CarAttributes = {
+    price_byn: any;
+    price_usd: any;
     name: string;
     price: string;
     generation: string;

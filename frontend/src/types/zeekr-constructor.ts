@@ -14,6 +14,7 @@ interface CarAttributes {
     updatedAt: string;
     locale: string;
     logo: Logo;
+    price: any;
     models: Model[];
 }
 
@@ -116,9 +117,7 @@ interface Wheel {
     };
 }
 
-interface Tyre {
-    // Здесь должна быть структура Tyre, если она вам нужна
-}
+type Tyre = {};
 
 interface AdditionalOption {
     title: 'string';

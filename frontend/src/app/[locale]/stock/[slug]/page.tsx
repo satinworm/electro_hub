@@ -1,13 +1,12 @@
-import { getDataFromAPI } from '@/utils/fetch-api';
 import GalleryComponent from '@/components/GalleryComponent';
-import type { CarAttributes } from '@/types/carsinstock.type';
-import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import ModalTrigger from '@/components/ModalTrigger';
 import ScrollLink from '@/components/ScrollLink';
 import TechnicalSpecifications from '@/components/TechnicalSpecifications';
-import React from 'react';
-import ModalTrigger from '@/components/ModalTrigger';
-import { useTranslations } from 'next-intl';
+import type { CarAttributes } from '@/types/carsinstock.type';
+import { getDataFromAPI } from '@/utils/fetch-api';
+import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { getTranslations } from 'next-intl/server';
+import React from 'react';
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export default async function StockCarFullPage({ params }: any) {
     const { slug, locale } = params;
@@ -44,7 +43,7 @@ export default async function StockCarFullPage({ params }: any) {
         <section className={'bg-[#1e1e1e]/30 font-electrohub'}>
             <div
                 className={
-                    'mt-24 flex w-full flex-col lg:flex-row md:-space-x-2 bg-white py-4 text-white'
+                    'md:-space-x-2 mt-24 flex w-full flex-col bg-white py-4 text-white lg:flex-row'
                 }
             >
                 <div className="wrapper w-full p-3 md:w-[62%]">
@@ -54,27 +53,27 @@ export default async function StockCarFullPage({ params }: any) {
                 </div>
                 <div
                     className={
-                        'bg-white px-4 lg:px-10 text-[#1e1e1e] md:w-[38%] md:py-12'
+                        'bg-white px-4 text-[#1e1e1e] md:w-[38%] md:py-12 lg:px-10'
                     }
                 >
                     <h1
                         className={
-                            'md:text-[32px] text-[24px] lg:text-[40px] font-bold'
+                            'font-bold text-[24px] md:text-[32px] lg:text-[40px]'
                         }
                     >
                         {item.name}
                     </h1>
                     <p
                         className={
-                            'mt-3 lg:mt-6 text-xl lg:text-[28px] font-bold'
+                            'mt-3 font-bold text-xl lg:mt-6 lg:text-[28px]'
                         }
                     >
                         {item.price_usd} $
                     </p>
-                    <p className={' text-[20px] font-bold text-[#3E4247]'}>
+                    <p className={' font-bold text-[#3E4247] text-[20px]'}>
                         {item.price_byn} BYN
                     </p>
-                    <p className={'mb-10 mt-6 text-[#2E71EF]'}>{item.lising}</p>
+                    <p className={'mt-6 mb-10 text-[#2E71EF]'}>{item.lising}</p>
 
                     {item?.short_specification && (
                         <div className={'text-base lg:text-xl'}>
@@ -129,7 +128,7 @@ export default async function StockCarFullPage({ params }: any) {
                         ' w-full bg-white p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20'
                     }
                 >
-                    <h1 className="mb-6 text-3xl font-semibold">
+                    <h1 className="mb-6 font-semibold text-3xl">
                         {locale ? 'Описание' : 'Description'}
                     </h1>
                     <BlocksRenderer content={item.full_description as any} />

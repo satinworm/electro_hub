@@ -52,6 +52,7 @@ const FormSchema = z.object({
     body: z.string().optional(),
     price_start: z.string().optional(),
     price_end: z.string().optional(),
+    privod: z.string().optional(),
 });
 const defaultValues = {
     brand: '',
@@ -60,6 +61,7 @@ const defaultValues = {
     body: '',
     price_start: '',
     price_end: '',
+    privod: '',
 };
 
 const bodyOption = [
@@ -169,7 +171,7 @@ export default function FiltersBurger(props: any) {
         fetchData();
     }, [filters, locale]);
     const generations = initialData?.data?.map(
-        (item) => item.attributes.generation
+        (item: any) => item.attributes.generation
     );
 
     // const handleSearch = debounce((value) => {
@@ -234,6 +236,7 @@ export default function FiltersBurger(props: any) {
         }));
     };
 
+    // @ts-ignore
     return (
         <Sheet>
             <Form {...form}>
@@ -324,7 +327,9 @@ export default function FiltersBurger(props: any) {
                                                     >
                                                         {field.value
                                                             ? brands.find(
-                                                                  (brand) =>
+                                                                  (
+                                                                      brand: any
+                                                                  ) =>
                                                                       brand
                                                                           .attributes
                                                                           .name ===
@@ -348,7 +353,9 @@ export default function FiltersBurger(props: any) {
                                                         </CommandEmpty>
                                                         <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
                                                             {brands?.map(
-                                                                (brand) => (
+                                                                (
+                                                                    brand: any
+                                                                ) => (
                                                                     <CommandItem
                                                                         key={
                                                                             brand.id
@@ -446,7 +453,7 @@ export default function FiltersBurger(props: any) {
                                                         <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
                                                             {generations?.map(
                                                                 (
-                                                                    generation
+                                                                    generation: any
                                                                 ) => (
                                                                     <CommandItem
                                                                         key={
