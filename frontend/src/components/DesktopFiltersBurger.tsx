@@ -280,7 +280,7 @@ export default function DesktopFiltersBurger({
                                                 >
                                                     {field.value
                                                         ? bodyOption.find(
-                                                              (brand) =>
+                                                              (brand: any) =>
                                                                   brand.id ===
                                                                   field.value
                                                           )?.name
@@ -302,7 +302,7 @@ export default function DesktopFiltersBurger({
                                                     </CommandEmpty>
                                                     <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
                                                         {bodyOption?.map(
-                                                            (brand) => (
+                                                            (brand: any) => (
                                                                 <CommandItem
                                                                     key={
                                                                         brand.id
@@ -375,7 +375,7 @@ export default function DesktopFiltersBurger({
                                                 >
                                                     {field.value
                                                         ? privodOption.find(
-                                                              (brand) =>
+                                                              (brand: any) =>
                                                                   brand.id ===
                                                                   field.value
                                                           )?.name
@@ -397,7 +397,7 @@ export default function DesktopFiltersBurger({
                                                     </CommandEmpty>
                                                     <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
                                                         {privodOption?.map(
-                                                            (brand) => (
+                                                            (brand: any) => (
                                                                 <CommandItem
                                                                     key={
                                                                         brand.id
@@ -470,7 +470,7 @@ export default function DesktopFiltersBurger({
                                                 >
                                                     {field.value
                                                         ? engine_type.find(
-                                                              (brand) =>
+                                                              (brand: any) =>
                                                                   brand.id ===
                                                                   field.value
                                                           )?.name
@@ -492,7 +492,7 @@ export default function DesktopFiltersBurger({
                                                     </CommandEmpty>
                                                     <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
                                                         {engine_type?.map(
-                                                            (brand) => (
+                                                            (brand: any) => (
                                                                 <CommandItem
                                                                     key={
                                                                         brand.id
