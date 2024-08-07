@@ -4,6 +4,7 @@ import type { BrandData } from '@/types/brands.types';
 import type { CarsInStockBackendResponse } from '@/types/carsinstock.type';
 import { getStrapiMedia } from '@/utils/api-helpers';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { memo, useState } from 'react';
 
@@ -24,9 +25,9 @@ const CatalogCars = memo(({ data, locale, brands }: Props) => {
 
     return (
         <>
-            <div className={'bg-white py-20'}>
+            <div className={'bg-white py-6 md:py-10 lg:py-16 xl:py-20'}>
                 <div className={'container'}>
-                    <div className="container relative mt-10 text-black">
+                    <div className="relative text-black md:mt-10">
                         <div className="mt-2 flex items-center justify-between md:mt-5">
                             <span
                                 className={
@@ -49,7 +50,7 @@ const CatalogCars = memo(({ data, locale, brands }: Props) => {
                     <div className="z-[1] mt-4 w-full ">
                         <div
                             className={
-                                'relative grid grid-cols-4 py-5 lg:gap-5 xl:gap-5 2xl:gap-6'
+                                'relative grid grid-cols-1 gap-3 py-5 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-5 xl:gap-5 2xl:gap-6'
                             }
                         >
                             {initialData?.data?.length === 0 && (
@@ -62,7 +63,8 @@ const CatalogCars = memo(({ data, locale, brands }: Props) => {
                                         // shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]
                                         className=""
                                     >
-                                        <div
+                                        <Link
+                                            href={`/stock/${item.attributes.slug}`}
                                             className={
                                                 'mx-auto flex flex-col items-center justify-center overflow-hidden rounded-[20px] p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]'
                                             }
@@ -71,7 +73,7 @@ const CatalogCars = memo(({ data, locale, brands }: Props) => {
                                                 <div className={'relative'}>
                                                     <Image
                                                         className={
-                                                            'max-h-[200px] rounded-[10px]'
+                                                            'max-h-[200px] rounded-[10px] object-contain'
                                                         }
                                                         src={
                                                             // biome-ignore lint/style/noNonNullAssertion: <explanation>
@@ -250,7 +252,7 @@ const CatalogCars = memo(({ data, locale, brands }: Props) => {
                                                         : 'More details'}
                                                 </button>
                                             </div>
-                                        </div>
+                                        </Link>
                                     </div>
                                 );
                             })}

@@ -86,6 +86,7 @@ export default function CarsInStock({ data }: Props) {
                                                     'max-h-[200px] rounded-[10px]'
                                                 }
                                                 src={
+                                                    // biome-ignore lint/style/noNonNullAssertion: <explanation>
                                                     getStrapiMedia(
                                                         item?.attributes
                                                             ?.preview_image

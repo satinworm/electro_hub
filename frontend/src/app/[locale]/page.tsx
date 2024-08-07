@@ -1,4 +1,5 @@
 import BrandSection from '@/components/BrandSection';
+import CarsInStock from '@/components/CarsInStock';
 import DeliveryStageSection from '@/components/DeliveryStageSection';
 import { Loader } from '@/components/Loader';
 import MainSection from '@/components/MainSection';
@@ -7,9 +8,6 @@ import NewsSection from '@/components/NewsSection';
 import { getStrapiMedia } from '@/utils/api-helpers';
 import { getDataFromAPI } from '@/utils/fetch-api';
 import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
-import CarsToOrder from '@/components/CarsToOrder';
-import CarsInStock from '@/components/CarsInStock';
 
 export async function generateMetadata({ params }: any) {
     const { locale } = params;
@@ -263,7 +261,7 @@ export default async function RootRoute({
     // console.log('brandsSection ', brands?.data?.[0]);
 
     return (
-        <main className="flex flex-col items-center justify-between">
+        <main className="flex max-w-screen flex-col items-center justify-between overflow-x-hidden">
             {brandsSection &&
             pageProperties?.data?.[0] &&
             brands?.data?.[0] &&
@@ -278,7 +276,7 @@ export default async function RootRoute({
                         data={mainSectionSlider}
                     />
                     <CarsInStock data={carsInStockData} />
-                    <CarsToOrder data={carsToOrderData} />
+                    {/*<CarsToOrder data={carsToOrderData} />*/}
                     <BrandSection brands={brands} data={brandsSection} />
                     <NewArrivals
                         newArrivalsModels={newArrivalsModels}

@@ -1,15 +1,14 @@
 'use client';
 
+import ModalComponent from '@/components/ModalComponent';
+import { cn } from '@/lib/utils';
+import { DialogStore } from '@/stores/dialog.store';
+import type { MainSectionSliderTypes } from '@/types/mainsection.types';
+import { getStrapiMedia } from '@/utils/api-helpers';
 // @ts-ignore
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
-import { cn } from '@/lib/utils';
-import ActionButtons, { ButtonFromProps } from '@/components/ActionButtons';
-import React, { useEffect } from 'react';
-import { MainSectionSliderTypes } from '@/types/mainsection.types';
-import { getStrapiMedia } from '@/utils/api-helpers';
 import Image from 'next/image';
-import ModalComponent from '@/components/ModalComponent';
-import { DialogStore } from '@/stores/dialog.store';
+import React, { useEffect } from 'react';
 import ModalTrigger from './ModalTrigger';
 
 type Props = {
@@ -61,13 +60,15 @@ export default function MainSectionSlider({ props }: { props: Props }) {
     return (
         <>
             <Splide
-                className={'mb-8 w-full font-electrohub md:max-h-[85vh]'}
+                className={
+                    'mb-8 w-full max-w-screen overflow-hidden font-electrohub md:max-h-[85vh]'
+                }
                 hasTrack={false}
                 options={{
                     type: 'fade',
                     // heightRatio: 0.98,
                     pagination: true,
-                    arrows: windowWidth >= 768,
+                    arrows: false,
                     autoplay: true,
                     interval: 4000,
                     rewind: true,
@@ -123,7 +124,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                             <SplideSlide
                                 key={index}
                                 className={cn(
-                                    `w-full bg-center bg-no-repeat px-[0.4rem] sm:px-[1rem] md:bg-cover md:px-[1.5rem] lg:px-[2rem]`
+                                    'w-full bg-center bg-no-repeat px-[0.4rem] sm:px-[1rem] md:bg-cover md:px-[1.5rem] lg:px-[2rem]'
                                 )}
                                 style={{
                                     backgroundImage:
@@ -132,9 +133,9 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             : `url(${bgUrl})`,
                                 }}
                             >
-                                <div className="item-center relative mb-6 mt-24 flex min-h-[75vh] w-full flex-col md:mt-0 md:min-h-[85vh] md:justify-end ">
-                                    <div className="left-1/2 flex w-full flex-col items-center justify-center space-y-3 md:absolute md:top-1/4 md:mb-[15%] md:-translate-x-1/2 md:-translate-y-2/3 md:space-y-5">
-                                        <div className="text-center font-terminatorgen text-[52px] leading-[1] text-white md:px-4 md:text-[80px] md:tracking-[0.2em] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]">
+                                <div className="item-center relative mt-24 mb-6 flex min-h-[75vh] w-full flex-col md:mt-0 md:min-h-[85vh] md:justify-end ">
+                                    <div className="md:-translate-x-1/2 md:-translate-y-2/3 left-1/2 flex w-full flex-col items-center justify-center space-y-3 md:absolute md:top-1/4 md:mb-[15%] md:space-y-5">
+                                        <div className="text-center font-terminatorgen text-[52px] text-white leading-[1] md:px-4 md:text-[80px] md:tracking-[0.2em] lg:whitespace-nowrap lg:text-[92px] xl:text-[112px] 2xl:text-[128px]">
                                             {item?.name}
                                         </div>
                                     </div>
@@ -181,12 +182,12 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                     </div>
                                     <div
                                         className={
-                                            'mt-14 text-[28px] font-black text-white md:hidden'
+                                            'mt-14 font-black text-[28px] text-white md:hidden'
                                         }
                                     >
                                         {item.starting_price}
                                     </div>
-                                    <div className="relative mt-4 text-white md:mb-[80px] md:mt-0">
+                                    <div className="relative mt-4 text-white md:mt-0 md:mb-[80px]">
                                         <div
                                             className={
                                                 'flex justify-between gap-7'
@@ -217,7 +218,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                 />
                                                 <div
                                                     className={
-                                                        'hidden text-center font-electrohub font-bold capitalize text-[#1E1E1E] md:block'
+                                                        'hidden text-center font-bold font-electrohub text-[#1E1E1E] capitalize md:block'
                                                     }
                                                 >
                                                     {prevItem?.name}
@@ -230,7 +231,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             >
                                                 <div
                                                     className={
-                                                        'hidden flex-col items-center justify-center gap-2 rounded-[10px] backdrop-blur-[10px]  md:mr-2 md:flex md:bg-white/30 md:px-5 md:py-7'
+                                                        'hidden flex-col items-center justify-center gap-2 rounded-[10px] backdrop-blur-[10px] md:mr-2 md:flex md:bg-white/30 md:px-5 md:py-7'
                                                     }
                                                 >
                                                     <Image
@@ -255,7 +256,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                     />
                                                     <div
                                                         className={
-                                                            'text-center font-electrohub text-xs font-bold capitalize text-[#1E1E1E] md:text-base'
+                                                            'text-center font-bold font-electrohub text-[#1E1E1E] text-xs capitalize md:text-base'
                                                         }
                                                     >
                                                         {item?.name}
@@ -418,7 +419,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                     />
                                                     <span
                                                         className={
-                                                            'absolute hidden md:block left-5 top-5 text-sm font-black text-[#1e1e1e]'
+                                                            'absolute top-5 left-5 hidden font-black text-[#1e1e1e] text-sm md:block'
                                                         }
                                                     >
                                                         {item.starting_price}
@@ -450,7 +451,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                 />
                                                 <div
                                                     className={
-                                                        'hidden text-center font-electrohub font-bold capitalize text-[#1E1E1E] md:block'
+                                                        'hidden text-center font-bold font-electrohub text-[#1E1E1E] capitalize md:block'
                                                     }
                                                 >
                                                     {nextItem?.name}
@@ -467,7 +468,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             >
                                                 <span
                                                     className={
-                                                        'text-sm font-black text-[#1e1e1e]'
+                                                        'font-black text-[#1e1e1e] text-sm'
                                                     }
                                                 >
                                                     {item.starting_price}

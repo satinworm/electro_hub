@@ -68,11 +68,9 @@ export default async function StockCarFullPage({ params }: any) {
                             'mt-3 font-bold text-xl lg:mt-6 lg:text-[28px]'
                         }
                     >
-                        {item.price_usd} $
+                        {item.price} $
                     </p>
-                    <p className={' font-bold text-[#3E4247] text-[20px]'}>
-                        {item.price_byn} BYN
-                    </p>
+
                     <p className={'mt-6 mb-10 text-[#2E71EF]'}>{item.lising}</p>
 
                     {item?.short_specification && (
@@ -82,7 +80,7 @@ export default async function StockCarFullPage({ params }: any) {
                             />
                         </div>
                     )}
-                    <p className={'mt-5 text-lg'}>{item.engine}</p>
+                    <p className={'mt-5 text-lg'}>{item.engine} л/c</p>
                     <ScrollLink
                         styles={
                             'font-bold text-[#2E71EF] border-b-transparent hover:border-[#2E71EF] text-sm mt-5'

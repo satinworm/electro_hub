@@ -1,43 +1,20 @@
 'use client';
+import DesktopFiltersBurger from '@/components/DesktopFiltersBurger';
 import { Button } from '@/components/ui/button';
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-} from '@/components/ui/command';
-import {
-    Form,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from '@/components/ui/form';
+import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from '@/components/ui/popover';
-import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import useCatalogFilter from '@/stores/catalog.store';
 import type { BrandsResponse } from '@/types/brands.types';
 import type { Link as LinkType } from '@/types/navbar.types';
 import { getDataFromAPI } from '@/utils/fetch-api';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Check, ChevronsUpDown, XIcon } from 'lucide-react';
+import { Trash2Icon, XIcon } from 'lucide-react';
 import type React from 'react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import MobileFiltersBurger from './MobileFiltersBurger';
 
 type Props = {
     main_links: LinkType[];
@@ -53,6 +30,7 @@ const FormSchema = z.object({
     price_start: z.string().optional(),
     price_end: z.string().optional(),
     privod: z.string().optional(),
+    engine_type: z.string().optional(),
 });
 const defaultValues = {
     brand: '',
@@ -62,6 +40,7 @@ const defaultValues = {
     price_start: '',
     price_end: '',
     privod: '',
+    engine_type: '',
 };
 
 const bodyOption = [
@@ -96,6 +75,24 @@ const privodOption = [
         name: 'полный',
     },
 ];
+const engine_type = [
+    {
+        id: 'Электро',
+        name: 'Электро',
+    },
+    {
+        id: 'Гибрид(последовательный)',
+        name: 'Гибрид(последовательный)',
+    },
+    {
+        id: 'Гибрид(параллельный)',
+        name: 'Гибрид(параллельный)',
+    },
+    {
+        id: 'Бензин',
+        name: 'Бензин',
+    },
+];
 export default function FiltersBurger(props: any) {
     const { initialData, setInitialData, locale, brands } = props;
     const [searchTerm, setSearchTerm] = useState('');
@@ -110,6 +107,7 @@ export default function FiltersBurger(props: any) {
     const [generationListOpen, setGenerationListOpen] = useState(false);
     const [bodyListOpen, setBodyListOpen] = useState(false);
     const [privodListOpen, setPrivodListOpen] = useState(false);
+    const [engineListOpen, setEngineListOpen] = useState(false);
     const filters = useCatalogFilter((state) => state.filters);
     const setFilter = useCatalogFilter((state) => state.setFilter);
     const resetFilter = useCatalogFilter((state) => state.resetFilter);
@@ -156,6 +154,7 @@ export default function FiltersBurger(props: any) {
 
         setFilter('brand.name', '$eq', selectedBrand);
         setFilter('generation', '$ne', '');
+        setFilter('engine_type', '$ne', '');
         setBrandListOpen(false);
     };
     const handleGenerationSelect = async (selectedGeneration: string) => {
@@ -174,17 +173,6 @@ export default function FiltersBurger(props: any) {
         (item: any) => item.attributes.generation
     );
 
-    // const handleSearch = debounce((value) => {
-    //     // Perform your search logic here with the value
-    //     setFilter('name', '$containsi', value);
-    //     console.log('Search term:', value);
-    // }, 500);
-    //
-    // const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     const value = event.target.value;
-    //     setSearchTerm(value);
-    //     handleSearch(value);
-    // };
     useEffect(() => {
         const handler = setTimeout(() => {
             setDebouncedSearchTerm(searchTerm);
@@ -224,6 +212,9 @@ export default function FiltersBurger(props: any) {
             if (debouncedPriceRange.end) {
                 setFilter('price', '$lte', +debouncedPriceRange.end);
             }
+        } else {
+            setFilter('price', '$gte', 0);
+            setFilter('price', '$lte', 100000000);
         }
     }, [debouncedPriceRange, setFilter]);
     const handlePriceChange = (
@@ -238,530 +229,105 @@ export default function FiltersBurger(props: any) {
 
     // @ts-ignore
     return (
-        <Sheet>
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className={'mt-6 flex gap-3 pl-4'}>
-                        <div className={'relative'}>
-                            <Input
-                                value={searchTerm}
-                                onChange={handleSearchChange}
-                                className="w-96 rounded-md border border-black py-2 pr-10 pl-4 text-sm"
-                                placeholder="Введите название для поиска..."
-                            />
-                            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-                            <div
-                                className={cn(
-                                    '-translate-y-1/2 absolute top-1/2 right-3 flex cursor-pointer transition duration-300',
-                                    searchTerm ? 'opacity-100' : 'opacity-0'
-                                )}
-                                onClick={async () => {
-                                    setSearchTerm('');
-                                    setFilter('name', '$containsi', '');
-                                }}
-                            >
-                                <XIcon
-                                    className={
-                                        'rounded-full transition hover:bg-slate-50'
-                                    }
-                                />
-                            </div>
-                        </div>
-                        <SheetTrigger
-                            className={
-                                'w-36 cursor-pointer rounded-md border border-black bg-white px-4 py-2 text-center font-electrohub font-medium text-black text-sm transition hover:bg-[#1e1e1e] hover:text-white'
-                            }
-                        >
-                            Фильтры
-                        </SheetTrigger>
-                        {Object.keys(filters).length > 1 && (
-                            <Button
-                                type={'button'}
-                                className={'mt-auto'}
-                                onClick={() => {
-                                    resetFilter();
-                                    form.reset(defaultValues);
-                                }}
-                            >
-                                Сбросить фильтры
-                            </Button>
-                        )}
-                    </div>
-
-                    <SheetContent
-                        side={'bottom'}
-                        className={
-                            'min-w-[50vw] rounded-t-xl px-8 py-6 font-electrohub sm:px-10 sm:px-8 md:min-w-[25vw] md:px-12 md:py-10 lg:px-10'
-                        }
-                    >
-                        <SheetHeader>
-                            <SheetTitle className={'text-left text-[#808080]'}>
-                                Настройка фильтров
-                            </SheetTitle>
-                        </SheetHeader>
-
+        // <Sheet>
+        <Form {...form}>
+            <form className={''} onSubmit={form.handleSubmit(onSubmit)}>
+                <div className={'mt-6 flex flex-wrap gap-3'}>
+                    <div className={'relative w-full md:w-fit'}>
+                        <Input
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                            className="w-full rounded-md border border-black py-2 pr-10 pl-4 text-sm md:w-96 lg:w-96"
+                            placeholder="Введите название для поиска..."
+                        />
+                        {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
                         <div
-                            className={
-                                'hideScrollbar top-10 z-10 mt-2 flex flex-col items-baseline gap-3 bg-[#FFFFFF] py-4'
-                            }
+                            className={cn(
+                                '-translate-y-1/2 absolute top-1/2 right-3 flex cursor-pointer transition duration-300',
+                                searchTerm ? 'opacity-100' : 'opacity-0'
+                            )}
+                            onClick={async () => {
+                                setSearchTerm('');
+                                setFilter('name', '$containsi', '');
+                            }}
                         >
-                            <div className={'flex gap-2'}>
-                                <FormField
-                                    control={form.control}
-                                    name="brand"
-                                    render={({ field }) => (
-                                        <FormItem className="relative flex min-w-[300px] flex-col gap-3">
-                                            <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
-                                                Марка
-                                            </FormLabel>
-                                            <Popover
-                                                open={brandListOpen}
-                                                onOpenChange={setBrandListOpen}
-                                                modal
-                                            >
-                                                <PopoverTrigger asChild>
-                                                    <Button
-                                                        variant={'outline'}
-                                                        role="combobox"
-                                                        className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
-                                                    >
-                                                        {field.value
-                                                            ? brands.find(
-                                                                  (
-                                                                      brand: any
-                                                                  ) =>
-                                                                      brand
-                                                                          .attributes
-                                                                          .name ===
-                                                                      field.value
-                                                              )?.attributes.name
-                                                            : 'Выберите марку автомобиля'}
-
-                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                    </Button>
-                                                </PopoverTrigger>
-                                                <PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
-                                                    <Command>
-                                                        <CommandInput
-                                                            className={
-                                                                'font-electrohub'
-                                                            }
-                                                            placeholder="Поиск..."
-                                                        />
-                                                        <CommandEmpty>
-                                                            не найдено
-                                                        </CommandEmpty>
-                                                        <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
-                                                            {brands?.map(
-                                                                (
-                                                                    brand: any
-                                                                ) => (
-                                                                    <CommandItem
-                                                                        key={
-                                                                            brand.id
-                                                                        }
-                                                                        value={
-                                                                            brand
-                                                                                .attributes
-                                                                                .name
-                                                                        }
-                                                                        onSelect={async () => {
-                                                                            await handleBrandSelect(
-                                                                                brand
-                                                                                    .attributes
-                                                                                    .name
-                                                                            );
-                                                                            setValue(
-                                                                                'generation',
-                                                                                ''
-                                                                            );
-                                                                        }}
-                                                                    >
-                                                                        <Check
-                                                                            className={cn(
-                                                                                'mr-2 h-4 w-4',
-                                                                                field.value ===
-                                                                                    brand
-                                                                                        .attributes
-                                                                                        .name
-                                                                                    ? 'opacity-100'
-                                                                                    : 'opacity-0'
-                                                                            )}
-                                                                        />
-                                                                        <span
-                                                                            className={
-                                                                                'test-sm font-electrohub font-normal'
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                brand
-                                                                                    .attributes
-                                                                                    .name
-                                                                            }
-                                                                        </span>
-                                                                    </CommandItem>
-                                                                )
-                                                            )}
-                                                        </CommandGroup>
-                                                    </Command>
-                                                </PopoverContent>
-                                            </Popover>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-
-                                <FormField
-                                    control={form.control}
-                                    name="generation"
-                                    render={({ field }) => (
-                                        <FormItem className="relative flex min-w-[300px] flex-col gap-3">
-                                            <FormLabel className="whitespace-nowrap font-electrohub font-medium text-sm">
-                                                Модель
-                                            </FormLabel>
-                                            <Popover
-                                                open={generationListOpen}
-                                                onOpenChange={
-                                                    setGenerationListOpen
-                                                }
-                                                modal
-                                            >
-                                                <PopoverTrigger asChild>
-                                                    <Button
-                                                        variant={'outline'}
-                                                        role="combobox"
-                                                        className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
-                                                    >
-                                                        {field.value
-                                                            ? field.value
-                                                            : 'Выберите модель'}
-
-                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                    </Button>
-                                                </PopoverTrigger>
-                                                <PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
-                                                    <Command>
-                                                        <CommandInput
-                                                            className={
-                                                                'font-electrohub'
-                                                            }
-                                                            placeholder="Поиск..."
-                                                        />
-                                                        <CommandEmpty>
-                                                            не найдено
-                                                        </CommandEmpty>
-                                                        <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
-                                                            {generations?.map(
-                                                                (
-                                                                    generation: any
-                                                                ) => (
-                                                                    <CommandItem
-                                                                        key={
-                                                                            generation
-                                                                        }
-                                                                        value={
-                                                                            generation
-                                                                        }
-                                                                        onSelect={() => {
-                                                                            handleGenerationSelect(
-                                                                                generation
-                                                                            );
-                                                                        }}
-                                                                    >
-                                                                        <Check
-                                                                            className={cn(
-                                                                                'mr-2 h-4 w-4',
-                                                                                field.value ===
-                                                                                    generation
-                                                                                    ? 'opacity-100'
-                                                                                    : 'opacity-0'
-                                                                            )}
-                                                                        />
-                                                                        <span
-                                                                            className={
-                                                                                'test-sm font-electrohub font-normal'
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                generation
-                                                                            }
-                                                                        </span>
-                                                                    </CommandItem>
-                                                                )
-                                                            )}
-                                                        </CommandGroup>
-                                                    </Command>
-                                                </PopoverContent>
-                                            </Popover>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="body"
-                                    render={({ field }) => (
-                                        <FormItem className="relative flex min-w-[300px] flex-col gap-3">
-                                            <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
-                                                Кузов
-                                            </FormLabel>
-                                            <Popover
-                                                open={bodyListOpen}
-                                                onOpenChange={setBodyListOpen}
-                                                modal
-                                            >
-                                                <PopoverTrigger asChild>
-                                                    <Button
-                                                        variant={'outline'}
-                                                        role="combobox"
-                                                        className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
-                                                    >
-                                                        {field.value
-                                                            ? bodyOption.find(
-                                                                  (brand) =>
-                                                                      brand.id ===
-                                                                      field.value
-                                                              )?.name
-                                                            : 'Выберите кузов'}
-
-                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                    </Button>
-                                                </PopoverTrigger>
-                                                <PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
-                                                    <Command>
-                                                        <CommandInput
-                                                            className={
-                                                                'font-electrohub'
-                                                            }
-                                                            placeholder="Поиск..."
-                                                        />
-                                                        <CommandEmpty>
-                                                            не найдено
-                                                        </CommandEmpty>
-                                                        <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
-                                                            {bodyOption?.map(
-                                                                (brand) => (
-                                                                    <CommandItem
-                                                                        key={
-                                                                            brand.id
-                                                                        }
-                                                                        value={
-                                                                            brand.id
-                                                                        }
-                                                                        onSelect={async () => {
-                                                                            setFilter(
-                                                                                'body',
-                                                                                '$eq',
-                                                                                brand.id
-                                                                            );
-                                                                            setBodyListOpen(
-                                                                                false
-                                                                            );
-                                                                            setValue(
-                                                                                'body',
-                                                                                brand.id
-                                                                            );
-                                                                        }}
-                                                                    >
-                                                                        <Check
-                                                                            className={cn(
-                                                                                'mr-2 h-4 w-4',
-                                                                                field.value ===
-                                                                                    brand.id
-                                                                                    ? 'opacity-100'
-                                                                                    : 'opacity-0'
-                                                                            )}
-                                                                        />
-                                                                        <span
-                                                                            className={
-                                                                                'test-sm font-electrohub font-normal'
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                brand.name
-                                                                            }
-                                                                        </span>
-                                                                    </CommandItem>
-                                                                )
-                                                            )}
-                                                        </CommandGroup>
-                                                    </Command>
-                                                </PopoverContent>
-                                            </Popover>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="privod"
-                                    render={({ field }) => (
-                                        <FormItem className="relative flex min-w-[300px] flex-col gap-3">
-                                            <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
-                                                Привод
-                                            </FormLabel>
-                                            <Popover
-                                                open={privodListOpen}
-                                                onOpenChange={setPrivodListOpen}
-                                                modal
-                                            >
-                                                <PopoverTrigger asChild>
-                                                    <Button
-                                                        variant={'outline'}
-                                                        role="combobox"
-                                                        className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
-                                                    >
-                                                        {field.value
-                                                            ? privodOption.find(
-                                                                  (brand) =>
-                                                                      brand.id ===
-                                                                      field.value
-                                                              )?.name
-                                                            : 'Выберите привод'}
-
-                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                    </Button>
-                                                </PopoverTrigger>
-                                                <PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
-                                                    <Command>
-                                                        <CommandInput
-                                                            className={
-                                                                'font-electrohub'
-                                                            }
-                                                            placeholder="Поиск..."
-                                                        />
-                                                        <CommandEmpty>
-                                                            не найдено
-                                                        </CommandEmpty>
-                                                        <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
-                                                            {privodOption?.map(
-                                                                (brand) => (
-                                                                    <CommandItem
-                                                                        key={
-                                                                            brand.id
-                                                                        }
-                                                                        value={
-                                                                            brand.id
-                                                                        }
-                                                                        onSelect={async () => {
-                                                                            setFilter(
-                                                                                'privod',
-                                                                                '$eq',
-                                                                                brand.id
-                                                                            );
-                                                                            setPrivodListOpen(
-                                                                                false
-                                                                            );
-                                                                            setValue(
-                                                                                'privod',
-                                                                                brand.id
-                                                                            );
-                                                                        }}
-                                                                    >
-                                                                        <Check
-                                                                            className={cn(
-                                                                                'mr-2 h-4 w-4',
-                                                                                field.value ===
-                                                                                    brand.id
-                                                                                    ? 'opacity-100'
-                                                                                    : 'opacity-0'
-                                                                            )}
-                                                                        />
-                                                                        <span
-                                                                            className={
-                                                                                'test-sm font-electrohub font-normal'
-                                                                            }
-                                                                        >
-                                                                            {
-                                                                                brand.name
-                                                                            }
-                                                                        </span>
-                                                                    </CommandItem>
-                                                                )
-                                                            )}
-                                                        </CommandGroup>
-                                                    </Command>
-                                                </PopoverContent>
-                                            </Popover>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-                            <div
-                                className={'flex flex-col items-baseline gap-2'}
-                            >
-                                <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
-                                    Цена
-                                </FormLabel>
-                                <div className={'flex gap-1'}>
-                                    <FormField
-                                        control={form.control}
-                                        name="price_start"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                {/*<FormControl>*/}
-                                                <Input
-                                                    className={
-                                                        'w-32 rounded-l-md border border-[#1E1E1E] text-sm'
-                                                    }
-                                                    placeholder={'от'}
-                                                    {...field}
-                                                    onChange={(e) => {
-                                                        field.onChange(e);
-                                                        handlePriceChange(
-                                                            e,
-                                                            'start'
-                                                        );
-                                                    }}
-                                                />
-                                                {/*</FormControl>*/}
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                    <FormField
-                                        control={form.control}
-                                        name="price_end"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                {/*<FormControl>*/}
-                                                <Input
-                                                    className={
-                                                        'w-32 rounded-r-md border border-[#1E1E1E] text-sm'
-                                                    }
-                                                    placeholder={'до'}
-                                                    {...field}
-                                                    onChange={(e) => {
-                                                        field.onChange(e);
-                                                        handlePriceChange(
-                                                            e,
-                                                            'end'
-                                                        );
-                                                    }}
-                                                />
-                                                {/*</FormControl>*/}
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-                            </div>
-
-                            <Button
-                                type={'button'}
-                                className={'mt-auto'}
-                                onClick={() => {
-                                    resetFilter();
-                                    form.reset(defaultValues);
-                                }}
-                            >
-                                Сбросить фильтры
-                            </Button>
+                            <XIcon
+                                className={
+                                    'rounded-full transition hover:bg-slate-50'
+                                }
+                            />
                         </div>
-                    </SheetContent>
-                </form>
-            </Form>
-        </Sheet>
+                    </div>
+                    {Object.keys(filters).length > 1 && (
+                        <Button
+                            type={'button'}
+                            className={'mt-auto hidden md:flex'}
+                            onClick={() => {
+                                resetFilter();
+                                form.reset(defaultValues);
+                            }}
+                        >
+                            <span className={'hidden md:block'}>
+                                Сбросить фильтры
+                            </span>
+                            <Trash2Icon className={'block md:hidden'} />
+                        </Button>
+                    )}
+                    <MobileFiltersBurger
+                        setFilter={setFilter}
+                        filters={filters}
+                        form={form}
+                        defaultValues={defaultValues}
+                        setValue={setValue}
+                        brands={brands}
+                        generations={generations}
+                        bodyOption={bodyOption}
+                        privodOption={privodOption}
+                        handleBrandSelect={handleBrandSelect}
+                        handleGenerationSelect={handleGenerationSelect}
+                        handlePriceChange={handlePriceChange}
+                        resetFilter={resetFilter}
+                        brandListOpen={brandListOpen}
+                        setBrandListOpen={setBrandListOpen}
+                        generationListOpen={generationListOpen}
+                        setGenerationListOpen={setGenerationListOpen}
+                        bodyListOpen={bodyListOpen}
+                        setBodyListOpen={setBodyListOpen}
+                        privodListOpen={privodListOpen}
+                        setPrivodListOpen={setPrivodListOpen}
+                        engineListOpen={engineListOpen}
+                        setEngineListOpen={setEngineListOpen}
+                        engine_type={engine_type}
+                    />
+                    <DesktopFiltersBurger
+                        setFilter={setFilter}
+                        filters={filters}
+                        form={form}
+                        defaultValues={defaultValues}
+                        setValue={setValue}
+                        brands={brands}
+                        generations={generations}
+                        bodyOption={bodyOption}
+                        privodOption={privodOption}
+                        handleBrandSelect={handleBrandSelect}
+                        handleGenerationSelect={handleGenerationSelect}
+                        handlePriceChange={handlePriceChange}
+                        resetFilter={resetFilter}
+                        brandListOpen={brandListOpen}
+                        setBrandListOpen={setBrandListOpen}
+                        generationListOpen={generationListOpen}
+                        setGenerationListOpen={setGenerationListOpen}
+                        bodyListOpen={bodyListOpen}
+                        setBodyListOpen={setBodyListOpen}
+                        privodListOpen={privodListOpen}
+                        setPrivodListOpen={setPrivodListOpen}
+                        engineListOpen={engineListOpen}
+                        setEngineListOpen={setEngineListOpen}
+                        engine_type={engine_type}
+                    />
+                </div>
+            </form>
+        </Form>
+        // </Sheet>
     );
 }
