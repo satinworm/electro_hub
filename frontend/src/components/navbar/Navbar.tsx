@@ -3,7 +3,6 @@ import { NavLink } from '@/components/navbar/NavLink';
 import { cn } from '@/lib/utils';
 import type { BrandsResponse } from '@/types/brands.types';
 import type { NavbarResponse } from '@/types/navbar.types';
-import { useTranslations } from 'next-intl';
 import { headers } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,12 +16,6 @@ export default function Navbar(props: Props) {
     const path = headers().get('referer');
     console.log('REFERER', path);
     const { data, brands } = props;
-    const t = useTranslations('Navbar');
-    const links = [
-        { label: t('catalog'), href: '/about' },
-        { label: t('car_available'), href: '/services' },
-        { label: t('car_order'), href: '/contact' },
-    ];
     const logo = data?.data?.[0]?.attributes?.logo?.data?.attributes;
     const main_links = data?.data?.[0]?.attributes?.main_links;
     const contact_number = data?.data?.[0]?.attributes?.contact_number;

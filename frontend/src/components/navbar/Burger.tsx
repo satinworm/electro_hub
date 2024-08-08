@@ -1,3 +1,4 @@
+'use client';
 import {
     Sheet,
     SheetContent,
@@ -7,9 +8,10 @@ import {
 } from '@/components/ui/sheet';
 import type { BrandsResponse } from '@/types/brands.types';
 import type { Link as LinkType } from '@/types/navbar.types';
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
 
 type Props = {
     main_links: LinkType[];
@@ -17,28 +19,18 @@ type Props = {
     sub_links: LinkType[];
     brands: BrandsResponse;
 };
-export default async function Burger(props: Props) {
+export default function Burger(props: Props) {
     const { social_links, sub_links, brands, main_links } = props;
+    const [open, setOpen] = useState(false);
     const locale = useLocale();
-    const t = useTranslations('Navbar');
-    const links = [
-        { label: t('main'), href: '/' },
-        { label: t('catalog'), href: '/about' },
-        { label: t('car_available'), href: '/services' },
-        { label: t('car_order'), href: '/contact' },
-    ];
-    const links2 = [
-        { label: t('news'), href: '/news' },
-        { label: t('sales'), href: '/sales' },
-        { label: t('test_drive'), href: '/test_drive' },
-    ];
+
     // const t = await getTranslations({ locale, namespace: 'Footer' });
 
     // console.log('brands links', social_links);
 
     return (
-        <Sheet>
-            <SheetTrigger className={'cursor-pointerß'}>
+        <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger className={'cursor-pointer'}>
                 <Image
                     src={'/navbar/burger_icon.svg'}
                     alt={'burger menu'}
@@ -53,7 +45,7 @@ export default async function Burger(props: Props) {
             >
                 <SheetHeader>
                     <SheetTitle className={'text-left text-[#808080]'}>
-                        {t('menu')}
+                        Меню
                     </SheetTitle>
                 </SheetHeader>
                 <div className={'flex h-full flex-col justify-evenly'}>
@@ -62,6 +54,7 @@ export default async function Burger(props: Props) {
                             <Link
                                 key={link.name}
                                 href={link.href}
+                                onClick={() => setOpen(false)}
                                 className={
                                     'block font-bold text-[#A4AABD] text-[18px] sm:text-[20px] md:text-[20px] lg:text-[22px] xl:text-[28px]'
                                 }
@@ -76,6 +69,7 @@ export default async function Burger(props: Props) {
                             <Link
                                 key={link.name}
                                 href={link.href}
+                                onClick={() => setOpen(false)}
                                 className={
                                     'block font-bold text-[#A4AABD] sm:text-[22px] md:text-base xl:text-[18px]'
                                 }
@@ -89,6 +83,7 @@ export default async function Burger(props: Props) {
                             <Link
                                 href={link.href}
                                 key={index}
+                                onClick={() => setOpen(false)}
                                 className={
                                     'block font-bold text-[#A4AABD] text-base capitalize sm:text-lg'
                                 }
