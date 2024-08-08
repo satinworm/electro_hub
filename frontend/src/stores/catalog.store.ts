@@ -33,7 +33,7 @@ interface Filter {
         | {
               // biome-ignore lint/suspicious/noExplicitAny: <explanation>
               [operator in FilterOperator]?: any;
-          }// biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+          }// biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation> // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         | Filter;
 }
 
@@ -68,7 +68,12 @@ const useCatalogFilter = create<StoreState>((set) => ({
 
             return { filters: newFilters };
         }),
-    resetFilter: () => set({ filters: {} }),
+    resetFilter: () =>
+        set({
+            filters: {
+                name: { $containsi: '' },
+            },
+        }),
 }));
 
 export default useCatalogFilter;

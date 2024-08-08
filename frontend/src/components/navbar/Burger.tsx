@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import {
     Sheet,
     SheetContent,
@@ -6,10 +5,11 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
+import type { BrandsResponse } from '@/types/brands.types';
+import type { Link as LinkType } from '@/types/navbar.types';
 import { useLocale, useTranslations } from 'next-intl';
+import Image from 'next/image';
 import Link from 'next/link';
-import { Link as LinkType } from '@/types/navbar.types';
-import { BrandsResponse } from '@/types/brands.types';
 
 type Props = {
     main_links: LinkType[];
@@ -58,47 +58,44 @@ export default async function Burger(props: Props) {
                 </SheetHeader>
                 <div className={'flex h-full flex-col justify-evenly'}>
                     <div className={'flex flex-col gap-y-3 sm:gap-y-5'}>
-                        {main_links &&
-                            main_links?.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className={
-                                        'block text-[18px] font-bold text-[#A4AABD] sm:text-[20px] md:text-[20px] lg:text-[22px] xl:text-[28px]'
-                                    }
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
+                        {main_links?.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className={
+                                    'block font-bold text-[#A4AABD] text-[18px] sm:text-[20px] md:text-[20px] lg:text-[22px] xl:text-[28px]'
+                                }
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
                     </div>
 
                     <div className={'flex flex-col gap-y-3 sm:gap-y-4'}>
-                        {sub_links &&
-                            sub_links?.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className={
-                                        'block font-bold text-[#A4AABD] sm:text-[22px] md:text-base xl:text-[18px]'
-                                    }
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
+                        {sub_links?.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className={
+                                    'block font-bold text-[#A4AABD] sm:text-[22px] md:text-base xl:text-[18px]'
+                                }
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
                     </div>
                     <div className={''}>
-                        {social_links &&
-                            social_links?.map((link: any, index: number) => (
-                                <Link
-                                    href={link.href}
-                                    key={index}
-                                    className={
-                                        'block text-base font-bold capitalize text-[#A4AABD] sm:text-lg'
-                                    }
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
+                        {social_links?.map((link: any, index: number) => (
+                            <Link
+                                href={link.href}
+                                key={index}
+                                className={
+                                    'block font-bold text-[#A4AABD] text-base capitalize sm:text-lg'
+                                }
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </SheetContent>

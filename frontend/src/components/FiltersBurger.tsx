@@ -10,6 +10,7 @@ import type { Link as LinkType } from '@/types/navbar.types';
 import { getDataFromAPI } from '@/utils/fetch-api';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Trash2Icon, XIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import type React from 'react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -94,7 +95,7 @@ const engine_type = [
     },
 ];
 export default function FiltersBurger(props: any) {
-    const { initialData, setInitialData, locale, brands } = props;
+    const { initialData, setInitialData, locale, brands, slug } = props;
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
     const [priceRange, setPriceRange] = useState({ start: '', end: '' });
@@ -116,11 +117,25 @@ export default function FiltersBurger(props: any) {
         resolver: zodResolver(FormSchema),
         defaultValues,
     });
+    const { push } = useRouter();
     const { watch, setValue } = form;
     async function onSubmit(data: z.infer<typeof FormSchema>) {
         console.log('data', data);
     }
 
+    useEffect(() => {
+        const brand = brands?.find(
+            (brand: any) => brand.attributes.slug === slug
+        );
+        if (brand && brand !== 'all') {
+            setValue('brand', brand.attributes.name);
+            setFilter('brand.name', '$eq', brand.attributes.name);
+        }
+        // else if (slug === 'all') {
+        //     setValue('brand', '');
+        //     setFilter('brand.name', '$ne', '');
+        // }
+    }, [slug, brands, setValue, setFilter]);
     console.log('FILTERS ', filters);
     const fetchCarsInStockData = async (filters: any, locale: string) => {
         const carsInStockData = await getDataFromAPI(
@@ -168,7 +183,7 @@ export default function FiltersBurger(props: any) {
             setInitialData(updatedData);
         };
         fetchData();
-    }, [filters, locale]);
+    }, [filters]);
     const generations = initialData?.data?.map(
         (item: any) => item.attributes.generation
     );
@@ -212,10 +227,11 @@ export default function FiltersBurger(props: any) {
             if (debouncedPriceRange.end) {
                 setFilter('price', '$lte', +debouncedPriceRange.end);
             }
-        } else {
-            setFilter('price', '$gte', 0);
-            setFilter('price', '$lte', 100000000);
         }
+        // else {
+        //     setFilter('price', '$gte', 0);
+        //     setFilter('price', '$lte', 100000000);
+        // }
     }, [debouncedPriceRange, setFilter]);
     const handlePriceChange = (
         event: React.ChangeEvent<HTMLInputElement>,
@@ -232,12 +248,12 @@ export default function FiltersBurger(props: any) {
         // <Sheet>
         <Form {...form}>
             <form className={''} onSubmit={form.handleSubmit(onSubmit)}>
-                <div className={'mt-6 flex flex-wrap gap-3'}>
+                <div className={'mt-6 flex flex-wrap gap-1.5 sm:gap-3'}>
                     <div className={'relative w-full md:w-fit'}>
                         <Input
                             value={searchTerm}
                             onChange={handleSearchChange}
-                            className="w-full rounded-md border border-black py-2 pr-10 pl-4 text-sm md:w-96 lg:w-96"
+                            className="h-9 w-full rounded-md border border-black py-1 pr-10 pl-4 text-xs sm:py-2 md:h-10 md:w-96 lg:w-96"
                             placeholder="Введите название для поиска..."
                         />
                         {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
@@ -264,7 +280,9 @@ export default function FiltersBurger(props: any) {
                             className={'mt-auto hidden md:flex'}
                             onClick={() => {
                                 resetFilter();
+                                setSearchTerm('');
                                 form.reset(defaultValues);
+                                push('/ru/catalog/all');
                             }}
                         >
                             <span className={'hidden md:block'}>

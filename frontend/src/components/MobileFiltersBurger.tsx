@@ -26,7 +26,13 @@ import {
     SheetTrigger,
 } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
-import { Check, ChevronsUpDown, Trash2Icon } from 'lucide-react';
+import {
+    Check,
+    ChevronsUpDown,
+    SlidersHorizontal,
+    Trash2Icon,
+} from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export default function MobileFiltersBurger({
@@ -62,21 +68,116 @@ export default function MobileFiltersBurger({
             setWindowWidth(window.innerWidth);
         });
     }, []);
+    const { push } = useRouter();
     return (
         <>
             {windowWidth < 768 && (
                 <Sheet>
+                    <FormField
+                        control={form.control}
+                        name="brand"
+                        render={({ field }) => (
+                            <FormItem className="relative flex flex-col gap-1.5">
+                                {/*<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">*/}
+                                {/*    Марка*/}
+                                {/*</FormLabel>*/}
+                                <Popover
+                                    open={brandListOpen}
+                                    onOpenChange={setBrandListOpen}
+                                    modal
+                                >
+                                    <PopoverTrigger asChild>
+                                        <Button
+                                            variant={'outline'}
+                                            role="combobox"
+                                            className="h-9 w-52 justify-between rounded-md border border-[#1E1E1E] px-3 py-2 text-xs sm:text-sm"
+                                        >
+                                            {field.value
+                                                ? brands.find(
+                                                      (brand: any) =>
+                                                          brand.attributes
+                                                              .name ===
+                                                          field.value
+                                                  )?.attributes.name
+                                                : 'марка автомобиля'}
+
+                                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
+                                        <Command>
+                                            <CommandInput
+                                                className={'font-electrohub'}
+                                                placeholder="Поиск..."
+                                            />
+                                            <CommandEmpty>
+                                                не найдено
+                                            </CommandEmpty>
+                                            <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
+                                                {brands?.map((brand: any) => (
+                                                    <CommandItem
+                                                        key={brand.id}
+                                                        value={
+                                                            brand.attributes
+                                                                .name
+                                                        }
+                                                        onSelect={async () => {
+                                                            await handleBrandSelect(
+                                                                brand.attributes
+                                                                    .name
+                                                            );
+                                                            setValue(
+                                                                'generation',
+                                                                ''
+                                                            );
+                                                            push(
+                                                                `${process.env.NEXT_PUBLIC_PUBLIC_URL}/ru/catalog/${brand.attributes.slug.toLowerCase()}`
+                                                            );
+                                                        }}
+                                                    >
+                                                        <Check
+                                                            className={cn(
+                                                                'mr-2 h-4 w-4',
+                                                                field.value ===
+                                                                    brand
+                                                                        .attributes
+                                                                        .name
+                                                                    ? 'opacity-100'
+                                                                    : 'opacity-0'
+                                                            )}
+                                                        />
+                                                        <span
+                                                            className={
+                                                                'test-sm font-electrohub font-normal'
+                                                            }
+                                                        >
+                                                            {
+                                                                brand.attributes
+                                                                    .name
+                                                            }
+                                                        </span>
+                                                    </CommandItem>
+                                                ))}
+                                            </CommandGroup>
+                                        </Command>
+                                    </PopoverContent>
+                                </Popover>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                     <SheetTrigger
                         className={
-                            'w-36 cursor-pointer rounded-md border border-black bg-white px-4 py-2 text-center font-electrohub font-medium text-black text-sm transition hover:bg-[#1e1e1e] hover:text-white'
+                            'cursor-pointer rounded-md border border-black bg-white px-2 py-1 text-center font-electrohub font-medium text-black text-sm transition hover:bg-[#1e1e1e] hover:text-white'
                         }
                     >
-                        Фильтры
+                        <SlidersHorizontal />
                     </SheetTrigger>
                     {Object.keys(filters).length > 1 && (
                         <Button
                             type={'button'}
                             className={'mt-auto flex'}
+                            size={'sm'}
                             onClick={() => {
                                 resetFilter();
                                 form.reset(defaultValues);
@@ -103,116 +204,15 @@ export default function MobileFiltersBurger({
 
                         <div
                             className={
-                                'mt-2 flex flex-col items-baseline gap-3 bg-[#FFFFFF] py-4'
+                                'mt-2 flex flex-col items-baseline gap-2 bg-[#FFFFFF] py-4'
                             }
                         >
                             <FormField
                                 control={form.control}
-                                name="brand"
-                                render={({ field }) => (
-                                    <FormItem className="relative flex min-w-[300px] flex-col gap-3">
-                                        <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
-                                            Марка
-                                        </FormLabel>
-                                        <Popover
-                                            open={brandListOpen}
-                                            onOpenChange={setBrandListOpen}
-                                            modal
-                                        >
-                                            <PopoverTrigger asChild>
-                                                <Button
-                                                    variant={'outline'}
-                                                    role="combobox"
-                                                    className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
-                                                >
-                                                    {field.value
-                                                        ? brands.find(
-                                                              (brand: any) =>
-                                                                  brand
-                                                                      .attributes
-                                                                      .name ===
-                                                                  field.value
-                                                          )?.attributes.name
-                                                        : 'Выберите марку автомобиля'}
-
-                                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                </Button>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
-                                                <Command>
-                                                    <CommandInput
-                                                        className={
-                                                            'font-electrohub'
-                                                        }
-                                                        placeholder="Поиск..."
-                                                    />
-                                                    <CommandEmpty>
-                                                        не найдено
-                                                    </CommandEmpty>
-                                                    <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
-                                                        {brands?.map(
-                                                            (brand: any) => (
-                                                                <CommandItem
-                                                                    key={
-                                                                        brand.id
-                                                                    }
-                                                                    value={
-                                                                        brand
-                                                                            .attributes
-                                                                            .name
-                                                                    }
-                                                                    onSelect={async () => {
-                                                                        await handleBrandSelect(
-                                                                            brand
-                                                                                .attributes
-                                                                                .name
-                                                                        );
-                                                                        setValue(
-                                                                            'generation',
-                                                                            ''
-                                                                        );
-                                                                    }}
-                                                                >
-                                                                    <Check
-                                                                        className={cn(
-                                                                            'mr-2 h-4 w-4',
-                                                                            field.value ===
-                                                                                brand
-                                                                                    .attributes
-                                                                                    .name
-                                                                                ? 'opacity-100'
-                                                                                : 'opacity-0'
-                                                                        )}
-                                                                    />
-                                                                    <span
-                                                                        className={
-                                                                            'test-sm font-electrohub font-normal'
-                                                                        }
-                                                                    >
-                                                                        {
-                                                                            brand
-                                                                                .attributes
-                                                                                .name
-                                                                        }
-                                                                    </span>
-                                                                </CommandItem>
-                                                            )
-                                                        )}
-                                                    </CommandGroup>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-
-                            <FormField
-                                control={form.control}
                                 name="generation"
                                 render={({ field }) => (
-                                    <FormItem className="relative flex min-w-[300px] flex-col gap-3">
-                                        <FormLabel className="whitespace-nowrap font-electrohub font-medium text-sm">
+                                    <FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
+                                        <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
                                             Модель
                                         </FormLabel>
                                         <Popover
@@ -227,7 +227,7 @@ export default function MobileFiltersBurger({
                                                     disabled={
                                                         !form.watch('brand')
                                                     }
-                                                    className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
+                                                    className="h-8 w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
                                                 >
                                                     {field.value
                                                         ? field.value
@@ -298,8 +298,8 @@ export default function MobileFiltersBurger({
                                 control={form.control}
                                 name="body"
                                 render={({ field }) => (
-                                    <FormItem className="relative flex min-w-[300px] flex-col gap-3">
-                                        <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+                                    <FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
+                                        <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
                                             Кузов
                                         </FormLabel>
                                         <Popover
@@ -311,7 +311,7 @@ export default function MobileFiltersBurger({
                                                 <Button
                                                     variant={'outline'}
                                                     role="combobox"
-                                                    className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
+                                                    className="h-8 w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
                                                 >
                                                     {field.value
                                                         ? bodyOption.find(
@@ -393,8 +393,8 @@ export default function MobileFiltersBurger({
                                 control={form.control}
                                 name="privod"
                                 render={({ field }) => (
-                                    <FormItem className="relative flex min-w-[300px] flex-col gap-3">
-                                        <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+                                    <FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
+                                        <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
                                             Привод
                                         </FormLabel>
                                         <Popover
@@ -406,7 +406,7 @@ export default function MobileFiltersBurger({
                                                 <Button
                                                     variant={'outline'}
                                                     role="combobox"
-                                                    className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
+                                                    className="h-8 w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
                                                 >
                                                     {field.value
                                                         ? privodOption.find(
@@ -488,8 +488,8 @@ export default function MobileFiltersBurger({
                                 control={form.control}
                                 name="engine_type"
                                 render={({ field }) => (
-                                    <FormItem className="relative flex min-w-[300px] flex-col gap-3">
-                                        <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+                                    <FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
+                                        <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
                                             Тип двигателя
                                         </FormLabel>
                                         <Popover
@@ -501,7 +501,7 @@ export default function MobileFiltersBurger({
                                                 <Button
                                                     variant={'outline'}
                                                     role="combobox"
-                                                    className="w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
+                                                    className="h-8 w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
                                                 >
                                                     {field.value
                                                         ? engine_type.find(
@@ -582,7 +582,7 @@ export default function MobileFiltersBurger({
                             <div
                                 className={'flex flex-col items-baseline gap-2'}
                             >
-                                <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+                                <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs sm:text-sm">
                                     Цена
                                 </FormLabel>
                                 <div className={'flex gap-1'}>
@@ -594,7 +594,7 @@ export default function MobileFiltersBurger({
                                                 {/*<FormControl>*/}
                                                 <Input
                                                     className={
-                                                        'w-32 rounded-l-md border border-[#1E1E1E] text-sm'
+                                                        'h-8 w-32 rounded-l-md border border-[#1E1E1E] text-sm'
                                                     }
                                                     placeholder={'от'}
                                                     {...field}
@@ -619,7 +619,7 @@ export default function MobileFiltersBurger({
                                                 {/*<FormControl>*/}
                                                 <Input
                                                     className={
-                                                        'w-32 rounded-r-md border border-[#1E1E1E] text-sm'
+                                                        'h-8 w-32 rounded-r-md border border-[#1E1E1E] text-sm'
                                                     }
                                                     placeholder={'до'}
                                                     {...field}
@@ -639,16 +639,30 @@ export default function MobileFiltersBurger({
                                 </div>
                             </div>
 
-                            <Button
-                                type={'button'}
-                                className={'mt-auto'}
-                                onClick={() => {
-                                    resetFilter();
-                                    form.reset(defaultValues);
-                                }}
-                            >
-                                Сбросить фильтры
-                            </Button>
+                            <div className={'mt-3 flex gap-2'}>
+                                <Button
+                                    size={'sm'}
+                                    className={
+                                        'border border-black bg-white text-black text-xs'
+                                    }
+                                >
+                                    Перейти
+                                </Button>
+                                <Button
+                                    type={'button'}
+                                    className={'mt-auto'}
+                                    size={'sm'}
+                                    onClick={() => {
+                                        resetFilter();
+                                        form.reset(defaultValues);
+                                    }}
+                                >
+                                    <span className={'hidden md:block'}>
+                                        Сбросить фильтры
+                                    </span>
+                                    <Trash2Icon className={'block md:hidden'} />
+                                </Button>
+                            </div>
                         </div>
                     </SheetContent>
                 </Sheet>

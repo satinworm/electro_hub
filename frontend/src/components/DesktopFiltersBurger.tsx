@@ -20,6 +20,7 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { Check, ChevronsUpDown } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export default function DesktopFiltersBurger({
@@ -55,6 +56,7 @@ export default function DesktopFiltersBurger({
             setWindowWidth(window.innerWidth);
         });
     }, []);
+    const { push } = useRouter();
     return (
         <>
             {windowWidth >= 768 && (
@@ -129,6 +131,9 @@ export default function DesktopFiltersBurger({
                                                                         setValue(
                                                                             'generation',
                                                                             ''
+                                                                        );
+                                                                        push(
+                                                                            `${process.env.NEXT_PUBLIC_PUBLIC_URL}/ru/catalog/${brand.attributes.slug.toLowerCase()}`
                                                                         );
                                                                     }}
                                                                 >
