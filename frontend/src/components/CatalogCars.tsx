@@ -13,14 +13,13 @@ type Props = {
     data: CarsInStockBackendResponse;
     locale: string;
     brands: BrandData[];
-    brandPath: string;
     slug: string;
 };
 
 const CatalogCars = memo(({ data, locale, brands, slug }: Props) => {
     const [initialData, setInitialData] =
         useState<CarsInStockBackendResponse>(data);
-    const [openBurger, setOpenBurger] = useState(false);
+
     const [isLoading, setIsLoading] = useState(false);
 
     const { push } = useRouter();

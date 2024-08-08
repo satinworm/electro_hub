@@ -36,6 +36,8 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export default function MobileFiltersBurger({
+    openBurger,
+    setOpenBurger,
     setFilter,
     filters,
     form,
@@ -72,7 +74,7 @@ export default function MobileFiltersBurger({
     return (
         <>
             {windowWidth < 768 && (
-                <Sheet>
+                <Sheet open={openBurger} onOpenChange={setOpenBurger}>
                     <FormField
                         control={form.control}
                         name="brand"
@@ -181,6 +183,7 @@ export default function MobileFiltersBurger({
                             onClick={() => {
                                 resetFilter();
                                 form.reset(defaultValues);
+                                setOpenBurger(false);
                             }}
                         >
                             <span className={'hidden md:block'}>
@@ -641,7 +644,11 @@ export default function MobileFiltersBurger({
 
                             <div className={'mt-3 flex gap-2'}>
                                 <Button
+                                    type={'button'}
                                     size={'sm'}
+                                    onClick={() => {
+                                        setOpenBurger(false);
+                                    }}
                                     className={
                                         'border border-black bg-white text-black text-xs'
                                     }
@@ -655,6 +662,7 @@ export default function MobileFiltersBurger({
                                     onClick={() => {
                                         resetFilter();
                                         form.reset(defaultValues);
+                                        setOpenBurger(false);
                                     }}
                                 >
                                     <span className={'hidden md:block'}>

@@ -95,6 +95,7 @@ const engine_type = [
     },
 ];
 export default function FiltersBurger(props: any) {
+    const [openBurger, setOpenBurger] = useState(false);
     const { initialData, setInitialData, locale, brands, slug } = props;
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
@@ -292,6 +293,8 @@ export default function FiltersBurger(props: any) {
                         </Button>
                     )}
                     <MobileFiltersBurger
+                        openBurger={openBurger}
+                        setOpenBurger={setOpenBurger}
                         setFilter={setFilter}
                         filters={filters}
                         form={form}
