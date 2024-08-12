@@ -120,27 +120,95 @@ export default async function StockCarFullPage({ params }: any) {
             </div>
             <div
                 className={
-                    'grid w-full grid-cols-2 flex-wrap gap-2 gap-y-5 bg-white py-8 md:flex md:flex-row md:justify-evenly'
+                    'grid w-full grid-cols-2 flex-wrap items-center gap-2 gap-y-5 bg-white py-8 md:flex md:flex-row md:justify-evenly'
                 }
             >
+                {item?.rear_tires && item?.front_tires && (
+                    <div
+                        className={
+                            'flex min-h-[40px] flex-col items-center gap-2.5 font-bold text-sm'
+                        }
+                    >
+                        <div className={'text-center'}>
+                            <div className={'text-gray-500'}>Передние шины</div>
+                            <div className={'text-lg md:text-xl'}>
+                                {item.front_tires}
+                            </div>
+                        </div>
+                        <div className={'text-center'}>
+                            <div className={'text-gray-500'}>Задние шины</div>
+                            <div className={'text-lg md:text-xl'}>
+                                {item.rear_tires}
+                            </div>
+                        </div>
+                    </div>
+                )}
                 <div
                     className={
                         'flex min-h-[40px] flex-col items-center gap-2.5 font-bold text-sm'
                     }
                 >
-                    <div className={'h-[62px]'}>
-                        <Image
-                            src={'/carstoorder/battery.svg'}
-                            alt={'Battery'}
-                            width={90}
-                            height={60}
-                        />
+                    <Image
+                        src={'/carstoorder/battery.svg'}
+                        alt={'Battery'}
+                        width={60}
+                        height={40}
+                    />
+                    <div className={'text-center'}>
+                        <div className={'text-gray-500'}>Емкость</div>
+                        <div className={'text-lg md:text-xl'}>
+                            {item.battery_capacity} кВ*ч
+                        </div>
                     </div>
-                    <span className={'text-xl'}>
-                        {item.battery_capacity}{' '}
-                        {locale === 'ru' ? 'кВт/ч' : 'kW/h'}
-                    </span>
+                    <div className={'text-center'}>
+                        <div className={'text-gray-500'}>Мощность</div>
+                        <div className={'text-lg md:text-xl'}>
+                            {item.battery_power} кВт
+                        </div>
+                    </div>
                 </div>
+                <div
+                    className={
+                        'flex min-h-[40px] flex-col items-center gap-2.5 font-bold text-sm'
+                    }
+                >
+                    <Image
+                        src={'/carstoorder/fuel_type.png'}
+                        alt={'Battery'}
+                        width={60}
+                        height={40}
+                    />
+                    <div className={'text-center'}>
+                        <div className={'text-gray-500'}>Тип топлива</div>
+                        <div className={'text-lg md:text-xl'}>
+                            {item.engine_type}
+                        </div>
+                    </div>
+                </div>
+                {item?.transmission && item?.privod && (
+                    <div
+                        className={
+                            'flex min-h-[40px] flex-col items-center gap-2.5 font-bold text-sm'
+                        }
+                    >
+                        <div className={'text-center'}>
+                            <div className={'text-gray-500'}>Трансмиссия</div>
+                            <div className={'text-lg md:text-xl'}>
+                                {item.transmission}
+                            </div>
+                        </div>
+                        <div className={'text-center'}>
+                            <div className={'text-gray-500'}>Привод</div>
+                            <div
+                                className={
+                                    'text-center text-lg capitalize md:text-xl'
+                                }
+                            >
+                                {item.privod}
+                            </div>
+                        </div>
+                    </div>
+                )}
                 <div
                     className={
                         'flex flex-col items-center gap-2.5 font-bold text-sm'
@@ -160,35 +228,51 @@ export default async function StockCarFullPage({ params }: any) {
                 </div>
                 <div
                     className={
-                        'flex flex-col items-center gap-2.5 font-bold text-sm'
+                        'flex min-h-[40px] flex-col items-center gap-2.5 font-bold text-sm'
                     }
                 >
-                    <div className={'h-[62px]'}>
-                        <Image
-                            src={'/carstoorder/range.svg'}
-                            alt={'Battery'}
-                            width={66}
-                            height={60}
-                        />
+                    <Image
+                        src={'/carstoorder/number_of_seats.png'}
+                        alt={'seats'}
+                        width={40}
+                        height={20}
+                    />
+                    <div className={'text-center'}>
+                        <div className={'text-gray-500'}>Кол-во мест</div>
+                        <div className={'text-lg md:text-xl'}>
+                            {item.number_of_seats} мест
+                        </div>
                     </div>
-                    <span className={'text-xl'}>
-                        {item?.vehicle_range} {locale === 'ru' ? 'км' : 'km'}
-                    </span>
+                    <div className={'text-center'}>
+                        <div className={'text-gray-500'}>Кол-во дверей</div>
+                        <div className={'text-lg md:text-xl'}>
+                            {item.number_of_doors} дверей
+                        </div>
+                    </div>
                 </div>
                 <div
                     className={
-                        'flex flex-col items-center gap-2.5 font-bold text-sm'
+                        'flex min-h-[40px] flex-col items-center gap-2.5 font-bold text-sm'
                     }
                 >
-                    <div className={'h-[62px]'}>
-                        <Image
-                            src={'/carstoorder/privod.svg'}
-                            alt={'Battery'}
-                            width={66}
-                            height={60}
-                        />
+                    <Image
+                        src={'/carstoorder/car.svg'}
+                        alt={'seats'}
+                        width={100}
+                        height={40}
+                    />
+                    <div className={'text-center'}>
+                        <div className={'text-gray-500'}>Клиренс</div>
+                        <div className={'text-lg md:text-xl'}>
+                            {item.clearance}
+                        </div>
                     </div>
-                    <span className={'text-xl'}>{item?.privod}</span>
+                    <div className={'text-center'}>
+                        <div className={'text-gray-500'}>Объем багажника</div>
+                        <div className={'text-lg md:text-xl'}>
+                            {item.trunk_capacity}
+                        </div>
+                    </div>
                 </div>
             </div>
 

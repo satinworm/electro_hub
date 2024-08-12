@@ -194,7 +194,7 @@
     "vehicle_range": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "float"
@@ -202,7 +202,7 @@
     "price": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "float"
@@ -210,10 +210,88 @@
     "hourse_power": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "float"
+    },
+    "battery_power": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "float",
+      "required": true
+    },
+    "front_tires": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "required": true,
+      "default": "передние шины 255/45 R20"
+    },
+    "rear_tires": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true,
+      "default": "задние шины 255/45 R20"
+    },
+    "transmission": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "default": "трансмиссия"
+    },
+    "number_of_seats": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "default": "5",
+      "required": true
+    },
+    "number_of_doors": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "default": "5",
+      "required": true
+    },
+    "clearance": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "default": "клиренс",
+      "required": true
+    },
+    "trunk_capacity": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string",
+      "required": true,
+      "default": "объем багажника"
     }
   }
 }

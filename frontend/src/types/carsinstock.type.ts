@@ -43,6 +43,7 @@ export type CarAttributes = {
     slug: string;
     specification: SpecificationCategory[];
     battery_capacity: number;
+    battery_power: number;
     vehicle_range: number;
     body: 'лифтбек' | 'кроссовер' | 'минивэн' | 'седан';
     engine: number;
@@ -53,6 +54,13 @@ export type CarAttributes = {
         | 'Бензин';
     privod: 'передний' | 'задний' | 'полный';
     hourse_power: number;
+    front_tires: string;
+    rear_tires: string;
+    transmission: string;
+    clearance: string;
+    number_of_seats: string;
+    number_of_doors: string;
+    trunk_capacity: string;
 };
 
 // Root interface for a single car entity

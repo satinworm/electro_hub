@@ -1114,21 +1114,83 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
     vehicle_range: Attribute.Float &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     price: Attribute.Float &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     hourse_power: Attribute.Float &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
+    battery_power: Attribute.Float &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    front_tires: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }> &
+      Attribute.DefaultTo<'\u043F\u0435\u0440\u0435\u0434\u043D\u0438\u0435 \u0448\u0438\u043D\u044B 255/45 R20'>;
+    rear_tires: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'\u0437\u0430\u0434\u043D\u0438\u0435 \u0448\u0438\u043D\u044B 255/45 R20'>;
+    transmission: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'\u0442\u0440\u0430\u043D\u0441\u043C\u0438\u0441\u0441\u0438\u044F'>;
+    number_of_seats: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'5'>;
+    number_of_doors: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'5'>;
+    clearance: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'\u043A\u043B\u0438\u0440\u0435\u043D\u0441'>;
+    trunk_capacity: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Attribute.DefaultTo<'\u043E\u0431\u044A\u0435\u043C \u0431\u0430\u0433\u0430\u0436\u043D\u0438\u043A\u0430'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
