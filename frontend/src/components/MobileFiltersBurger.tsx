@@ -65,10 +65,17 @@ export default function MobileFiltersBurger({
 }: any) {
     const [windowWidth, setWindowWidth] = useState<number>(0);
     useEffect(() => {
-        setWindowWidth(window.innerWidth);
-        window.addEventListener('resize', () => {
+        if (typeof window !== 'undefined') {
             setWindowWidth(window.innerWidth);
-        });
+            window.addEventListener('resize', () => {
+                setWindowWidth(window.innerWidth);
+            });
+        }
+        return () => {
+            window.removeEventListener('resize', () => {
+                setWindowWidth(window.innerWidth);
+            });
+        };
     }, []);
     const { push } = useRouter();
     return (

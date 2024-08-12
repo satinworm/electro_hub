@@ -12,6 +12,7 @@ import type { CarEntity } from '@/types/carsinstock.type';
 import { getStrapiMedia } from '@/utils/api-helpers';
 import { useLocale } from 'next-intl';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -74,7 +75,8 @@ export default function CarsInStock({ data }: Props) {
                                 // shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]
                                 className="md:basis-1/2 lg:basis-1/4"
                             >
-                                <div
+                                <Link
+                                    href={`/stock/${item.attributes.slug}`}
                                     className={
                                         'mx-auto flex flex-col items-center justify-center overflow-hidden rounded-[20px] p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]'
                                     }
@@ -225,11 +227,11 @@ export default function CarsInStock({ data }: Props) {
                                         </div>
                                         <button
                                             type={'button'}
-                                            onClick={() =>
-                                                push(
-                                                    `/stock/${item.attributes.slug}`
-                                                )
-                                            }
+                                            // onClick={() =>
+                                            //     push(
+                                            //         `/stock/${item.attributes.slug}`
+                                            //     )
+                                            // }
                                             className={
                                                 'rounded-[10px] bg-[#1e1e1e] px-4 py-3 text-center font-bold text-white text-xs'
                                             }
@@ -239,7 +241,7 @@ export default function CarsInStock({ data }: Props) {
                                                 : 'More details'}
                                         </button>
                                     </div>
-                                </div>
+                                </Link>
                             </CarouselItem>
                         );
                     })}

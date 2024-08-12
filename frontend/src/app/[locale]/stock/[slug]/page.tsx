@@ -6,6 +6,7 @@ import type { CarAttributes } from '@/types/carsinstock.type';
 import { getDataFromAPI } from '@/utils/fetch-api';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
 import React from 'react';
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export default async function StockCarFullPage({ params }: any) {
@@ -80,7 +81,7 @@ export default async function StockCarFullPage({ params }: any) {
                             />
                         </div>
                     )}
-                    <p className={'mt-5 text-lg'}>{item.engine} л/c</p>
+                    <p className={'mt-5 text-lg'}>{item.hourse_power} л/c</p>
                     <ScrollLink
                         styles={
                             'font-bold text-[#2E71EF] border-b-transparent hover:border-[#2E71EF] text-sm mt-5'
@@ -117,6 +118,80 @@ export default async function StockCarFullPage({ params }: any) {
                     </div>
                 </div>
             </div>
+            <div
+                className={
+                    'grid w-full grid-cols-2 flex-wrap gap-2 gap-y-5 bg-white py-8 md:flex md:flex-row md:justify-evenly'
+                }
+            >
+                <div
+                    className={
+                        'flex min-h-[40px] flex-col items-center gap-2.5 font-bold text-sm'
+                    }
+                >
+                    <div className={'h-[62px]'}>
+                        <Image
+                            src={'/carstoorder/battery.svg'}
+                            alt={'Battery'}
+                            width={90}
+                            height={60}
+                        />
+                    </div>
+                    <span className={'text-xl'}>
+                        {item.battery_capacity}{' '}
+                        {locale === 'ru' ? 'кВт/ч' : 'kW/h'}
+                    </span>
+                </div>
+                <div
+                    className={
+                        'flex flex-col items-center gap-2.5 font-bold text-sm'
+                    }
+                >
+                    <div className={'h-[62px]'}>
+                        <Image
+                            src={'/carstoorder/hourse_power.png'}
+                            alt={'Battery'}
+                            width={60}
+                            height={60}
+                        />
+                    </div>
+                    <span className={'text-xl'}>
+                        {item?.hourse_power} {locale === 'ru' ? 'л/c' : 'h/p'}
+                    </span>
+                </div>
+                <div
+                    className={
+                        'flex flex-col items-center gap-2.5 font-bold text-sm'
+                    }
+                >
+                    <div className={'h-[62px]'}>
+                        <Image
+                            src={'/carstoorder/range.svg'}
+                            alt={'Battery'}
+                            width={66}
+                            height={60}
+                        />
+                    </div>
+                    <span className={'text-xl'}>
+                        {item?.vehicle_range} {locale === 'ru' ? 'км' : 'km'}
+                    </span>
+                </div>
+                <div
+                    className={
+                        'flex flex-col items-center gap-2.5 font-bold text-sm'
+                    }
+                >
+                    <div className={'h-[62px]'}>
+                        <Image
+                            src={'/carstoorder/privod.svg'}
+                            alt={'Battery'}
+                            width={66}
+                            height={60}
+                        />
+                    </div>
+                    <span className={'text-xl'}>{item?.privod}</span>
+                </div>
+            </div>
+
             {item?.specification?.length > 0 && (
                 <TechnicalSpecifications data={item?.specification} />
             )}
