@@ -976,12 +976,14 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     lising: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -995,9 +997,10 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
         };
       }>;
     engine: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }> &
       Attribute.DefaultTo<'544 \u043B.\u0441.'>;
@@ -1042,12 +1045,15 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
         '\u0437\u0430\u0434\u043D\u0438\u0439'
       ]
     > &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
-      }>;
+      }> &
+      Attribute.DefaultTo<'\u043F\u043E\u043B\u043D\u044B\u0439'>;
     preview_image: Attribute.Media &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -1073,6 +1079,7 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
         '\u043C\u0435\u0445\u0430\u043D\u0438\u043A\u0430'
       ]
     > &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -1099,31 +1106,35 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
         '\u0441\u0435\u0434\u0430\u043D'
       ]
     > &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     battery_capacity: Attribute.Float &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     vehicle_range: Attribute.Float &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
     price: Attribute.Float &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
     hourse_power: Attribute.Float &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;

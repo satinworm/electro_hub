@@ -19,10 +19,11 @@
     "name": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "lising": {
       "pluginOptions": {
@@ -31,7 +32,8 @@
         }
       },
       "type": "string",
-      "default": "В лизинг ≈ 813 USD в месяц"
+      "default": "В лизинг ≈ 813 USD в месяц",
+      "required": true
     },
     "short_specification": {
       "pluginOptions": {
@@ -44,11 +46,12 @@
     "engine": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "string",
-      "default": "544 л.с."
+      "default": "544 л.с.",
+      "required": true
     },
     "gallery": {
       "type": "media",
@@ -103,7 +106,7 @@
     "privod": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "enumeration",
@@ -111,12 +114,14 @@
         "полный",
         "передний ",
         "задний"
-      ]
+      ],
+      "required": true,
+      "default": "полный"
     },
     "preview_image": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ],
@@ -152,7 +157,8 @@
         "автомат",
         "механика"
       ],
-      "default": "автомат"
+      "default": "автомат",
+      "required": true
     },
     "brand": {
       "type": "relation",
@@ -171,7 +177,7 @@
     "body": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "enumeration",
@@ -180,12 +186,13 @@
         "кроссовер",
         "минивэн",
         "седан"
-      ]
+      ],
+      "required": true
     },
     "battery_capacity": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "float",
@@ -197,7 +204,8 @@
           "localized": false
         }
       },
-      "type": "float"
+      "type": "float",
+      "required": true
     },
     "price": {
       "pluginOptions": {
@@ -205,7 +213,8 @@
           "localized": false
         }
       },
-      "type": "float"
+      "type": "float",
+      "required": true
     },
     "hourse_power": {
       "pluginOptions": {
@@ -213,7 +222,8 @@
           "localized": false
         }
       },
-      "type": "float"
+      "type": "float",
+      "required": true
     },
     "battery_power": {
       "pluginOptions": {
