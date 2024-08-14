@@ -249,49 +249,52 @@ export default function FiltersBurger(props: any) {
         // <Sheet>
         <Form {...form}>
             <form className={''} onSubmit={form.handleSubmit(onSubmit)}>
-                <div className={'mt-6 flex flex-wrap gap-1.5 sm:gap-3'}>
-                    <div className={'relative w-full md:w-fit'}>
-                        <Input
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                            className="h-9 w-full rounded-md border border-black py-1 pr-10 pl-4 text-xs sm:py-2 md:h-10 md:w-96 lg:w-96"
-                            placeholder="Введите название для поиска..."
-                        />
-                        {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-                        <div
-                            className={cn(
-                                '-translate-y-1/2 absolute top-1/2 right-3 flex cursor-pointer transition duration-300',
-                                searchTerm ? 'opacity-100' : 'opacity-0'
-                            )}
-                            onClick={async () => {
-                                setSearchTerm('');
-                                setFilter('name', '$containsi', '');
-                            }}
-                        >
-                            <XIcon
-                                className={
-                                    'rounded-full transition hover:bg-slate-50'
-                                }
+                <div className={'mt-6 flex flex-col gap-1.5 sm:gap-3'}>
+                    <div className={'flex w-full gap-2 md:w-fit'}>
+                        <div className={'relative'}>
+                            <Input
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                className="h-9 w-full rounded-md border border-black py-1 pr-10 pl-4 text-xs sm:py-2 md:h-10 md:w-96 lg:w-96"
+                                placeholder="Введите название для поиска..."
                             />
+                            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+                            <div
+                                className={cn(
+                                    '-translate-y-1/2 absolute top-1/2 right-3 flex cursor-pointer transition duration-300',
+                                    searchTerm ? 'opacity-100' : 'opacity-0'
+                                )}
+                                onClick={async () => {
+                                    setSearchTerm('');
+                                    setFilter('name', '$containsi', '');
+                                }}
+                            >
+                                <XIcon
+                                    className={
+                                        'rounded-full transition hover:bg-slate-50'
+                                    }
+                                />
+                            </div>
                         </div>
+                        {Object.keys(filters).length > 1 && (
+                            <Button
+                                type={'button'}
+                                className={'mt-auto hidden md:flex'}
+                                onClick={() => {
+                                    resetFilter();
+                                    setSearchTerm('');
+                                    form.reset(defaultValues);
+                                    push('/ru/catalog/all');
+                                }}
+                            >
+                                <span className={'hidden md:block'}>
+                                    Сбросить фильтры
+                                </span>
+                                <Trash2Icon className={'block md:hidden'} />
+                            </Button>
+                        )}
                     </div>
-                    {Object.keys(filters).length > 1 && (
-                        <Button
-                            type={'button'}
-                            className={'mt-auto hidden md:flex'}
-                            onClick={() => {
-                                resetFilter();
-                                setSearchTerm('');
-                                form.reset(defaultValues);
-                                push('/ru/catalog/all');
-                            }}
-                        >
-                            <span className={'hidden md:block'}>
-                                Сбросить фильтры
-                            </span>
-                            <Trash2Icon className={'block md:hidden'} />
-                        </Button>
-                    )}
+
                     <MobileFiltersBurger
                         openBurger={openBurger}
                         setOpenBurger={setOpenBurger}
