@@ -78,6 +78,8 @@ export default function MobileFiltersBurger({
 		};
 	}, []);
 	const { push } = useRouter();
+	// @ts-ignore
+	const uniqueGenerations = [...new Set(generations)];
 	return (
 		<>
 			{windowWidth < 768 && (
@@ -104,6 +106,7 @@ export default function MobileFiltersBurger({
 											>
 												{field.value
 													? brands.find(
+															// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 															(brand: any) =>
 																brand.attributes.name === field.value,
 														)?.attributes.name
@@ -231,7 +234,7 @@ export default function MobileFiltersBurger({
 													/>
 													<CommandEmpty>не найдено</CommandEmpty>
 													<CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
-														{generations?.map((generation: any) => (
+														{uniqueGenerations?.map((generation: any) => (
 															<CommandItem
 																key={generation}
 																value={generation}

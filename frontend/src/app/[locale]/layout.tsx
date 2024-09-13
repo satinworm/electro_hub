@@ -12,7 +12,7 @@ import Navbar from '@/components/navbar/Navbar';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Footer } from '@/components/footer/Footer';
 import { getDataFromAPI } from '@/utils/fetch-api';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Toaster } from '@/components/ui/sonner';
 import '@splidejs/react-splide/css';
 
