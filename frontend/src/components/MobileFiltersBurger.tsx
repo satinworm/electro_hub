@@ -131,7 +131,9 @@ export default function MobileFiltersBurger({
 																await handleBrandSelect(brand.attributes.name);
 																setValue("generation", "");
 																push(
-																	`${process.env.NEXT_PUBLIC_PUBLIC_URL}/ru/catalog/${brand.attributes.slug.toLowerCase()}`,
+																	`${
+																		process.env.NEXT_PUBLIC_PUBLIC_URL
+																	}/ru/catalog/${brand.attributes.slug.toLowerCase()}`,
 																);
 															}}
 														>

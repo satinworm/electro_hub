@@ -104,7 +104,8 @@ export default function FiltersBurger(props: any) {
 		onFilterUpdate,
 		filteredData,
 		templateData,
-		page
+		page,
+		setPageCount,
 	} = props;
 	const [filteredGenerations, setFilteredGenerations] = useState<string[]>([]);
 	const [openBurger, setOpenBurger] = useState(false);
@@ -170,6 +171,8 @@ export default function FiltersBurger(props: any) {
 			},
 			locale,
 		);
+		console.log("carsInStockData", carsInStockData);
+		setPageCount(carsInStockData.meta.pagination.pageCount);
 
 		return carsInStockData;
 	};

@@ -27,13 +27,13 @@ const CatalogCars = memo(
 		brands,
 		slug,
 		initialData: templateData,
-		pageCount,
+		pageCount: initPageCount,
 		total,
 	}: Props) => {
 		const [initialData, setInitialData] =
 			useState<CarsInStockBackendResponse>(data);
-		console.log("pageCount", pageCount);
 		const [page, setPage] = useState(1);
+		const [pageCount, setPageCount] = useState(initPageCount);
 		const [isLoading, setIsLoading] = useState(false);
 		const [imageLoaded, setImageLoaded] = useState<Record<string, boolean>>({}); // Track image loading state
 
@@ -79,6 +79,8 @@ const CatalogCars = memo(
 						brands={brands}
 						slug={slug}
 						page={page}
+						setPage={setPage}
+						setPageCount={setPageCount}
 						templateData={templateData}
 					/>
 
@@ -263,41 +265,43 @@ const CatalogCars = memo(
 							)}
 						</TransitionGroup>
 					</div>
-					<div className="flex mx-auto w-fit">
-						<Button
-							type="button"
-							onClick={async () => {
-								setPage((prev: number) => prev - 1);
-								window.scrollTo({
-									top: 0,
-									behavior: "smooth",
-								});
-							}}
-							disabled={page === 1}
-							className="px-4 py-2 bg-white border hover:bg-slate-50 border-black font-montserrat disabled:bg-gray-400 text-black rounded disabled:opacity-80"
-						>
-							Назад
-						</Button>
-						<div className="px-4 text-black text-center font-montserrat py-2">
-							<span className="text-primary font-medium text-lg">{page}</span>
-							<span className="text-lg mx-1">/</span>
-							<span className="text-lg">{pageCount}</span>
+					{pageCount > 1 && (
+						<div className="flex mx-auto w-fit">
+							<Button
+								type="button"
+								onClick={async () => {
+									setPage((prev: number) => prev - 1);
+									window.scrollTo({
+										top: 0,
+										behavior: "smooth",
+									});
+								}}
+								disabled={page === 1}
+								className="px-4 py-2 bg-white border hover:bg-slate-50 border-black font-montserrat disabled:bg-gray-400 text-black rounded disabled:opacity-80"
+							>
+								Назад
+							</Button>
+							<div className="px-4 text-black text-center font-montserrat py-2">
+								<span className="text-primary font-medium text-lg">{page}</span>
+								<span className="text-lg mx-1">/</span>
+								<span className="text-lg">{pageCount}</span>
+							</div>
+							<Button
+								type="button"
+								onClick={() => {
+									setPage((prev: number) => prev + 1);
+									window.scrollTo({
+										top: 0,
+										behavior: "smooth",
+									});
+								}}
+								disabled={page === pageCount}
+								className="px-4 py-2 bg-white hover:bg-slate-50 border border-black font-montserrat text-black rounded disabled:opacity-80"
+							>
+								Вперед
+							</Button>
 						</div>
-						<Button
-							type="button"
-							onClick={() => {
-								setPage((prev: number) => prev + 1);
-								window.scrollTo({
-									top: 0,
-									behavior: "smooth",
-								});
-							}}
-							disabled={page === pageCount}
-							className="px-4 py-2 bg-white hover:bg-slate-50 border border-black font-montserrat text-black rounded disabled:opacity-80"
-						>
-							Вперед
-						</Button>
-					</div>
+					)}
 				</div>
 			</div>
 		);

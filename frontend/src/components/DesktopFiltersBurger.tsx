@@ -109,6 +109,7 @@ export default function DesktopFiltersBurger({
 														{brands?.map(
 															// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 															(brand: any) => (
+																
 																<CommandItem
 																	key={brand.id}
 																	value={brand.attributes.name}
