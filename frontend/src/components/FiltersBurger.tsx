@@ -104,9 +104,9 @@ export default function FiltersBurger(props: any) {
 		onFilterUpdate,
 		filteredData,
 		templateData,
+		page
 	} = props;
 	const [filteredGenerations, setFilteredGenerations] = useState<string[]>([]);
-
 	const [openBurger, setOpenBurger] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
@@ -141,10 +141,6 @@ export default function FiltersBurger(props: any) {
 			setValue("brand", brand.attributes.name);
 			setFilter("brand.name", "$eq", brand.attributes.name);
 		}
-		// else if (slug === 'all') {
-		//     setValue('brand', '');
-		//     setFilter('brand.name', '$ne', '');
-		// }
 	}, [slug, brands, setValue, setFilter]);
 	console.log("FILTERS ", filters);
 	const fetchCarsInStockData = async (filters: any, locale: string) => {
@@ -166,6 +162,10 @@ export default function FiltersBurger(props: any) {
 						fields: ["name", "slug"],
 					},
 				},
+				pagination: {
+					pageSize: 12,
+					page: page, // Убедитесь, что переменная page определена
+				},
 				locale: locale,
 			},
 			locale,
@@ -173,22 +173,7 @@ export default function FiltersBurger(props: any) {
 
 		return carsInStockData;
 	};
-	// console.log("generations ", filteredGenerations);
-	// const handleBrandSelect = async (selectedBrand: string) => {
-	// 	setValue("brand", selectedBrand);
-	// 	console.log("selectedBrand", selectedBrand);
-	//
-	// 	// Устанавливаем фильтры на основе выбранного бренда
-	// 	setFilter("brand.name", "$eq", selectedBrand);
-	// 	setFilter("generation", "$ne", "");
-	// 	setFilter("engine_type", "$ne", "");
-	// 	setBrandListOpen(false);
-	//
-	// 	// Фильтрация поколений на основе выбранного бренда
-	// 	// Лог для проверки результата фильтрации
-	// 	setFilteredGenerations(initialData);
-	// 	console.log("filteredGenerations", filteredGenerations);
-	// };
+
 	console.log("templateData", templateData);
 	const handleBrandSelect = async (selectedBrand: string) => {
 		setValue("brand", selectedBrand);
@@ -238,7 +223,7 @@ export default function FiltersBurger(props: any) {
 			setInitialData(updatedData);
 		};
 		fetchData();
-	}, [filters]);
+	}, [filters, page]);
 
 	useEffect(() => {
 		const handler = setTimeout(() => {
@@ -280,10 +265,6 @@ export default function FiltersBurger(props: any) {
 				setFilter("price", "$lte", +debouncedPriceRange.end);
 			}
 		}
-		// else {
-		//     setFilter('price', '$gte', 0);
-		//     setFilter('price', '$lte', 100000000);
-		// }
 	}, [debouncedPriceRange, setFilter]);
 	const handlePriceChange = (
 		event: React.ChangeEvent<HTMLInputElement>,

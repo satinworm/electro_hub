@@ -52,6 +52,7 @@ export async function generateMetadata({ params }: any) {
 	const brandImage = brands?.data?.[0]?.attributes?.image?.data?.attributes;
 	const SEO = pageProperties?.data?.[0]?.attributes?.SEO;
 	const additionalOgTags =
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		pageProperties?.data?.[0]?.attributes?.SEO?.MetaTag?.map((tag: any) => {
 			if (!tag) return;
 			return {
@@ -77,6 +78,7 @@ export async function generateMetadata({ params }: any) {
 		other: other,
 	};
 }
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export default async function CatalogPage({ params }: any) {
 	const { locale, slug } = params;
 
@@ -126,10 +128,19 @@ export default async function CatalogPage({ params }: any) {
 					fields: ["name", "slug"],
 				},
 			},
+			pagination: {
+				page: 1,
+				pageSize: 20,
+			},
 			locale: locale,
 		},
 		locale,
 	);
+	const pagination = initialData?.meta?.pagination as {
+		pageCount: number;
+		total: number;
+	};
+	console.log("kurwa", initialData.meta.pagination);
 	const brands = (await getDataFromAPI(
 		"brands",
 
@@ -155,6 +166,8 @@ export default async function CatalogPage({ params }: any) {
 				locale={locale}
 				brands={brands?.data}
 				slug={slug}
+				pageCount={pagination.pageCount}
+				total={pagination.total}
 			/>
 		</section>
 	);

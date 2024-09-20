@@ -8,6 +8,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { memo, useEffect, useState } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Button } from "./ui/button";
 
 type Props = {
 	data: CarsInStockBackendResponse;
@@ -15,14 +16,26 @@ type Props = {
 	locale: string;
 	brands: BrandData[];
 	slug: string;
+	pageCount: number;
+	total: number;
 };
 
 const CatalogCars = memo(
-	({ data, locale, brands, slug, initialData: templateData }: Props) => {
+	({
+		data,
+		locale,
+		brands,
+		slug,
+		initialData: templateData,
+		pageCount,
+		total,
+	}: Props) => {
 		const [initialData, setInitialData] =
 			useState<CarsInStockBackendResponse>(data);
-
+		console.log("pageCount", pageCount);
+		const [page, setPage] = useState(1);
 		const [isLoading, setIsLoading] = useState(false);
+		const [imageLoaded, setImageLoaded] = useState<Record<string, boolean>>({}); // Track image loading state
 
 		const { push } = useRouter();
 
@@ -38,6 +51,10 @@ const CatalogCars = memo(
 		}, [initialData]);
 
 		const path = usePathname();
+
+		const handleImageLoad = (slug: string) => {
+			setImageLoaded((prev) => ({ ...prev, [slug]: true }));
+		};
 
 		return (
 			<div className={"bg-white py-6 md:py-10 lg:py-16 xl:py-20"}>
@@ -61,6 +78,7 @@ const CatalogCars = memo(
 						locale={locale}
 						brands={brands}
 						slug={slug}
+						page={page}
 						templateData={templateData}
 					/>
 
@@ -70,18 +88,11 @@ const CatalogCars = memo(
 								"relative grid grid-cols-1 gap-3 py-5 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-5 xl:gap-5 2xl:gap-6"
 							}
 						>
-							{/*{initialData?.data?.length === 0 &&*/}
-							{/*	path !== "/ru/catalog/all" && (*/}
-							{/*		<div>Извините, еще не добавили)</div>*/}
-							{/*	)}*/}
 							{initialData?.data?.length === 0 ? (
 								<CSSTransition
-									addEndListener={
-										// eslint-disable-next-line @typescript-eslint/no-empty-function
-										(node, done) => {
-											node.addEventListener("transitionend", done, false);
-										}
-									}
+									addEndListener={(node, done) => {
+										node.addEventListener("transitionend", done, false);
+									}}
 									key={"no-data"}
 									timeout={300}
 									classNames="fade"
@@ -94,12 +105,9 @@ const CatalogCars = memo(
 										key={item.attributes.slug}
 										timeout={300}
 										classNames="fade"
-										addEndListener={
-											// eslint-disable-next-line @typescript-eslint/no-empty-function
-											(node, done) => {
-												node.addEventListener("transitionend", done, false);
-											}
-										}
+										addEndListener={(node, done) => {
+											node.addEventListener("transitionend", done, false);
+										}}
 									>
 										<div>
 											<Link
@@ -108,27 +116,37 @@ const CatalogCars = memo(
 													"mx-auto flex flex-col items-center justify-center overflow-hidden rounded-[20px] p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
 												}
 											>
-												<div className={"relative"}>
-													<div className={"relative"}>
-														<Image
-															className={
-																"max-h-[200px] rounded-[10px] object-contain"
-															}
-															src={
-																// biome-ignore lint/style/noNonNullAssertion: <explanation>
-																getStrapiMedia(
-																	item?.attributes?.preview_image?.data
-																		?.attributes?.url,
-																)!
-															}
-															alt={"asd"}
-															width={
+												<div
+													className={
+														"relative w-full h-[200px] flex items-center justify-center"
+													}
+												>
+													{!imageLoaded[item.attributes.slug] && (
+														<div className="bg-gray-200 absolute left-0 top-0 animate-pulse rounded-[10px] w-full h-full" />
+													)}
+													<Image
+														className={`max-h-[200px] rounded-[10px] object-contain transition-opacity duration-500 ease-in-out ${
+															imageLoaded[item.attributes.slug]
+																? "opacity-100"
+																: "opacity-0"
+														}`}
+														src={
+															// biome-ignore lint/style/noNonNullAssertion: <explanation>
+															getStrapiMedia(
 																item?.attributes?.preview_image?.data
-																	?.attributes?.width
-															}
-															height={200}
-														/>
-													</div>
+																	?.attributes?.url,
+															)!
+														}
+														alt={item.attributes?.name}
+														width={
+															item?.attributes?.preview_image?.data?.attributes
+																?.width
+														}
+														height={200}
+														onLoadingComplete={() =>
+															handleImageLoad(item.attributes.slug)
+														}
+													/>
 												</div>
 												<div
 													className={
@@ -244,6 +262,41 @@ const CatalogCars = memo(
 								))
 							)}
 						</TransitionGroup>
+					</div>
+					<div className="flex mx-auto w-fit">
+						<Button
+							type="button"
+							onClick={async () => {
+								setPage((prev: number) => prev - 1);
+								window.scrollTo({
+									top: 0,
+									behavior: "smooth",
+								});
+							}}
+							disabled={page === 1}
+							className="px-4 py-2 bg-white border hover:bg-slate-50 border-black font-montserrat disabled:bg-gray-400 text-black rounded disabled:opacity-80"
+						>
+							Назад
+						</Button>
+						<div className="px-4 text-black text-center font-montserrat py-2">
+							<span className="text-primary font-medium text-lg">{page}</span>
+							<span className="text-lg mx-1">/</span>
+							<span className="text-lg">{pageCount}</span>
+						</div>
+						<Button
+							type="button"
+							onClick={() => {
+								setPage((prev: number) => prev + 1);
+								window.scrollTo({
+									top: 0,
+									behavior: "smooth",
+								});
+							}}
+							disabled={page === pageCount}
+							className="px-4 py-2 bg-white hover:bg-slate-50 border border-black font-montserrat text-black rounded disabled:opacity-80"
+						>
+							Вперед
+						</Button>
 					</div>
 				</div>
 			</div>
