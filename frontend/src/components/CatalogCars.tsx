@@ -7,7 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { memo, useEffect, useState } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Button } from "./ui/button";
 
 type Props = {
@@ -40,17 +39,13 @@ const CatalogCars = memo(
 		const { push } = useRouter();
 
 		useEffect(() => {
-			// Set loading to true when data changes
 			setIsLoading(true);
 			const timer = setTimeout(() => {
 				setIsLoading(false);
 			}, 500); // Adjust this delay as needed
 
-			// Cleanup function to clear the timer
 			return () => clearTimeout(timer);
 		}, [initialData]);
-
-		const path = usePathname();
 
 		const handleImageLoad = (slug: string) => {
 			setImageLoaded((prev) => ({ ...prev, [slug]: true }));
@@ -85,185 +80,162 @@ const CatalogCars = memo(
 					/>
 
 					<div className="z-[1] mt-4 w-full ">
-						<TransitionGroup
+						<div
 							className={
 								"relative grid grid-cols-1 gap-3 py-5 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-5 xl:gap-5 2xl:gap-6"
 							}
 						>
 							{initialData?.data?.length === 0 ? (
-								<CSSTransition
-									addEndListener={(node, done) => {
-										node.addEventListener("transitionend", done, false);
-									}}
-									key={"no-data"}
-									timeout={300}
-									classNames="fade"
-								>
-									<div>Извините, еще не добавили)</div>
-								</CSSTransition>
+								<div>Извините, еще не добавили)</div>
 							) : (
-								initialData?.data?.map((item, index) => (
-									<CSSTransition
-										key={item.attributes.slug}
-										timeout={300}
-										classNames="fade"
-										addEndListener={(node, done) => {
-											node.addEventListener("transitionend", done, false);
-										}}
-									>
-										<div>
-											<Link
-												href={`/stock/${item.attributes.slug}`}
+								initialData?.data?.map((item) => (
+									<div key={item.attributes.slug}>
+										<Link
+											href={`/stock/${item.attributes.slug}`}
+											className={
+												"mx-auto flex flex-col items-center justify-center overflow-hidden rounded-[20px] p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
+											}
+										>
+											<div
 												className={
-													"mx-auto flex flex-col items-center justify-center overflow-hidden rounded-[20px] p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
+													"relative w-full h-[200px] flex items-center justify-center"
 												}
 											>
-												<div
-													className={
-														"relative w-full h-[200px] flex items-center justify-center"
-													}
-												>
-													{!imageLoaded[item.attributes.slug] && (
-														<div className="bg-gray-200 absolute left-0 top-0 animate-pulse rounded-[10px] w-full h-full" />
-													)}
-													<Image
-														className={`max-h-[200px] rounded-[10px] object-contain transition-opacity duration-500 ease-in-out ${
-															imageLoaded[item.attributes.slug]
-																? "opacity-100"
-																: "opacity-0"
-														}`}
-														src={
-															// biome-ignore lint/style/noNonNullAssertion: <explanation>
-															getStrapiMedia(
-																item?.attributes?.preview_image?.data
-																	?.attributes?.url,
-															)!
-														}
-														alt={item.attributes?.name}
-														width={
+												{!imageLoaded[item.attributes.slug] && (
+													<div className="bg-gray-200 absolute left-0 top-0 animate-pulse rounded-[10px] w-full h-full" />
+												)}
+												<Image
+													className={`max-h-[200px] rounded-[10px] object-contain transition-opacity duration-500 ease-in-out ${
+														imageLoaded[item.attributes.slug]
+															? "opacity-100"
+															: "opacity-0"
+													}`}
+													src={
+														getStrapiMedia(
 															item?.attributes?.preview_image?.data?.attributes
-																?.width
-														}
-														height={200}
-														onLoadingComplete={() =>
-															handleImageLoad(item.attributes.slug)
-														}
+																?.url,
+														)!
+													}
+													alt={item.attributes?.name}
+													width={
+														item?.attributes?.preview_image?.data?.attributes
+															?.width
+													}
+													height={200}
+													onLoadingComplete={() =>
+														handleImageLoad(item.attributes.slug)
+													}
+												/>
+											</div>
+											<div
+												className={
+													"mt-6 w-full text-left font-bold text-[20px]"
+												}
+											>
+												{item.attributes?.name}
+											</div>
+											<div
+												className={
+													"my-3 flex w-full items-center justify-start gap-1 font-bold text-[#808080] capitalize"
+												}
+											>
+												<div className={"text-xs"}>
+													{item.attributes?.gearbox}
+												</div>
+												<div className={"text-xs"}>●</div>
+												<div className={"text-xs"}>{item.attributes?.body}</div>
+												<div className={"text-xs"}>●</div>
+												<div className={"text-xs"}>
+													{item.attributes?.engine_type}
+												</div>
+											</div>
+											<div className={"mt-5 grid w-full grid-cols-2 gap-y-4"}>
+												<div
+													className={
+														"flex min-h-[40px] items-center gap-2.5 font-bold text-sm"
+													}
+												>
+													<Image
+														src={"/carstoorder/battery.svg"}
+														alt={"Battery"}
+														width={30}
+														height={20}
 													/>
+													<span>
+														{item.attributes?.battery_capacity}{" "}
+														{locale === "ru" ? "кВт/ч" : "kW/h"}
+													</span>
 												</div>
 												<div
 													className={
-														"mt-6 w-full text-left font-bold text-[20px]"
+														"flex items-center gap-2.5 font-bold text-sm"
 													}
 												>
-													{item.attributes?.name}
+													<Image
+														src={"/carstoorder/hourse_power.png"}
+														alt={"Battery"}
+														width={30}
+														height={20}
+													/>
+													<span>
+														{item.attributes?.hourse_power}{" "}
+														{locale === "ru" ? "л/c" : "h/p"}
+													</span>
 												</div>
 												<div
 													className={
-														"my-3 flex w-full items-center justify-start gap-1 font-bold text-[#808080] capitalize"
+														"flex items-center gap-2.5 font-bold text-sm"
 													}
 												>
-													<div className={"text-xs"}>
-														{item.attributes?.gearbox}
-													</div>
-													<div className={"text-xs"}>●</div>
-													<div className={"text-xs"}>
-														{item.attributes?.body}
-													</div>
-													<div className={"text-xs"}>●</div>
-													<div className={"text-xs"}>
-														{item.attributes?.engine_type}
-													</div>
+													<Image
+														src={"/carstoorder/range.svg"}
+														alt={"Battery"}
+														width={22}
+														height={20}
+													/>
+													<span>
+														{item.attributes?.vehicle_range}{" "}
+														{locale === "ru" ? "км" : "km"}
+													</span>
 												</div>
-												<div className={"mt-5 grid w-full grid-cols-2 gap-y-4"}>
-													<div
-														className={
-															"flex min-h-[40px] items-center gap-2.5 font-bold text-sm"
-														}
-													>
-														<Image
-															src={"/carstoorder/battery.svg"}
-															alt={"Battery"}
-															width={30}
-															height={20}
-														/>
-														<span>
-															{item.attributes?.battery_capacity}{" "}
-															{locale === "ru" ? "кВт/ч" : "kW/h"}
-														</span>
-													</div>
-													<div
-														className={
-															"flex items-center gap-2.5 font-bold text-sm"
-														}
-													>
-														<Image
-															src={"/carstoorder/hourse_power.png"}
-															alt={"Battery"}
-															width={30}
-															height={20}
-														/>
-														<span>
-															{item.attributes?.hourse_power}{" "}
-															{locale === "ru" ? "л/c" : "h/p"}
-														</span>
-													</div>
-													<div
-														className={
-															"flex items-center gap-2.5 font-bold text-sm"
-														}
-													>
-														<Image
-															src={"/carstoorder/range.svg"}
-															alt={"Battery"}
-															width={22}
-															height={20}
-														/>
-														<span>
-															{item.attributes?.vehicle_range}{" "}
-															{locale === "ru" ? "км" : "km"}
-														</span>
-													</div>
-													<div
-														className={
-															"flex items-center gap-2.5 font-bold text-sm"
-														}
-													>
-														<Image
-															src={"/carstoorder/privod.svg"}
-															alt={"Battery"}
-															width={22}
-															height={20}
-														/>
-														<span>{item.attributes?.privod}</span>
-													</div>
+												<div
+													className={
+														"flex items-center gap-2.5 font-bold text-sm"
+													}
+												>
+													<Image
+														src={"/carstoorder/privod.svg"}
+														alt={"Battery"}
+														width={22}
+														height={20}
+													/>
+													<span>{item.attributes?.privod}</span>
 												</div>
+											</div>
 
-												<div
+											<div
+												className={
+													"mt-4 flex w-full items-center justify-between"
+												}
+											>
+												<div className={"font-bold text-[24px] text-black"}>
+													${item?.attributes?.price}
+												</div>
+												<button
+													type={"button"}
+													onClick={() => push(`/stock/${item.attributes.slug}`)}
 													className={
-														"mt-4 flex w-full items-center justify-between"
+														"rounded-[10px] bg-[#1e1e1e] px-4 py-3 text-center font-bold text-white text-xs"
 													}
 												>
-													<div className={"font-bold text-[24px] text-black"}>
-														${item?.attributes?.price}
-													</div>
-													<button
-														type={"button"}
-														onClick={() =>
-															push(`/stock/${item.attributes.slug}`)
-														}
-														className={
-															"rounded-[10px] bg-[#1e1e1e] px-4 py-3 text-center font-bold text-white text-xs"
-														}
-													>
-														{locale === "ru" ? "Подробнее" : "More details"}
-													</button>
-												</div>
-											</Link>
-										</div>
-									</CSSTransition>
+													{locale === "ru" ? "Подробнее" : "More details"}
+												</button>
+											</div>
+										</Link>
+									</div>
 								))
 							)}
-						</TransitionGroup>
+						</div>
 					</div>
 					{pageCount > 1 && (
 						<div className="flex mx-auto w-fit">

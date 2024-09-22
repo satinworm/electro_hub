@@ -105,6 +105,7 @@ export default function FiltersBurger(props: any) {
 		filteredData,
 		templateData,
 		page,
+		setPage,
 		setPageCount,
 	} = props;
 	const [filteredGenerations, setFilteredGenerations] = useState<string[]>([]);
@@ -353,6 +354,7 @@ export default function FiltersBurger(props: any) {
 						engineListOpen={engineListOpen}
 						setEngineListOpen={setEngineListOpen}
 						engine_type={engine_type}
+						setPage={setPage}
 					/>
 					<DesktopFiltersBurger
 						filteredData={filteredData}
@@ -380,6 +382,7 @@ export default function FiltersBurger(props: any) {
 						engineListOpen={engineListOpen}
 						setEngineListOpen={setEngineListOpen}
 						engine_type={engine_type}
+						setPage={setPage}
 					/>
 				</div>
 			</form>

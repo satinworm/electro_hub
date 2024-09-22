@@ -62,6 +62,7 @@ export default function MobileFiltersBurger({
 	engineListOpen,
 	setEngineListOpen,
 	engine_type,
+	setPage
 }: any) {
 	const [windowWidth, setWindowWidth] = useState<number>(0);
 	useEffect(() => {
@@ -135,6 +136,7 @@ export default function MobileFiltersBurger({
 																		process.env.NEXT_PUBLIC_PUBLIC_URL
 																	}/ru/catalog/${brand.attributes.slug.toLowerCase()}`,
 																);
+																setPage(1);
 															}}
 														>
 															<Check
@@ -242,6 +244,7 @@ export default function MobileFiltersBurger({
 																value={generation}
 																onSelect={() => {
 																	handleGenerationSelect(generation);
+																	setPage(1);
 																}}
 															>
 																<Check
@@ -313,6 +316,7 @@ export default function MobileFiltersBurger({
 																	setFilter("body", "$eq", brand.id);
 																	setBodyListOpen(false);
 																	setValue("body", brand.id);
+																	setPage(1);
 																}}
 															>
 																<Check
@@ -384,6 +388,7 @@ export default function MobileFiltersBurger({
 																	setFilter("privod", "$eq", brand.id);
 																	setPrivodListOpen(false);
 																	setValue("privod", brand.id);
+																	setPage(1);
 																}}
 															>
 																<Check
@@ -455,6 +460,7 @@ export default function MobileFiltersBurger({
 																	setFilter("engine_type", "$eq", brand.id);
 																	setPrivodListOpen(false);
 																	setValue("engine_type", brand.id);
+																	setPage(1);
 																}}
 															>
 																<Check
@@ -502,6 +508,7 @@ export default function MobileFiltersBurger({
 													onChange={(e) => {
 														field.onChange(e);
 														handlePriceChange(e, "start");
+														setPage(1);
 													}}
 												/>
 												{/*</FormControl>*/}
@@ -524,6 +531,7 @@ export default function MobileFiltersBurger({
 													onChange={(e) => {
 														field.onChange(e);
 														handlePriceChange(e, "end");
+														setPage(1);
 													}}
 												/>
 												{/*</FormControl>*/}
