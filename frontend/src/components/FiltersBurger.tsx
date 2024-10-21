@@ -32,6 +32,7 @@ const FormSchema = z.object({
 	price_end: z.string().optional(),
 	privod: z.string().optional(),
 	engine_type: z.string().optional(),
+	status: z.string().optional(),
 });
 const defaultValues = {
 	brand: "",
@@ -42,6 +43,7 @@ const defaultValues = {
 	price_end: "",
 	privod: "",
 	engine_type: "",
+	status: "",
 };
 
 const bodyOption = [
@@ -107,6 +109,7 @@ export default function FiltersBurger(props: any) {
 		page,
 		setPage,
 		setPageCount,
+		status,
 	} = props;
 	const [filteredGenerations, setFilteredGenerations] = useState<string[]>([]);
 	const [openBurger, setOpenBurger] = useState(false);
@@ -123,6 +126,7 @@ export default function FiltersBurger(props: any) {
 	const [bodyListOpen, setBodyListOpen] = useState(false);
 	const [privodListOpen, setPrivodListOpen] = useState(false);
 	const [engineListOpen, setEngineListOpen] = useState(false);
+	const [statusListOpen, setStatusListOpen] = useState(false);
 	const filters = useCatalogFilter((state) => state.filters);
 	const setFilter = useCatalogFilter((state) => state.setFilter);
 	const resetFilter = useCatalogFilter((state) => state.resetFilter);
@@ -149,6 +153,9 @@ export default function FiltersBurger(props: any) {
 		const carsInStockData = await getDataFromAPI(
 			"cars-in-stocks",
 			{
+				sort: {
+					name: "ASC",
+				},
 				filters: filters,
 				populate: {
 					preview_image: {
@@ -190,15 +197,6 @@ export default function FiltersBurger(props: any) {
 		setFilter("body", "$ne", "");
 		setFilter("privod", "$ne", "");
 		setBrandListOpen(false);
-
-		// Фильтрация поколений на основе выбранного бренда
-		// const generationsForBrand = templateData?.data
-		// 	.filter(
-		// 		(item: any) => item.attributes.name.includes(selectedBrand), // Сравниваем с правильным полем
-		// 	)
-		// 	.map((item: any) => item.attributes.generation);
-		//
-		// setFilteredGenerations(generationsForBrand);
 	};
 	console.log("filteredGenerations", filteredGenerations);
 	useEffect(() => {
@@ -222,6 +220,9 @@ export default function FiltersBurger(props: any) {
 
 	// console.log("initialData", initialData);
 	useEffect(() => {
+		if (status) {
+			form.setValue("status", status);
+		}
 		const fetchData = async () => {
 			const updatedData = await fetchCarsInStockData(filters, locale);
 			setInitialData(updatedData);
@@ -318,7 +319,7 @@ export default function FiltersBurger(props: any) {
 									resetFilter();
 									setSearchTerm("");
 									form.reset(defaultValues);
-									push("/ru/catalog/all");
+									push("/ru/catalog/all/all");
 								}}
 							>
 								<span className={"hidden md:block"}>Сбросить фильтры</span>
@@ -355,6 +356,10 @@ export default function FiltersBurger(props: any) {
 						setEngineListOpen={setEngineListOpen}
 						engine_type={engine_type}
 						setPage={setPage}
+						statusListOpen={statusListOpen}
+						setStatusListOpen={setStatusListOpen}
+						slug={slug}
+						status={status}
 					/>
 					<DesktopFiltersBurger
 						filteredData={filteredData}
@@ -383,6 +388,9 @@ export default function FiltersBurger(props: any) {
 						setEngineListOpen={setEngineListOpen}
 						engine_type={engine_type}
 						setPage={setPage}
+						statusListOpen={statusListOpen}
+						setStatusListOpen={setStatusListOpen}
+						slug={slug}
 					/>
 				</div>
 			</form>

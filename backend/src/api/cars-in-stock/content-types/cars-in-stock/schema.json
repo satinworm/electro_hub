@@ -302,6 +302,28 @@
       "type": "string",
       "required": true,
       "default": "объем багажника"
+    },
+    "status": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "в наличии",
+        "в пути",
+        "зарезервирован"
+      ]
+    },
+    "hot": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "boolean",
+      "default": false
     }
   }
 }

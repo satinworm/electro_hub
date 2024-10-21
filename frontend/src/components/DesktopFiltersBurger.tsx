@@ -19,9 +19,17 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { filter } from "lodash";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+
+const statusOptions = [
+	{ value: "все", label: "Все", slug: "all" },
+	{ value: "в пути", label: "В пути", slug: "in-transit" },
+	{ value: "в наличии", label: "В наличии", slug: "in-stock" },
+	{ value: "зарезервирован", label: "Зарезервирован", slug: "reserved" },
+];
 
 export default function DesktopFiltersBurger({
 	setFilter,
@@ -49,6 +57,11 @@ export default function DesktopFiltersBurger({
 	setEngineListOpen,
 	engine_type,
 	setPage,
+	statusListOpen,
+	setStatusListOpen,
+	status,
+	slug,
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 }: any) {
 	const [windowWidth, setWindowWidth] = useState<number>(0);
 	useEffect(() => {
@@ -74,7 +87,7 @@ export default function DesktopFiltersBurger({
 								control={form.control}
 								name="brand"
 								render={({ field }) => (
-									<FormItem className="relative flex min-w-[300px] flex-col gap-3">
+									<FormItem className="relative flex min-w-[300px] flex-col gap-2">
 										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
 											Марка
 										</FormLabel>
@@ -87,10 +100,11 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
+													className="w-[300px] justify-between rounded-md border border-[#1E1E1E] text-sm"
 												>
 													{field.value
 														? brands.find(
+																// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 																(brand: any) =>
 																	brand.attributes.name === field.value,
 															)?.attributes.name
@@ -122,7 +136,9 @@ export default function DesktopFiltersBurger({
 																		push(
 																			`${
 																				process.env.NEXT_PUBLIC_PUBLIC_URL
-																			}/ru/catalog/${brand.attributes.slug.toLowerCase()}`,
+																			}/ru/catalog/${brand.attributes.slug.toLowerCase()}/${
+																				status ? status : form.watch("status")
+																			}`,
 																		);
 																	}}
 																>
@@ -157,7 +173,7 @@ export default function DesktopFiltersBurger({
 								control={form.control}
 								name="generation"
 								render={({ field }) => (
-									<FormItem className="relative flex min-w-[200px] flex-col gap-3">
+									<FormItem className="relative flex min-w-[200px] flex-col gap-2">
 										<FormLabel className="whitespace-nowrap font-electrohub font-medium text-sm">
 											Модель
 										</FormLabel>
@@ -172,7 +188,7 @@ export default function DesktopFiltersBurger({
 													role="combobox"
 													disabled={!form.watch("brand")}
 													className={cn(
-														"w-[200px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm",
+														"w-[200px] justify-between rounded-md border border-[#1E1E1E] text-sm",
 														!form.watch("brand") ? "cursor-not-allowed" : "",
 													)}
 												>
@@ -229,7 +245,7 @@ export default function DesktopFiltersBurger({
 								control={form.control}
 								name="body"
 								render={({ field }) => (
-									<FormItem className="relative flex min-w-[200px] flex-col gap-3">
+									<FormItem className="relative flex min-w-[200px] flex-col gap-2">
 										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
 											Кузов
 										</FormLabel>
@@ -301,7 +317,7 @@ export default function DesktopFiltersBurger({
 								control={form.control}
 								name="privod"
 								render={({ field }) => (
-									<FormItem className="relative flex min-w-[200px] flex-col gap-3">
+									<FormItem className="relative flex min-w-[200px] flex-col gap-2">
 										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
 											Привод
 										</FormLabel>
@@ -373,7 +389,7 @@ export default function DesktopFiltersBurger({
 								control={form.control}
 								name="engine_type"
 								render={({ field }) => (
-									<FormItem className="relative flex min-w-[300px] flex-col gap-3">
+									<FormItem className="relative flex min-w-[300px] flex-col gap-2">
 										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
 											Тип двигателя
 										</FormLabel>
@@ -441,59 +457,147 @@ export default function DesktopFiltersBurger({
 									</FormItem>
 								)}
 							/>
-						</div>
-						<div className={"flex flex-col items-baseline gap-2"}>
-							<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
-								Цена
-							</FormLabel>
-							<div className={"flex gap-1"}>
-								<FormField
-									control={form.control}
-									name="price_start"
-									render={({ field }) => (
-										<FormItem>
-											{/*<FormControl>*/}
-											<Input
-												className={
-													"w-32 rounded-l-md border border-[#1E1E1E] text-sm"
-												}
-												placeholder={"от"}
-												{...field}
-												onChange={(e) => {
-													field.onChange(e);
-													handlePriceChange(e, "start");
-													setPage(1);
-												}}
-											/>
-											{/*</FormControl>*/}
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
-								<FormField
-									control={form.control}
-									name="price_end"
-									render={({ field }) => (
-										<FormItem>
-											{/*<FormControl>*/}
-											<Input
-												className={
-													"w-32 rounded-r-md border border-[#1E1E1E] text-sm"
-												}
-												placeholder={"до"}
-												{...field}
-												onChange={(e) => {
-													field.onChange(e);
-													handlePriceChange(e, "end");
-													setPage(1);
-												}}
-											/>
-											{/*</FormControl>*/}
-											<FormMessage />
-										</FormItem>
-									)}
-								/>
+							<div className={"flex flex-col items-baseline gap-2"}>
+								<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+									Цена
+								</FormLabel>
+								<div className={"flex gap-1"}>
+									<FormField
+										control={form.control}
+										name="price_start"
+										render={({ field }) => (
+											<FormItem>
+												{/*<FormControl>*/}
+												<Input
+													className={
+														"w-32 rounded-l-md border border-[#1E1E1E] text-sm"
+													}
+													placeholder={"от"}
+													{...field}
+													onChange={(e) => {
+														field.onChange(e);
+														handlePriceChange(e, "start");
+														setPage(1);
+													}}
+												/>
+												{/*</FormControl>*/}
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="price_end"
+										render={({ field }) => (
+											<FormItem>
+												{/*<FormControl>*/}
+												<Input
+													className={
+														"w-32 rounded-r-md border border-[#1E1E1E] text-sm"
+													}
+													placeholder={"до"}
+													{...field}
+													onChange={(e) => {
+														field.onChange(e);
+														handlePriceChange(e, "end");
+														setPage(1);
+													}}
+												/>
+												{/*</FormControl>*/}
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
 							</div>
+							<FormField
+								control={form.control}
+								name="status"
+								render={({ field }) => (
+									<FormItem className="relative flex min-w-[300px] flex-col gap-2">
+										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+											Статус
+										</FormLabel>
+										<Popover
+											open={statusListOpen}
+											onOpenChange={setStatusListOpen}
+											// modal
+										>
+											<PopoverTrigger asChild>
+												<Button
+													variant={"outline"}
+													role="combobox"
+													className="w-[300px] justify-between rounded-md border border-[#1E1E1E] text-sm"
+												>
+													{field.value
+														? statusOptions.find(
+																// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+																(brand: any) => brand.slug === field.value,
+															)?.label
+														: "Выберите статус"}
+
+													<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+												</Button>
+											</PopoverTrigger>
+											<PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
+												<Command>
+													<CommandInput
+														className={"font-electrohub"}
+														placeholder="Поиск..."
+													/>
+													<CommandEmpty>не найдено</CommandEmpty>
+													<CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
+														{statusOptions?.map(
+															// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+															(brand: any) => (
+																<CommandItem
+																	key={brand.id}
+																	value={brand.slug}
+																	onSelect={async () => {
+																		console.log("status ", brand);
+																		if (brand.value === "все") {
+																			setFilter("status", "$ne", "null");
+																		} else {
+																			setFilter("status", "$eq", brand.value);
+																		}
+																		setPage(1);
+																		setValue("generation", "");
+																		setValue("status", brand.slug);
+																		push(
+																			`${
+																				process.env.NEXT_PUBLIC_PUBLIC_URL
+																			}/ru/catalog/${
+																				slug ? slug : form.watch("brand")
+																			}/${brand.slug}`,
+																		);
+																	}}
+																>
+																	<Check
+																		className={cn(
+																			"mr-2 h-4 w-4",
+																			field.value === brand.slug
+																				? "opacity-100"
+																				: "opacity-0",
+																		)}
+																	/>
+																	<span
+																		className={
+																			"test-sm font-electrohub font-normal"
+																		}
+																	>
+																		{brand.label}
+																	</span>
+																</CommandItem>
+															),
+														)}
+													</CommandGroup>
+												</Command>
+											</PopoverContent>
+										</Popover>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
 						</div>
 					</div>
 				</div>

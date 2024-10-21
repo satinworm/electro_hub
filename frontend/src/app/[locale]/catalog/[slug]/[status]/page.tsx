@@ -1,3 +1,4 @@
+import { stat } from "fs";
 import CatalogCars from "@/components/CatalogCars";
 import type { BrandsResponse } from "@/types/brands.types";
 import { getStrapiMedia } from "@/utils/api-helpers";
@@ -43,13 +44,16 @@ export async function generateMetadata({ params }: any) {
 			populate: {
 				name: "*",
 				slug: "*",
+				image: "*",
 			},
 			locale: locale,
 		},
 		locale,
 	)) satisfies BrandsResponse;
-	console.dir(brands, { depth: null });
+	// console.dir(brands, { depth: null });
 	const brandImage = brands?.data?.[0]?.attributes?.image?.data?.attributes;
+	console.log("brand image", brandImage);
+
 	const SEO = pageProperties?.data?.[0]?.attributes?.SEO;
 	const additionalOgTags =
 		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -80,14 +84,17 @@ export async function generateMetadata({ params }: any) {
 }
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export default async function CatalogPage({ params }: any) {
-	const { locale, slug } = params;
-
+	const { locale, slug, status } = params;
+	console.log("status kurwa ", status);
 	if (!slug) {
 		redirect("/ru/catalog/all");
 	}
 	const carsInStockData = await getDataFromAPI(
 		"cars-in-stocks",
 		{
+			sort: {
+				name: "ASC",
+			},
 			filters: {
 				slug: {
 					$containsi: slug,
@@ -107,6 +114,10 @@ export default async function CatalogPage({ params }: any) {
 					fields: ["name", "slug"],
 				},
 			},
+			pagination: {
+				page: 1,
+				pageSize: 12,
+			},
 			locale: locale,
 		},
 		locale,
@@ -114,6 +125,9 @@ export default async function CatalogPage({ params }: any) {
 	const initialData = await getDataFromAPI(
 		"cars-in-stocks",
 		{
+			sort: {
+				name: "ASC",
+			},
 			populate: {
 				preview_image: {
 					populate: "*",
@@ -130,7 +144,7 @@ export default async function CatalogPage({ params }: any) {
 			},
 			pagination: {
 				page: 1,
-				pageSize: 20,
+				pageSize: 12,
 			},
 			locale: locale,
 		},
@@ -168,6 +182,7 @@ export default async function CatalogPage({ params }: any) {
 				slug={slug}
 				pageCount={pagination.pageCount}
 				total={pagination.total}
+				status={status}
 			/>
 		</section>
 	);

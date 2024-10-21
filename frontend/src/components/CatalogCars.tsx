@@ -1,5 +1,6 @@
 "use client";
 import FiltersBurger from "@/components/FiltersBurger";
+import { cn } from "@/lib/utils";
 import type { BrandData } from "@/types/brands.types";
 import type { CarsInStockBackendResponse } from "@/types/carsinstock.type";
 import { getStrapiMedia } from "@/utils/api-helpers";
@@ -17,6 +18,7 @@ type Props = {
 	slug: string;
 	pageCount: number;
 	total: number;
+	status: "in-transit" | "in-stock" | "reserved" | "all";
 };
 
 const CatalogCars = memo(
@@ -28,6 +30,7 @@ const CatalogCars = memo(
 		initialData: templateData,
 		pageCount: initPageCount,
 		total,
+		status,
 	}: Props) => {
 		const [initialData, setInitialData] =
 			useState<CarsInStockBackendResponse>(data);
@@ -38,14 +41,14 @@ const CatalogCars = memo(
 
 		const { push } = useRouter();
 
-		useEffect(() => {
-			setIsLoading(true);
-			const timer = setTimeout(() => {
-				setIsLoading(false);
-			}, 500); // Adjust this delay as needed
+		// useEffect(() => {
+		// 	setIsLoading(true);
+		// 	const timer = setTimeout(() => {
+		// 		setIsLoading(false);
+		// 	}, 500); // Adjust this delay as needed
 
-			return () => clearTimeout(timer);
-		}, [initialData]);
+		// 	return () => clearTimeout(timer);
+		// }, [initialData]);
 
 		const handleImageLoad = (slug: string) => {
 			setImageLoaded((prev) => ({ ...prev, [slug]: true }));
@@ -77,6 +80,7 @@ const CatalogCars = memo(
 						setPage={setPage}
 						setPageCount={setPageCount}
 						templateData={templateData}
+						status={status}
 					/>
 
 					<div className="z-[1] mt-4 w-full ">
@@ -93,9 +97,26 @@ const CatalogCars = memo(
 										<Link
 											href={`/stock/${item.attributes.slug}`}
 											className={
-												"mx-auto flex flex-col items-center justify-center overflow-hidden rounded-[20px] p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
+												"mx-auto flex relative flex-col items-center justify-center rounded-[20px] p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
 											}
 										>
+											<div
+												className={cn(
+													item?.attributes?.status
+														? "opacity-100"
+														: "opacity-0",
+													"text-sm rounded-lg px-3 py-1 font-medium shadow-sm ml-auto mb-2",
+													item?.attributes?.status === "в пути" &&
+														"bg-orange-500",
+													item?.attributes?.status === "в наличии" &&
+														"bg-green-400",
+													item?.attributes?.status === "зарезервирован" &&
+														"bg-slate-400",
+												)}
+											>
+												{item?.attributes?.status}
+											</div>
+
 											<div
 												className={
 													"relative w-full h-[200px] flex items-center justify-center"
@@ -111,6 +132,7 @@ const CatalogCars = memo(
 															: "opacity-0"
 													}`}
 													src={
+														// biome-ignore lint/style/noNonNullAssertion: <explanation>
 														getStrapiMedia(
 															item?.attributes?.preview_image?.data?.attributes
 																?.url,
@@ -145,7 +167,7 @@ const CatalogCars = memo(
 												<div className={"text-xs"}>●</div>
 												<div className={"text-xs"}>{item.attributes?.body}</div>
 												<div className={"text-xs"}>●</div>
-												<div className={"text-xs"}>
+												<div className={"text-xs truncate"}>
 													{item.attributes?.engine_type}
 												</div>
 											</div>

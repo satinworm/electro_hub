@@ -5,7 +5,9 @@ import { useLocale } from 'next-intl';
 import React from 'react';
 
 type Props = {
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     brands: any;
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     data: any;
 };
 export default function BrandSection(props: Props) {
@@ -41,6 +43,7 @@ export default function BrandSection(props: Props) {
                 </div>
             </div>
             <div className="container mt-6  grid grid-cols-2 gap-5 md:mt-12 md:gap-5 lg:mt-20 lg:grid-cols-3 lg:gap-6 xl:gap-10 2xl:grid-cols-4">
+                {/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
                 {brands?.data?.map((brand: any) => {
                     const {
                         logo,
@@ -62,12 +65,13 @@ export default function BrandSection(props: Props) {
                     return (
                         <Link
                             key={brand.id}
-                            href={`/${brandSlug}`}
+                            href={`/catalog/${brandSlug}`}
                             className="group relative flex cursor-pointer flex-col rounded-xl bg-white p-2 py-6 shadow-[0_4px_15px_2px_rgba(0,0,0,0.1)] transition hover:scale-95 hover:shadow-brandCardHover md:py-2"
                         >
                             <div className=" flex h-full w-full flex-col items-start ">
                                 <div className="flex h-full w-full flex-col items-center justify-center gap-2 py-3 md:flex-row md:justify-start ">
                                     <Image
+                                        // biome-ignore lint/style/noNonNullAssertion: <explanation>
                                         src={getStrapiMedia(logoUrl)!}
                                         alt={name}
                                         width={logoWidth}
@@ -90,6 +94,7 @@ export default function BrandSection(props: Props) {
                                     </span>
                                 </div>
                                 <Image
+                                    // biome-ignore lint/style/noNonNullAssertion: <explanation>
                                     src={getStrapiMedia(imageUrl)!}
                                     alt={name}
                                     width={imageWidth}
@@ -112,6 +117,7 @@ export default function BrandSection(props: Props) {
                                         'absolute -right-[1px] top-0 flex h-[40px] w-[40px] items-center justify-center rounded-[10px] border border-[#1e1e1e] bg-black'
                                     }
                                 >
+                                    {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
                                     <svg
                                         width="10"
                                         height="14"

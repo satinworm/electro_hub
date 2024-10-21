@@ -34,6 +34,10 @@ export default async function StockCarFullPage({ params }: any) {
 					fields: ["url", "width", "height"],
 				},
 			},
+			pagination: {
+				page: 1,
+				pageSize: 12,
+			},
 			locale: locale,
 		},
 		locale,

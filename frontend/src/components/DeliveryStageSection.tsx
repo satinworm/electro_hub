@@ -49,7 +49,7 @@ export default function DeliveryStageSection(props: Props) {
 
     return (
         <>
-            <section className="-mt-5 mb-12 flex min-h-[680px] w-full flex-col bg-white bg-main_stage_bg bg-cover bg-no-repeat pb-16 font-electrohub text-white md:-mt-16 lg:mb-16">
+            <section className=" mb-12 flex min-h-[680px] w-full flex-col bg-white bg-main_stage_bg bg-cover bg-no-repeat pb-16 font-electrohub text-white lg:mb-16">
                 <div className="z-[1] h-[38px] w-full bg-rectangle_main_stage_mobile bg-cover bg-no-repeat md:mt-[0px] md:h-[52px] md:bg-rectangle_main_stage" />
                 <div className="container mt-12 sm:mt-16 md:mt-24">
                     {h3 && <h3 className="font-black">{h2}</h3>}

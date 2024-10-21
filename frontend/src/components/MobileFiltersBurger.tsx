@@ -34,10 +34,13 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
+const statusOptions = [
+	{ value: "все", label: "Все", slug: "all" },
+	{ value: "в пути", label: "В пути", slug: "in-transit" },
+	{ value: "в наличии", label: "В наличии", slug: "in-stock" },
+	{ value: "зарезервирован", label: "Зарезервирован", slug: "reserved" },
+];
 export default function MobileFiltersBurger({
-	openBurger,
-	setOpenBurger,
 	setFilter,
 	filters,
 	form,
@@ -62,7 +65,13 @@ export default function MobileFiltersBurger({
 	engineListOpen,
 	setEngineListOpen,
 	engine_type,
-	setPage
+	setPage,
+	statusListOpen,
+	setStatusListOpen,
+	status,
+	slug,
+	openBurger,
+	setOpenBurger,
 }: any) {
 	const [windowWidth, setWindowWidth] = useState<number>(0);
 	useEffect(() => {
@@ -124,6 +133,7 @@ export default function MobileFiltersBurger({
 												/>
 												<CommandEmpty>не найдено</CommandEmpty>
 												<CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
+													{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
 													{brands?.map((brand: any) => (
 														<CommandItem
 															key={brand.id}
@@ -134,7 +144,9 @@ export default function MobileFiltersBurger({
 																push(
 																	`${
 																		process.env.NEXT_PUBLIC_PUBLIC_URL
-																	}/ru/catalog/${brand.attributes.slug.toLowerCase()}`,
+																	}/ru/catalog/${brand.attributes.slug.toLowerCase()}/${
+																		status ? status : form.watch("status")
+																	}`,
 																);
 																setPage(1);
 															}}
@@ -210,7 +222,7 @@ export default function MobileFiltersBurger({
 								name="generation"
 								render={({ field }) => (
 									<FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
-										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
+										<FormLabel className="whitespace-nowrap font-electrohub font-medium text-xs">
 											Модель
 										</FormLabel>
 										<Popover
@@ -223,7 +235,7 @@ export default function MobileFiltersBurger({
 													variant={"outline"}
 													role="combobox"
 													disabled={!form.watch("brand")}
-													className="h-8 w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
+													className="h-8 w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
 												>
 													{field.value ? field.value : "Выберите модель"}
 
@@ -361,7 +373,7 @@ export default function MobileFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="h-8 w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
+													className="h-8 w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
 												>
 													{field.value
 														? privodOption.find(
@@ -480,6 +492,94 @@ export default function MobileFiltersBurger({
 																</span>
 															</CommandItem>
 														))}
+													</CommandGroup>
+												</Command>
+											</PopoverContent>
+										</Popover>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<FormField
+								control={form.control}
+								name="status"
+								render={({ field }) => (
+									<FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
+										<FormLabel className="whitespace-nowrap font-electrohub font-medium text-xs">
+											Статус
+										</FormLabel>
+										<Popover
+											open={statusListOpen}
+											onOpenChange={setStatusListOpen}
+											// modal
+										>
+											<PopoverTrigger asChild>
+												<Button
+													variant={"outline"}
+													role="combobox"
+													className="h-8 w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
+												>
+													{field.value
+														? statusOptions.find(
+																// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+																(brand: any) => brand.slug === field.value,
+															)?.label
+														: "Выберите статус"}
+
+													<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+												</Button>
+											</PopoverTrigger>
+											<PopoverContent className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width] p-0">
+												<Command>
+													<CommandInput
+														className={"font-electrohub"}
+														placeholder="Поиск..."
+													/>
+													<CommandEmpty>не найдено</CommandEmpty>
+													<CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
+														{statusOptions?.map(
+															// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+															(brand: any) => (
+																<CommandItem
+																	key={brand.id}
+																	value={brand.slug}
+																	onSelect={async () => {
+																		console.log("status ", brand);
+																		if (brand.value === "все") {
+																			setFilter("status", "$ne", "null");
+																		} else {
+																			setFilter("status", "$eq", brand.value);
+																		}
+																		setPage(1);
+																		setValue("generation", "");
+																		setValue("status", brand.slug);
+																		push(
+																			`${
+																				process.env.NEXT_PUBLIC_PUBLIC_URL
+																			}/ru/catalog/${
+																				slug ? slug : form.watch("brand")
+																			}/${brand.slug}`,
+																		);
+																	}}
+																>
+																	<Check
+																		className={cn(
+																			"mr-2 h-4 w-4",
+																			field.value === brand.slug
+																				? "opacity-100"
+																				: "opacity-0",
+																		)}
+																	/>
+																	<span
+																		className={
+																			"test-sm font-electrohub font-normal"
+																		}
+																	>
+																		{brand.label}
+																	</span>
+																</CommandItem>
+															),
+														)}
 													</CommandGroup>
 												</Command>
 											</PopoverContent>
