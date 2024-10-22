@@ -32,7 +32,7 @@ export default function CarsInStock({ data }: Props) {
 	return (
 		<section
 			id={"cars-in-stock"}
-			className="flex w-full flex-col bg-white py-4 font-electrohub text-black xl:py-10"
+			className="flex w-full flex-col bg-white py-8 font-electrohub text-black xl:py-10"
 		>
 			<div className="md:-mt-[48px] z-[1] mt-[-38px] h-[38px] w-full bg-cover bg-rectangle_main_mobile bg-no-repeat md:h-[48px] md:bg-rectangle_main" />
 			<div className="container mt-10 text-black">
@@ -53,7 +53,7 @@ export default function CarsInStock({ data }: Props) {
 			<div className="container mt-6 w-full px-3 md:mt-10 lg:mt-12 xl:mt-16 ">
 				<div
 					className={
-						"relative grid grid-cols-4 px-3 py-5 lg:gap-5 xl:gap-5 2xl:gap-6"
+						"relative grid md:grid-cols-2 gap-2 grid-cols-1 lg:grid-cols-4 px-3 py-5 lg:gap-5 xl:gap-5 2xl:gap-6"
 					}
 				>
 					{data?.data?.map((item, index) => {
