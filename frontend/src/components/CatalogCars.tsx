@@ -105,7 +105,7 @@ const CatalogCars = memo(
 													item?.attributes?.status
 														? "opacity-100"
 														: "opacity-0",
-													"text-sm rounded-lg px-3 py-1 font-medium shadow-sm ml-auto mb-2",
+													"text-sm rounded-lg h-7 px-3 py-1 font-medium shadow-sm ml-auto mb-2",
 													item?.attributes?.status === "в пути" &&
 														"bg-orange-500",
 													item?.attributes?.status === "в наличии" &&

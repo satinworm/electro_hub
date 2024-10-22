@@ -28,7 +28,6 @@ export default function CarsInStock({ data }: Props) {
 	const { push } = useRouter();
 	// console.log('Cars in stock ', data);
 	const locale = useLocale();
-	console.log("opa data ", data?.data);
 	return (
 		<section
 			id={"cars-in-stock"}
@@ -71,8 +70,8 @@ export default function CarsInStock({ data }: Props) {
 								>
 									<div
 										className={cn(
-											item?.attributes?.status ? "block" : "hidden",
-											"text-sm rounded-lg px-3 py-1 font-medium shadow-sm ml-auto mb-2",
+											"text-sm h-7 rounded-lg px-3 py-1 font-medium shadow-sm ml-auto mb-2",
+											item?.attributes?.status ? "opacity-100" : "opacity-0",
 											item?.attributes?.status === "в пути" && "bg-orange-500",
 											item?.attributes?.status === "в наличии" &&
 												"bg-green-400",
