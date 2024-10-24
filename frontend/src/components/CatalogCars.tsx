@@ -14,7 +14,6 @@ import { Button } from "./ui/button";
 
 type Props = {
 	data: CarsInStockBackendResponse;
-	initialData: CarsInStockBackendResponse;
 	locale: string;
 	// brands: BrandData[];
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>

@@ -158,8 +158,10 @@ export default async function CatalogPage({ params }: any) {
 		// Преобразуем объект в массив, сортируем ключи, убираем дубликаты и преобразуем обратно в объект
 		const sortedBrandsGenerations = Object.keys(brandsGenerations)
 			.sort() // Сортировка по алфавиту
+			//@ts-ignore
 			.reduce((sortedObj: { [key: string]: any[] }, brand) => {
 				// Убираем дубликаты из массива поколений для каждого бренда с помощью Set
+				//@ts-ignore
 				sortedObj[brand] = [...new Set(brandsGenerations[brand])]; // Убираем дубликаты
 				return sortedObj;
 			}, {});
