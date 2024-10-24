@@ -321,6 +321,7 @@ export default function FiltersBurger(props: any) {
 
 					<MobileFiltersBurger
 						openBurger={openBurger}
+						setOpenBurger={setOpenBurger}
 						filteredData={filteredData}
 						setFilter={setFilter}
 						filters={filters}
