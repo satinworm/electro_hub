@@ -89,7 +89,6 @@ export default function MobileFiltersBurger({
 	}, []);
 	const { push } = useRouter();
 	// @ts-ignore
-	const uniqueGenerations = [...new Set(generations)];
 	return (
 		<>
 			{windowWidth < 768 && (
@@ -114,13 +113,9 @@ export default function MobileFiltersBurger({
 												role="combobox"
 												className="h-9 w-52 justify-between rounded-md border border-[#1E1E1E] px-3 py-2 text-xs sm:text-sm"
 											>
-												{field.value
-													? brands.find(
-															// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-															(brand: any) =>
-																brand.attributes.name === field.value,
-														)?.attributes.name
-													: "марка автомобиля"}
+												{form.watch("brand")
+													? form.watch("brand")
+													: "Выберите марку"}
 
 												<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 											</Button>
@@ -133,28 +128,27 @@ export default function MobileFiltersBurger({
 												/>
 												<CommandEmpty>не найдено</CommandEmpty>
 												<CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
-													{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
-													{brands?.map((brand: any) => (
+													{Object.keys(brands).map((brand) => (
 														<CommandItem
-															key={brand.id}
-															value={brand.attributes.name}
+															key={brand} // Используем название бренда в качестве ключа
+															value={brand} // Название бренда передаем как value
 															onSelect={async () => {
-																await handleBrandSelect(brand.attributes.name);
-																setValue("generation", "");
+																await handleBrandSelect(brand);
+																setPage(1);
+																setValue("generation", ""); // Сбрасываем выбранное поколение
 																push(
 																	`${
 																		process.env.NEXT_PUBLIC_PUBLIC_URL
-																	}/ru/catalog/${brand.attributes.slug.toLowerCase()}/${
+																	}/ru/catalog/${brand.toLowerCase()}/${
 																		status ? status : form.watch("status")
 																	}`,
 																);
-																setPage(1);
 															}}
 														>
 															<Check
 																className={cn(
 																	"mr-2 h-4 w-4",
-																	field.value === brand.attributes.name
+																	field.value === brand
 																		? "opacity-100"
 																		: "opacity-0",
 																)}
@@ -164,7 +158,7 @@ export default function MobileFiltersBurger({
 																	"test-sm font-electrohub font-normal"
 																}
 															>
-																{brand.attributes.name}
+																{brand}
 															</span>
 														</CommandItem>
 													))}
@@ -250,32 +244,34 @@ export default function MobileFiltersBurger({
 													/>
 													<CommandEmpty>не найдено</CommandEmpty>
 													<CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
-														{uniqueGenerations?.map((generation: any) => (
-															<CommandItem
-																key={generation}
-																value={generation}
-																onSelect={() => {
-																	handleGenerationSelect(generation);
-																	setPage(1);
-																}}
-															>
-																<Check
-																	className={cn(
-																		"mr-2 h-4 w-4",
-																		field.value === generation
-																			? "opacity-100"
-																			: "opacity-0",
-																	)}
-																/>
-																<span
-																	className={
-																		"test-sm font-electrohub font-normal"
-																	}
+														{brands?.[form.watch("brand")]?.map(
+															(generation: any) => (
+																<CommandItem
+																	key={generation.id}
+																	value={generation}
+																	onSelect={async () => {
+																		await handleGenerationSelect(generation);
+																		setPage(1);
+																	}}
 																>
-																	{generation}
-																</span>
-															</CommandItem>
-														))}
+																	<Check
+																		className={cn(
+																			"mr-2 h-4 w-4",
+																			field.value === generation
+																				? "opacity-100"
+																				: "opacity-0",
+																		)}
+																	/>
+																	<span
+																		className={
+																			"test-sm font-electrohub font-normal"
+																		}
+																	>
+																		{generation}
+																	</span>
+																</CommandItem>
+															),
+														)}
 													</CommandGroup>
 												</Command>
 											</PopoverContent>

@@ -72,7 +72,6 @@ export default function DesktopFiltersBurger({
 	}, []);
 	const { push } = useRouter();
 	// @ts-ignore
-	const uniqueGenerations = [...new Set(generations)];
 	return (
 		<>
 			{windowWidth >= 768 && (
@@ -102,14 +101,9 @@ export default function DesktopFiltersBurger({
 													role="combobox"
 													className="w-[300px] justify-between rounded-md border border-[#1E1E1E] text-sm"
 												>
-													{field.value
-														? brands.find(
-																// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-																(brand: any) =>
-																	brand.attributes.name === field.value,
-															)?.attributes.name
-														: "Выберите марку автомобиля"}
-
+													{form.watch("brand")
+														? form.watch("brand")
+														: "Выберите марку"}
 													<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 												</Button>
 											</PopoverTrigger>
@@ -121,45 +115,40 @@ export default function DesktopFiltersBurger({
 													/>
 													<CommandEmpty>не найдено</CommandEmpty>
 													<CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
-														{brands?.map(
-															// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-															(brand: any) => (
-																<CommandItem
-																	key={brand.id}
-																	value={brand.attributes.name}
-																	onSelect={async () => {
-																		await handleBrandSelect(
-																			brand.attributes.name,
-																		);
-																		setPage(1);
-																		setValue("generation", "");
-																		push(
-																			`${
-																				process.env.NEXT_PUBLIC_PUBLIC_URL
-																			}/ru/catalog/${brand.attributes.slug.toLowerCase()}/${
-																				status ? status : form.watch("status")
-																			}`,
-																		);
-																	}}
+														{Object.keys(brands).map((brand) => (
+															<CommandItem
+																key={brand} // Используем название бренда в качестве ключа
+																value={brand} // Название бренда передаем как value
+																onSelect={async () => {
+																	await handleBrandSelect(brand);
+																	setPage(1);
+																	setValue("generation", ""); // Сбрасываем выбранное поколение
+																	push(
+																		`${
+																			process.env.NEXT_PUBLIC_PUBLIC_URL
+																		}/ru/catalog/${brand.toLowerCase()}/${
+																			status ? status : form.watch("status")
+																		}`,
+																	);
+																}}
+															>
+																<Check
+																	className={cn(
+																		"mr-2 h-4 w-4",
+																		field.value === brand
+																			? "opacity-100"
+																			: "opacity-0",
+																	)}
+																/>
+																<span
+																	className={
+																		"test-sm capitalize font-electrohub font-normal"
+																	}
 																>
-																	<Check
-																		className={cn(
-																			"mr-2 h-4 w-4",
-																			field.value === brand.attributes.name
-																				? "opacity-100"
-																				: "opacity-0",
-																		)}
-																	/>
-																	<span
-																		className={
-																			"test-sm font-electrohub font-normal"
-																		}
-																	>
-																		{brand.attributes.name}
-																	</span>
-																</CommandItem>
-															),
-														)}
+																	{brand}
+																</span>
+															</CommandItem>
+														))}
 													</CommandGroup>
 												</Command>
 											</PopoverContent>
@@ -207,32 +196,34 @@ export default function DesktopFiltersBurger({
 													<CommandEmpty>не найдено</CommandEmpty>
 													<CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
 														{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
-														{uniqueGenerations?.map((generation: any) => (
-															<CommandItem
-																key={generation}
-																value={generation}
-																onSelect={async () => {
-																	await handleGenerationSelect(generation);
-																	setPage(1);
-																}}
-															>
-																<Check
-																	className={cn(
-																		"mr-2 h-4 w-4",
-																		field.value === generation
-																			? "opacity-100"
-																			: "opacity-0",
-																	)}
-																/>
-																<span
-																	className={
-																		"test-sm font-electrohub font-normal"
-																	}
+														{brands?.[form.watch("brand")]?.map(
+															(generation: any) => (
+																<CommandItem
+																	key={generation.id}
+																	value={generation}
+																	onSelect={async () => {
+																		await handleGenerationSelect(generation);
+																		setPage(1);
+																	}}
 																>
-																	{generation}
-																</span>
-															</CommandItem>
-														))}
+																	<Check
+																		className={cn(
+																			"mr-2 h-4 w-4",
+																			field.value === generation
+																				? "opacity-100"
+																				: "opacity-0",
+																		)}
+																	/>
+																	<span
+																		className={
+																			"test-sm font-electrohub font-normal"
+																		}
+																	>
+																		{generation}
+																	</span>
+																</CommandItem>
+															),
+														)}
 													</CommandGroup>
 												</Command>
 											</PopoverContent>
@@ -551,12 +542,12 @@ export default function DesktopFiltersBurger({
 															// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 															(brand: any) => (
 																<CommandItem
-																	key={brand.id}
+																	key={brand.slug}
 																	value={brand.slug}
 																	onSelect={async () => {
 																		console.log("status ", brand);
 																		if (brand.value === "все") {
-																			setFilter("status", "$ne", "null");
+																			setFilter("status", "$constainsi", "");
 																		} else {
 																			setFilter("status", "$eq", brand.value);
 																		}

@@ -103,15 +103,12 @@ export default function FiltersBurger(props: any) {
 		locale,
 		brands,
 		slug,
-		onFilterUpdate,
 		filteredData,
-		templateData,
 		page,
 		setPage,
 		setPageCount,
 		status,
 	} = props;
-	const [filteredGenerations, setFilteredGenerations] = useState<string[]>([]);
 	const [openBurger, setOpenBurger] = useState(false);
 	const [searchTerm, setSearchTerm] = useState("");
 	const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
@@ -142,10 +139,18 @@ export default function FiltersBurger(props: any) {
 	}
 
 	useEffect(() => {
-		const brand = brands?.find((brand: any) => brand.attributes.slug === slug);
-		if (brand && brand !== "all") {
-			setValue("brand", brand.attributes.name);
-			setFilter("brand.name", "$eq", brand.attributes.name);
+		if (!slug || !brands) return;
+
+		const brandEntry = Object.entries(brands).find(([brandKey]) => {
+			return brandKey.toLowerCase() === slug.toLowerCase();
+		});
+		console.log("FIND kurwa ", brandEntry);
+		//@ts-ignore
+		if (brandEntry?.length > 0) {
+			//@ts-ignore
+			const [brandKey] = brandEntry; // brandKey — это название бренда (например, 'nissan')
+			setValue("brand", brandKey);
+			setFilter("brand.name", "$eq", brandKey);
 		}
 	}, [slug, brands, setValue, setFilter]);
 	console.log("FILTERS ", filters);
@@ -185,7 +190,6 @@ export default function FiltersBurger(props: any) {
 		return carsInStockData;
 	};
 
-	console.log("templateData", templateData);
 	const handleBrandSelect = async (selectedBrand: string) => {
 		setValue("brand", selectedBrand);
 		console.log("selectedBrand", selectedBrand);
@@ -198,19 +202,6 @@ export default function FiltersBurger(props: any) {
 		setFilter("privod", "$ne", "");
 		setBrandListOpen(false);
 	};
-	console.log("filteredGenerations", filteredGenerations);
-	useEffect(() => {
-		const selectedBrand = watch("brand");
-		const generationsForBrand = templateData?.data
-			.filter(
-				(item: any) =>
-					item.attributes.brand.data.attributes.name.toLowerCase() ===
-					selectedBrand?.toLowerCase(),
-			)
-			.map((item: any) => item.attributes.generation);
-
-		setFilteredGenerations(generationsForBrand);
-	}, [templateData, watch("brand")]);
 
 	const handleGenerationSelect = async (selectedGeneration: string) => {
 		setValue("generation", selectedGeneration);
@@ -330,14 +321,13 @@ export default function FiltersBurger(props: any) {
 
 					<MobileFiltersBurger
 						openBurger={openBurger}
-						setOpenBurger={setOpenBurger}
+						filteredData={filteredData}
 						setFilter={setFilter}
 						filters={filters}
 						form={form}
 						defaultValues={defaultValues}
 						setValue={setValue}
 						brands={brands}
-						generations={filteredGenerations}
 						bodyOption={bodyOption}
 						privodOption={privodOption}
 						handleBrandSelect={handleBrandSelect}
@@ -359,7 +349,6 @@ export default function FiltersBurger(props: any) {
 						statusListOpen={statusListOpen}
 						setStatusListOpen={setStatusListOpen}
 						slug={slug}
-						status={status}
 					/>
 					<DesktopFiltersBurger
 						filteredData={filteredData}
@@ -369,7 +358,6 @@ export default function FiltersBurger(props: any) {
 						defaultValues={defaultValues}
 						setValue={setValue}
 						brands={brands}
-						generations={filteredGenerations}
 						bodyOption={bodyOption}
 						privodOption={privodOption}
 						handleBrandSelect={handleBrandSelect}

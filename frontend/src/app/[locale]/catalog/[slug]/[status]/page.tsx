@@ -1,9 +1,6 @@
-import { stat } from "fs";
 import CatalogCars from "@/components/CatalogCars";
 import type { BrandsResponse } from "@/types/brands.types";
 import { getStrapiMedia } from "@/utils/api-helpers";
-// @ts-ignore
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 import { getDataFromAPI } from "@/utils/fetch-api";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -85,9 +82,8 @@ export async function generateMetadata({ params }: any) {
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export default async function CatalogPage({ params }: any) {
 	const { locale, slug, status } = params;
-	console.log("status kurwa ", status);
 	if (!slug) {
-		redirect("/ru/catalog/all");
+		redirect("/ru/catalog/all/all");
 	}
 	const carsInStockData = await getDataFromAPI(
 		"cars-in-stocks",
@@ -97,7 +93,7 @@ export default async function CatalogPage({ params }: any) {
 			},
 			filters: {
 				slug: {
-					$containsi: slug,
+					$containsi: slug === "all" ? "" : slug,
 				},
 			},
 			populate: {
@@ -122,67 +118,69 @@ export default async function CatalogPage({ params }: any) {
 		},
 		locale,
 	);
-	const initialData = await getDataFromAPI(
+	const generations = await getDataFromAPI(
 		"cars-in-stocks",
 		{
-			sort: {
-				name: "ASC",
-			},
 			populate: {
-				preview_image: {
-					populate: "*",
-					fields: ["url", "width", "height"],
-				},
-				specification: {
-					fields: ["*"],
-					populate: "*",
-				},
-				brand: {
-					populate: "*",
-					fields: ["name", "slug"],
-				},
+				brand: "*",
 			},
+			fields: ["generation"],
 			pagination: {
-				page: 1,
-				pageSize: 12,
+				pageSize: 1000,
 			},
-			locale: locale,
 		},
 		locale,
 	);
-	const pagination = initialData?.meta?.pagination as {
+
+	// const pagination = initialData?.meta?.pagination as {
+	const pagination = carsInStockData?.meta?.pagination as {
 		pageCount: number;
 		total: number;
 	};
-	console.log("kurwa", initialData.meta.pagination);
-	const brands = (await getDataFromAPI(
-		"brands",
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	function groupGenerationsByBrand(data: any[]) {
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		const brandsGenerations: { [key: string]: any[] } = {};
 
-		{
-			sort: {
-				name: "ASC",
-			},
-			populate: {
-				name: "*",
-				slug: "*",
-				image: "*",
-			},
-			locale: locale,
-		},
-		locale,
-	)) satisfies BrandsResponse;
+		for (const item of data) {
+			const brand = item.attributes.brand.data.attributes.name;
+			const generation = item.attributes.generation;
+
+			// Если бренд уже существует в объекте, добавляем поколение
+			if (brandsGenerations[brand]) {
+				brandsGenerations[brand].push(generation);
+			} else {
+				// Если бренд еще не существует, создаем новый ключ и добавляем первое поколение
+				brandsGenerations[brand] = [generation];
+			}
+		}
+
+		// Преобразуем объект в массив, сортируем ключи, убираем дубликаты и преобразуем обратно в объект
+		const sortedBrandsGenerations = Object.keys(brandsGenerations)
+			.sort() // Сортировка по алфавиту
+			.reduce((sortedObj: { [key: string]: any[] }, brand) => {
+				// Убираем дубликаты из массива поколений для каждого бренда с помощью Set
+				sortedObj[brand] = [...new Set(brandsGenerations[brand])]; // Убираем дубликаты
+				return sortedObj;
+			}, {});
+
+		return sortedBrandsGenerations;
+	}
+
+	const groupedGenerations = groupGenerationsByBrand(generations.data);
+	console.log("groupedGenerations", groupedGenerations);
 
 	return (
 		<section className={"bg-[#92A6AD] pt-20 font-electrohub"}>
 			<CatalogCars
-				initialData={initialData}
 				data={carsInStockData}
 				locale={locale}
-				brands={brands?.data}
+				brands={groupedGenerations}
 				slug={slug}
 				pageCount={pagination.pageCount}
 				total={pagination.total}
 				status={status}
+				generations={generations}
 			/>
 		</section>
 	);
