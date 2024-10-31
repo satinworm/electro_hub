@@ -44,6 +44,9 @@
     },
     "starting_price": {
       "type": "string"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }

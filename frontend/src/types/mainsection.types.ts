@@ -45,6 +45,7 @@ export interface Item {
     acceleration: string;
     weight: string;
     starting_price: string;
+	 slug?: string;
     logo: {
         data: ImageData;
     };

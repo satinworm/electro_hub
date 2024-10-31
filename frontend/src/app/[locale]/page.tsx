@@ -105,30 +105,7 @@ export default async function RootRoute({
 		"cars-to-orders",
 		{
 			populate: "*",
-			// populate: {
-			//     sections: {
-			//         fields: ['*'],
-			//         populate: {
-			//             populate: true,
-			//             items: {
-			//                 fields: '*',
-			//                 populate: '*',
-			//             },
-			//             heading: {
-			//                 fields: '*',
-			//                 populate: '*',
-			//             },
-			//             stage_card: {
-			//                 fields: '*',
-			//                 populate: '*',
-			//             },
-			//         },
-			//     },
-			//     SEO: {
-			//         fields: ['*'],
-			//         populate: '*',
-			//     },
-			// },
+		
 			locale: locale,
 		},
 		locale,

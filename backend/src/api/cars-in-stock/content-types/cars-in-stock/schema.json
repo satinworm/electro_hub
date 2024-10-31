@@ -324,6 +324,14 @@
       },
       "type": "boolean",
       "default": false
+    },
+    "ogDescription": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
     }
   }
 }

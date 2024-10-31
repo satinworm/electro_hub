@@ -234,6 +234,7 @@ export interface PagePropertiesCarPreviewSlider extends Schema.Component {
     acceleration: Attribute.String;
     weight: Attribute.String;
     starting_price: Attribute.String;
+    slug: Attribute.String;
   };
 }
 
@@ -242,6 +243,7 @@ export interface PagePropertiesMainPageSlider extends Schema.Component {
   info: {
     displayName: 'Main Page Slider';
     icon: 'bell';
+    description: '';
   };
   attributes: {
     items: Attribute.Component<'page-properties.car-preview-slider', true>;

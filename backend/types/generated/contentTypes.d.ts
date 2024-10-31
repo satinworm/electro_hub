@@ -1221,6 +1221,12 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<false>;
+    ogDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

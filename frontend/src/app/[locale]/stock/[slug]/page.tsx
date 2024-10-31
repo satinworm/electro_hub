@@ -3,12 +3,74 @@ import ModalTrigger from "@/components/ModalTrigger";
 import ScrollLink from "@/components/ScrollLink";
 import TechnicalSpecifications from "@/components/TechnicalSpecifications";
 import type { CarAttributes } from "@/types/carsinstock.type";
+import { getStrapiMedia } from "@/utils/api-helpers";
 import { getDataFromAPI } from "@/utils/fetch-api";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import React from "react";
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+export async function generateMetadata({
+	params,
+}: { params: { slug: string } }) {
+	const locale = "ru";
+	const { slug } = params;
+	const carsInStockData = await getDataFromAPI(
+		"cars-in-stocks",
+		{
+			filters: {
+				slug: {
+					$eq: slug,
+				},
+			},
+			populate: {
+				preview_image: {
+					populate: "*",
+					fields: ["url", "width", "height"],
+				},
+				specification: {
+					fields: ["*"],
+					populate: "*",
+				},
+				gallery: {
+					populate: "*",
+					fields: ["url", "width", "height"],
+				},
+			},
+			pagination: {
+				page: 1,
+				pageSize: 12,
+			},
+			locale: locale,
+		},
+		locale,
+	);
+
+	return {
+		title: `Electrohub | ${carsInStockData?.data?.[0]?.attributes?.name}`,
+		openGraph: {
+			title: `Electrohub | ${carsInStockData?.data?.[0]?.attributes?.name}`,
+			description:
+				carsInStockData?.data?.[0]?.attributes?.ogDescription ||
+				"Современный автомобиль для ваших приключений: стильный дизайн, передовые технологии и комфорт в каждой детали. Готов к любой дороге — узнайте больше!",
+			images: [
+				{
+					// biome-ignore lint/style/noNonNullAssertion: <explanation>
+					url: getStrapiMedia(
+						carsInStockData?.data?.[0]?.attributes?.preview_image?.data
+							?.attributes.url,
+					)!,
+					width:
+						carsInStockData?.data?.[0]?.attributes?.preview_image?.data
+							?.attributes?.width,
+					height:
+						carsInStockData?.data?.[0]?.attributes?.preview_image?.data
+							?.attributes.width,
+				},
+			],
+		},
+	};
+}
 export default async function StockCarFullPage({ params }: any) {
 	const { slug, locale } = params;
 	const modal = await getTranslations("ContactModal");
@@ -146,10 +208,10 @@ export default async function StockCarFullPage({ params }: any) {
 							{item.battery_capacity} кВ*ч
 						</div>
 					</div>
-					<div className={"text-center"}>
+					{/* <div className={"text-center"}>
 						<div className={"text-gray-500"}>Мощность</div>
 						<div className={"text-lg md:text-xl"}>{item.battery_power} кВт</div>
-					</div>
+					</div> */}
 				</div>
 				{item?.engine_type && (
 					<div
