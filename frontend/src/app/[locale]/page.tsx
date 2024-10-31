@@ -105,7 +105,7 @@ export default async function RootRoute({
 		"cars-to-orders",
 		{
 			populate: "*",
-		
+
 			locale: locale,
 		},
 		locale,
@@ -228,12 +228,8 @@ export default async function RootRoute({
 
 	return (
 		<main className="flex max-w-screen flex-col items-center justify-between overflow-x-hidden">
-			{brandsSection &&
-			pageProperties?.data?.[0] &&
-			brands?.data?.[0] &&
-			newArrivalsModels?.data?.[0] &&
-			newsData?.data?.[0] ? (
-				<>
+			<>
+				{mainSectionSlider && (
 					<MainSection
 						title={"electro hub"}
 						subTitle={t("heading_description")}
@@ -241,19 +237,19 @@ export default async function RootRoute({
 						bg={"bg-main"}
 						data={mainSectionSlider}
 					/>
-					<CarsInStock data={carsInStockData} />
-					{/*<CarsToOrder data={carsToOrderData} />*/}
-					<BrandSection brands={brands} data={brandsSection} />
-					{/* <NewArrivals
+				)}
+				{carsInStockData && <CarsInStock data={carsInStockData} />}
+				{/*<CarsToOrder data={carsToOrderData} />*/}
+				{BrandSection && <BrandSection brands={brands} data={brandsSection} />}
+				{/* <NewArrivals
 						newArrivalsModels={newArrivalsModels}
 						data={newArrivalsSection}
 					/> */}
+				{stagePurchaseSection && (
 					<DeliveryStageSection data={stagePurchaseSection} />
-					<NewsSection data={newsData} />
-				</>
-			) : (
-				<Loader styles={"h-[100vh]"} />
-			)}
+				)}
+				{newsData && <NewsSection data={newsData} />}
+			</>
 		</main>
 	);
 }

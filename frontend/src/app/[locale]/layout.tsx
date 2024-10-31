@@ -32,7 +32,7 @@ export async function generateMetadata({
     const timeZone = await getTimeZone({ locale });
 
     return {
-        metadataBase: new URL('https://electrohub.com'),
+        metadataBase: new URL('https://electrohub.by'),
         title: t('title'),
         description: t('description'),
 

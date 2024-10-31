@@ -118,17 +118,26 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 												"h-[90%] w-full overflow-hidden rounded-2xl object-fill"
 											}
 										/>
-										<ModalTrigger
-											header={"Связь с нами"}
-											description={
-												"Наш специалист свяжется с Вами и ответит на все интересующие Вас вопросы."
-											}
-											label={"Узнать подбробнее"}
-											data={{
-												type: "feedback",
-											}}
-											styles="absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]"
-										/>
+										{item?.slug ? (
+											<Link
+												className="absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]"
+												href={`/ru/stock/${item.slug}`}
+											>
+												Подробнее
+											</Link>
+										) : (
+											<ModalTrigger
+												header={"Связь с нами"}
+												description={
+													"Наш специалист свяжется с Вами и ответит на все интересующие Вас вопросы."
+												}
+												label={"Подбробнее"}
+												data={{
+													type: "feedback",
+												}}
+												styles="absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]"
+											/>
+										)}
 									</div>
 									<div
 										className={
