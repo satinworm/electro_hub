@@ -36,7 +36,7 @@ export default function CarsInStock({ data }: Props) {
 			<div className="md:-mt-[48px] z-[1] mt-[-38px] h-[38px] w-full bg-cover bg-rectangle_main_mobile bg-no-repeat md:h-[48px] md:bg-rectangle_main" />
 			<div className="container mt-10 text-black">
 				<h3 className="font-black text-[#1e1e1e] text-sm md:text-base">
-					{locale === "ru" ? "АВТОМОБИЛИ В НАЛИЧИИ" : "CARS IN STOCK"}
+					{locale === "ru" ? "ПОПУЛЯРНЫЕ АВТОМОБИЛИ" : "CARS IN STOCK"}
 				</h3>
 
 				<div className="mt-2 flex items-center justify-between md:mt-5">
@@ -49,10 +49,10 @@ export default function CarsInStock({ data }: Props) {
 					</span>
 				</div>
 			</div>
-			<div className="container mt-6 w-full px-3 md:mt-10 lg:mt-12 xl:mt-16 ">
+			<div className="container mt-6 w-full px-0 md:px-3 md:mt-10 lg:mt-12 xl:mt-16 ">
 				<div
 					className={
-						"relative grid md:grid-cols-2 gap-2 grid-cols-1 lg:grid-cols-4 px-3 py-5 lg:gap-5 xl:gap-5 2xl:gap-6"
+						"relative grid-cols-2 gap-1.5 grid lg:grid-cols-4 px-1 py-5 lg:gap-5 xl:gap-5 2xl:gap-6"
 					}
 				>
 					{data?.data?.map((item, index) => {
@@ -111,7 +111,7 @@ export default function CarsInStock({ data }: Props) {
 									</div>
 									<div
 										className={
-											"my-3 flex w-full items-center justify-start gap-1 font-bold text-[#808080] capitalize"
+											"my-3 flex w-full items-center flex-col md:flex-row justify-start gap-1 font-bold text-[#808080] capitalize"
 										}
 									>
 										<div className={"text-xs"}>{item.attributes?.gearbox}</div>
@@ -125,7 +125,7 @@ export default function CarsInStock({ data }: Props) {
 									<div className={"mt-5 grid w-full grid-cols-2 gap-y-4"}>
 										<div
 											className={
-												"flex min-h-[40px] items-center gap-2.5 font-bold text-sm"
+												"flex min-h-[40px] items-center gap-1 md:gap-2.5 font-bold text-sm"
 											}
 										>
 											<Image
@@ -181,9 +181,13 @@ export default function CarsInStock({ data }: Props) {
 									</div>
 
 									<div
-										className={"mt-4 flex w-full items-center justify-between"}
+										className={
+											"mt-4 flex flex-col md:flex-row w-full items-center justify-between"
+										}
 									>
-										<div className={"font-bold text-[24px] text-black"}>
+										<div
+											className={"font-bold text-xl md:text-[24px] text-black"}
+										>
 											${item?.attributes?.price}
 										</div>
 										<button

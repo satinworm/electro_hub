@@ -150,7 +150,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 										<div className={"flex justify-between gap-7"}>
 											<div
 												className={
-													"grid w-full grid-cols-3 gap-[2px] md:w-auto md:grid-cols-5 xl:grid-cols-7"
+													"grid w-full grid-cols-3 gap-[2px] md:w-auto md:grid-cols-6 xl:grid-cols-8"
 												}
 											>
 												<div
@@ -242,7 +242,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 														</span>
 													</div>
 												</div>
-												<div className="relative col-span-1 h-full">
+												<div className="relative h-full">
 													<ModalTrigger
 														header={"Связь с нами"}
 														description={
@@ -252,7 +252,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 														data={{
 															type: "feedback",
 														}}
-														styles="relative col-span-2 hidden w-full h-full border-0 p-5 text-xs md:rounded-[10px] md:bg-white/50 md:text-base md:backdrop-blur-[10px] xl:block"
+														styles="relative hidden w-full h-full border-0 p-5 text-xs md:rounded-[10px] md:bg-white/50 md:text-base md:backdrop-blur-[10px] xl:block"
 													/>
 
 													<span
