@@ -41,24 +41,38 @@ export default function ActionButtons(props: Props) {
                     if (item.action.actionType === 'link') {
                     } else if (item.action.actionType === 'modal') {
                         return (
-                            <>
-                                {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-                                <button
-                                    className={item.action.styles}
-                                    key={item.name}
-                                    onClick={() => setOpen(true)}
-                                >
-                                    <span className={'whitespace-nowrap'}>
-                                        {item.name}
-                                    </span>
-                                    {item.children}
-                                </button>
-                                <ModalComponent
-                                    header={item.action.modal_header}
-                                    description={item.action.modal_description}
-                                />
-                            </>
-                        );
+																									<>
+																										{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+																										<button
+																											className={
+																												item.action.styles
+																											}
+																											key={item.name}
+																											onClick={() =>
+																												setOpen(true)
+																											}
+																										>
+																											<span
+																												className={
+																													"whitespace-nowrap"
+																												}
+																											>
+																												{item.name}
+																											</span>
+																											{item.children}
+																										</button>
+																										<span style={{color: "#EE1C25", fontWeight: "600"}}>ChinaCar</span>
+																										<ModalComponent
+																											header={
+																												item.action.modal_header
+																											}
+																											description={
+																												item.action
+																													.modal_description
+																											}
+																										/>
+																									</>
+																								);
                     }
                     return (
                         <>

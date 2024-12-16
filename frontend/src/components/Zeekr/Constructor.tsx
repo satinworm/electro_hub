@@ -49,27 +49,24 @@ const ZeekrConstructor = (props: Props) => {
     }
 
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className={'hideScrollbar flex flex-col xl:flex-row'}
-                style={{ alignItems: 'flex-start' }}
-            >
-                <StickyBox
-                    className={
-                        'z-[2] w-full bg-zeekr_constructor md:bg-transparent xl:w-3/4'
-                    }
-                >
-                    <ConfigurationRender
-                        defaultData={defaultData}
-                        form={form}
-                    />
-                </StickyBox>
-                <div className={'z-[1] w-full bg-white xl:w-1/4'}>
-                    <ConfigurationForm defaultData={defaultData} form={form} />
-                </div>
-            </form>
-        </Form>
-    );
+					<Form {...form}>
+						<form
+							onSubmit={form.handleSubmit(onSubmit)}
+							className={"hideScrollbar flex flex-col xl:flex-row"}
+							style={{ alignItems: "flex-start" }}
+						>
+							<StickyBox
+								className={
+									"z-[2] w-full bg-[#e8e8e8] md:bg-transparent xl:w-3/4"
+								}
+							>
+								<ConfigurationRender defaultData={defaultData} form={form} />
+							</StickyBox>
+							<div className={"z-[1] w-full bg-white xl:w-1/4"}>
+								<ConfigurationForm defaultData={defaultData} form={form} />
+							</div>
+						</form>
+					</Form>
+				);
 };
 export default ZeekrConstructor;

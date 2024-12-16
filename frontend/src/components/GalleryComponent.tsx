@@ -16,6 +16,7 @@ import { getStrapiMedia } from '@/utils/api-helpers';
 //     };
 // };
 
+
 export default function GalleryComponent({ photos }: any) {
     const mainRef = useRef<Splide>(null);
     const thumbsRef = useRef<Splide>(null);
