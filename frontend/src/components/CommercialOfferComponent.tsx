@@ -99,7 +99,9 @@ const styles = StyleSheet.create({
 	},
 });
 
-const CommercialOfferComponent = ({ offer, constructor }) => {
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const CommercialOfferComponent = ({ offer, constructor }: any) => {
 	const currentDate = new Date();
 	const formattedDate = format(currentDate, "d MMMM yyyy", { locale: ru });
 	console.log("offer", offer);
@@ -110,6 +112,7 @@ const CommercialOfferComponent = ({ offer, constructor }) => {
 			? Object.values(additional_options)
 			: [];
 	const totalOptionsPrice = optionsArray.reduce(
+		//@ts-ignore
 		(sum, option) => sum + option.price,
 		0,
 	);
@@ -144,6 +147,7 @@ const CommercialOfferComponent = ({ offer, constructor }) => {
 									top: 0,
 									zIndex: 0,
 								}}
+								//@ts-ignore
 								src={getStrapiMedia(commercial_image?.url)}
 							/>
 
@@ -366,6 +370,7 @@ const CommercialOfferComponent = ({ offer, constructor }) => {
 												}}
 											>
 												<Image
+													//@ts-ignore
 													src={getStrapiMedia(
 														constructor.interior_colors.icon?.data?.attributes
 															?.url,
@@ -508,7 +513,9 @@ const CommercialOfferComponent = ({ offer, constructor }) => {
 												</View>
 											</View>
 										)}
-										{optionsArray.map((option, index) => (
+										{/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
+										{optionsArray.map((option: any, index: number) => (
+											// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 											<View style={styles.tableRow} key={index}>
 												<View style={{ flexBasis: "80%" }}>
 													<Text>{option.name}</Text>

@@ -41,19 +41,15 @@ export type Color = {
 	additional_description: string;
 };
 export type ConstructorObjectState = {
-	configuration: string;
-	body: string;
-	wheels: string;
+	configuration: any;
+	body: any;
+	wheels: any;
 	defaultRenderImage: {
 		url: string;
 		width: number;
 		height: number;
 	};
-	interior_colors: {
-		name: string;
-		image: string;
-		price: number;
-	};
+	interior_colors: any;
 	renderImage: string;
 	defaultPrice: number;
 	price: any;
@@ -101,7 +97,7 @@ export const ConstructorStore = create<ConstructorStoreState>((set) => ({
 		configuration: "",
 		body: "black",
 		wheels: "default",
-		interior_colors: "black",
+		interior_colors: "",
 		defaultRenderImage: {
 			url: "",
 			width: 0,
