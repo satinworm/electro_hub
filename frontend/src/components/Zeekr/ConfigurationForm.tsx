@@ -71,14 +71,17 @@ export default function ConfigurationForm({
 	console.log("OFFER ", offer);
 	useEffect(() => {
 		if (selectedModelObject) {
+			console.log("selectedModelObject", selectedModelObject);
 			setConstructor({
 				...store.constructor,
 				body: selectedModelObject.body_colors[0].render_url,
+				commercial_image: selectedModelObject.commercial_image || "",
 			});
 			updateOffer({
 				model: {
 					name: selectedModelObject.name,
 					price: selectedModelObject.default_price,
+					commercial_image: selectedModelObject.commercial_image || "",
 				},
 			});
 			// updatePrice({
@@ -202,7 +205,6 @@ export default function ConfigurationForm({
 							</span>
 						</div>
 					)}
-
 					{selectedModelObject?.body_colors &&
 						selectedModelObject?.body_colors?.length > 0 && (
 							<FormField
@@ -261,7 +263,11 @@ export default function ConfigurationForm({
 																						setSelectedView("body");
 																						setConstructor({
 																							...store.constructor,
-																							body: item.render_url,
+																							body: {
+																								name: item.render_url,
+																								btn_bg: item.btn_bg,
+																								price: item.incremental_price,
+																							},
 																						});
 																						updatePrice({
 																							body: item.incremental_price,
@@ -392,7 +398,7 @@ export default function ConfigurationForm({
 																				checked={field.value?.includes(
 																					item.render_url,
 																				)}
-																				className={"h-full w-full opacity-0"}
+																				className={"h-full w-full opacity-0 items-cen"}
 																				onCheckedChange={(checked) => {
 																					updateOffer({
 																						...offer,
@@ -410,6 +416,7 @@ export default function ConfigurationForm({
 																							name: item.name,
 																							price: item.incremental_price,
 																							image: item.render_url,
+																							icon: item.icon,
 																							renderImage: getStrapiMedia(
 																								item.render_image.data
 																									.attributes.url,
@@ -454,12 +461,15 @@ export default function ConfigurationForm({
 																"mt-8 space-y-4 font-electrohub text-sm"
 															}
 														>
-															<div className={"flex gap-1.5 text-lg"}>
-																<span>
-																	{selectedWheels?.incremental_price || 0}
-																</span>
-																<span className={"font-bold"}>$</span>
-															</div>
+															{selectedWheels?.incremental_price && (
+																<div className={"flex gap-1.5 text-lg"}>
+																	<span>
+																		{selectedWheels?.incremental_price}
+																	</span>
+																	<span className={"font-bold"}>$</span>
+																</div>
+															)}
+
 															<div className={"leading-tight"}>
 																{selectedWheels?.additional_description || " "}
 															</div>

@@ -38,7 +38,9 @@ export default function CommercialOfferPage() {
 	return (
 		<section className="my-20 bg-transparent">
 			<PDFViewer style={{ width: "100%", height: "100vh" }}>
-				<CommercialOfferComponent constructor={constructor} offer={offer} />
+				{constructor && offer && (
+					<CommercialOfferComponent constructor={constructor} offer={offer} />
+				)}
 			</PDFViewer>
 		</section>
 	);

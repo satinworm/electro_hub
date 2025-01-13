@@ -62,6 +62,8 @@ export interface ConfiguratorContructorItem extends Schema.Component {
     render_interior_image: Attribute.Media;
     interior_colors: Attribute.Component<'configurator.interior', true>;
     virtual_view: Attribute.String;
+    commercial_image: Attribute.Media;
+    configuration_name: Attribute.String;
   };
 }
 

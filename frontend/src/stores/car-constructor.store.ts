@@ -58,13 +58,19 @@ export type ConstructorObjectState = {
 	defaultPrice: number;
 	price: any;
 };
-type OfferItem = { name: string; price: number; image?: string };
+type OfferItem = {
+	name: string;
+	price: number;
+	image?: string;
+	btn_bg?: string;
+	btnUrl?: string;
+};
 export type OfferType = {
 	model: OfferItem;
 	body: OfferItem;
 	wheels: OfferItem;
 	interior_colors: OfferItem;
-	additional_otions: any;
+	additional_options: any;
 };
 // В файле `frontend/src/stores/car-constructor.store.ts`
 export type ConstructorStoreState = {

@@ -64,7 +64,7 @@ export default function ZeekrConstructorPage(props: Props) {
 			: getStrapiMedia(defaultRenderImage?.url);
 	};
 	useEffect(() => {
-		const url = parseUrl(store.body || "white", store.wheels.image || "default");
+		const url = parseUrl(store.body.name || "white", store.wheels.image || "default");
 		if (url) {
 			setConstructor({
 				...store.constructor,

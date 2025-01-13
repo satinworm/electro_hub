@@ -66,6 +66,17 @@
     },
     "virtual_view": {
       "type": "string"
+    },
+    "commercial_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "configuration_name": {
+      "type": "string"
     }
   }
 }
