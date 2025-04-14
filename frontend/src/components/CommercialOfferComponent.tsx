@@ -469,7 +469,7 @@ const CommercialOfferComponent = ({ offer, constructor }: any) => {
 										}}
 									/>
 								</View>
-								<View style={{ width: "100%" }}>
+								<View style={{ width: "100%", marginTop: "auto" }}>
 									<View style={styles.table}>
 										<View style={styles.tableRow}>
 											<View style={{ flexBasis: "80%" }}>

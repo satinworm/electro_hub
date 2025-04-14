@@ -81,6 +81,9 @@ export default async function RootRoute({
 						items: {
 							fields: "*",
 							populate: "*",
+							brand: {
+								populate: "*"
+							},
 						},
 						heading: {
 							fields: "*",

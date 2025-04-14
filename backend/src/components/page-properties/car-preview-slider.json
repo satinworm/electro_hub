@@ -47,6 +47,11 @@
     },
     "slug": {
       "type": "string"
+    },
+    "brands": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::brand.brand"
     }
   }
 }

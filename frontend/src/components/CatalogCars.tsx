@@ -51,6 +51,7 @@ const CatalogCars = memo(
 			setImageLoaded((prev) => ({ ...prev, [slug]: true }));
 		};
 		console.log("initial data", initialData);
+		// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 		useEffect(() => {
 			setIsLoading(true); // Показать лоадер
 			const timeout = setTimeout(() => {
@@ -145,6 +146,7 @@ const CatalogCars = memo(
 																	: "opacity-0"
 															}`}
 															src={
+																// biome-ignore lint/style/noNonNullAssertion: <explanation>
 																getStrapiMedia(
 																	item?.attributes?.preview_image?.data
 																		?.attributes?.url,

@@ -70,7 +70,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 					// heightRatio: 0.98,
 					pagination: true,
 					arrows: false,
-					autoplay: true,
+					// autoplay: true,
 					interval: 4000,
 					rewind: true,
 					pauseOnHover: true,
@@ -82,13 +82,15 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 				}}
 			>
 				<SplideTrack>
-					{data?.items?.map((item, index) => {
+					{data?.items?.map((item: any, index) => {
 						const bgUrl = getStrapiMedia(item.main_image.data.attributes.url);
+						console.log("ITEM ", item)
 						const prevItem = getPrevItem(data.items, item);
 						const nextItem = getNextItem(data.items, item);
 
 						return (
 							<SplideSlide
+								// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 								key={index}
 								className={cn(
 									"w-full bg-center bg-no-repeat px-[0.4rem] sm:px-[1rem] md:bg-cover md:px-[1.5rem] lg:px-[2rem]",
@@ -110,6 +112,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 										}
 									>
 										<Image
+											// biome-ignore lint/style/noNonNullAssertion: <explanation>
 											src={bgUrl!}
 											fill
 											alt={item?.name}
@@ -147,10 +150,10 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 										{item.starting_price}$
 									</div>
 									<div className="relative mt-4 text-white md:mt-0 md:mb-[80px]">
-										<div className={"flex justify-between gap-7"}>
+										<div className={"flex justify-center gap-7"}>
 											<div
 												className={
-													"grid w-full grid-cols-3 gap-[2px] md:w-auto md:grid-cols-6 xl:grid-cols-8"
+													"grid w-full grid-cols-3 gap-[2px] md:w-auto md:grid-cols-6 xl:grid-cols-6"
 												}
 											>
 												<div
@@ -263,37 +266,42 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 														{item.starting_price}$
 													</span>
 												</div>
-												{item?.slug && (
+												{item?.slug ? (
 													<Link
 														className="relative hidden w-full h-full ml-1 font-semibold border-0 p-2 text-xs md:rounded-[10px] md:bg-white/50 items-center md:text-xl justify-center text-center md:backdrop-blur-[10px] xl:flex"
 														href={`/ru/stock/${item.slug}`}
 													>
 														Узнать подробнее
 													</Link>
-												)}
+												) : <Link
+													className="relative hidden w-full h-full ml-1 font-semibold border-0 p-2 text-xs md:rounded-[10px] md:bg-white/50 items-center md:text-xl justify-center text-center md:backdrop-blur-[10px] xl:flex"
+													href={`/ru/catalog/${item.brands.data.attributes.slug}/all`}
+												>
+													Узнать подробнее
+												</Link>}
 											</div>
 										</div>
-										<div className="flex gap-2">
-											{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-											<button
-												className={
-													"relative mt-3 hidden flex-col p-5 text-xs md:flex md:rounded-[10px] md:bg-white/60 md:text-base md:backdrop-blur-[10px] xl:hidden"
-												}
-												key={item.name}
-												onClick={() => setOpen(true)}
-											>
-												<span className={"font-black text-[#1e1e1e] text-sm"}>
-													{item.starting_price}$
-												</span>
-												<span
-													className={
-														"whitespace-nowrap font-black text-[#1e1e1e]"
-													}
-												>
-													{"Консультация"}
-												</span>
-											</button>
-										</div>
+										{/*<div className="flex gap-2">*/}
+										{/*	<button*/}
+										{/*		type={"button"}*/}
+										{/*		className={*/}
+										{/*			"relative mt-3 hidden flex-col p-5 text-xs md:flex md:rounded-[10px] md:bg-white/60 md:text-base md:backdrop-blur-[10px] xl:hidden"*/}
+										{/*		}*/}
+										{/*		key={item.name}*/}
+										{/*		onClick={() => setOpen(true)}*/}
+										{/*	>*/}
+										{/*		<span className={"font-black text-[#1e1e1e] text-sm"}>*/}
+										{/*			{item.starting_price}$*/}
+										{/*		</span>*/}
+										{/*		<span*/}
+										{/*			className={*/}
+										{/*				"whitespace-nowrap font-black text-[#1e1e1e]"*/}
+										{/*			}*/}
+										{/*		>*/}
+										{/*			{"Консультация"}*/}
+										{/*		</span>*/}
+										{/*	</button>*/}
+										{/*</div>*/}
 									</div>
 								</div>
 							</SplideSlide>
@@ -301,7 +309,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 					})}
 				</SplideTrack>
 				<div className="splide__arrows">
-					<button className="splide__arrow splide__arrow--prev bottom-0">
+					<button type={"button"} className="splide__arrow splide__arrow--prev bottom-0">
 						<Image
 							src={"/left-arrow-slider.svg"}
 							alt={"prev slide"}
@@ -310,7 +318,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 						/>
 					</button>
 					<button
-						style={{ bottom: 0 }}
+						style={{ bottom: 0 }} type={"button"}
 						className="splide__arrow splide__arrow--next"
 					>
 						<Image

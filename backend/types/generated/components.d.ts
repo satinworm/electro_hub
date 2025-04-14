@@ -237,6 +237,11 @@ export interface PagePropertiesCarPreviewSlider extends Schema.Component {
     weight: Attribute.String;
     starting_price: Attribute.String;
     slug: Attribute.String;
+    brands: Attribute.Relation<
+      'page-properties.car-preview-slider',
+      'oneToOne',
+      'api::brand.brand'
+    >;
   };
 }
 
