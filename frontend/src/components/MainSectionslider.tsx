@@ -70,7 +70,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
 					// heightRatio: 0.98,
 					pagination: true,
 					arrows: false,
-					// autoplay: true,
+					autoplay: true,
 					interval: 4000,
 					rewind: true,
 					pauseOnHover: true,
