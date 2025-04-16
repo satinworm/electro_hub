@@ -6,13 +6,11 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { PhoneInput } from "@/components/ui/phone-input";
 import { cn } from "@/lib/utils";
 import { api, bot } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { AxiosResponse } from "axios";
 import { format } from "date-fns";
-import { isValidPhoneNumber } from "libphonenumber-js";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -26,9 +24,7 @@ export default function ContactForm({
 }) {
     const FormSchema = z.object({
         name: z.string().min(1, "Обязательное поле"),
-        phone: z
-            .string()
-            .refine(isValidPhoneNumber, { message: "Неправильный номер" }),
+        phone: z.string().min(1, "Обязательное поле"),
     });
     const defaultValues = {
         name: "",
@@ -67,7 +63,7 @@ export default function ContactForm({
                 },
             });
             console.log("botResponse", botResponse.status);
-            if (botResponse.status === 201) {
+            if (botResponse.status === 201 && response.status === 200) {
                 toast.success("Данные отправлены ✅", {
                     duration: 6000,
                 });
@@ -91,9 +87,9 @@ export default function ContactForm({
                             <FormControl>
                                 <Input
                                     className={
-                                        "rounded-0 rounded-none border-b-[2px] border-l-0 border-r-0 border-t-0 border-[#898989] font-electrohub ring-0 placeholder:text-[16px] placeholder:text-[#898989]"
+                                        "bg-white-100 py-6 font-electrohub border-black border ring-0 placeholder:text-[12px] text-[12px] placeholder:text-black/60"
                                     }
-                                    placeholder={"Укажите Ваше имя"}
+                                    placeholder={"ФИО"}
                                     {...field}
                                 />
                             </FormControl>
@@ -105,15 +101,13 @@ export default function ContactForm({
                     control={form.control}
                     name="phone"
                     render={({ field }) => (
-                        <FormItem className="mt-8 flex flex-col items-start">
+                        <FormItem className="mt-4 flex flex-col items-start">
                             <FormControl className="w-full">
-                                <PhoneInput
-                                    international
+                                <Input
                                     className={
-                                        "rounded-0 rounded-none border-b-[2px] border-l-0 border-r-0 border-t-0 border-[#898989] font-electrohub placeholder:text-[16px] placeholder:text-[#898989]"
+                                        "bg-white-100 py-6 font-electrohub border-black border ring-0 placeholder:text-[12px] text-[12px] placeholder:text-black/60"
                                     }
-                                    defaultCountry={"BY"}
-                                    placeholder="Введите номер телефона"
+                                    placeholder={"Телефон"}
                                     {...field}
                                 />
                             </FormControl>
@@ -123,8 +117,9 @@ export default function ContactForm({
                 />
 
                 <button
+                    type={"submit"}
                     className={
-                        "mt-6 w-full border border-black py-1.5 text-center font-electrohub text-sm font-semibold capitalize sm:text-sm md:mt-8 md:py-2.5 md:text-base"
+                        "mt-6 w-full border bg-black text-white border-black py-1.5 text-center text-sm font-semibold capitalize sm:text-sm md:mt-5 md:py-2"
                     }
                 >
                     отправить
