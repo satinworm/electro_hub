@@ -18,39 +18,7 @@ app.use(express.json());
 const port = 3109;
 let i = 1;
 
-// async function sendProductApplication(cart, idx) {
-// 	const messageText = Object.keys(cart)
-// 		.filter((category) => cart[category].length > 0)
-// 		.map((category) => {
-// 			return (
-// 				`*Категория*: ${escape(translatedCategory(category))}\n` +
-// 				cart[category]
-// 					.map((item, index) => {
-// 						return `*${index + 1}*.\n*Материал*: ${escape(
-// 							item.material
-// 						)}\n*Цвет*: ${escape(item.color)}\n*Количество*: ${
-// 							item.count
-// 						}\n*Артикул*: ${escape(item.article)}\n*Цена*: ${item.price}`;
-// 					})
-// 					.join("\n")
-// 			);
-// 		})
-// 		.join("\n\n");
 
-// 	for (const adminId of adminIds) {
-// 		try {
-// 			await bot.sendMessage(
-// 				adminId,
-// 				`*Новая заявка на товар №${idx}*\n\n${messageText}`,
-// 				{
-// 					parse_mode: "Markdown",
-// 				}
-// 			);
-// 		} catch (e) {
-// 			console.log(e?.message || "telegram error");
-// 		}
-// 	}
-// }
 async function sendCarConfiguration(data, idx) {
 	console.log("data", data);
 	const {

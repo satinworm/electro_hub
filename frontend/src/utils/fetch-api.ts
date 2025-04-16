@@ -1,10 +1,10 @@
-import qs from 'qs';
-import { getStrapiURL } from './api-helpers';
+import qs from "qs";
+import { getStrapiURL } from "./api-helpers";
 
 export async function getDataFromAPI(
     path: string,
     urlParams: any,
-    lang: string
+    locale?: string,
 ) {
     const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
 
@@ -12,9 +12,9 @@ export async function getDataFromAPI(
 
     if (urlParams === null) {
         const urlParamsObject = {
-            sort: { createdAt: 'asc' },
-            populate: '*',
-            locale: lang,
+            sort: { createdAt: "asc" },
+            populate: "*",
+            locale: "ru",
         };
         return await fetchAPI(p, urlParamsObject);
     }
@@ -24,14 +24,14 @@ export async function getDataFromAPI(
 export async function fetchAPI(
     path: string,
     urlParamsObject = {},
-    options = {}
+    options = {},
 ) {
     try {
         // Merge default and user options
         const mergedOptions = {
             next: { revalidate: 60 },
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
             ...options,
         };
@@ -39,7 +39,7 @@ export async function fetchAPI(
         // Build request URL
         const queryString = qs.stringify(urlParamsObject);
         const requestUrl = `${getStrapiURL(
-            `/api${path}${queryString ? `?${queryString}` : ''}`
+            `/api${path}${queryString ? `?${queryString}` : ""}`,
         )}`;
 
         // Trigger API call
@@ -49,7 +49,7 @@ export async function fetchAPI(
     } catch (error) {
         console.error(error);
         throw new Error(
-            'Please check if your server is running and you set all the required tokens.'
+            "Please check if your server is running and you set all the required tokens.",
         );
     }
 }

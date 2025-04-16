@@ -54,7 +54,9 @@
         "section.button",
         "section.zeekr-exterior",
         "page-properties.car-preview-slider",
-        "page-properties.main-page-slider"
+        "page-properties.main-page-slider",
+        "text.rich-text-component",
+        "heading-for-section.heading"
       ]
     }
   }

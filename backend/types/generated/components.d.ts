@@ -393,6 +393,17 @@ export interface StageCardStageCard extends Schema.Component {
   };
 }
 
+export interface TextRichTextComponent extends Schema.Component {
+  collectionName: 'components_text_rich_text_components';
+  info: {
+    displayName: 'RichTextComponent';
+    icon: 'file';
+  };
+  attributes: {
+    text: Attribute.Blocks;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -423,6 +434,7 @@ declare module '@strapi/types' {
       'section.zeekr-exterior': SectionZeekrExterior;
       'stage-card.card': StageCardCard;
       'stage-card.stage-card': StageCardStageCard;
+      'text.rich-text-component': TextRichTextComponent;
     }
   }
 }

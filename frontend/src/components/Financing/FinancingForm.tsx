@@ -1,3 +1,4 @@
+"use client";
 import {
     Form,
     FormControl,
@@ -6,33 +7,26 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { PhoneInput } from "@/components/ui/phone-input";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { api, bot } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { AxiosResponse } from "axios";
 import { format } from "date-fns";
-import { isValidPhoneNumber } from "libphonenumber-js";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-export default function ContactForm({
-    close,
-    botData,
-}: {
-    close: () => void;
-    botData: any;
-}) {
+export default function FinancingForm() {
     const FormSchema = z.object({
         name: z.string().min(1, "Обязательное поле"),
-        phone: z
-            .string()
-            .refine(isValidPhoneNumber, { message: "Неправильный номер" }),
+        phone: z.string().min(1, "Обязательное поле"),
+        message: z.string().optional(),
     });
     const defaultValues = {
         name: "",
         phone: "",
+        message: "",
     };
 
     const form = useForm<z.infer<typeof FormSchema>>({
@@ -48,7 +42,6 @@ export default function ContactForm({
 
     async function onSubmit(data: any) {
         const dateNow = new Date();
-        console.log("SUBMITTED DATA", botData);
         try {
             const response = await api.post<AxiosResponse>("/api/feedbacks", {
                 data: {
@@ -61,13 +54,13 @@ export default function ContactForm({
 
             const botResponse = await bot.post<AxiosResponse>("/applications", {
                 data: {
-                    ...botData,
+                    type: "feedback",
                     name: data.name,
                     number: data.phone,
                 },
             });
             console.log("botResponse", botResponse.status);
-            if (botResponse.status === 201) {
+            if (botResponse.status === 201 && response.status === 200) {
                 toast.success("Данные отправлены ✅", {
                     duration: 6000,
                 });
@@ -82,7 +75,10 @@ export default function ContactForm({
     }
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form
+                className={"max-w-md ml-auto space-y-4"}
+                onSubmit={form.handleSubmit(onSubmit)}
+            >
                 <FormField
                     control={form.control}
                     name="name"
@@ -91,9 +87,9 @@ export default function ContactForm({
                             <FormControl>
                                 <Input
                                     className={
-                                        "rounded-0 rounded-none border-b-[2px] border-l-0 border-r-0 border-t-0 border-[#898989] font-electrohub ring-0 placeholder:text-[16px] placeholder:text-[#898989]"
+                                        "bg-gray-100 py-6 rounded font-electrohub ring-0 placeholder:text-[12px] text-[12px] placeholder:text-black/60"
                                     }
-                                    placeholder={"Укажите Ваше имя"}
+                                    placeholder={"Имя*"}
                                     {...field}
                                 />
                             </FormControl>
@@ -105,15 +101,31 @@ export default function ContactForm({
                     control={form.control}
                     name="phone"
                     render={({ field }) => (
-                        <FormItem className="mt-8 flex flex-col items-start">
-                            <FormControl className="w-full">
-                                <PhoneInput
-                                    international
+                        <FormItem className={cn("")}>
+                            <FormControl>
+                                <Input
                                     className={
-                                        "rounded-0 rounded-none border-b-[2px] border-l-0 border-r-0 border-t-0 border-[#898989] font-electrohub placeholder:text-[16px] placeholder:text-[#898989]"
+                                        "bg-gray-100 py-6 rounded font-electrohub ring-0 placeholder:text-[12px] text-[12px] placeholder:text-black/60"
                                     }
-                                    defaultCountry={"BY"}
-                                    placeholder="Введите номер телефона"
+                                    placeholder={"Телефон*"}
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                        <FormItem className={cn("")}>
+                            <FormControl>
+                                <Textarea
+                                    className={
+                                        "bg-gray-100 py-6 rounded font-electrohub ring-0 placeholder:text-[12px] text-[12px] placeholder:text-black/60"
+                                    }
+                                    placeholder={"Сообщение*"}
                                     {...field}
                                 />
                             </FormControl>
@@ -123,8 +135,9 @@ export default function ContactForm({
                 />
 
                 <button
+                    type={"submit"}
                     className={
-                        "mt-6 w-full border border-black py-1.5 text-center font-electrohub text-sm font-semibold capitalize sm:text-sm md:mt-8 md:py-2.5 md:text-base"
+                        "mt-6 flex ml-auto w-fit px-5 rounded border border-black py-1.5 text-center font-electrohub text-sm font-semibold capitalize sm:text-sm md:mt-8 md:py-2.5"
                     }
                 >
                     отправить

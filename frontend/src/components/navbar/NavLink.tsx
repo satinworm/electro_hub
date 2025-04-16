@@ -1,23 +1,26 @@
-import Link from 'next/link';
-import ScrollLink from '@/components/ScrollLink';
+import ScrollLink from "@/components/ScrollLink";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export const NavLink = ({
     label,
     href,
     scrollable,
+    dynamic,
 }: {
     label: string;
     href: string;
     scrollable: boolean;
+    dynamic?: boolean;
 }) => {
     return (
         <>
             {!scrollable ? (
                 <Link
                     href={href}
-                    className={
-                        'border-b border-transparent font-electrohub text-sm transition  hover:border-white sm:text-base md:text-lg'
-                    }
+                    className={cn(
+                        `border-b border-transparent font-electrohub text-sm transition  hover:border-${dynamic ? "black" : "white"} sm:text-base md:base`,
+                    )}
                 >
                     <span>{label}</span>
                 </Link>

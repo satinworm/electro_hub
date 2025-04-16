@@ -1354,6 +1354,7 @@ export interface ApiFeedbackFeedback extends Schema.CollectionType {
     date: Attribute.String;
     processed: Attribute.Boolean & Attribute.DefaultTo<false>;
     dateUTC: Attribute.String;
+    message: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1835,7 +1836,9 @@ export interface ApiPagePage extends Schema.CollectionType {
         'section.button',
         'section.zeekr-exterior',
         'page-properties.car-preview-slider',
-        'page-properties.main-page-slider'
+        'page-properties.main-page-slider',
+        'text.rich-text-component',
+        'heading-for-section.heading'
       ]
     > &
       Attribute.SetPluginOptions<{

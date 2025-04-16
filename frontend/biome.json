@@ -2,7 +2,7 @@
     "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
     "formatter": {
         "enabled": true,
-        "formatWithErrors": false,
+        "formatWithErrors": true,
         "indentStyle": "space",
         "indentWidth": 4,
         "lineEnding": "lf",
@@ -19,24 +19,32 @@
         "rules": {
             "recommended": true,
             "nursery": {
-                "useSortedClasses": "warn"
+                "useSortedClasses": "off"
             },
-            "style": {},
+            "style": {
+					"noNonNullAssertion": "off"
+				},
             "suspicious": {
-                "noExplicitAny": "warn"
+                "noExplicitAny": "off",
+
+                "noArrayIndexKey": "off"
+            },
+            "correctness": {
+                "useExhaustiveDependencies": "off",
+                "noUnusedImports": "error"
             }
         }
     },
+
     "javascript": {
         "formatter": {
             "jsxQuoteStyle": "double",
             "quoteProperties": "asNeeded",
-            "trailingCommas": "es5",
             "semicolons": "always",
             "arrowParentheses": "always",
             "bracketSpacing": true,
             "bracketSameLine": false,
-            "quoteStyle": "single",
+            "quoteStyle": "double",
             "attributePosition": "auto"
         }
     }

@@ -1,14 +1,14 @@
-'use client';
-import { useDotButton } from '@/components/ui/EmblaCarouselDotButton';
+"use client";
+import { useDotButton } from "@/components/ui/EmblaCarouselDotButton";
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-} from '@/components/ui/carousel';
-import useEmblaCarousel from 'embla-carousel-react';
-import { useEffect, useState } from 'react';
+} from "@/components/ui/carousel";
+import useEmblaCarousel from "embla-carousel-react";
+import { useEffect, useState } from "react";
 
 type Props = {
     data: any;
@@ -34,14 +34,14 @@ export default function DeliveryStageSection(props: Props) {
         useDotButton(emblaApi);
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             setWindowWidth(window.innerWidth);
-            window.addEventListener('resize', () => {
+            window.addEventListener("resize", () => {
                 setWindowWidth(window.innerWidth);
             });
         }
         return () => {
-            window.removeEventListener('resize', () => {
+            window.removeEventListener("resize", () => {
                 setWindowWidth(window.innerWidth);
             });
         };
@@ -57,14 +57,14 @@ export default function DeliveryStageSection(props: Props) {
                         <div className="mt-3 flex flex-col gap-3 md:mt-5 lg:gap-5">
                             <span
                                 className={
-                                    'text-base font-bold leading-tight sm:text-lg md:text-2xl lg:max-w-[720px] lg:text-2xl lg:text-[32px]'
+                                    "text-base font-bold leading-tight sm:text-lg md:text-2xl lg:max-w-[720px] lg:text-2xl lg:text-[32px]"
                                 }
                             >
                                 {h1}
                             </span>
                             <span
                                 className={
-                                    'hidden leading-tight lg:block lg:max-w-[720px] lg:text-[16px]'
+                                    "hidden leading-tight lg:block lg:max-w-[720px] lg:text-[16px]"
                                 }
                             >
                                 {h3}
@@ -78,38 +78,38 @@ export default function DeliveryStageSection(props: Props) {
                             (stageCard: StageCard, index: number) => (
                                 <div
                                     className={
-                                        'rounded-[10px] px-4 py-3 pb-8 text-white md:px-4 md:py-4 md:pb-12 lg:px-6 lg:py-5 lg:pb-20 xl:px-7'
+                                        "rounded-[10px] px-4 py-3 pb-8 text-white md:px-4 md:py-4 md:pb-12 lg:px-6 lg:py-5 lg:pb-20 xl:px-7"
                                     }
                                     style={{
-                                        backdropFilter: 'blur(10px)',
+                                        backdropFilter: "blur(1px)",
                                         background:
-                                            'linear-gradient(135deg, rgba(128, 128, 128, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%)',
+                                            "linear-gradient(135deg, rgba(128, 128, 128, 0.8) 0%, rgb(0, 0, 0) 100%)",
                                     }}
                                     key={stageCard.id}
                                 >
                                     <p
                                         className={
-                                            'text-right font-terminatorgen text-[80px] leading-[0.8] text-[#808080]'
+                                            "text-right font-terminatorgen text-[80px] leading-[0.8] text-white/80"
                                         }
                                     >
                                         0{index + 1}
                                     </p>
                                     <p
                                         className={
-                                            'font-electrohub text-[20px] font-bold leading-tight tracking-tight md:text-[22px]'
+                                            "font-electrohub text-[20px] font-bold leading-tight tracking-tight md:text-[22px]"
                                         }
                                     >
                                         {stageCard.title}
                                     </p>
                                     <p
                                         className={
-                                            'mt-5 font-electrohub text-[16px] leading-tight md:text-[18px]'
+                                            "mt-5 font-electrohub text-sm leading-tight md:text-base"
                                         }
                                     >
                                         {stageCard.description}
                                     </p>
                                 </div>
-                            )
+                            ),
                         )}
                     </div>
                 ) : (
@@ -119,50 +119,50 @@ export default function DeliveryStageSection(props: Props) {
                                 (stageCard: StageCard, index: number) => (
                                     <CarouselItem
                                         key={stageCard.id}
-                                        className={'h-full'}
+                                        className={"h-full"}
                                     >
                                         <div
                                             className={
-                                                'rounded-[10px] px-4 py-3 pb-8 text-white md:px-4 md:py-4 md:pb-12 lg:px-6 lg:py-5 lg:pb-20 xl:px-7'
+                                                "rounded-[10px] px-4 py-3 pb-8 text-white md:px-4 md:py-4 md:pb-12 lg:px-6 lg:py-5 lg:pb-20 xl:px-7"
                                             }
                                             style={{
-                                                backdropFilter: 'blur(10px)',
+                                                backdropFilter: "blur(10px)",
                                                 background:
-                                                    'linear-gradient(135deg, rgba(128, 128, 128, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%)',
+                                                    "linear-gradient(135deg, rgba(128, 128, 128, 0.8) 0%, rgba(30, 30, 30, 0.8) 100%)",
                                             }}
                                             key={stageCard.id}
                                         >
                                             <p
                                                 className={
-                                                    'text-right font-terminatorgen text-[54px] leading-[0.8] text-[#808080] md:text-[80px]'
+                                                    "text-right font-terminatorgen text-[54px] leading-[0.8] text-[#808080] md:text-[80px]"
                                                 }
                                             >
                                                 0{index + 1}
                                             </p>
                                             <p
                                                 className={
-                                                    'font-electrohub text-[20px] font-bold leading-tight tracking-tight md:text-[22px]'
+                                                    "font-electrohub text-[20px] font-bold leading-tight tracking-tight md:text-[22px]"
                                                 }
                                             >
                                                 {stageCard.title}
                                             </p>
                                             <p
                                                 className={
-                                                    'mt-5 font-electrohub text-[15px] leading-tight md:text-[18px]'
+                                                    "mt-5 font-electrohub text-[15px] leading-tight md:text-[18px]"
                                                 }
                                             >
                                                 {stageCard.description}
                                             </p>
                                         </div>
                                     </CarouselItem>
-                                )
+                                ),
                             )}
                         </CarouselContent>
                         <div
-                            className={'mt-2 flex w-full justify-center gap-5'}
+                            className={"mt-2 flex w-full justify-center gap-5"}
                         >
-                            <CarouselPrevious className={''} />
-                            <CarouselNext className={''} />
+                            <CarouselPrevious className={""} />
+                            <CarouselNext className={""} />
                         </div>
                     </Carousel>
                 )}

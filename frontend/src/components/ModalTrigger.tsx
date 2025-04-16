@@ -1,8 +1,7 @@
-'use client';
-import React, { useState } from 'react';
-import { DialogStore } from '@/stores/dialog.store';
-import ModalComponent from '@/components/ModalComponent';
-import { cn } from '@/lib/utils';
+"use client";
+import ModalComponent from "@/components/ModalComponent";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
 
 type Props = {
     header: string;
@@ -20,15 +19,16 @@ export default function ModalTrigger(props: Props) {
     return (
         <>
             <button
+                type={"button"}
                 className={cn(
                     !cart &&
-                        'flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white',
-                    styles
+                        "flex w-full items-center justify-center gap-5 rounded-none border border-white bg-transparent px-12 py-3 font-electrohub text-lg font-bold text-white",
+                    styles,
                 )}
-                key={'consultation'}
+                key={"consultation"}
                 onClick={() => setOpen(true)}
             >
-                <span className={'whitespace-nowrap'}>{label}</span>
+                <span className={"whitespace-nowrap"}>{label}</span>
             </button>
             <ModalComponent
                 header={header}
