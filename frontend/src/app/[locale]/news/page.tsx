@@ -159,11 +159,13 @@ export default async function NewsPage({ params }: any) {
                                     <Link
                                         href={`${process.env.NEXT_PUBLIC_PUBLIC_URL}/ru/news/${item.href}`}
                                         className={
-                                            "bg-black z-10 flex gap-2 text-white px-4 py-1.5 text-sm flex w-fit text-xs sm:text-sm md:text-base border border-white hover:bg-white hover:border-black hover:text-black transition duration-300 ease-in-out"
+                                            "bg-black z-10 flex gap-2 items-center text-white px-4 py-1.5 flex w-fit text-xs sm:text-sm md:text-base border border-white hover:bg-white hover:border-black hover:text-black transition duration-300 ease-in-out"
                                         }
                                     >
                                         <span>Узнать подробнее</span>
-                                        <LinkIcon className={"h-6 w-6"} />
+                                        <LinkIcon
+                                            className={"lg:h-6 lg:w-6 w-4 h-4"}
+                                        />
                                     </Link>
                                 </div>
                             </div>
