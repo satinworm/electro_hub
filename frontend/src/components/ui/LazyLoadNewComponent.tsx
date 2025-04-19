@@ -58,7 +58,7 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
                 <div className={"flex gap-5"}>
                     <div className={"font-bold text-[#1E1E1E]"}>{header}</div>
                     <div className={"font-bold text-[#808080]"}>
-               n         {formattedDate(date)}
+                        n {formattedDate(date)}
                     </div>
                 </div>
                 <div
@@ -88,7 +88,7 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
             >
                 {!hasLoaded && <span className="embla__lazy-load__spinner" />}
                 <Image
-                    className="embla__slide__img embla__lazy-load__img"
+                    className="embla__slide__img embla__lazy-load__img max-h-[507px]"
                     onLoad={setLoaded}
                     src={inView ? imgSrc : PLACEHOLDER_SRC}
                     width={width || 20}
