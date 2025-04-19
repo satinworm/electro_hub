@@ -32,13 +32,13 @@ export async function Footer({ locale }: { locale: string }) {
         <footer
             className={cn(
                 // montserrat.className,
-                " flex w-full flex-col bg-black[#F0 py-7 font-electrohub text-white md:px-3 md:py-8 lg:py-10 xl:py-16",
+                " flex w-full flex-col bg-black py-7 font-electrohub text-white md:px-3 md:py-8 lg:py-10 xl:py-16",
             )}
         >
             <div className={"container"}>
                 <div
                     className={
-                        "flex md:flex-wrap md:flex-row flex-col justify-start max-w-[1140px] md:items-start gap-3 md:gap-7 lg:p-5 md:mx-auto border-white md:justify-center w-full"
+                        "flex md:flex-wrap md:flex-row flex-col justify-start max-w-[1440px] md:items-start gap-3 md:gap-7 lg:p-5 md:mx-auto border-white md:justify-center w-full"
                     }
                 >
                     <Link

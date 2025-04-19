@@ -1,3 +1,4 @@
+import BreadCrumbComponent from "@/components/Breadcrumb";
 import FinancingForm from "@/components/Financing/FinancingForm";
 import { cn } from "@/lib/utils";
 import { getStrapiMedia } from "@/utils/api-helpers";
@@ -80,6 +81,7 @@ export default async function FinancingPage({ params }: any) {
     return (
         <section className={"bg-white text-black"}>
             <div className={"bg-black h-20"} />
+            <BreadCrumbComponent />
             <div
                 className={cn(
                     montserrat.className,

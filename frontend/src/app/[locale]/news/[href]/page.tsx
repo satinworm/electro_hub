@@ -1,3 +1,4 @@
+import BreadCrumbComponent from "@/components/Breadcrumb";
 import GalleryComponent from "@/components/GalleryComponent";
 import { getDataFromAPI } from "@/utils/fetch-api";
 import { BlocksRenderer } from "@strapi/blocks-react-renderer";
@@ -32,10 +33,13 @@ export default async function NewsFullPage({ params }: any) {
     const item = newData?.data?.[0]?.attributes;
 
     return (
-        <section className={"bg-[#1e1e1e]/30 font-electrohub"}>
+        <section className={"bg-black font-electrohub"}>
+            <div className={"bg-white mt-20"}>
+                <BreadCrumbComponent />
+            </div>
             <div
                 className={
-                    "mt-24 flex w-full flex-col lg:flex-row md:-space-x-2 bg-white py-4 text-white"
+                    "flex w-full flex-col lg:flex-row md:-space-x-2 bg-white py-4 text-white"
                 }
             >
                 <div className="wrapper w-full p-3 md:w-[62%]">
