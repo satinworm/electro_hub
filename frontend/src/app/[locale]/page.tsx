@@ -6,6 +6,7 @@ import NewsSection from "@/components/NewsSection";
 import { getStrapiMedia } from "@/utils/api-helpers";
 import { getDataFromAPI } from "@/utils/fetch-api";
 import { getTranslations } from "next-intl/server";
+import Head from "next/head";
 
 export async function generateMetadata({ params }: any) {
     const { locale } = params;
@@ -174,29 +175,29 @@ export default async function RootRoute({
         },
         locale,
     );
-    const newArrivalsModels = await getDataFromAPI(
-        "models",
-        {
-            filters: {
-                new_arrival: {
-                    $eq: true,
-                },
-            },
-            populate: {
-                sale_type: {
-                    fields: ["type"],
-                },
-                image: {
-                    fields: ["url", "width", "height"],
-                },
-                brand: {
-                    fields: ["name", "slug"],
-                },
-            },
-            locale: locale,
-        },
-        locale,
-    );
+    // const newArrivalsModels = await getDataFromAPI(
+    //     "models",
+    //     {
+    //         filters: {
+    //             new_arrival: {
+    //                 $eq: true,
+    //             },
+    //         },
+    //         populate: {
+    //             sale_type: {
+    //                 fields: ["type"],
+    //             },
+    //             image: {
+    //                 fields: ["url", "width", "height"],
+    //             },
+    //             brand: {
+    //                 fields: ["name", "slug"],
+    //             },
+    //         },
+    //         locale: locale,
+    //     },
+    //     locale,
+    // );
     const newsData = await getDataFromAPI(
         "news",
         {
@@ -211,48 +212,52 @@ export default async function RootRoute({
         },
         locale,
     );
-    const getNavbarData = await getDataFromAPI(
-        "navbars",
-        {
-            populate: {
-                social_links: "*",
-            },
-            locale: locale,
-        },
-        locale,
-    );
-    const socialLinks = getNavbarData?.data?.[0]?.attributes?.social_links;
-    // console.dir(getNavbarData, { depth: null });
 
-    // console.dir(newsData, { depth: null });
-    // console.log('brandsSection ', brands?.data?.[0]);
+    const firstSlideImageUrl = mainSectionSlider?.items?.[0]?.main_image?.data
+        ?.attributes?.url
+        ? getStrapiMedia(
+              mainSectionSlider.items[0].main_image?.data.attributes.url,
+          )
+        : null;
 
     return (
-        <main className="flex max-w-screen flex-col items-center justify-between overflow-x-hidden">
-            <>
-                {mainSectionSlider && (
-                    <MainSection
-                        title={"electro hub"}
-                        subTitle={t("heading_description")}
-                        description={t("text_description")}
-                        bg={"bg-main"}
-                        data={mainSectionSlider}
+        <>
+            <Head>
+                {firstSlideImageUrl && (
+                    <link
+                        rel="preload"
+                        as="image"
+                        href={firstSlideImageUrl}
+                        fetchPriority={"high"}
                     />
                 )}
-                {carsInStockData && <CarsInStock data={carsInStockData} />}
-                {/*<CarsToOrder data={carsToOrderData} />*/}
-                {BrandSection && (
-                    <BrandSection brands={brands} data={brandsSection} />
-                )}
-                {/* <NewArrivals
+            </Head>
+            <main className="flex max-w-screen flex-col items-center justify-between overflow-x-hidden">
+                <>
+                    {mainSectionSlider && (
+                        <MainSection
+                            title={"electro hub"}
+                            subTitle={t("heading_description")}
+                            description={t("text_description")}
+                            bg={"bg-main"}
+                            data={mainSectionSlider}
+                        />
+                    )}
+                    {carsInStockData && <CarsInStock data={carsInStockData} />}
+                    {/*<CarsToOrder data={carsToOrderData} />*/}
+                    {BrandSection && (
+                        <BrandSection brands={brands} data={brandsSection} />
+                    )}
+                    {/* <NewArrivals
 						newArrivalsModels={newArrivalsModels}
 						data={newArrivalsSection}
 					/> */}
-                {stagePurchaseSection && (
-                    <DeliveryStageSection data={stagePurchaseSection} />
-                )}
-                {newsData && <NewsSection data={newsData} />}
-            </>
-        </main>
+                    {stagePurchaseSection && (
+                        <DeliveryStageSection data={stagePurchaseSection} />
+                    )}
+                    {newsData && <NewsSection data={newsData} />}
+                </>
+            </main>
+        </>
     );
 }

@@ -2,7 +2,6 @@
 
 import ModalComponent from "@/components/ModalComponent";
 import { cn } from "@/lib/utils";
-import { DialogStore } from "@/stores/dialog.store";
 import type { MainSectionSliderTypes } from "@/types/mainsection.types";
 import { getStrapiMedia } from "@/utils/api-helpers";
 // @ts-ignore
@@ -21,7 +20,6 @@ type Props = {
 };
 
 export default function MainSectionSlider({ props }: { props: Props }) {
-    const { setOpen } = DialogStore();
     const [windowWidth, setWindowWidth] = React.useState<number>(0);
     const { title, description, subTitle, bg, data } = props;
     const getPrevItem = (items: any, currentItem: any) => {
@@ -67,7 +65,6 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                 hasTrack={false}
                 options={{
                     type: "fade",
-                    // heightRatio: 0.98,
                     pagination: true,
                     arrows: false,
                     autoplay: true,
@@ -77,7 +74,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                     pauseOnFocus: true,
                     resetProgress: false,
                     lazyLoad: "nearby",
-                    speed: 1000,
+                    speed: 3000,
                     waitForTransition: true,
                 }}
             >
@@ -94,16 +91,28 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                                 key={index}
                                 className={cn(
-                                    "w-full bg-center bg-no-repeat px-[0.4rem] sm:px-[1rem] md:bg-cover md:px-[1.5rem] lg:px-[2rem]",
+                                    "w-full relative cursor-grab bg-black",
                                 )}
-                                style={{
-                                    backgroundImage:
-                                        windowWidth < 768
-                                            ? "black"
-                                            : `url(${bgUrl})`,
-                                }}
                             >
-                                <div className="item-center relative mt-24 mb-6 px-3 flex min-h-[75vh] w-full flex-col md:mt-0 md:min-h-[85vh] md:justify-end ">
+                                <div
+                                    className={
+                                        "absolute w-full md:block hidden h-full z-[1]"
+                                    }
+                                >
+                                    <Image
+                                        src={bgUrl!}
+                                        alt={item?.name}
+                                        fill
+                                        loading={index === 0 ? "eager" : "lazy"}
+                                        priority={index === 0}
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className={
+                                            "absolute inset-0 object-cover opacity-90"
+                                        }
+                                    />
+                                </div>
+
+                                <div className="item-center relative mt-24 z-[2] mb-6 px-3 flex min-h-[75vh] w-full flex-col md:mt-0 md:min-h-[85vh] md:justify-end px-[0.4rem] sm:px-[1rem] md:px-[1.5rem] lg:px-[2rem]">
                                     <div className="md:-translate-x-1/2 md:-translate-y-2/3 left-1/2 flex w-full flex-col items-center justify-center space-y-3 md:absolute md:top-1/4 md:mb-[15%] md:space-y-5">
                                         <div className="text-center font-terminatorgen text-[52px] text-white leading-[1] md:px-4 md:text-[80px] md:tracking-[0.2em] lg:text-[92px] xl:text-[112px] 2xl:text-[128px]">
                                             {item?.name}
@@ -111,7 +120,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                     </div>
                                     <div
                                         className={
-                                            "relative mt-7 min-h-[400px] rounded-2xl md:hidden"
+                                            "relative mt-7 min-h-[350px] sm:min-h-[400px] rounded-2xl md:hidden"
                                         }
                                     >
                                         <Image
@@ -121,12 +130,12 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                             alt={item?.name}
                                             objectFit={"cover"}
                                             className={
-                                                "h-[90%] w-full overflow-hidden rounded-2xl object-fill"
+                                                "h-[90%] w-full overflow-hidden rounded-lg object-cover"
                                             }
                                         />
                                         {item?.slug ? (
                                             <Link
-                                                className="absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]"
+                                                className="absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 bg-white px-10 py-3 text-xs md:block md:text-base md:backdrop-blur-[10px]"
                                                 href={`/ru/stock/${item.slug}`}
                                             >
                                                 Подробнее
@@ -137,11 +146,11 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                 description={
                                                     "Наш специалист свяжется с Вами и ответит на все интересующие Вас вопросы."
                                                 }
-                                                label={"Подбробнее"}
+                                                label={"Подробнее"}
                                                 data={{
                                                     type: "feedback",
                                                 }}
-                                                styles="absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 rounded-xl bg-white p-5 px-10 py-5 text-xs md:block md:rounded-[10px] md:text-base md:backdrop-blur-[10px]"
+                                                styles="absolute bottom-0 left-1/2 mx-auto flex w-fit -translate-x-1/2 text-black font-black  translate-y-1/2 bg-white px-10 py-3 text-xs md:block md:text-base md:backdrop-blur-[10px]"
                                             />
                                         )}
                                     </div>

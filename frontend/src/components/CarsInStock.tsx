@@ -26,7 +26,7 @@ export default function CarsInStock({ data }: Props) {
             id={"cars-in-stock"}
             className="flex w-full flex-col bg-white py-8 font-electrohub text-black xl:py-10"
         >
-            <div className="md:-mt-[48px] z-[1] mt-[-38px] h-[38px] w-full bg-cover bg-rectangle_main_mobile bg-no-repeat md:h-[48px] md:bg-rectangle_main" />
+            <div className="md:-mt-[68px] z-[50] mt-[-38px] h-[38px] w-full bg-cover bg-rectangle_main_mobile bg-no-repeat md:h-[48px] md:bg-rectangle_main" />
             <div className="container mt-10 text-black">
                 <h3 className="font-black text-[#1e1e1e] text-sm md:text-base">
                     {locale === "ru"
