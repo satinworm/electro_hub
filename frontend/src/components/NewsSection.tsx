@@ -117,7 +117,7 @@ export default function NewsSection({ data }: Data) {
                             ))}
                         </div>
                         <div className="embla__controls">
-                            <div className="embla__buttons flex scale-75 items-center justify-center gap-x-5 md:scale-100 lg:hidden">
+                            <div className="embla__buttons flex scale-75 items-center justify-center gap-x-5 md:scale-100">
                                 <PrevButton
                                     onClick={onPrevButtonClick}
                                     disabled={prevBtnDisabled}
@@ -128,7 +128,7 @@ export default function NewsSection({ data }: Data) {
                                 />
                             </div>
 
-                            <div className="embla__dots hidden w-full justify-center gap-4 lg:flex">
+                            {/* <div className="embla__dots hidden w-full justify-center gap-4 lg:flex">
                                 {scrollSnaps.map((_, index) => (
                                     <DotButton
                                         key={index}
@@ -140,7 +140,7 @@ export default function NewsSection({ data }: Data) {
                                         )}
                                     />
                                 ))}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

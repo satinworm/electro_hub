@@ -56,9 +56,8 @@ export const LazyLoadImage: React.FC<PropType> = (props) => {
                 }
             >
                 <div className={"flex gap-5"}>
-                    <div className={"font-bold text-[#1E1E1E]"}>{header}</div>
                     <div className={"font-bold text-[#808080]"}>
-                        n {formattedDate(date)}
+                        {formattedDate(date)}
                     </div>
                 </div>
                 <div
