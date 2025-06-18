@@ -51,7 +51,6 @@ const CatalogCars = memo(
             setImageLoaded((prev) => ({ ...prev, [slug]: true }));
         };
         console.log("initial data", initialData);
-        // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
         useEffect(() => {
             setIsLoading(true); // Показать лоадер
             const timeout = setTimeout(() => {
@@ -99,7 +98,7 @@ const CatalogCars = memo(
                         ) : (
                             <div
                                 className={
-                                    "relative grid grid-cols-1 gap-3 py-5 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-5 xl:gap-5 2xl:gap-6"
+                                    "relative grid grid-cols-1 gap-3 py-5 md:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4 lg:gap-5 xl:gap-5 2xl:gap-6"
                                 }
                             >
                                 {initialData?.data?.length === 0 ? (
@@ -111,7 +110,7 @@ const CatalogCars = memo(
                                                 <Link
                                                     href={`/stock/${item.attributes.slug}`}
                                                     className={
-                                                        "mx-auto flex relative flex-col items-center justify-center p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
+                                                        "hover:scale-95 duration-300 transition ease-in-out mx-auto flex relative flex-col items-center justify-center p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
                                                     }
                                                 >
                                                     <div
@@ -120,7 +119,7 @@ const CatalogCars = memo(
                                                                 ?.status
                                                                 ? "opacity-100"
                                                                 : "opacity-0",
-                                                            "text-sm rounded-lg font-terminatorgen bg-black text-white tracking-wide h-7 px-3 py-1 font-medium shadow-sm ml-auto mb-2",
+                                                            "text-sm font-terminatorgen bg-black text-white tracking-wide h-7 px-3 py-1 font-medium shadow-sm ml-auto mb-2",
                                                         )}
                                                     >
                                                         {
@@ -140,7 +139,7 @@ const CatalogCars = memo(
                                                             <div className="bg-gray-200 absolute left-0 top-0 animate-pulse rounded-[10px] w-full h-full" />
                                                         )}
                                                         <Image
-                                                            className={`max-h-[200px] rounded-[10px] object-contain transition-opacity duration-500 ease-in-out ${
+                                                            className={`h-[200px] rounded-md object-cover transition-opacity duration-500 ease-in-out ${
                                                                 imageLoaded[
                                                                     item
                                                                         .attributes
@@ -150,7 +149,6 @@ const CatalogCars = memo(
                                                                     : "opacity-0"
                                                             }`}
                                                             src={
-                                                                // biome-ignore lint/style/noNonNullAssertion: <explanation>
                                                                 getStrapiMedia(
                                                                     item
                                                                         ?.attributes

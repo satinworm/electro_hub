@@ -20,6 +20,24 @@ type Props = {
     brands: BrandsResponse;
     dynamic?: boolean | undefined;
 };
+
+const buyersLinks = [
+    {
+        scrollable: false,
+        label: "Финансирование",
+        href: "/financing",
+    },
+    {
+        scrollable: false,
+        label: "Гарантия",
+        href: "/guarantee",
+    },
+    {
+        scrollable: false,
+        label: "Сервисное обслуживание",
+        href: "/service",
+    },
+];
 export default function Burger(props: Props) {
     const { social_links, sub_links, brands, main_links, dynamic } = props;
     const [open, setOpen] = useState(false);
@@ -57,10 +75,22 @@ export default function Burger(props: Props) {
                                 href={link.href}
                                 onClick={() => setOpen(false)}
                                 className={
-                                    "block font-bold text-[#A4AABD] text-[18px] sm:text-[20px] md:text-[20px] lg:text-[22px] xl:text-[28px]"
+                                    "block font-bold text-[#A4AABD] text-base sm:text-[20px] md:text-[20px] lg:text-[22px]"
                                 }
                             >
                                 {link.name}
+                            </Link>
+                        ))}
+                        {buyersLinks?.map((link) => (
+                            <Link
+                                key={link.label}
+                                href={link.href}
+                                onClick={() => setOpen(false)}
+                                className={
+                                    "block font-bold text-[#A4AABD] text-base sm:text-[20px] md:text-[20px] lg:text-[22px]"
+                                }
+                            >
+                                {link.label}
                             </Link>
                         ))}
                     </div>

@@ -8,11 +8,34 @@ import { motion, useScroll } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Button } from "../ui/button";
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from "../ui/hover-card";
 
 type Props = {
     data: NavbarResponse;
     brands: BrandsResponse;
 };
+const buyersLinks = [
+    {
+        scrollable: false,
+        label: "Финансирование",
+        href: "/financing",
+    },
+    {
+        scrollable: false,
+        label: "Гарантия",
+        href: "/guarantee",
+    },
+    {
+        scrollable: false,
+        label: "Сервисное обслуживание",
+        href: "/service",
+    },
+];
 
 export default function DynamicNavbar(props: Props) {
     const { data, brands } = props;
@@ -49,14 +72,16 @@ export default function DynamicNavbar(props: Props) {
             <div className="container flex w-full  4xl:max-w-[1840px] justify-between gap-2 px-10 py-3 md:py-5 lg:py-5">
                 <div className="flex gap-20">
                     {/*<Logo data={logo} />*/}
-                    <Image
-                        src={"/logo-black.svg"}
-                        alt={"black-logo"}
-                        width={160}
-                        height={30}
-                    />
+                    <Link href={"/"}>
+                        <Image
+                            src={"/logo-black.svg"}
+                            alt={"black-logo"}
+                            width={160}
+                            height={30}
+                        />
+                    </Link>
 
-                    <div className="hidden items-center gap-x-12 xl:flex">
+                    <div className="hidden items-center gap-x-8 xl:gap-x-12 lg:flex">
                         {main_links?.map((link) => (
                             <NavLink
                                 scrollable={link.scrollable}
@@ -66,6 +91,28 @@ export default function DynamicNavbar(props: Props) {
                                 dynamic={true}
                             />
                         ))}
+                        <HoverCard openDelay={100}>
+                            <HoverCardTrigger asChild>
+                                <Button
+                                    className="border-none p-0 sm:p-0 md:p-0 lg:p-0 xl:p-0 hover:border-white border-transparent font-electrohub text-sm transition  sm:text-base md:base"
+                                    variant="link"
+                                >
+                                    Покупателям
+                                </Button>
+                            </HoverCardTrigger>
+                            <HoverCardContent className="w-80">
+                                <div className="flex flex-col space-y-1">
+                                    {buyersLinks.map((item) => (
+                                        <NavLink
+                                            scrollable={item.scrollable}
+                                            key={item.label}
+                                            label={item.label}
+                                            href={item.href}
+                                        />
+                                    ))}
+                                </div>
+                            </HoverCardContent>
+                        </HoverCard>
                     </div>
                 </div>
                 <div className="flex h-fit gap-4 md:gap-8">

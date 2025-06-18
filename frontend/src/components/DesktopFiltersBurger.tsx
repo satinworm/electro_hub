@@ -99,7 +99,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-[300px] justify-between rounded-md border border-[#1E1E1E] text-sm"
+													className="w-[300px] justify-between rounded-none border border-[#1E1E1E] text-sm"
 												>
 													{form.watch("brand")
 														? form.watch("brand")
@@ -177,7 +177,7 @@ export default function DesktopFiltersBurger({
 													role="combobox"
 													disabled={!form.watch("brand")}
 													className={cn(
-														"w-[200px] justify-between rounded-md border border-[#1E1E1E] text-sm",
+														"w-[200px] justify-between rounded-none border border-[#1E1E1E] text-sm",
 														!form.watch("brand") ? "cursor-not-allowed" : "",
 													)}
 												>
@@ -249,7 +249,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
+													className="w-[300px] w-full justify-between rounded-none border border-[#1E1E1E] text-sm"
 												>
 													{field.value
 														? bodyOption.find(
@@ -321,7 +321,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-[200px] w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
+													className="w-[200px] w-full justify-between rounded-none border border-[#1E1E1E] text-sm"
 												>
 													{field.value
 														? privodOption.find(
@@ -393,7 +393,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-full justify-between rounded-md border border-[#1E1E1E] text-sm"
+													className="w-full justify-between rounded-none border border-[#1E1E1E] text-sm"
 												>
 													{field.value
 														? engine_type.find(
@@ -518,7 +518,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-[300px] justify-between rounded-md border border-[#1E1E1E] text-sm"
+													className="w-[300px] justify-between rounded-none border border-[#1E1E1E] text-sm"
 												>
 													{field.value
 														? statusOptions.find(

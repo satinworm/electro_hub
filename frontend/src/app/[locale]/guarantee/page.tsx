@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: any) {
         {
             filters: {
                 slug: {
-                    $eq: "/financing",
+                    $eq: "/guarantee",
                 },
             },
             populate: {
@@ -57,11 +57,11 @@ export async function generateMetadata({ params }: any) {
         other: other,
     };
 }
-export default async function FinancingPage({ params }: any) {
+export default async function ServicePage({ params }: any) {
     const pageProperties = await getDataFromAPI("pages", {
         filters: {
             slug: {
-                $eq: "/financing",
+                $eq: "/guarantee",
             },
         },
         populate: {
@@ -77,7 +77,6 @@ export default async function FinancingPage({ params }: any) {
     const text = pageProperties?.data[0]?.attributes?.sections?.find(
         (item: any) => item.__component === "text.rich-text-component",
     );
-    console.log("Financing page", text);
 
     return (
         <section className={"bg-white text-black"}>

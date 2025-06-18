@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: any) {
         {
             filters: {
                 slug: {
-                    $eq: "/financing",
+                    $eq: "/service",
                 },
             },
             populate: {
@@ -57,11 +57,11 @@ export async function generateMetadata({ params }: any) {
         other: other,
     };
 }
-export default async function FinancingPage({ params }: any) {
+export default async function ServicePage({ params }: any) {
     const pageProperties = await getDataFromAPI("pages", {
         filters: {
             slug: {
-                $eq: "/financing",
+                $eq: "/service",
             },
         },
         populate: {
