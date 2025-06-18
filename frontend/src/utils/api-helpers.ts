@@ -1,5 +1,5 @@
-export function getStrapiURL(path = '') {
-    return `${process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:1338'}${path}`;
+export function getStrapiURL(path = "") {
+	return `${"https://strapi.electrohub.by"}${path}`;
 }
 
 export function getStrapiMedia(url: string | null) {
