@@ -17,7 +17,7 @@ const nextConfig = {
         ],
     },
     generateBuildId: async () => {
-        return process.env.GIT_HASH;
+        return "1";
     },
     env: {
         NEXT_PUBLIC_PUBLIC_URL: "https://electrohub.by",
