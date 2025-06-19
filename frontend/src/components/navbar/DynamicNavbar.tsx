@@ -52,7 +52,7 @@ export default function DynamicNavbar(props: Props) {
     // Подписываемся на изменения scrollY и обновляем видимость хедера
     useEffect(() => {
         const unsubscribe = scrollY.on("change", (latest) => {
-            setIsVisible(latest > 300);
+            setIsVisible(latest > 100);
         });
         return () => unsubscribe();
     }, [scrollY]);

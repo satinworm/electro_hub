@@ -19,10 +19,9 @@ import {
 	PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { filter } from "lodash";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const statusOptions = [
 	{ value: "все", label: "Все", slug: "all" },
@@ -61,7 +60,6 @@ export default function DesktopFiltersBurger({
 	setStatusListOpen,
 	status,
 	slug,
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 }: any) {
 	const [windowWidth, setWindowWidth] = useState<number>(0);
 	useEffect(() => {
@@ -87,7 +85,7 @@ export default function DesktopFiltersBurger({
 								name="brand"
 								render={({ field }) => (
 									<FormItem className="relative flex min-w-[300px] flex-col gap-2">
-										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
 											Марка
 										</FormLabel>
 										<Popover
@@ -99,7 +97,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-[300px] justify-between rounded-none border border-[#1E1E1E] text-sm"
+													className="w-[300px] justify-between rounded-none border border-[#1E1E1E] text-xs py-1"
 												>
 													{form.watch("brand")
 														? form.watch("brand")
@@ -163,7 +161,7 @@ export default function DesktopFiltersBurger({
 								name="generation"
 								render={({ field }) => (
 									<FormItem className="relative flex min-w-[200px] flex-col gap-2">
-										<FormLabel className="whitespace-nowrap font-electrohub font-medium text-sm">
+										<FormLabel className="whitespace-nowrap font-electrohub font-medium text-xs">
 											Модель
 										</FormLabel>
 										<Popover
@@ -177,7 +175,7 @@ export default function DesktopFiltersBurger({
 													role="combobox"
 													disabled={!form.watch("brand")}
 													className={cn(
-														"w-[200px] justify-between rounded-none border border-[#1E1E1E] text-sm",
+														"w-[200px] justify-between rounded-none border border-[#1E1E1E] text-xs py-1",
 														!form.watch("brand") ? "cursor-not-allowed" : "",
 													)}
 												>
@@ -237,7 +235,7 @@ export default function DesktopFiltersBurger({
 								name="body"
 								render={({ field }) => (
 									<FormItem className="relative flex min-w-[200px] flex-col gap-2">
-										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
 											Кузов
 										</FormLabel>
 										<Popover
@@ -249,7 +247,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-[300px] w-full justify-between rounded-none border border-[#1E1E1E] text-sm"
+													className="w-[300px] w-full justify-between rounded-none border border-[#1E1E1E] text-xs py-1"
 												>
 													{field.value
 														? bodyOption.find(
@@ -309,7 +307,7 @@ export default function DesktopFiltersBurger({
 								name="privod"
 								render={({ field }) => (
 									<FormItem className="relative flex min-w-[200px] flex-col gap-2">
-										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
 											Привод
 										</FormLabel>
 										<Popover
@@ -321,7 +319,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-[200px] w-full justify-between rounded-none border border-[#1E1E1E] text-sm"
+													className="w-[200px] w-full justify-between rounded-none border border-[#1E1E1E] text-xs py-1"
 												>
 													{field.value
 														? privodOption.find(
@@ -381,7 +379,7 @@ export default function DesktopFiltersBurger({
 								name="engine_type"
 								render={({ field }) => (
 									<FormItem className="relative flex min-w-[300px] flex-col gap-2">
-										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
 											Тип двигателя
 										</FormLabel>
 										<Popover
@@ -393,7 +391,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-full justify-between rounded-none border border-[#1E1E1E] text-sm"
+													className="w-full justify-between rounded-none border border-[#1E1E1E] text-xs py-1"
 												>
 													{field.value
 														? engine_type.find(
@@ -449,7 +447,7 @@ export default function DesktopFiltersBurger({
 								)}
 							/>
 							<div className={"flex flex-col items-baseline gap-2"}>
-								<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+								<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
 									Цена
 								</FormLabel>
 								<div className={"flex gap-1"}>
@@ -461,7 +459,7 @@ export default function DesktopFiltersBurger({
 												{/*<FormControl>*/}
 												<Input
 													className={
-														"w-32 rounded-l-md border border-[#1E1E1E] text-sm"
+														"w-32 rounded-l-md border border-[#1E1E1E] text-xs"
 													}
 													placeholder={"от"}
 													{...field}
@@ -484,7 +482,7 @@ export default function DesktopFiltersBurger({
 												{/*<FormControl>*/}
 												<Input
 													className={
-														"w-32 rounded-r-md border border-[#1E1E1E] text-sm"
+														"w-32 rounded-r-md border border-[#1E1E1E] text-xs"
 													}
 													placeholder={"до"}
 													{...field}
@@ -506,7 +504,7 @@ export default function DesktopFiltersBurger({
 								name="status"
 								render={({ field }) => (
 									<FormItem className="relative flex min-w-[300px] flex-col gap-2">
-										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-sm">
+										<FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
 											Статус
 										</FormLabel>
 										<Popover
@@ -518,7 +516,7 @@ export default function DesktopFiltersBurger({
 												<Button
 													variant={"outline"}
 													role="combobox"
-													className="w-[300px] justify-between rounded-none border border-[#1E1E1E] text-sm"
+													className="w-[300px] justify-between rounded-none border border-[#1E1E1E] text-xs py-1"
 												>
 													{field.value
 														? statusOptions.find(

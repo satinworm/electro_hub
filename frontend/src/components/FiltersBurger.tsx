@@ -282,12 +282,12 @@ export default function FiltersBurger(props: any) {
                         "mt-6 flex flex-col w-full md:w-fit gap-1.5 sm:gap-3"
                     }
                 >
-                    <div className={"flex w-full gap-2 md:w-fit"}>
+                    <div className={"flex w-full gap-2 mb-2 md:w-fit"}>
                         <div className={"relative w-full"}>
                             <Input
                                 value={searchTerm}
                                 onChange={handleSearchChange}
-                                className="h-9 w-full rounded-md border bg-transparent border-white text-white py-1 pr-10 pl-4 text-xs sm:py-2 md:h-10 md:w-96 lg:w-96"
+                                className="text-base h-9 w-full rounded-none border-b bg-transparent border-[#1E1E1E] text-black py-1 pr-10 pl-4 sm:py-2 md:h-10 md:w-96 lg:w-96"
                                 placeholder="Введите название для поиска..."
                             />
                             {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
@@ -308,23 +308,26 @@ export default function FiltersBurger(props: any) {
                                 />
                             </div>
                         </div>
-                        {Object.keys(filters).length > 1 && (
-                            <Button
-                                type={"button"}
-                                className={"mt-auto hidden border-white md:flex"}
-                                onClick={() => {
-                                    resetFilter();
-                                    setSearchTerm("");
-                                    form.reset(defaultValues);
-                                    push("/ru/catalog/all/all");
-                                }}
-                            >
-                                <span className={"hidden md:block"}>
+                        {Object.keys(filters).length > 1 ||
+                            (filters.name.$containsi !== "" && (
+                                <Button
+                                    type={"button"}
+                                    className={
+                                        "mt-auto hidden bg-black rounded-none border-white md:flex"
+                                    }
+                                    onClick={() => {
+                                        resetFilter();
+                                        setSearchTerm("");
+                                        form.reset(defaultValues);
+                                        push("/ru/catalog/all/all");
+                                    }}
+                                >
+                                    {/* <span className={"hidden md:block"}>
                                     Сбросить фильтры
-                                </span>
-                                <Trash2Icon className={"block md:hidden"} />
-                            </Button>
-                        )}
+                                </span> */}
+                                    <Trash2Icon className={"block"} />
+                                </Button>
+                            ))}
                     </div>
 
                     <MobileFiltersBurger
