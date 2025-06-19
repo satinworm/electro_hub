@@ -69,10 +69,10 @@ export default function DynamicNavbar(props: Props) {
                 "fixed left-0 top-0 bg-white z-[11] shadow-2xl h-fit w-full text-black",
             )}
         >
-            <div className="container flex w-full  4xl:max-w-[1840px] justify-between gap-2 px-10 py-3 md:py-5 lg:py-5">
+            <div className="container flex w-full items-center 4xl:max-w-[1840px] justify-between gap-2 px-10 py-3 md:py-3 lg:py-3">
                 <div className="flex gap-20">
                     {/*<Logo data={logo} />*/}
-                    <Link href={"/"}>
+                    <Link href={"/"} className="flex items-center">
                         <Image
                             src={"/logo-black.svg"}
                             alt={"black-logo"}

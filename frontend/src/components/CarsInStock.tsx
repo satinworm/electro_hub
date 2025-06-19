@@ -26,7 +26,7 @@ export default function CarsInStock({ data }: Props) {
             id={"cars-in-stock"}
             className="flex w-full flex-col bg-white py-8 font-electrohub text-black xl:py-10"
         >
-            <div className="md:-mt-[68px] z-[50] mt-[-38px] h-[38px] w-full bg-cover bg-rectangle_main_mobile bg-no-repeat md:h-[48px] md:bg-rectangle_main" />
+            <div className="md:-mt-[68px] z-[10] mt-[-38px] h-[38px] w-full bg-cover bg-rectangle_main_mobile bg-no-repeat md:h-[48px] md:bg-rectangle_main" />
             <div className="container mt-10 text-black">
                 <h3 className="font-black text-[#1e1e1e] text-sm md:text-base">
                     {locale === "ru"
@@ -62,12 +62,12 @@ export default function CarsInStock({ data }: Props) {
                                 <Link
                                     href={`/stock/${item.attributes.slug}`}
                                     className={
-                                        "mx-auto flex relative flex-col items-center justify-center rounded-[20px] p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
+                                        "mx-auto flex relative flex-col items-center justify-center  p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
                                     }
                                 >
                                     <div
                                         className={cn(
-                                            "text-sm h-7 rounded-lg px-3 py-1 font-terminatorgen tracking-wide bg-black text-white font-medium shadow-sm ml-auto mb-2",
+                                            "text-sm h-7 px-3 py-1 font-terminatorgen tracking-wide bg-black text-white font-medium shadow-sm ml-auto mb-2",
                                             item?.attributes?.status
                                                 ? "opacity-100"
                                                 : "opacity-0",
@@ -82,7 +82,6 @@ export default function CarsInStock({ data }: Props) {
                                                     "h-[200px] object-contain rounded-[10px]"
                                                 }
                                                 src={
-                                                    // biome-ignore lint/style/noNonNullAssertion: <explanation>
                                                     getStrapiMedia(
                                                         item?.attributes
                                                             ?.preview_image
@@ -227,7 +226,7 @@ export default function CarsInStock({ data }: Props) {
                                             //     )
                                             // }
                                             className={
-                                                "rounded-[10px] bg-[#1e1e1e] px-4 py-3 text-center font-bold text-white text-xs"
+                                                "rounded-sm bg-[#1e1e1e] px-4 py-3 text-center font-bold text-white text-xs"
                                             }
                                         >
                                             {locale === "ru"

@@ -1,11 +1,10 @@
-'use client';
-import type { Options } from '@splidejs/splide';
+"use client";
+import { getStrapiMedia } from "@/utils/api-helpers";
 // @ts-ignore
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import { Loader } from '@/components/Loader';
-import { getStrapiMedia } from '@/utils/api-helpers';
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import type { Options } from "@splidejs/splide";
+import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 // type Image = {
 //     id: string;
@@ -16,30 +15,29 @@ import { getStrapiMedia } from '@/utils/api-helpers';
 //     };
 // };
 
-
 export default function GalleryComponent({ photos }: any) {
     const mainRef = useRef<Splide>(null);
     const thumbsRef = useRef<Splide>(null);
-    console.log('photos ', photos);
+    console.log("photos ", photos);
 
     const mainOptions: Options = {
-        type: 'loop',
+        type: "loop",
         perPage: 1,
         perMove: 1,
-        gap: '0',
+        gap: "0",
         pagination: false,
         arrows: false,
     };
 
     const thumbsOptions: Options = {
-        type: 'slide',
+        type: "slide",
         rewind: true,
-        gap: '1rem',
+        gap: "1rem",
         pagination: false,
         fixedWidth: 110,
         fixedHeight: 70,
         cover: true,
-        focus: 'center',
+        focus: "center",
         arrows: false,
         isNavigation: true,
     };
@@ -52,7 +50,8 @@ export default function GalleryComponent({ photos }: any) {
     function renderSlides() {
         if (!photos?.data) {
             return (
-                <SplideSlide className={'w-full'} key={'no photos'}>
+                <SplideSlide className={"w-full"} key={"no photos"}>
+                    {/* biome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="mx-auto h-20 w-20"
@@ -73,15 +72,23 @@ export default function GalleryComponent({ photos }: any) {
         return photos?.data?.map((slide: any) => {
             return (
                 <SplideSlide
-                    className={'w-full flex items-center justify-center'}
+                    className={
+                        "w-full flex items-center max-h-[600px] justify-center"
+                    }
                     key={slide.id}
                 >
                     <Image
                         src={getStrapiMedia(slide.attributes.url)!}
                         alt={slide.attributes.src}
                         width={slide.attributes.width}
-                        height={slide.attributes.height}
-                        className={'mx-auto my-auto'}
+                        height={
+                            slide.attributes.height > 600
+                                ? 600
+                                : slide.attributes.height
+                        }
+                        className={
+                            "mx-auto my-auto max-h-[600px] object-contain"
+                        }
                     />
                 </SplideSlide>
             );
@@ -95,7 +102,7 @@ export default function GalleryComponent({ photos }: any) {
                     <Splide
                         options={mainOptions}
                         ref={mainRef}
-                        className={'overflow-hidden'}
+                        className={"overflow-hidden max-h-[600px]"}
                         aria-labelledby="thumbnail-slider-example"
                     >
                         {renderSlides()}
@@ -104,7 +111,7 @@ export default function GalleryComponent({ photos }: any) {
                     <Splide
                         options={thumbsOptions}
                         ref={thumbsRef}
-                        className={'my-4 flex w-full overflow-hidden'}
+                        className={"my-4 flex w-full overflow-hidden"}
                         aria-label="The carousel with thumbnails. Selecting a thumbnail will change the main carousel"
                     >
                         {renderSlides()}
@@ -113,7 +120,7 @@ export default function GalleryComponent({ photos }: any) {
             ) : (
                 <div className="flex h-full w-full items-center justify-center">
                     <Image
-                        src={'/image_not_found.jpeg'}
+                        src={"/image_not_found.jpeg"}
                         alt="image not found"
                         width={400}
                         height={400}

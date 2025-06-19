@@ -169,7 +169,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                         >
                                             <div
                                                 className={
-                                                    "grid w-full grid-cols-3 gap-[2px] md:w-auto md:grid-cols-6 xl:grid-cols-6"
+                                                    "grid w-full grid-cols-3 gap-[2px] md:w-auto md:grid-cols-4 xl:grid-cols-6"
                                                 }
                                             >
                                                 <div
@@ -297,7 +297,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                         </span>
                                                     </div>
                                                 </div>
-                                                <div className="relative h-full">
+                                                <div className="relative h-full md:bg-white/30 hidden xl:block md:backdrop-blur-[10px]">
                                                     <ModalTrigger
                                                         header={"Связь с нами"}
                                                         description={
@@ -307,12 +307,12 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                         data={{
                                                             type: "feedback",
                                                         }}
-                                                        styles="relative hidden w-full h-full border-0 p-5 text-xs md:rounded-[10px] md:bg-white/50 md:text-base md:backdrop-blur-[10px] xl:block"
+                                                        styles="relative hidden w-full h-full border-0 p-5 text-xs md:rounded-[10px] md:text-base xl:block"
                                                     />
 
                                                     <span
                                                         className={
-                                                            "absolute top-5 left-5 hidden font-black text-[#1e1e1e] text-xl md:block"
+                                                            "absolute top-5 left-5 hidden font-black text-[#1e1e1e] text-xl xl:block"
                                                         }
                                                     >
                                                         {item.starting_price}$
@@ -335,27 +335,7 @@ export default function MainSectionSlider({ props }: { props: Props }) {
                                                 )}
                                             </div>
                                         </div>
-                                        {/*<div className="flex gap-2">*/}
-                                        {/*	<button*/}
-                                        {/*		type={"button"}*/}
-                                        {/*		className={*/}
-                                        {/*			"relative mt-3 hidden flex-col p-5 text-xs md:flex md:rounded-[10px] md:bg-white/60 md:text-base md:backdrop-blur-[10px] xl:hidden"*/}
-                                        {/*		}*/}
-                                        {/*		key={item.name}*/}
-                                        {/*		onClick={() => setOpen(true)}*/}
-                                        {/*	>*/}
-                                        {/*		<span className={"font-black text-[#1e1e1e] text-sm"}>*/}
-                                        {/*			{item.starting_price}$*/}
-                                        {/*		</span>*/}
-                                        {/*		<span*/}
-                                        {/*			className={*/}
-                                        {/*				"whitespace-nowrap font-black text-[#1e1e1e]"*/}
-                                        {/*			}*/}
-                                        {/*		>*/}
-                                        {/*			{"Консультация"}*/}
-                                        {/*		</span>*/}
-                                        {/*	</button>*/}
-                                        {/*</div>*/}
+                                  
                                     </div>
                                 </div>
                             </SplideSlide>

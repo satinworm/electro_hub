@@ -201,7 +201,7 @@ export default async function RootRoute({
     const newsData = await getDataFromAPI(
         "news",
         {
-            sort: { createdAt: "asc" },
+            sort: ["date:desc"],
             populate: {
                 header: "*",
                 image: {
