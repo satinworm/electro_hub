@@ -287,7 +287,7 @@ export default function FiltersBurger(props: any) {
                             <Input
                                 value={searchTerm}
                                 onChange={handleSearchChange}
-                                className="text-base h-9 w-full rounded-none border-b bg-transparent border-[#1E1E1E] text-black py-1 pr-10 pl-4 sm:py-2 md:h-10 md:w-96 lg:w-96"
+                                className="text-xs sm:text-sm h-9 w-full rounded-none border-b bg-transparent border-[#1E1E1E] text-black py-1 pr-10 pl-4 sm:py-2 md:h-10 md:w-96 lg:w-96"
                                 placeholder="Введите название для поиска..."
                             />
                             {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}

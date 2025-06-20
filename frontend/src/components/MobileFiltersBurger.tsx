@@ -319,7 +319,7 @@ export default function MobileFiltersBurger({
                                 control={form.control}
                                 name="body"
                                 render={({ field }) => (
-                                    <FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
+                                    <FormItem className="relative flex min-w-[300px] w-full flex-col gap-1.5">
                                         <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
                                             Кузов
                                         </FormLabel>
@@ -417,7 +417,7 @@ export default function MobileFiltersBurger({
                                 control={form.control}
                                 name="privod"
                                 render={({ field }) => (
-                                    <FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
+                                    <FormItem className="relative flex min-w-[300px] w-full flex-col gap-1.5">
                                         <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
                                             Привод
                                         </FormLabel>
@@ -515,7 +515,7 @@ export default function MobileFiltersBurger({
                                 control={form.control}
                                 name="engine_type"
                                 render={({ field }) => (
-                                    <FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
+                                    <FormItem className="relative flex min-w-[300px] w-full flex-col gap-1.5">
                                         <FormLabel className=" whitespace-nowrap font-electrohub font-medium text-xs">
                                             Тип двигателя
                                         </FormLabel>
@@ -613,7 +613,7 @@ export default function MobileFiltersBurger({
                                 control={form.control}
                                 name="status"
                                 render={({ field }) => (
-                                    <FormItem className="relative flex min-w-[300px] flex-col gap-1.5">
+                                    <FormItem className="relative flex min-w-[300px] w-full flex-col gap-1.5">
                                         <FormLabel className="whitespace-nowrap font-electrohub font-medium text-xs">
                                             Статус
                                         </FormLabel>
