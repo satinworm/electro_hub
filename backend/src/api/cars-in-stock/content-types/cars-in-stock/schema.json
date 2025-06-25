@@ -33,7 +33,7 @@
       },
       "type": "string",
       "default": "В лизинг ≈ 813 USD в месяц",
-      "required": true
+      "required": false
     },
     "short_specification": {
       "pluginOptions": {
@@ -42,16 +42,6 @@
         }
       },
       "type": "blocks"
-    },
-    "engine": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "string",
-      "default": "544 л.с.",
-      "required": true
     },
     "gallery": {
       "type": "media",
@@ -225,15 +215,6 @@
       "type": "float",
       "required": true
     },
-    "battery_power": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "float",
-      "required": true
-    },
     "front_tires": {
       "pluginOptions": {
         "i18n": {
@@ -241,7 +222,7 @@
         }
       },
       "type": "string",
-      "required": true,
+      "required": false,
       "default": "передние шины 255/45 R20"
     },
     "rear_tires": {
@@ -251,7 +232,7 @@
         }
       },
       "type": "string",
-      "required": true,
+      "required": false,
       "default": "задние шины 255/45 R20"
     },
     "transmission": {
@@ -262,46 +243,6 @@
       },
       "type": "string",
       "default": "трансмиссия"
-    },
-    "number_of_seats": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "5",
-      "required": true
-    },
-    "number_of_doors": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "5",
-      "required": true
-    },
-    "clearance": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "клиренс",
-      "required": true
-    },
-    "trunk_capacity": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true,
-      "default": "объем багажника"
     },
     "status": {
       "pluginOptions": {

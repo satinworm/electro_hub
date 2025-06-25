@@ -68,7 +68,8 @@ export default function MobileFiltersBurger({
     openBurger,
     setOpenBurger,
 }: any) {
-    const [windowWidth, setWindowWidth] = useState<number>(0);
+    const [windowWidth, setWindowWidth] = useState<number>(768);
+    console.log("width bleat ", windowWidth);
     useEffect(() => {
         if (typeof window !== "undefined") {
             setWindowWidth(window.innerWidth);

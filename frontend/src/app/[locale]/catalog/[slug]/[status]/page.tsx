@@ -4,7 +4,6 @@ import { getStrapiMedia } from "@/utils/api-helpers";
 import { getDataFromAPI } from "@/utils/fetch-api";
 import { redirect } from "next/navigation";
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export async function generateMetadata({ params }: any) {
     const { locale, slug } = params;
     const pageProperties = await getDataFromAPI(
@@ -52,7 +51,6 @@ export async function generateMetadata({ params }: any) {
 
     const SEO = pageProperties?.data?.[0]?.attributes?.SEO;
     const additionalOgTags =
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         pageProperties?.data?.[0]?.attributes?.SEO?.MetaTag?.map((tag: any) => {
             if (!tag) return;
             return {
@@ -70,7 +68,6 @@ export async function generateMetadata({ params }: any) {
             description: SEO?.MetaDescription,
             images: [
                 {
-                    // biome-ignore lint/style/noNonNullAssertion: <explanation>
                     url: getStrapiMedia(brandImage?.url)!,
                     width: brandImage?.width,
                     height: brandImage?.height,
@@ -80,7 +77,6 @@ export async function generateMetadata({ params }: any) {
         other: other,
     };
 }
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export default async function CatalogPage({ params }: any) {
     const { locale, slug, status } = params;
     if (!slug) {
@@ -138,9 +134,7 @@ export default async function CatalogPage({ params }: any) {
         pageCount: number;
         total: number;
     };
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     function groupGenerationsByBrand(data: any[]) {
-        // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         const brandsGenerations: { [key: string]: any[] } = {};
 
         for (const item of data) {

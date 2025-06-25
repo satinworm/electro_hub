@@ -983,7 +983,6 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
         };
       }>;
     lising: Attribute.String &
-      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -996,14 +995,6 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    engine: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Attribute.DefaultTo<'544 \u043B.\u0441.'>;
     gallery: Attribute.Media &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -1140,15 +1131,7 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    battery_power: Attribute.Float &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     front_tires: Attribute.String &
-      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -1156,7 +1139,6 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
       }> &
       Attribute.DefaultTo<'\u043F\u0435\u0440\u0435\u0434\u043D\u0438\u0435 \u0448\u0438\u043D\u044B 255/45 R20'>;
     rear_tires: Attribute.String &
-      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1170,38 +1152,6 @@ export interface ApiCarsInStockCarsInStock extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<'\u0442\u0440\u0430\u043D\u0441\u043C\u0438\u0441\u0441\u0438\u044F'>;
-    number_of_seats: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.DefaultTo<'5'>;
-    number_of_doors: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.DefaultTo<'5'>;
-    clearance: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.DefaultTo<'\u043A\u043B\u0438\u0440\u0435\u043D\u0441'>;
-    trunk_capacity: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
-      Attribute.DefaultTo<'\u043E\u0431\u044A\u0435\u043C \u0431\u0430\u0433\u0430\u0436\u043D\u0438\u043A\u0430'>;
     status: Attribute.Enumeration<
       [
         '\u0432 \u043D\u0430\u043B\u0438\u0447\u0438\u0438',

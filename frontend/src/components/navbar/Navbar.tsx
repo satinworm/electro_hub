@@ -47,7 +47,7 @@ export default function Navbar(props: Props) {
     return (
         <nav
             className={cn(
-                "absolute inset-0 z-[11] h-fit w-full max-h-[86px]  text-white backdrop-blur-[20px]",
+                "absolute inset-0 z-[11] h-fit w-full max-h-[86px] text-white backdrop-blur-[1px]",
             )}
         >
             <div className="container flex w-full 4xl:max-w-[1840px] items-center justify-between gap-2 px-10 py-7">

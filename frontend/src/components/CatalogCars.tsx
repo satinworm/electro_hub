@@ -13,8 +13,6 @@ import { Button } from "./ui/button";
 type Props = {
     data: CarsInStockBackendResponse;
     locale: string;
-    // brands: BrandData[];
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     brands: any;
     slug: string;
     pageCount: number;
@@ -90,290 +88,260 @@ const CatalogCars = memo(
                     />
 
                     <div className="z-[1] transition-all mt-4 w-full ">
-                        {isLoading ? (
+                        {/* {isLoading ? (
                             // Отображаем индикатор загрузки, если данные загружаются
                             <div className="justify-center h-[50vh] my-6 w-full items-center">
                                 <div className="bg-gray-200 h-[50vh] w-full left-0 top-0 animate-pulse rounded-[10px]" />
                             </div>
-                        ) : (
-                            <div
-                                className={
-                                    "relative grid grid-cols-1 gap-3 py-5 md:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4 lg:gap-5 xl:gap-5 2xl:gap-6"
-                                }
-                            >
-                                {initialData?.data?.length === 0 ? (
-                                    <div>Извините, еще не добавили</div>
-                                ) : (
-                                    initialData?.data?.map((item) => {
-                                        return (
-                                            <div key={item.id}>
-                                                <Link
-                                                    href={`/stock/${item.attributes.slug}`}
+                        ) : ( */}
+                        <div
+                            className={
+                                "relative grid grid-cols-1 gap-3 py-5 md:grid-cols-2 md:gap-4 lg:grid-cols-3 xl:grid-cols-4 lg:gap-5 xl:gap-5 2xl:gap-6"
+                            }
+                        >
+                            {initialData?.data?.length === 0 ? (
+                                <div>Извините, еще не добавили</div>
+                            ) : (
+                                initialData?.data?.map((item) => {
+                                    return (
+                                        <div key={item.id}>
+                                            <Link
+                                                href={`/stock/${item.attributes.slug}`}
+                                                className={
+                                                    "hover:scale-95 duration-300 transition ease-in-out mx-auto flex relative flex-col items-center justify-center p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
+                                                }
+                                            >
+                                                <div
+                                                    className={cn(
+                                                        item?.attributes?.status
+                                                            ? "opacity-100"
+                                                            : "opacity-0",
+                                                        "text-sm font-terminatorgen bg-black text-white tracking-wide h-7 px-3 py-1 font-medium shadow-sm ml-auto mb-2",
+                                                    )}
+                                                >
+                                                    {item?.attributes?.status}
+                                                </div>
+
+                                                <div
                                                     className={
-                                                        "hover:scale-95 duration-300 transition ease-in-out mx-auto flex relative flex-col items-center justify-center p-3 shadow-[0px_0px_20px_2px_rgba(0,0,0,0.1)]"
+                                                        "relative w-full h-[200px] flex items-center justify-center"
                                                     }
                                                 >
-                                                    <div
-                                                        className={cn(
-                                                            item?.attributes
-                                                                ?.status
-                                                                ? "opacity-100"
-                                                                : "opacity-0",
-                                                            "text-sm font-terminatorgen bg-black text-white tracking-wide h-7 px-3 py-1 font-medium shadow-sm ml-auto mb-2",
-                                                        )}
-                                                    >
-                                                        {
-                                                            item?.attributes
-                                                                ?.status
-                                                        }
-                                                    </div>
-
-                                                    <div
-                                                        className={
-                                                            "relative w-full h-[200px] flex items-center justify-center"
-                                                        }
-                                                    >
-                                                        {!imageLoaded[
-                                                            item.attributes.slug
-                                                        ] && (
-                                                            <div className="bg-gray-200 absolute left-0 top-0 animate-pulse rounded-[10px] w-full h-full" />
-                                                        )}
-                                                        <Image
-                                                            className={`h-[200px] rounded-md object-cover transition-opacity duration-500 ease-in-out ${
-                                                                imageLoaded[
-                                                                    item
-                                                                        .attributes
-                                                                        .slug
-                                                                ]
-                                                                    ? "opacity-100"
-                                                                    : "opacity-0"
-                                                            }`}
-                                                            src={
-                                                                getStrapiMedia(
-                                                                    item
-                                                                        ?.attributes
-                                                                        ?.preview_image
-                                                                        ?.data
-                                                                        ?.attributes
-                                                                        ?.url,
-                                                                )!
-                                                            }
-                                                            alt={
+                                                    {!imageLoaded[
+                                                        item.attributes.slug
+                                                    ] && (
+                                                        <div className="bg-gray-200 absolute left-0 top-0 animate-pulse rounded-[10px] w-full h-full" />
+                                                    )}
+                                                    <Image
+                                                        className={`h-[200px] rounded-md object-cover transition-opacity duration-500 ease-in-out ${
+                                                            imageLoaded[
                                                                 item.attributes
-                                                                    ?.name
-                                                            }
-                                                            width={
+                                                                    .slug
+                                                            ]
+                                                                ? "opacity-100"
+                                                                : "opacity-0"
+                                                        }`}
+                                                        src={
+                                                            getStrapiMedia(
                                                                 item?.attributes
                                                                     ?.preview_image
                                                                     ?.data
                                                                     ?.attributes
-                                                                    ?.width
+                                                                    ?.url,
+                                                            )!
+                                                        }
+                                                        alt={
+                                                            item.attributes
+                                                                ?.name
+                                                        }
+                                                        width={
+                                                            item?.attributes
+                                                                ?.preview_image
+                                                                ?.data
+                                                                ?.attributes
+                                                                ?.width
+                                                        }
+                                                        height={200}
+                                                        onLoad={() =>
+                                                            handleImageLoad(
+                                                                item.attributes
+                                                                    .slug,
+                                                            )
+                                                        }
+                                                    />
+                                                </div>
+                                                <div
+                                                    className={
+                                                        "mt-6 w-full text-left font-bold text-[20px]"
+                                                    }
+                                                >
+                                                    {item.attributes?.name}
+                                                </div>
+                                                <div
+                                                    className={
+                                                        "my-3 flex w-full items-center justify-start gap-1 font-bold text-[#808080] capitalize"
+                                                    }
+                                                >
+                                                    <div className={"text-xs"}>
+                                                        {
+                                                            item.attributes
+                                                                ?.gearbox
+                                                        }
+                                                    </div>
+                                                    <div className={"text-xs"}>
+                                                        ●
+                                                    </div>
+                                                    <div className={"text-xs"}>
+                                                        {item.attributes?.body}
+                                                    </div>
+                                                    <div className={"text-xs"}>
+                                                        ●
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            "text-xs truncate"
+                                                        }
+                                                    >
+                                                        {
+                                                            item.attributes
+                                                                ?.engine_type
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className={
+                                                        "mt-5 grid w-full grid-cols-2 gap-y-4"
+                                                    }
+                                                >
+                                                    <div
+                                                        className={
+                                                            "flex min-h-[40px] items-center gap-2.5 font-bold text-sm"
+                                                        }
+                                                    >
+                                                        <Image
+                                                            src={
+                                                                "/carstoorder/battery.svg"
                                                             }
-                                                            height={200}
-                                                            onLoad={() =>
-                                                                handleImageLoad(
-                                                                    item
-                                                                        .attributes
-                                                                        .slug,
-                                                                )
-                                                            }
+                                                            alt={"Battery"}
+                                                            width={30}
+                                                            height={20}
                                                         />
-                                                    </div>
-                                                    <div
-                                                        className={
-                                                            "mt-6 w-full text-left font-bold text-[20px]"
-                                                        }
-                                                    >
-                                                        {item.attributes?.name}
-                                                    </div>
-                                                    <div
-                                                        className={
-                                                            "my-3 flex w-full items-center justify-start gap-1 font-bold text-[#808080] capitalize"
-                                                        }
-                                                    >
-                                                        <div
-                                                            className={
-                                                                "text-xs"
-                                                            }
-                                                        >
+                                                        <span>
                                                             {
                                                                 item.attributes
-                                                                    ?.gearbox
-                                                            }
-                                                        </div>
-                                                        <div
-                                                            className={
-                                                                "text-xs"
-                                                            }
-                                                        >
-                                                            ●
-                                                        </div>
-                                                        <div
-                                                            className={
-                                                                "text-xs"
-                                                            }
-                                                        >
-                                                            {
-                                                                item.attributes
-                                                                    ?.body
-                                                            }
-                                                        </div>
-                                                        <div
-                                                            className={
-                                                                "text-xs"
-                                                            }
-                                                        >
-                                                            ●
-                                                        </div>
-                                                        <div
-                                                            className={
-                                                                "text-xs truncate"
-                                                            }
-                                                        >
-                                                            {
-                                                                item.attributes
-                                                                    ?.engine_type
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        className={
-                                                            "mt-5 grid w-full grid-cols-2 gap-y-4"
-                                                        }
-                                                    >
-                                                        <div
-                                                            className={
-                                                                "flex min-h-[40px] items-center gap-2.5 font-bold text-sm"
-                                                            }
-                                                        >
-                                                            <Image
-                                                                src={
-                                                                    "/carstoorder/battery.svg"
-                                                                }
-                                                                alt={"Battery"}
-                                                                width={30}
-                                                                height={20}
-                                                            />
-                                                            <span>
-                                                                {
-                                                                    item
-                                                                        .attributes
-                                                                        ?.battery_capacity
-                                                                }{" "}
-                                                                {locale === "ru"
-                                                                    ? "кВт/ч"
-                                                                    : "kW/h"}
-                                                            </span>
-                                                        </div>
-                                                        <div
-                                                            className={
-                                                                "flex items-center gap-2.5 font-bold text-sm"
-                                                            }
-                                                        >
-                                                            <Image
-                                                                src={
-                                                                    "/carstoorder/hourse_power.png"
-                                                                }
-                                                                alt={"Battery"}
-                                                                width={30}
-                                                                height={20}
-                                                            />
-                                                            <span>
-                                                                {
-                                                                    item
-                                                                        .attributes
-                                                                        ?.hourse_power
-                                                                }{" "}
-                                                                {locale === "ru"
-                                                                    ? "л/c"
-                                                                    : "h/p"}
-                                                            </span>
-                                                        </div>
-                                                        <div
-                                                            className={
-                                                                "flex items-center gap-2.5 font-bold text-sm"
-                                                            }
-                                                        >
-                                                            <Image
-                                                                src={
-                                                                    "/carstoorder/range.svg"
-                                                                }
-                                                                alt={"Battery"}
-                                                                width={22}
-                                                                height={20}
-                                                            />
-                                                            <span>
-                                                                {
-                                                                    item
-                                                                        .attributes
-                                                                        ?.vehicle_range
-                                                                }{" "}
-                                                                {locale === "ru"
-                                                                    ? "км"
-                                                                    : "km"}
-                                                            </span>
-                                                        </div>
-                                                        <div
-                                                            className={
-                                                                "flex items-center gap-2.5 font-bold text-sm"
-                                                            }
-                                                        >
-                                                            <Image
-                                                                src={
-                                                                    "/carstoorder/privod.svg"
-                                                                }
-                                                                alt={"Battery"}
-                                                                width={22}
-                                                                height={20}
-                                                            />
-                                                            <span>
-                                                                {
-                                                                    item
-                                                                        .attributes
-                                                                        ?.privod
-                                                                }
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        className={
-                                                            "mt-4 flex w-full items-center justify-between"
-                                                        }
-                                                    >
-                                                        <div
-                                                            className={
-                                                                "font-bold text-[24px] text-black"
-                                                            }
-                                                        >
-                                                            $
-                                                            {
-                                                                item?.attributes
-                                                                    ?.price
-                                                            }
-                                                        </div>
-                                                        <button
-                                                            type={"button"}
-                                                            onClick={() =>
-                                                                push(
-                                                                    `/stock/${item.attributes.slug}`,
-                                                                )
-                                                            }
-                                                            className={
-                                                                " rounded bg-[#1e1e1e] px-4 py-3 text-center font-bold text-white text-xs"
-                                                            }
-                                                        >
+                                                                    ?.battery_capacity
+                                                            }{" "}
                                                             {locale === "ru"
-                                                                ? "Подробнее"
-                                                                : "More details"}
-                                                        </button>
+                                                                ? "кВт/ч"
+                                                                : "kW/h"}
+                                                        </span>
                                                     </div>
-                                                </Link>
-                                            </div>
-                                        );
-                                    })
-                                )}
-                            </div>
-                        )}
+                                                    <div
+                                                        className={
+                                                            "flex items-center gap-2.5 font-bold text-sm"
+                                                        }
+                                                    >
+                                                        <Image
+                                                            src={
+                                                                "/carstoorder/hourse_power.png"
+                                                            }
+                                                            alt={"Battery"}
+                                                            width={30}
+                                                            height={20}
+                                                        />
+                                                        <span>
+                                                            {
+                                                                item.attributes
+                                                                    ?.hourse_power
+                                                            }{" "}
+                                                            {locale === "ru"
+                                                                ? "л/c"
+                                                                : "h/p"}
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            "flex items-center gap-2.5 font-bold text-sm"
+                                                        }
+                                                    >
+                                                        <Image
+                                                            src={
+                                                                "/carstoorder/range.svg"
+                                                            }
+                                                            alt={"Battery"}
+                                                            width={22}
+                                                            height={20}
+                                                        />
+                                                        <span>
+                                                            {
+                                                                item.attributes
+                                                                    ?.vehicle_range
+                                                            }{" "}
+                                                            {locale === "ru"
+                                                                ? "км"
+                                                                : "km"}
+                                                        </span>
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            "flex items-center gap-2.5 font-bold text-sm"
+                                                        }
+                                                    >
+                                                        <Image
+                                                            src={
+                                                                "/carstoorder/privod.svg"
+                                                            }
+                                                            alt={"Battery"}
+                                                            width={22}
+                                                            height={20}
+                                                        />
+                                                        <span>
+                                                            {
+                                                                item.attributes
+                                                                    ?.privod
+                                                            }
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className={
+                                                        "mt-4 flex w-full items-center justify-between"
+                                                    }
+                                                >
+                                                    <div
+                                                        className={
+                                                            "font-bold text-[24px] text-black"
+                                                        }
+                                                    >
+                                                        $
+                                                        {
+                                                            item?.attributes
+                                                                ?.price
+                                                        }
+                                                    </div>
+                                                    <button
+                                                        type={"button"}
+                                                        onClick={() =>
+                                                            push(
+                                                                `/stock/${item.attributes.slug}`,
+                                                            )
+                                                        }
+                                                        className={
+                                                            " rounded bg-[#1e1e1e] px-4 py-3 text-center font-bold text-white text-xs"
+                                                        }
+                                                    >
+                                                        {locale === "ru"
+                                                            ? "Подробнее"
+                                                            : "More details"}
+                                                    </button>
+                                                </div>
+                                            </Link>
+                                        </div>
+                                    );
+                                })
+                            )}
+                        </div>
+                        {/* )} */}
                     </div>
                     {pageCount > 1 && (
                         <div className="flex mx-auto w-fit">
