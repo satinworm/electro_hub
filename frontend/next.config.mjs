@@ -20,11 +20,11 @@ const nextConfig = {
         return "1";
     },
     env: {
-        //   NEXT_PUBLIC_PUBLIC_URL: "https://electrohub.by",
-        //   NEXT_PUBLIC_SERVER_URL: "https://strapi.electrohub.by",
+        NEXT_PUBLIC_PUBLIC_URL: "https://electrohub.by",
+        NEXT_PUBLIC_SERVER_URL: "https://strapi.electrohub.by",
 
-        NEXT_PUBLIC_PUBLIC_URL: "http://localhost:3009",
-        NEXT_PUBLIC_SERVER_URL: "http://localhost:1349",
+        //   NEXT_PUBLIC_PUBLIC_URL: "http://localhost:3009",
+        //   NEXT_PUBLIC_SERVER_URL: "http://localhost:1349",
         NEXT_PUBLIC_BOT_URL: "https://electrohub.by",
         GIT_HASH: "1",
     },
