@@ -128,6 +128,38 @@ export default function MobileFiltersBurger({
                                                     не найдено
                                                 </CommandEmpty>
                                                 <CommandGroup className="max-h-[200px] overflow-y-auto bg-white">
+                                                    <CommandItem
+                                                        key={"all"} // Используем название бренда в качестве ключа
+                                                        value={"all"} // Название бренда передаем как value
+                                                        onSelect={async () => {
+                                                            resetFilter();
+                                                            setPage(1);
+                                                            setValue(
+                                                                "generation",
+                                                                "",
+                                                            ); // Сбрасываем выбранное поколение
+                                                            push(
+                                                                `${process.env.NEXT_PUBLIC_PUBLIC_URL}/ru/catalog/all/all`,
+                                                            );
+                                                        }}
+                                                    >
+                                                        <Check
+                                                            className={cn(
+                                                                "mr-2 h-4 w-4",
+                                                                field.value ===
+                                                                    "all"
+                                                                    ? "opacity-100"
+                                                                    : "opacity-0",
+                                                            )}
+                                                        />
+                                                        <span
+                                                            className={
+                                                                "test-sm font-electrohub font-normal"
+                                                            }
+                                                        >
+                                                            {"Все"}
+                                                        </span>
+                                                    </CommandItem>
                                                     {Object.keys(brands).map(
                                                         (brand) => (
                                                             <CommandItem
@@ -333,7 +365,7 @@ export default function MobileFiltersBurger({
                                                 <Button
                                                     variant={"outline"}
                                                     role="combobox"
-                                                    className="h-8 w-[300px] w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
+                                                    className="h-8 w-full justify-between rounded-md border border-[#1E1E1E] py-2 text-xs sm:text-sm"
                                                 >
                                                     {field.value
                                                         ? bodyOption.find(

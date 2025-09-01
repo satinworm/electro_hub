@@ -116,7 +116,7 @@ export default async function RootRoute({
         "cars-in-stocks",
         {
             sort: {
-                name: "ASC",
+                publish_date: "DESC",
             },
             filters: {
                 hot: {

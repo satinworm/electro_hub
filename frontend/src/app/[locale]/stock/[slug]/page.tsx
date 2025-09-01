@@ -355,11 +355,12 @@ export default async function StockCarFullPage({ params }: any) {
                 {/* </div> */}
             </div>
 
-            {item?.specification?.length > 0 && (
+            {item?.specification?.length > 1 && (
                 <TechnicalSpecifications data={item?.specification} />
             )}
             {item?.full_description && (
                 <div
+                    id="specification"
                     className={
                         " w-full bg-white p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20"
                     }

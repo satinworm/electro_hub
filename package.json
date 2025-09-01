@@ -11,8 +11,8 @@
         "setup:frontend": "cd frontend && yarn",
         "setup:backend": "cd backend && yarn",
         "setup": "yarn install && yarn setup:frontend && yarn setup:backend",
-        "dev": "yarn clear && concurrently \"cd frontend && yarn dev\" \"cd backend && yarn develop\" \"cd bot && yarn dev\"",
-        "start": "yarn clear && concurrently \"cd frontend && yarn start\" \"cd backend && yarn start\" \"cd bot && yarn dev\"",
+        "dev": "yarn clear && concurrently --names \"FRONTEND,BACKEND\" --prefix-colors \"blue,green\" \"cd frontend && yarn dev\" \"cd backend && yarn develop\"",
+        "start": "yarn clear && concurrently --names \"FRONTEND,BACKEND,BOT\" --prefix-colors \"blue,green,magenta\" \"cd frontend && yarn start\" \"cd backend && yarn start\" \"cd bot && yarn dev\"",
         "repo:upstream": "git fetch upstream && git merge upstream/main"
     },
     "devDependencies": {
